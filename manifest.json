@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.0",
-  "publishedAt": "2026-05-27T22:50:03.154Z",
+  "version": "1.0.1",
+  "publishedAt": "2026-05-27T22:52:13.201Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -129,13 +129,6 @@
       "sha256": "1218ccb9b317617129ccc286d2ba400803820bd0ad910ea055f911f22cd83685"
     }
   ],
-  "packs": [
-    {
-      "packId": "mappack_1779398997874",
-      "isPaid": false,
-      "price": null,
-      "productId": null
-    }
-  ],
-  "signature": "6zL6hg8/eSM8+Ae6Z8TsFJx2onF1nifQLpYnvU595M2h8NSoJXbPundXlFO3QpnWy/V/4r0j/B3nG1GWmYRSYw=="
+  "packs": [],
+  "signature": "aDj82DOQKswt5714/X7zP2sjpRBaR+dvg/12akhsVUxvzpCWWsFl88EWeJPGbfepvBx2GBFbtnS5+0Ol2Z+r3g=="
 }
