@@ -1,0 +1,62 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_m1_s1",
+      "name": "Open the Line",
+      "description": "The line is isolated. Open the valve to establish flow to the outlet.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_m1_s1_01",
+          "literalComponentId": "lc_m1_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m1_s1_01",
+          "literalComponentId": "lc_m1_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "tc_m1_s1_02",
+          "literalComponentId": "lc_m1_pipe_out",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": true
+        }
+      ],
+      "lossConditions": []
+    },
+    {
+      "id": "scenario_m1_s2",
+      "name": "Isolate the Line",
+      "description": "Flow is established. Close the valve to safely isolate the line.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_m1_s2_01",
+          "literalComponentId": "lc_m1_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m1_s2_01",
+          "literalComponentId": "lc_m1_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_m1_s2_02",
+          "literalComponentId": "lc_m1_pipe_out",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": false
+        }
+      ],
+      "lossConditions": []
+    }
+  ]
+}
