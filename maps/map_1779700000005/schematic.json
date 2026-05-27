@@ -1,0 +1,181 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_m5_inlet",
+      "x": 50,
+      "y": 16
+    },
+    {
+      "lcId": "lc_m5_pipe_in",
+      "x": 150,
+      "y": 16
+    },
+    {
+      "lcId": "lc_m5_v1",
+      "x": 242,
+      "y": 0
+    },
+    {
+      "lcId": "lc_m5_pipe_1",
+      "x": 382,
+      "y": 16
+    },
+    {
+      "lcId": "lc_m5_p1",
+      "x": 474,
+      "y": 0
+    },
+    {
+      "lcId": "lc_m5_pipe_2",
+      "x": 614,
+      "y": 16
+    },
+    {
+      "lcId": "lc_m5_cv1",
+      "x": 706,
+      "y": 0
+    },
+    {
+      "lcId": "lc_m5_pipe_out",
+      "x": 846,
+      "y": 16
+    },
+    {
+      "lcId": "lc_m5_outlet",
+      "x": 938,
+      "y": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_m5_inlet_pipe_in",
+      "srcLcId": "lc_m5_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_m5_pipe_in",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m5_pipe_in_v1",
+      "srcLcId": "lc_m5_pipe_in",
+      "srcPortId": "output",
+      "dstLcId": "lc_m5_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m5_v1_pipe_1",
+      "srcLcId": "lc_m5_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_m5_pipe_1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m5_pipe_1_p1",
+      "srcLcId": "lc_m5_pipe_1",
+      "srcPortId": "output",
+      "dstLcId": "lc_m5_p1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m5_p1_pipe_2",
+      "srcLcId": "lc_m5_p1",
+      "srcPortId": "output",
+      "dstLcId": "lc_m5_pipe_2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m5_pipe_2_cv1",
+      "srcLcId": "lc_m5_pipe_2",
+      "srcPortId": "output",
+      "dstLcId": "lc_m5_cv1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m5_cv1_pipe_out",
+      "srcLcId": "lc_m5_cv1",
+      "srcPortId": "output",
+      "dstLcId": "lc_m5_pipe_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m5_pipe_out_outlet",
+      "srcLcId": "lc_m5_pipe_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_m5_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_m5_v1_btn": {
+      "id": "anc_m5_v1_btn",
+      "type": "button",
+      "lcId": "lc_m5_v1",
+      "bindTo": "act:on_toggle",
+      "label": "Open/Close",
+      "x": 278,
+      "y": -18
+    },
+    "anc_m5_v1_light": {
+      "id": "anc_m5_v1_light",
+      "type": "light",
+      "lcId": "lc_m5_v1",
+      "bindTo": "var:open",
+      "label": "Open",
+      "x": 338,
+      "y": -18
+    },
+    "anc_m5_p1_btn": {
+      "id": "anc_m5_p1_btn",
+      "type": "button",
+      "lcId": "lc_m5_p1",
+      "bindTo": "act:on_toggle",
+      "label": "Start/Stop",
+      "x": 510,
+      "y": -18
+    },
+    "anc_m5_p1_run": {
+      "id": "anc_m5_p1_run",
+      "type": "light",
+      "lcId": "lc_m5_p1",
+      "bindTo": "var:running",
+      "label": "Running",
+      "x": 570,
+      "y": -18
+    },
+    "anc_m5_p1_fault": {
+      "id": "anc_m5_p1_fault",
+      "type": "light",
+      "lcId": "lc_m5_p1",
+      "bindTo": "var:fault",
+      "label": "Fault",
+      "x": 630,
+      "y": -18
+    },
+    "anc_m5_p1_reset": {
+      "id": "anc_m5_p1_reset",
+      "type": "button",
+      "lcId": "lc_m5_p1",
+      "bindTo": "act:reset_fault",
+      "label": "Reset",
+      "x": 510,
+      "y": -42
+    },
+    "anc_m5_cv1_btn": {
+      "id": "anc_m5_cv1_btn",
+      "type": "button",
+      "lcId": "lc_m5_cv1",
+      "bindTo": "act:on_toggle",
+      "label": "Open/Close",
+      "x": 742,
+      "y": -18
+    },
+    "anc_m5_cv1_light": {
+      "id": "anc_m5_cv1_light",
+      "type": "light",
+      "lcId": "lc_m5_cv1",
+      "bindTo": "var:open",
+      "label": "Open",
+      "x": 802,
+      "y": -18
+    }
+  }
+}
