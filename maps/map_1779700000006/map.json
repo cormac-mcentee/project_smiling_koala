@@ -1,0 +1,6 @@
+{
+  "id": "map_1779700000006",
+  "name": "Automated Control",
+  "description": "Introduces the electrical control valve and power supply. Learn how an ECV responds to electrical power, what happens on power loss, and how to isolate an automatically-controlled valve.",
+  "config": {}
+}
