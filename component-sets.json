@@ -1,0 +1,1024 @@
+{
+  "componentSets": [
+    {
+      "id": "componentset_1779399007744",
+      "name": "Basic Process Components",
+      "description": "",
+      "components": [
+        {
+          "id": "component_1779500000004",
+          "name": "Tank",
+          "colour": "#3b82f6",
+          "variables": [
+            {
+              "id": "var_tank_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_tank_level",
+              "name": "level",
+              "type": "number",
+              "defaultValue": 100
+            },
+            {
+              "id": "var_tank_receiving",
+              "name": "receiving",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_tank_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_tank_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            },
+            {
+              "id": "var_tank_low_threshold",
+              "name": "low_threshold",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_tank_high_threshold",
+              "name": "high_threshold",
+              "type": "number",
+              "defaultValue": 80
+            },
+            {
+              "id": "var_tank_level_low",
+              "name": "level_low",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_tank_level_high",
+              "name": "level_high",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_tank_update",
+              "name": "update",
+              "script": "IF self.level > 0 THEN\n  SET self.fluid_present = true\nELSE\n  SET self.fluid_present = false\nEND\nIF self.level <= self.low_threshold THEN\n  SET self.level_low = true\nELSE\n  SET self.level_low = false\nEND\nIF self.level >= self.high_threshold THEN\n  SET self.level_high = true\nELSE\n  SET self.level_high = false\nEND"
+            },
+            {
+              "id": "action_tank_tick",
+              "name": "tick",
+              "script": "IF self.receiving THEN\n  SET self.level = MIN(self.level + 25, 100)\n  CALL self.update\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_tank_inflow_on",
+              "condition": "ANYSUP.fluid_flowing",
+              "script": "SET self.receiving = true\nSET self.temperature = SUMSUP.temperature\nSET self.fluid_type = SUP(0).fluid_type"
+            },
+            {
+              "id": "listener_tank_inflow_off",
+              "condition": "ANYSUP.fluid_flowing == false",
+              "script": "SET self.receiving = false\nSET self.fluid_type = \"\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-05-22T00:00:00.004Z"
+        },
+        {
+          "id": "component_1779500000001",
+          "name": "Pump",
+          "colour": "#f59e0b",
+          "variables": [
+            {
+              "id": "var_pump_running",
+              "name": "running",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_pump_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_pump_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_pump_flow_rate",
+              "name": "flow_rate",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_pump_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_pump_fault",
+              "name": "fault",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_pump_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_pump_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.running THEN\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nELSE\n  IF ANYSUP.fluid_present THEN\n    SET self.running = true\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n    SET self.fault = false\n  ELSE\n    SET self.fault = true\n  END\nEND"
+            },
+            {
+              "id": "action_pump_reset",
+              "name": "reset_fault",
+              "script": "SET self.fault = false"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_pump_dry_run",
+              "condition": "ANYSUP.fluid_present == false",
+              "script": "IF self.running THEN\n  SET self.fault = true\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+            },
+            {
+              "id": "listener_pump_running_on",
+              "condition": "self.running",
+              "script": "SET self.fluid_present = true\nSET self.fluid_flowing = true\nSET self.flow_rate = 100\nSET self.temperature = SUMSUP.temperature\nSET self.fluid_type = SUP(0).fluid_type"
+            },
+            {
+              "id": "listener_pump_running_off",
+              "condition": "self.running == false",
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_pump_dead_head",
+              "condition": "self.running AND ANYINF.blocked",
+              "script": "SET self.fault = true\nSET self.running = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-05-22T00:00:00.001Z"
+        },
+        {
+          "id": "component_1779399245576",
+          "name": "Valve",
+          "colour": "#ef4444",
+          "variables": [
+            {
+              "id": "var_valve_open",
+              "name": "open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_valve_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_valve_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_valve_flow_rate",
+              "name": "flow_rate",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_valve_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_valve_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_valve_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.open THEN\n  SET self.open = false\nELSE\n  SET self.open = true\nEND\nCALL self.update_flow"
+            },
+            {
+              "id": "action_valve_update_flow",
+              "name": "update_flow",
+              "script": "IF self.open THEN\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\n  IF ANYSUP.fluid_flowing THEN\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n  ELSE\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.temperature = 20\n    SET self.fluid_type = \"\"\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_valve_flow_on",
+              "condition": "ANYSUP.fluid_flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_valve_flow_off",
+              "condition": "ANYSUP.fluid_flowing == false",
+              "script": "SET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_valve_pressure_on",
+              "condition": "ANYSUP.fluid_present",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_valve_pressure_off",
+              "condition": "ANYSUP.fluid_present == false",
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_valve_signal_blocked",
+              "condition": "self.open == false AND ANYSUP.fluid_flowing",
+              "script": "SET ALLSUP.blocked = true"
+            },
+            {
+              "id": "listener_valve_signal_unblocked",
+              "condition": "self.open",
+              "script": "SET ALLSUP.blocked = false"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-05-21T21:34:05.576Z"
+        },
+        {
+          "id": "component_control_valve_1779600000002",
+          "name": "Control Valve",
+          "variables": [
+            {
+              "id": "var_cv_open",
+              "name": "open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_cv_opening",
+              "name": "opening",
+              "type": "number",
+              "defaultValue": 100
+            },
+            {
+              "id": "var_cv_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_cv_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_cv_flow_rate",
+              "name": "flow_rate",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_cv_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_cv_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_cv_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.open THEN\n  SET self.open = false\nELSE\n  SET self.open = true\nEND\nCALL self.update_flow"
+            },
+            {
+              "id": "action_cv_update_flow",
+              "name": "update_flow",
+              "script": "IF self.open AND self.opening > 0 THEN\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\n  IF ANYSUP.fluid_flowing THEN\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate * self.opening / 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n  ELSE\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.temperature = 20\n    SET self.fluid_type = \"\"\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_cv_flow_on",
+              "condition": "ANYSUP.fluid_flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_cv_flow_off",
+              "condition": "ANYSUP.fluid_flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_cv_present_on",
+              "condition": "ANYSUP.fluid_present",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_cv_present_off",
+              "condition": "ANYSUP.fluid_present == false",
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-05-24T00:00:00.001Z"
+        },
+        {
+          "id": "component_ecv_1779600000003",
+          "name": "Electrical Control Valve",
+          "variables": [
+            {
+              "id": "var_ecv_powered",
+              "name": "powered",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ecv_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_ecv_fail_open",
+              "name": "fail_open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ecv_opening",
+              "name": "opening",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_ecv_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ecv_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ecv_flow_rate",
+              "name": "flow_rate",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_ecv_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_ecv_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_ecv_update_opening",
+              "name": "update_opening",
+              "script": "IF self.powered THEN\n  SET self.opening = self.signal\nELSE\n  IF self.fail_open THEN\n    SET self.opening = 100\n  ELSE\n    SET self.opening = 0\n  END\nEND\nCALL self.update_flow"
+            },
+            {
+              "id": "action_ecv_update_flow",
+              "name": "update_flow",
+              "script": "IF self.opening > 0 THEN\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\n  IF ANYSUP.fluid_flowing THEN\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate * self.opening / 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n  ELSE\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.temperature = 20\n    SET self.fluid_type = \"\"\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_ecv_flow_on",
+              "condition": "ANYSUP.fluid_flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_ecv_flow_off",
+              "condition": "ANYSUP.fluid_flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_ecv_present_on",
+              "condition": "ANYSUP.fluid_present",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_ecv_present_off",
+              "condition": "ANYSUP.fluid_present == false",
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_ecv_powered_on",
+              "condition": "self.powered",
+              "script": "CALL self.update_opening"
+            },
+            {
+              "id": "listener_ecv_powered_off",
+              "condition": "self.powered == false",
+              "script": "CALL self.update_opening"
+            },
+            {
+              "id": "listener_ecv_supply_on",
+              "condition": "ANYSUP.energised",
+              "script": "SET self.powered = true\nCALL self.update_opening"
+            },
+            {
+              "id": "listener_ecv_supply_off",
+              "condition": "ANYSUP.energised == false",
+              "script": "SET self.powered = false\nCALL self.update_opening"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-05-24T00:00:00.002Z"
+        },
+        {
+          "id": "component_pipe_1779600000001",
+          "name": "Pipe",
+          "isEdge": true,
+          "lineStyle": {
+            "width": 3,
+            "style": "solid",
+            "colour": "#3b82f6",
+            "namePresent": true
+          },
+          "variables": [
+            {
+              "id": "var_pipe_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_pipe_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_pipe_flow_rate",
+              "name": "flow_rate",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_pipe_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_pipe_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            },
+            {
+              "id": "var_pipe_resistance",
+              "name": "resistance",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_pipe_elevation_change",
+              "name": "elevation_change",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_pipe_pressure_drop",
+              "name": "pressure_drop",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_pipe_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_pipe_update_flow",
+              "name": "update_flow",
+              "script": "IF ANYSUP.fluid_flowing THEN\n  IF self.blocked THEN\n    SET self.fluid_present = true\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.fluid_type = \"\"\n    SET self.pressure_drop = 0\n  ELSE\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n    SET self.pressure_drop = self.resistance * self.flow_rate ^ 2 + 9810 * self.elevation_change\n  END\nELSE\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  SET self.pressure_drop = 0\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_pipe_flow_on",
+              "condition": "ANYSUP.fluid_flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_pipe_flow_off",
+              "condition": "ANYSUP.fluid_flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_pipe_present_on",
+              "condition": "ANYSUP.fluid_present",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_pipe_present_off",
+              "condition": "ANYSUP.fluid_present == false",
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nSET self.pressure_drop = 0"
+            },
+            {
+              "id": "listener_pipe_blocked",
+              "condition": "self.blocked",
+              "script": "SET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.fluid_type = \"\"\nSET self.pressure_drop = 0"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-05-24T00:00:00.000Z"
+        },
+        {
+          "id": "component_1779500000003",
+          "name": "Heater",
+          "colour": "#f97316",
+          "variables": [
+            {
+              "id": "var_heater_active",
+              "name": "active",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_heater_heating",
+              "name": "heating",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_heater_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_heater_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_heater_flow_rate",
+              "name": "flow_rate",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_heater_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_heater_fault",
+              "name": "fault",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_heater_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_heater_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.active THEN\n  SET self.active = false\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fault = false\nELSE\n  IF ANYSUP.fluid_flowing THEN\n    SET self.active = true\n    SET self.fault = false\n  ELSE\n    SET self.fault = true\n  END\nEND\nCALL self.update_flow"
+            },
+            {
+              "id": "action_heater_update_flow",
+              "name": "update_flow",
+              "script": "IF ANYSUP.fluid_flowing THEN\n  SET self.fluid_present = true\n  SET self.fluid_flowing = true\n  SET self.flow_rate = SUMSUP.flow_rate\n  SET self.fluid_type = SUP(0).fluid_type\n  IF self.active THEN\n    SET self.heating = true\n    SET self.temperature = 80\n  ELSE\n    SET self.heating = false\n    SET self.temperature = SUMSUP.temperature\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  IF self.active THEN\n    SET self.fault = true\n  END\nEND"
+            },
+            {
+              "id": "action_heater_reset",
+              "name": "reset_fault",
+              "script": "SET self.fault = false"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_heater_upstream_on",
+              "condition": "ANYSUP.fluid_flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_heater_upstream_off",
+              "condition": "ANYSUP.fluid_flowing == false",
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.heating = false\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nIF self.active THEN\n  SET self.fault = true\nEND"
+            },
+            {
+              "id": "listener_heater_present_on",
+              "condition": "ANYSUP.fluid_present",
+              "script": "SET self.fluid_present = true"
+            },
+            {
+              "id": "listener_heater_present_off",
+              "condition": "ANYSUP.fluid_present == false",
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.heating = false\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-05-22T00:00:00.003Z"
+        }
+      ],
+      "created": "2026-05-21T21:30:07.744Z"
+    },
+    {
+      "id": "componentset_1779500000010",
+      "name": "Plant Boundary Components",
+      "description": "Theoretical entry and exit points — not operator-controllable.",
+      "components": [
+        {
+          "id": "component_1779500000005",
+          "name": "Inlet",
+          "variables": [
+            {
+              "id": "var_inlet_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_inlet_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_inlet_flow_rate",
+              "name": "flow_rate",
+              "type": "number",
+              "defaultValue": 100
+            },
+            {
+              "id": "var_inlet_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_inlet_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": "water"
+            }
+          ],
+          "actions": [],
+          "listeners": [],
+          "superiors": [],
+          "created": "2026-05-22T00:00:00.005Z",
+          "isBoundary": true
+        },
+        {
+          "id": "component_1779500000006",
+          "name": "Outlet",
+          "variables": [
+            {
+              "id": "var_outlet_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_outlet_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_outlet_receiving",
+              "name": "receiving",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_outlet_flow_rate",
+              "name": "flow_rate",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_outlet_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_outlet_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_outlet_flow_on",
+              "condition": "ANYSUP.fluid_flowing",
+              "script": "SET self.fluid_present = true\nSET self.fluid_flowing = true\nSET self.receiving = true\nSET self.flow_rate = SUMSUP.flow_rate\nSET self.temperature = SUMSUP.temperature\nSET self.fluid_type = SUP(0).fluid_type"
+            },
+            {
+              "id": "listener_outlet_flow_off",
+              "condition": "ANYSUP.fluid_flowing == false",
+              "script": "SET self.fluid_flowing = false\nSET self.receiving = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_outlet_present_on",
+              "condition": "ANYSUP.fluid_present",
+              "script": "SET self.fluid_present = true"
+            },
+            {
+              "id": "listener_outlet_present_off",
+              "condition": "ANYSUP.fluid_present == false",
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.receiving = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-05-22T00:00:00.006Z",
+          "isBoundary": true
+        }
+      ],
+      "created": "2026-05-22T00:00:00.010Z"
+    },
+    {
+      "id": "componentset_1779500000011",
+      "name": "Specialist Process Components",
+      "description": "Components requiring more complex wiring conventions.",
+      "components": [
+        {
+          "id": "component_1779500000007",
+          "name": "Heat Exchanger",
+          "colour": "#14b8a6",
+          "variables": [
+            {
+              "id": "var_he_process_flowing",
+              "name": "process_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_he_service_flowing",
+              "name": "service_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_he_process_temp_in",
+              "name": "process_temp_in",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_he_service_temp_in",
+              "name": "service_temp_in",
+              "type": "number",
+              "defaultValue": 60
+            },
+            {
+              "id": "var_he_heat_transfer_active",
+              "name": "heat_transfer_active",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_he_process_temp_out",
+              "name": "process_temp_out",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_he_service_temp_out",
+              "name": "service_temp_out",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_he_fault",
+              "name": "fault",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_he_process_fluid_type",
+              "name": "process_fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            },
+            {
+              "id": "var_he_service_fluid_type",
+              "name": "service_fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_he_update_flow",
+              "name": "update_flow",
+              "script": "IF SUP(0).fluid_flowing THEN\n  SET self.process_flowing = true\n  SET self.process_temp_in = SUP(0).temperature\n  SET self.process_fluid_type = SUP(0).fluid_type\nELSE\n  SET self.process_flowing = false\n  SET self.process_fluid_type = \"\"\nEND\nIF SUP(1).fluid_flowing THEN\n  SET self.service_flowing = true\n  SET self.service_temp_in = SUP(1).temperature\n  SET self.service_fluid_type = SUP(1).fluid_type\nELSE\n  SET self.service_flowing = false\n  SET self.service_fluid_type = \"\"\nEND\nIF self.process_flowing AND self.service_flowing THEN\n  SET self.heat_transfer_active = true\n  SET self.process_temp_out = 80\n  SET self.service_temp_out = 40\n  SET self.fault = false\nELSE\n  SET self.heat_transfer_active = false\n  IF self.process_flowing THEN\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = 20\n    SET self.fault = true\n  ELSE\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = self.service_temp_in\n    SET self.fault = false\n  END\nEND\nIF self.process_flowing THEN\n  SET ALLINF(cold_outlet).fluid_present = true\n  SET ALLINF(cold_outlet).flow_rate = SUP(0).flow_rate\n  SET ALLINF(cold_outlet).temperature = self.process_temp_out\n  SET ALLINF(cold_outlet).fluid_type = self.process_fluid_type\nELSE\n  SET ALLINF(cold_outlet).fluid_present = false\n  SET ALLINF(cold_outlet).flow_rate = 0\n  SET ALLINF(cold_outlet).temperature = 20\n  SET ALLINF(cold_outlet).fluid_type = \"\"\nEND\nIF self.service_flowing THEN\n  SET ALLINF(hot_outlet).fluid_present = true\n  SET ALLINF(hot_outlet).flow_rate = SUP(1).flow_rate\n  SET ALLINF(hot_outlet).temperature = self.service_temp_out\n  SET ALLINF(hot_outlet).fluid_type = self.service_fluid_type\nELSE\n  SET ALLINF(hot_outlet).fluid_present = false\n  SET ALLINF(hot_outlet).flow_rate = 0\n  SET ALLINF(hot_outlet).temperature = 20\n  SET ALLINF(hot_outlet).fluid_type = \"\"\nEND"
+            },
+            {
+              "id": "action_he_reset_fault",
+              "name": "reset_fault",
+              "script": "SET self.fault = false"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_he_sup0_on",
+              "condition": "SUP(0).fluid_flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_he_sup0_off",
+              "condition": "SUP(0).fluid_flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_he_sup1_on",
+              "condition": "SUP(1).fluid_flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_he_sup1_off",
+              "condition": "SUP(1).fluid_flowing == false",
+              "script": "CALL self.update_flow"
+            }
+          ],
+          "outlets": [
+            {
+              "id": "cold_outlet",
+              "name": "Cold Outlet (Process Out)"
+            },
+            {
+              "id": "hot_outlet",
+              "name": "Hot Outlet (Service Out)"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-05-22T00:00:00.007Z"
+        },
+        {
+          "id": "component_he_outlet_valve",
+          "name": "HE Outlet Valve",
+          "variables": [
+            {
+              "id": "var_valve_open",
+              "name": "open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_valve_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_valve_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_valve_flow_rate",
+              "name": "flow_rate",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_hov_temperature",
+              "name": "temperature",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_hov_fluid_type",
+              "name": "fluid_type",
+              "type": "string",
+              "defaultValue": ""
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_hov_toggle",
+              "name": "on_toggle",
+              "script": "IF self.open THEN\n  SET self.open = false\nELSE\n  SET self.open = true\nEND\nCALL self.update_flow"
+            },
+            {
+              "id": "action_hov_update_flow",
+              "name": "update_flow",
+              "script": "IF self.open AND self.fluid_present THEN\n  SET self.fluid_flowing = true\nELSE\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_hov_ready",
+              "condition": "self.fluid_present AND self.open",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_hov_present_off",
+              "condition": "self.fluid_present == false",
+              "script": "SET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_hov_closed",
+              "condition": "self.open == false",
+              "script": "SET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_hov_signal_blocked",
+              "condition": "self.open == false AND ANYSUP.fluid_flowing",
+              "script": "SET ALLSUP.blocked = true"
+            },
+            {
+              "id": "listener_hov_signal_unblocked",
+              "condition": "self.open",
+              "script": "SET ALLSUP.blocked = false"
+            }
+          ],
+          "outlets": [],
+          "superiors": [],
+          "created": "2026-05-22T00:00:00.012Z"
+        }
+      ],
+      "created": "2026-05-22T00:00:00.011Z"
+    },
+    {
+      "id": "componentset_electrical_1779600000004",
+      "name": "Electrical Components",
+      "description": "Stub electrical components. Full suite (wiring, loads, protection) to follow.",
+      "components": [
+        {
+          "id": "component_power_supply_1779600000005",
+          "name": "Power Supply",
+          "variables": [
+            {
+              "id": "var_ps_energised",
+              "name": "energised",
+              "type": "boolean",
+              "defaultValue": true
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_ps_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.energised THEN\n  SET self.energised = false\nELSE\n  SET self.energised = true\nEND"
+            }
+          ],
+          "listeners": [],
+          "superiors": [],
+          "created": "2026-05-24T00:00:00.003Z"
+        }
+      ],
+      "created": "2026-05-24T00:00:00.004Z"
+    }
+  ]
+}
