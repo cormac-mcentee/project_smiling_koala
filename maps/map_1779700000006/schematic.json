@@ -1,0 +1,151 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_m6_ps1",
+      "x": 474,
+      "y": -100
+    },
+    {
+      "lcId": "lc_m6_inlet",
+      "x": 50,
+      "y": 16
+    },
+    {
+      "lcId": "lc_m6_pipe_in",
+      "x": 150,
+      "y": 16
+    },
+    {
+      "lcId": "lc_m6_v1",
+      "x": 242,
+      "y": 0
+    },
+    {
+      "lcId": "lc_m6_pipe_mid",
+      "x": 382,
+      "y": 16
+    },
+    {
+      "lcId": "lc_m6_ecv1",
+      "x": 474,
+      "y": 0
+    },
+    {
+      "lcId": "lc_m6_pipe_out",
+      "x": 614,
+      "y": 16
+    },
+    {
+      "lcId": "lc_m6_outlet",
+      "x": 706,
+      "y": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_m6_inlet_pipe_in",
+      "srcLcId": "lc_m6_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_m6_pipe_in",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m6_pipe_in_v1",
+      "srcLcId": "lc_m6_pipe_in",
+      "srcPortId": "output",
+      "dstLcId": "lc_m6_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m6_v1_pipe_mid",
+      "srcLcId": "lc_m6_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_m6_pipe_mid",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m6_pipe_mid_ecv1",
+      "srcLcId": "lc_m6_pipe_mid",
+      "srcPortId": "output",
+      "dstLcId": "lc_m6_ecv1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m6_ecv1_pipe_out",
+      "srcLcId": "lc_m6_ecv1",
+      "srcPortId": "output",
+      "dstLcId": "lc_m6_pipe_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m6_pipe_out_outlet",
+      "srcLcId": "lc_m6_pipe_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_m6_outlet",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m6_ps1_ecv1",
+      "srcLcId": "lc_m6_ps1",
+      "srcPortId": "output",
+      "dstLcId": "lc_m6_ecv1",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_m6_ps1_btn": {
+      "id": "anc_m6_ps1_btn",
+      "type": "button",
+      "lcId": "lc_m6_ps1",
+      "bindTo": "act:on_toggle",
+      "label": "Energise",
+      "x": 510,
+      "y": -118
+    },
+    "anc_m6_ps1_light": {
+      "id": "anc_m6_ps1_light",
+      "type": "light",
+      "lcId": "lc_m6_ps1",
+      "bindTo": "var:energised",
+      "label": "Live",
+      "x": 570,
+      "y": -118
+    },
+    "anc_m6_v1_btn": {
+      "id": "anc_m6_v1_btn",
+      "type": "button",
+      "lcId": "lc_m6_v1",
+      "bindTo": "act:on_toggle",
+      "label": "Open/Close",
+      "x": 278,
+      "y": -18
+    },
+    "anc_m6_v1_light": {
+      "id": "anc_m6_v1_light",
+      "type": "light",
+      "lcId": "lc_m6_v1",
+      "bindTo": "var:open",
+      "label": "Open",
+      "x": 338,
+      "y": -18
+    },
+    "anc_m6_ecv1_powered": {
+      "id": "anc_m6_ecv1_powered",
+      "type": "light",
+      "lcId": "lc_m6_ecv1",
+      "bindTo": "var:powered",
+      "label": "Powered",
+      "x": 510,
+      "y": -18
+    },
+    "anc_m6_ecv1_flow": {
+      "id": "anc_m6_ecv1_flow",
+      "type": "light",
+      "lcId": "lc_m6_ecv1",
+      "bindTo": "var:fluid_flowing",
+      "label": "Flowing",
+      "x": 570,
+      "y": -18
+    }
+  }
+}
