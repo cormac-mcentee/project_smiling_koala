@@ -1,0 +1,183 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_m5_s1",
+      "name": "Establish Controlled Flow",
+      "description": "Open the isolation valve, start the pump, then open the control valve (CV1) to allow flow to the outlet.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_m5_s1_01",
+          "literalComponentId": "lc_m5_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m5_s1_02",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_m5_s1_03",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "ic_m5_s1_04",
+          "literalComponentId": "lc_m5_cv1",
+          "variableId": "var_cv_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m5_s1_01",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_m5_s1_02",
+          "literalComponentId": "lc_m5_cv1",
+          "variableId": "var_cv_open",
+          "value": true
+        },
+        {
+          "id": "tc_m5_s1_03",
+          "literalComponentId": "lc_m5_pipe_out",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": true
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m5_s1_01",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_m5_s2",
+      "name": "Dead-Head Recovery",
+      "description": "The pump dead-headed against the closed control valve and has faulted. Open CV1 to clear the blockage, reset the fault, then restart the pump.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_m5_s2_01",
+          "literalComponentId": "lc_m5_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_m5_s2_02",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_m5_s2_03",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        },
+        {
+          "id": "ic_m5_s2_04",
+          "literalComponentId": "lc_m5_cv1",
+          "variableId": "var_cv_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m5_s2_01",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_m5_s2_02",
+          "literalComponentId": "lc_m5_cv1",
+          "variableId": "var_cv_open",
+          "value": true
+        },
+        {
+          "id": "tc_m5_s2_03",
+          "literalComponentId": "lc_m5_pipe_out",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": true
+        },
+        {
+          "id": "tc_m5_s2_04",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "lossConditions": []
+    },
+    {
+      "id": "scenario_m5_s3",
+      "name": "Controlled Isolation",
+      "description": "Flow is running through the control valve. Safely stop flow: close CV1 to isolate the downstream side, then shut down the pump.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_m5_s3_01",
+          "literalComponentId": "lc_m5_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_m5_s3_02",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_m5_s3_03",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "ic_m5_s3_04",
+          "literalComponentId": "lc_m5_cv1",
+          "variableId": "var_cv_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m5_s3_01",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "tc_m5_s3_02",
+          "literalComponentId": "lc_m5_cv1",
+          "variableId": "var_cv_open",
+          "value": false
+        },
+        {
+          "id": "tc_m5_s3_03",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m5_s3_01",
+          "literalComponentId": "lc_m5_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
