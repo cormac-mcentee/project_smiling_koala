@@ -1,0 +1,234 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_1779500000001",
+      "name": "Normal Startup",
+      "description": "Start up the heat exchanger system in the correct sequence. Establish process flow and bring the heat exchanger into service.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_s1_01",
+          "literalComponentId": "lc_1779440309469",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_s1_02",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_s1_03",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "ic_s1_04",
+          "literalComponentId": "lc_1779440776175",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_s1_05",
+          "literalComponentId": "lc_1779440847031",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_s1_06",
+          "literalComponentId": "lc_1779440878100",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_s1_07",
+          "literalComponentId": "lc_1779440925795",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_s1_08",
+          "literalComponentId": "lc_1779500000002",
+          "variableId": "var_tank_level",
+          "value": 100
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_s1_01",
+          "literalComponentId": "lc_1779440947448",
+          "variableId": "var_he_heat_transfer_active",
+          "value": true
+        },
+        {
+          "id": "tc_s1_02",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "tc_s1_03",
+          "literalComponentId": "lc_1779440925795",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_s1_01",
+          "literalComponentId": "lc_1779440947448",
+          "variableId": "var_he_fault",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_1779500000002",
+      "name": "Normal Shutdown",
+      "description": "Safely shut down the heat exchanger system. Isolate all equipment in the correct order to avoid faults.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_s2_01",
+          "literalComponentId": "lc_1779440309469",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_s2_02",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_s2_03",
+          "literalComponentId": "lc_1779440776175",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_s2_04",
+          "literalComponentId": "lc_1779440847031",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_s2_05",
+          "literalComponentId": "lc_1779440878100",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_s2_06",
+          "literalComponentId": "lc_1779440925795",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_s2_01",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "tc_s2_02",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "tc_s2_03",
+          "literalComponentId": "lc_1779440947448",
+          "variableId": "var_he_heat_transfer_active",
+          "value": false
+        },
+        {
+          "id": "tc_s2_04",
+          "literalComponentId": "lc_1779440947448",
+          "variableId": "var_he_fault",
+          "value": false
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_s2_01",
+          "literalComponentId": "lc_1779440947448",
+          "variableId": "var_he_fault",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_1779500000003",
+      "name": "Service Side Loss",
+      "description": "The service fluid supply has been lost while the unit is running. Isolate the process side correctly before the heat exchanger faults.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_s3_01",
+          "literalComponentId": "lc_1779440309469",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_s3_02",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_s3_03",
+          "literalComponentId": "lc_1779440776175",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_s3_04",
+          "literalComponentId": "lc_1779440847031",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_s3_05",
+          "literalComponentId": "lc_1779440878100",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_s3_06",
+          "literalComponentId": "lc_1779440925795",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_s3_01",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "tc_s3_02",
+          "literalComponentId": "lc_1779440776175",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_s3_03",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "lossConditions": [],
+      "faultWhitelist": [
+        "lc_1779440947448"
+      ]
+    }
+  ]
+}
