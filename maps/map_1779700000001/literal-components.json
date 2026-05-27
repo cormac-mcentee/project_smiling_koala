@@ -1,0 +1,75 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_m1_inlet",
+      "name": "Process Inlet",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "fluid_type": "process_water"
+      },
+      "_canvas": {
+        "x": 56,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_m1_pipe_in",
+      "name": "Pipe_In",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m1_inlet"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 156,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_m1_v1",
+      "name": "V1",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_m1_pipe_in"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 252,
+        "y": -6
+      }
+    },
+    {
+      "id": "lc_m1_pipe_out",
+      "name": "Pipe_Out",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m1_v1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 396,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_m1_outlet",
+      "name": "Process Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_m1_pipe_out"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 464,
+        "y": 10
+      }
+    }
+  ]
+}
