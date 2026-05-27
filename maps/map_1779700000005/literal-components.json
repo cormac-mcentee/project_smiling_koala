@@ -1,0 +1,135 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_m5_inlet",
+      "name": "Process Inlet",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "fluid_type": "process_water"
+      },
+      "_canvas": {
+        "x": 50,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m5_pipe_in",
+      "name": "Pipe_In",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m5_inlet"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 150,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m5_v1",
+      "name": "V1",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_m5_pipe_in"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 242,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_m5_pipe_1",
+      "name": "Pipe_1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m5_v1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 382,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m5_p1",
+      "name": "P1",
+      "componentId": "component_1779500000001",
+      "superiors": [
+        "lc_m5_pipe_1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 474,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_m5_pipe_2",
+      "name": "Pipe_2",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m5_p1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 614,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m5_cv1",
+      "name": "CV1",
+      "componentId": "component_control_valve_1779600000002",
+      "superiors": [
+        "lc_m5_pipe_2"
+      ],
+      "variableOverrides": {
+        "opening": 100
+      },
+      "_canvas": {
+        "x": 706,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_m5_pipe_out",
+      "name": "Pipe_Out",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m5_cv1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 846,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m5_outlet",
+      "name": "Process Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_m5_pipe_out"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 938,
+        "y": 16
+      }
+    }
+  ]
+}
