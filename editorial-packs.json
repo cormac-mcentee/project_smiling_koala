@@ -1,0 +1,228 @@
+{
+  "editorialPacks": [
+    {
+      "id": "editorialpack_1779600000001",
+      "name": "Supervisor's Notes",
+      "created": "2026-05-25T00:00:00.000Z",
+      "comments": [
+        {
+          "id": "comment_1779600000001",
+          "lowerDamage": 400,
+          "upperDamage": 1200,
+          "supervisorComment": "I've seen some creative mistakes in my time, but this one has real artistic flair.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000002",
+          "lowerDamage": 2000,
+          "upperDamage": 6000,
+          "supervisorComment": "The good news is that we finally found the upper limit on what the insurance covers.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000003",
+          "lowerDamage": 800,
+          "upperDamage": 2500,
+          "supervisorComment": "On the bright side, you've given the maintenance team something to talk about for years.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000004",
+          "lowerDamage": 5000,
+          "upperDamage": 18000,
+          "supervisorComment": "I'd say you're fired, but honestly I'm just impressed you managed that.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000005",
+          "lowerDamage": 300,
+          "upperDamage": 900,
+          "supervisorComment": "This is going in the training materials. As a warning.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000006",
+          "lowerDamage": 3500,
+          "upperDamage": 12000,
+          "supervisorComment": "The engineer who designed this system just called to say he's genuinely offended.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000007",
+          "lowerDamage": 600,
+          "upperDamage": 2000,
+          "supervisorComment": "Please be advised that 'I thought it was already off' is not a recognised safety procedure.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000008",
+          "lowerDamage": 1500,
+          "upperDamage": 4500,
+          "supervisorComment": "We've updated the induction pack. Your name is now in it.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000009",
+          "lowerDamage": 800,
+          "upperDamage": 3000,
+          "supervisorComment": "Remarkably, this is not even the worst outcome I've seen this week.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000010",
+          "lowerDamage": 4000,
+          "upperDamage": 14000,
+          "supervisorComment": "The client has asked that you are not assigned to their account going forward.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000011",
+          "lowerDamage": 500,
+          "upperDamage": 1800,
+          "supervisorComment": "Your initiative is admired. Your judgement, less so.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000012",
+          "lowerDamage": 7000,
+          "upperDamage": 22000,
+          "supervisorComment": "We've had to order a new part. It has a 12-week lead time. Enjoy your leave.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000013",
+          "lowerDamage": 9000,
+          "upperDamage": 28000,
+          "supervisorComment": "Corporate have been informed. They are 'concerned'. So am I.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000014",
+          "lowerDamage": 2500,
+          "upperDamage": 8000,
+          "supervisorComment": "You have a gift for finding failure modes that weren't in the original specification.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000015",
+          "lowerDamage": 400,
+          "upperDamage": 1500,
+          "supervisorComment": "Next time, consider turning it off before attempting to fix it.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000016",
+          "lowerDamage": 1000,
+          "upperDamage": 3500,
+          "supervisorComment": "I'm not angry. I'm just... very, very tired.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000017",
+          "lowerDamage": 600,
+          "upperDamage": 2200,
+          "supervisorComment": "Congratulations. You have officially contributed to the maintenance backlog.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000018",
+          "lowerDamage": 3000,
+          "upperDamage": 10000,
+          "supervisorComment": "The safety officer wants a word. Several words, actually.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000019",
+          "lowerDamage": 5500,
+          "upperDamage": 16000,
+          "supervisorComment": "This outcome was not in the risk assessment. It will be now.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "comment_1779600000020",
+          "lowerDamage": 350,
+          "upperDamage": 1100,
+          "supervisorComment": "On reflection, perhaps the manual was worth reading after all.",
+          "created": "2026-05-25T00:00:00.000Z"
+        }
+      ],
+      "positiveComments": [
+        {
+          "id": "poscomment_1779600000001",
+          "supervisorComment": "I've reviewed the log. There is genuinely nothing to add.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000002",
+          "supervisorComment": "The safety officer asked me to tell you: well done. He never says that.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000003",
+          "supervisorComment": "No damage. No near-misses. No awkward conversations. You've ruined my week.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000004",
+          "supervisorComment": "This is going in the training materials. As a good example. First time for everything.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000005",
+          "supervisorComment": "I'm putting you forward for the end-of-year award. Don't let it go to your head.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000006",
+          "supervisorComment": "Corporate rang. They want to know what you did differently. I said 'read the manual'.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000007",
+          "supervisorComment": "The insurance assessor left early. That's how uneventful this was. Outstanding.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000008",
+          "supervisorComment": "All systems nominal. I've double-checked. I was hoping you'd missed something.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000009",
+          "supervisorComment": "The engineer who designed this system would be pleased. I refuse to be.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000010",
+          "supervisorComment": "You have set a new benchmark. The bar was on the floor. You cleared it.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000011",
+          "supervisorComment": "Spotless. Thorough. Methodical. I expect the next one to be a disaster to restore the average.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000012",
+          "supervisorComment": "Zero incidents. The maintenance team are bored. That's a good thing.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000013",
+          "supervisorComment": "I've filed the report. It was one sentence. 'Performed correctly.' High praise.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000014",
+          "supervisorComment": "The client called to say thank you. I've forwarded it on. You're welcome.",
+          "created": "2026-05-25T00:00:00.000Z"
+        },
+        {
+          "id": "poscomment_1779600000015",
+          "supervisorComment": "For once, the risk assessment was accurate. You are not in it.",
+          "created": "2026-05-25T00:00:00.000Z"
+        }
+      ]
+    }
+  ]
+}
