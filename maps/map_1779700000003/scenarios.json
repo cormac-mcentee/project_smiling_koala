@@ -1,0 +1,190 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_m3_s1",
+      "name": "Fill the Tank",
+      "description": "The tank is isolated and both valves are closed. Open the fill valve (V1) to allow fluid from the inlet to enter the tank.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_m3_s1_01",
+          "literalComponentId": "lc_m3_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s1_02",
+          "literalComponentId": "lc_m3_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s1_03",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s1_04",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m3_s1_01",
+          "literalComponentId": "lc_m3_tank",
+          "variableId": "var_tank_receiving",
+          "value": true
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m3_s1_01",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_m3_s2",
+      "name": "Transfer from Tank",
+      "description": "The tank is full and the fill valve is closed. Open the transfer valve (V2) and start the pump (P1) to send fluid to the outlet.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_m3_s2_01",
+          "literalComponentId": "lc_m3_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s2_02",
+          "literalComponentId": "lc_m3_tank",
+          "variableId": "var_tank_level",
+          "value": 100
+        },
+        {
+          "id": "ic_m3_s2_03",
+          "literalComponentId": "lc_m3_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s2_04",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s2_05",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m3_s2_01",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_m3_s2_02",
+          "literalComponentId": "lc_m3_pipe_out",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": true
+        },
+        {
+          "id": "tc_m3_s2_03",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m3_s2_01",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_m3_s3",
+      "name": "Correct Startup Sequence",
+      "description": "The tank starts empty. Fill it before starting the pump — starting the pump dry will cause a fault.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_m3_s3_01",
+          "literalComponentId": "lc_m3_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s3_02",
+          "literalComponentId": "lc_m3_tank",
+          "variableId": "var_tank_level",
+          "value": 0
+        },
+        {
+          "id": "ic_m3_s3_03",
+          "literalComponentId": "lc_m3_tank",
+          "variableId": "var_tank_fluid_present",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s3_04",
+          "literalComponentId": "lc_m3_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s3_05",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_m3_s3_06",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m3_s3_01",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_m3_s3_02",
+          "literalComponentId": "lc_m3_pipe_out",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": true
+        },
+        {
+          "id": "tc_m3_s3_03",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m3_s3_01",
+          "literalComponentId": "lc_m3_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
