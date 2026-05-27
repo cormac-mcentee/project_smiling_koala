@@ -1,0 +1,244 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_m4_s1",
+      "name": "Heat the Line",
+      "description": "Establish flow through the heater first, then activate it. Turning the heater on without flow will cause a fault.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_m4_s1_01",
+          "literalComponentId": "lc_m4_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s1_02",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s1_03",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s1_04",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s1_05",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_fault",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s1_06",
+          "literalComponentId": "lc_m4_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m4_s1_01",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_heating",
+          "value": true
+        },
+        {
+          "id": "tc_m4_s1_02",
+          "literalComponentId": "lc_m4_pipe_3",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": true
+        },
+        {
+          "id": "tc_m4_s1_03",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_fault",
+          "value": false
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m4_s1_01",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_fault",
+          "value": true
+        },
+        {
+          "id": "lc_m4_s1_02",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_m4_s2",
+      "name": "Heater Fault Recovery",
+      "description": "The heater was activated without flow and has faulted. Reset the heater fault, establish flow, then bring the heater back into service.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_m4_s2_01",
+          "literalComponentId": "lc_m4_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s2_02",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s2_03",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s2_04",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        },
+        {
+          "id": "ic_m4_s2_05",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_fault",
+          "value": true
+        },
+        {
+          "id": "ic_m4_s2_06",
+          "literalComponentId": "lc_m4_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m4_s2_01",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_heating",
+          "value": true
+        },
+        {
+          "id": "tc_m4_s2_02",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_fault",
+          "value": false
+        },
+        {
+          "id": "tc_m4_s2_03",
+          "literalComponentId": "lc_m4_pipe_3",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": true
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m4_s2_01",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_m4_s3",
+      "name": "Safe Shutdown",
+      "description": "The heater is running. Deactivate the heater before stopping the pump — losing flow while the heater is active will cause a fault.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_m4_s3_01",
+          "literalComponentId": "lc_m4_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_m4_s3_02",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_m4_s3_03",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s3_04",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        },
+        {
+          "id": "ic_m4_s3_05",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_heating",
+          "value": true
+        },
+        {
+          "id": "ic_m4_s3_06",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_fault",
+          "value": false
+        },
+        {
+          "id": "ic_m4_s3_07",
+          "literalComponentId": "lc_m4_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m4_s3_01",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "tc_m4_s3_02",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        },
+        {
+          "id": "tc_m4_s3_03",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_fault",
+          "value": false
+        },
+        {
+          "id": "tc_m4_s3_04",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m4_s3_01",
+          "literalComponentId": "lc_m4_h1",
+          "variableId": "var_heater_fault",
+          "value": true
+        },
+        {
+          "id": "lc_m4_s3_02",
+          "literalComponentId": "lc_m4_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
