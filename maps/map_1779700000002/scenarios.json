@@ -1,0 +1,183 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_m2_s1",
+      "name": "Start the Pump",
+      "description": "Both isolation valves are closed and the pump is off. Open the suction valve (V1), start the pump (P1), then open the discharge valve (V2) to establish flow.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_m2_s1_01",
+          "literalComponentId": "lc_m2_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_m2_s1_02",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_m2_s1_03",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "ic_m2_s1_04",
+          "literalComponentId": "lc_m2_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m2_s1_01",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_m2_s1_02",
+          "literalComponentId": "lc_m2_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "tc_m2_s1_03",
+          "literalComponentId": "lc_m2_pipe_final",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": true
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m2_s1_01",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_m2_s2",
+      "name": "Fault Recovery",
+      "description": "The pump has tripped on a fault. Both isolation valves are open. Reset the fault and restore flow to the outlet.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_m2_s2_01",
+          "literalComponentId": "lc_m2_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_m2_s2_02",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_m2_s2_03",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        },
+        {
+          "id": "ic_m2_s2_04",
+          "literalComponentId": "lc_m2_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m2_s2_01",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_m2_s2_02",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "tc_m2_s2_03",
+          "literalComponentId": "lc_m2_pipe_final",
+          "variableId": "var_pipe_fluid_flowing",
+          "value": true
+        }
+      ],
+      "lossConditions": []
+    },
+    {
+      "id": "scenario_m2_s3",
+      "name": "Safe Shutdown",
+      "description": "Flow is running. Shut down safely — close the discharge valve (V2) first to prevent water hammer, stop the pump, then close the suction valve (V1).",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_m2_s3_01",
+          "literalComponentId": "lc_m2_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_m2_s3_02",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_m2_s3_03",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        },
+        {
+          "id": "ic_m2_s3_04",
+          "literalComponentId": "lc_m2_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m2_s3_01",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "tc_m2_s3_02",
+          "literalComponentId": "lc_m2_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_m2_s3_03",
+          "literalComponentId": "lc_m2_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_m2_s3_04",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_fault",
+          "value": false
+        }
+      ],
+      "lossConditions": [
+        {
+          "id": "lc_m2_s3_01",
+          "literalComponentId": "lc_m2_p1",
+          "variableId": "var_pump_fault",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
