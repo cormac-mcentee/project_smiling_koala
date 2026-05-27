@@ -1,0 +1,133 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_m6_s1",
+      "name": "Energise and Open",
+      "description": "The power supply is off, so the ECV is closed (fail-closed). Energise PS1 to power the valve, then open V1 to establish flow.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_m6_s1_01",
+          "literalComponentId": "lc_m6_ps1",
+          "variableId": "var_ps_energised",
+          "value": false
+        },
+        {
+          "id": "ic_m6_s1_02",
+          "literalComponentId": "lc_m6_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m6_s1_01",
+          "literalComponentId": "lc_m6_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "tc_m6_s1_02",
+          "literalComponentId": "lc_m6_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "tc_m6_s1_03",
+          "literalComponentId": "lc_m6_ecv1",
+          "variableId": "var_ecv_fluid_flowing",
+          "value": true
+        }
+      ],
+      "lossConditions": []
+    },
+    {
+      "id": "scenario_m6_s2",
+      "name": "Power Loss",
+      "description": "The power supply has tripped and ECV1 has closed automatically (fail-closed). Restore power to recover flow.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_m6_s2_01",
+          "literalComponentId": "lc_m6_ps1",
+          "variableId": "var_ps_energised",
+          "value": false
+        },
+        {
+          "id": "ic_m6_s2_02",
+          "literalComponentId": "lc_m6_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_m6_s2_03",
+          "literalComponentId": "lc_m6_ecv1",
+          "variableId": "var_ecv_powered",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m6_s2_01",
+          "literalComponentId": "lc_m6_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "tc_m6_s2_02",
+          "literalComponentId": "lc_m6_ecv1",
+          "variableId": "var_ecv_fluid_flowing",
+          "value": true
+        }
+      ],
+      "lossConditions": []
+    },
+    {
+      "id": "scenario_m6_s3",
+      "name": "Controlled Shutdown",
+      "description": "Flow is running through the ECV. Shut down safely: close V1 to stop process flow, then de-energise PS1.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_m6_s3_01",
+          "literalComponentId": "lc_m6_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_m6_s3_02",
+          "literalComponentId": "lc_m6_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_m6_s3_03",
+          "literalComponentId": "lc_m6_ecv1",
+          "variableId": "var_ecv_fluid_flowing",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_m6_s3_01",
+          "literalComponentId": "lc_m6_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_m6_s3_02",
+          "literalComponentId": "lc_m6_ps1",
+          "variableId": "var_ps_energised",
+          "value": false
+        },
+        {
+          "id": "tc_m6_s3_03",
+          "literalComponentId": "lc_m6_ecv1",
+          "variableId": "var_ecv_fluid_flowing",
+          "value": false
+        }
+      ],
+      "lossConditions": []
+    }
+  ]
+}
