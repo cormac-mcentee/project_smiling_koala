@@ -1,0 +1,21 @@
+{
+  "mapPacks": [
+    {
+      "id": "mappack_1779398997874",
+      "name": "Tutorial Pack",
+      "description": "Introductory scenarios covering the fundamental components and procedures.",
+      "tags": [
+        "tutorial"
+      ],
+      "mapIds": [
+        "map_1779700000001",
+        "map_1779700000002",
+        "map_1779700000003",
+        "map_1779700000004",
+        "map_1779700000005",
+        "map_1779700000006",
+        "map_1779399000674"
+      ]
+    }
+  ]
+}
