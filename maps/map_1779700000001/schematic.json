@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_m1_inlet",
+      "x": 56,
+      "y": 10
+    },
+    {
+      "lcId": "lc_m1_pipe_in",
+      "x": 156,
+      "y": 10
+    },
+    {
+      "lcId": "lc_m1_v1",
+      "x": 252,
+      "y": -6
+    },
+    {
+      "lcId": "lc_m1_pipe_out",
+      "x": 396,
+      "y": 10
+    },
+    {
+      "lcId": "lc_m1_outlet",
+      "x": 464,
+      "y": 10
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_m1_inlet_pipe_in",
+      "srcLcId": "lc_m1_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_m1_pipe_in",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m1_pipe_in_v1",
+      "srcLcId": "lc_m1_pipe_in",
+      "srcPortId": "output",
+      "dstLcId": "lc_m1_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m1_v1_pipe_out",
+      "srcLcId": "lc_m1_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_m1_pipe_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m1_pipe_out_outlet",
+      "srcLcId": "lc_m1_pipe_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_m1_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_m1_v1_btn": {
+      "id": "anc_m1_v1_btn",
+      "type": "button",
+      "lcId": "lc_m1_v1",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 276,
+      "y": -24
+    },
+    "anc_m1_v1_light": {
+      "id": "anc_m1_v1_light",
+      "type": "light",
+      "lcId": "lc_m1_v1",
+      "bindTo": "var:open",
+      "label": "Status",
+      "x": 336,
+      "y": -24
+    }
+  }
+}
