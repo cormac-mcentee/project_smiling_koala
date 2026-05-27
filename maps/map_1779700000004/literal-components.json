@@ -1,0 +1,162 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_m4_inlet",
+      "name": "Process Inlet",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "fluid_type": "process_water"
+      },
+      "_canvas": {
+        "x": 50,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m4_pipe_in",
+      "name": "Pipe_In",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m4_inlet"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 150,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m4_v1",
+      "name": "V1",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_m4_pipe_in"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 242,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_m4_pipe_1",
+      "name": "Pipe_1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m4_v1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 382,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m4_p1",
+      "name": "P1",
+      "componentId": "component_1779500000001",
+      "superiors": [
+        "lc_m4_pipe_1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 474,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_m4_pipe_2",
+      "name": "Pipe_2",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m4_p1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 614,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m4_h1",
+      "name": "H1",
+      "componentId": "component_1779500000003",
+      "superiors": [
+        "lc_m4_pipe_2"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 706,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_m4_pipe_3",
+      "name": "Pipe_3",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m4_h1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 846,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m4_v2",
+      "name": "V2",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_m4_pipe_3"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 938,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_m4_pipe_4",
+      "name": "Pipe_4",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_m4_v2"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 1078,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_m4_outlet",
+      "name": "Process Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_m4_pipe_4"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1170,
+        "y": 16
+      }
+    }
+  ]
+}
