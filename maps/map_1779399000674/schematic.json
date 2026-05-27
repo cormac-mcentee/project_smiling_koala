@@ -1,0 +1,373 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_1779500000001",
+      "x": 348,
+      "y": 114
+    },
+    {
+      "lcId": "lc_pipe_inlet_proc",
+      "x": 276,
+      "y": 58
+    },
+    {
+      "lcId": "lc_1779440309469",
+      "x": 588,
+      "y": -54
+    },
+    {
+      "lcId": "lc_pipe_v1_tank",
+      "x": 684,
+      "y": 34
+    },
+    {
+      "lcId": "lc_1779500000002",
+      "x": 732,
+      "y": -54
+    },
+    {
+      "lcId": "lc_1779440791231",
+      "x": 876,
+      "y": -54
+    },
+    {
+      "lcId": "lc_pipe_process_001",
+      "x": 1116,
+      "y": 10
+    },
+    {
+      "lcId": "lc_1779440776175",
+      "x": 1044,
+      "y": -54
+    },
+    {
+      "lcId": "lc_1779500000003",
+      "x": 1116,
+      "y": 330
+    },
+    {
+      "lcId": "lc_1779440847031",
+      "x": 1140,
+      "y": 90,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_pipe_v2_he",
+      "x": 1164,
+      "y": -134
+    },
+    {
+      "lcId": "lc_pipe_inlet_serv",
+      "x": 1140,
+      "y": 250
+    },
+    {
+      "lcId": "lc_pipe_service_001",
+      "x": 972,
+      "y": 34
+    },
+    {
+      "lcId": "lc_1779440947448",
+      "x": 1236,
+      "y": -64,
+      "portOverrides": {
+        "process_in": {
+          "edge": "left",
+          "px": 0.5
+        }
+      }
+    },
+    {
+      "lcId": "lc_1779440925795",
+      "x": 1404,
+      "y": -78,
+      "portOverrides": {
+        "input": {
+          "edge": "left",
+          "px": 0.567
+        }
+      }
+    },
+    {
+      "lcId": "lc_1779440878100",
+      "x": 1356,
+      "y": 90,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_pipe_v3_out",
+      "x": 1644,
+      "y": -38
+    },
+    {
+      "lcId": "lc_1779500000004",
+      "x": 1596,
+      "y": -78
+    },
+    {
+      "lcId": "lc_pipe_v5_out",
+      "x": 1380,
+      "y": 178
+    },
+    {
+      "lcId": "lc_1779500000005",
+      "x": 1356,
+      "y": 258,
+      "rotation": 90
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_1779650141328",
+      "srcLcId": "lc_1779500000001",
+      "srcPortId": "output",
+      "dstLcId": "lc_pipe_inlet_proc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779650143072",
+      "srcLcId": "lc_pipe_inlet_proc",
+      "srcPortId": "output",
+      "dstLcId": "lc_1779440309469",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779650663896",
+      "srcLcId": "lc_1779440309469",
+      "srcPortId": "output",
+      "dstLcId": "lc_pipe_v1_tank",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779650665792",
+      "srcLcId": "lc_pipe_v1_tank",
+      "srcPortId": "output",
+      "dstLcId": "lc_1779500000002",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779650808761",
+      "srcLcId": "lc_1779500000002",
+      "srcPortId": "output",
+      "dstLcId": "lc_1779440791231",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779650852309",
+      "srcLcId": "lc_1779440791231",
+      "srcPortId": "output",
+      "dstLcId": "lc_pipe_service_001",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779650854264",
+      "srcLcId": "lc_pipe_service_001",
+      "srcPortId": "output",
+      "dstLcId": "lc_1779440776175",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779650855975",
+      "srcLcId": "lc_1779440776175",
+      "srcPortId": "output",
+      "dstLcId": "lc_pipe_v2_he",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779650878525",
+      "srcLcId": "lc_pipe_v2_he",
+      "srcPortId": "output",
+      "dstLcId": "lc_1779440947448",
+      "dstPortId": "process_in"
+    },
+    {
+      "id": "conn_1779651047125",
+      "srcLcId": "lc_1779440878100",
+      "srcPortId": "output",
+      "dstLcId": "lc_pipe_v5_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779651067619",
+      "srcLcId": "lc_1779440925795",
+      "srcPortId": "output",
+      "dstLcId": "lc_pipe_v3_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779651123796",
+      "srcLcId": "lc_1779500000003",
+      "srcPortId": "output",
+      "dstLcId": "lc_pipe_inlet_serv",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779651125617",
+      "srcLcId": "lc_pipe_inlet_serv",
+      "srcPortId": "output",
+      "dstLcId": "lc_1779440847031",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779651131467",
+      "srcLcId": "lc_1779440847031",
+      "srcPortId": "output",
+      "dstLcId": "lc_pipe_process_001",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779651133289",
+      "srcLcId": "lc_pipe_process_001",
+      "srcPortId": "output",
+      "dstLcId": "lc_1779440947448",
+      "dstPortId": "service_in"
+    },
+    {
+      "id": "conn_1779655542804",
+      "srcLcId": "lc_pipe_v5_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_1779500000005",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779655546738",
+      "srcLcId": "lc_pipe_v3_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_1779500000004",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779655558056",
+      "srcLcId": "lc_1779440947448",
+      "srcPortId": "process_out",
+      "dstLcId": "lc_1779440925795",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1779655560285",
+      "srcLcId": "lc_1779440947448",
+      "srcPortId": "service_out",
+      "dstLcId": "lc_1779440878100",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_1779650146920": {
+      "id": "anc_1779650146920",
+      "type": "button",
+      "lcId": "lc_1779440309469",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 624,
+      "y": -72
+    },
+    "anc_1779650161820": {
+      "id": "anc_1779650161820",
+      "type": "light",
+      "lcId": "lc_1779440309469",
+      "bindTo": "var:open",
+      "label": "Status",
+      "x": 684,
+      "y": -72
+    },
+    "anc_1779655891784": {
+      "id": "anc_1779655891784",
+      "type": "button",
+      "lcId": "lc_1779440791231",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 912,
+      "y": -72
+    },
+    "anc_1779655908156": {
+      "id": "anc_1779655908156",
+      "type": "light",
+      "lcId": "lc_1779440791231",
+      "bindTo": "var:running",
+      "label": "Status",
+      "x": 972,
+      "y": -72
+    },
+    "anc_1779655928669": {
+      "id": "anc_1779655928669",
+      "type": "button",
+      "lcId": "lc_1779440776175",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 1080,
+      "y": -72
+    },
+    "anc_1779655940048": {
+      "id": "anc_1779655940048",
+      "type": "light",
+      "lcId": "lc_1779440776175",
+      "bindTo": "var:open",
+      "label": "Status",
+      "x": 1140,
+      "y": -72
+    },
+    "anc_1779655973591": {
+      "id": "anc_1779655973591",
+      "type": "button",
+      "lcId": "lc_1779440925795",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 1440,
+      "y": -96
+    },
+    "anc_1779655982905": {
+      "id": "anc_1779655982905",
+      "type": "light",
+      "lcId": "lc_1779440925795",
+      "bindTo": "var:open",
+      "label": "Status",
+      "x": 1500,
+      "y": -96
+    },
+    "anc_1779655998119": {
+      "id": "anc_1779655998119",
+      "type": "button",
+      "lcId": "lc_1779440878100",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 1488,
+      "y": 72
+    },
+    "anc_1779656006445": {
+      "id": "anc_1779656006445",
+      "type": "light",
+      "lcId": "lc_1779440878100",
+      "bindTo": "var:open",
+      "label": "Status",
+      "x": 1488,
+      "y": 108
+    },
+    "anc_1779656036074": {
+      "id": "anc_1779656036074",
+      "type": "button",
+      "lcId": "lc_1779440847031",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 1272,
+      "y": 72
+    },
+    "anc_1779656051885": {
+      "id": "anc_1779656051885",
+      "type": "light",
+      "lcId": "lc_1779440847031",
+      "bindTo": "var:open",
+      "label": "Status",
+      "x": 1272,
+      "y": 108
+    },
+    "anc_1779656080267": {
+      "id": "anc_1779656080267",
+      "type": "light",
+      "lcId": "lc_1779440947448",
+      "bindTo": "var:process_flowing",
+      "label": "Status",
+      "x": 1248,
+      "y": -84
+    }
+  }
+}
