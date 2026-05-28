@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.1",
-  "publishedAt": "2026-05-27T22:52:13.201Z",
+  "version": "1.0.2",
+  "publishedAt": "2026-05-28T19:38:46.082Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "path": "component-sets.json",
-      "sha256": "262d1165e2b24893b51923b493833a233b1652b8df69cef736f0cd560bff2575"
+      "sha256": "4ea1c39e4a02088ef0ddbea88db0a2a174c8a36fe743ecfeb4ef557d57b76430"
     },
     {
       "path": "editorial-packs.json",
@@ -129,6 +129,13 @@
       "sha256": "1218ccb9b317617129ccc286d2ba400803820bd0ad910ea055f911f22cd83685"
     }
   ],
-  "packs": [],
-  "signature": "aDj82DOQKswt5714/X7zP2sjpRBaR+dvg/12akhsVUxvzpCWWsFl88EWeJPGbfepvBx2GBFbtnS5+0Ol2Z+r3g=="
+  "packs": [
+    {
+      "packId": "mappack_1779398997874",
+      "isPaid": false,
+      "price": null,
+      "productId": null
+    }
+  ],
+  "signature": "otlPicGvFtuJS6b60Rrj9N+9/lECkz/yMalMDz54Ja1bHTQ2xHiNpTFwnROYts0sii/eAwVXFFAtFFI0eHZgIw=="
 }
