@@ -27,7 +27,7 @@
           "value": true
         }
       ],
-      "lossConditions": []
+      "graceTurns": 0
     },
     {
       "id": "scenario_m1_s2",
@@ -56,7 +56,7 @@
           "value": false
         }
       ],
-      "lossConditions": []
+      "graceTurns": 0
     }
   ]
 }
