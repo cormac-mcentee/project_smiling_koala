@@ -141,24 +141,6 @@
       "x": 570,
       "y": -18
     },
-    "anc_m2_p1_fault": {
-      "id": "anc_m2_p1_fault",
-      "type": "light",
-      "lcId": "lc_m2_p1",
-      "bindTo": "var:fault",
-      "label": "Fault",
-      "x": 630,
-      "y": -18
-    },
-    "anc_m2_p1_reset": {
-      "id": "anc_m2_p1_reset",
-      "type": "button",
-      "lcId": "lc_m2_p1",
-      "bindTo": "act:reset_fault",
-      "label": "Reset",
-      "x": 510,
-      "y": -42
-    },
     "anc_m2_v2_btn": {
       "id": "anc_m2_v2_btn",
       "type": "button",
