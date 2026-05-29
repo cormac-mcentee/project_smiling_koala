@@ -23,12 +23,6 @@
           "literalComponentId": "lc_m3_p1",
           "variableId": "var_pump_running",
           "value": false
-        },
-        {
-          "id": "ic_m3_s1_04",
-          "literalComponentId": "lc_m3_p1",
-          "variableId": "var_pump_fault",
-          "value": false
         }
       ],
       "targetConditions": [
@@ -69,12 +63,6 @@
           "literalComponentId": "lc_m3_p1",
           "variableId": "var_pump_running",
           "value": false
-        },
-        {
-          "id": "ic_m3_s2_05",
-          "literalComponentId": "lc_m3_p1",
-          "variableId": "var_pump_fault",
-          "value": false
         }
       ],
       "targetConditions": [
@@ -89,12 +77,6 @@
           "literalComponentId": "lc_m3_pipe_out",
           "variableId": "var_pipe_fluid_flowing",
           "value": true
-        },
-        {
-          "id": "tc_m3_s2_03",
-          "literalComponentId": "lc_m3_p1",
-          "variableId": "var_pump_fault",
-          "value": false
         }
       ]
     },
@@ -133,12 +115,6 @@
           "literalComponentId": "lc_m3_p1",
           "variableId": "var_pump_running",
           "value": false
-        },
-        {
-          "id": "ic_m3_s3_06",
-          "literalComponentId": "lc_m3_p1",
-          "variableId": "var_pump_fault",
-          "value": false
         }
       ],
       "targetConditions": [
@@ -153,12 +129,6 @@
           "literalComponentId": "lc_m3_pipe_out",
           "variableId": "var_pipe_fluid_flowing",
           "value": true
-        },
-        {
-          "id": "tc_m3_s3_03",
-          "literalComponentId": "lc_m3_p1",
-          "variableId": "var_pump_fault",
-          "value": false
         }
       ]
     }
