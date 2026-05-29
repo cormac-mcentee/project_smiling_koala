@@ -19,12 +19,6 @@
           "value": false
         },
         {
-          "id": "ic_m5_s1_03",
-          "literalComponentId": "lc_m5_p1",
-          "variableId": "var_pump_fault",
-          "value": false
-        },
-        {
           "id": "ic_m5_s1_04",
           "literalComponentId": "lc_m5_cv1",
           "variableId": "var_cv_open",
@@ -55,7 +49,7 @@
     {
       "id": "scenario_m5_s2",
       "name": "Dead-Head Recovery",
-      "description": "The pump dead-headed against the closed control valve and has faulted. Open CV1 to clear the blockage, reset the fault, then restart the pump.",
+      "description": "The pump dead-headed against the closed control valve and stopped. Open CV1 to clear the blockage first, then restart the pump to restore flow.",
       "difficulty": "easy",
       "initialConditions": [
         {
@@ -69,12 +63,6 @@
           "literalComponentId": "lc_m5_p1",
           "variableId": "var_pump_running",
           "value": false
-        },
-        {
-          "id": "ic_m5_s2_03",
-          "literalComponentId": "lc_m5_p1",
-          "variableId": "var_pump_fault",
-          "value": true
         },
         {
           "id": "ic_m5_s2_04",
@@ -101,12 +89,6 @@
           "literalComponentId": "lc_m5_pipe_out",
           "variableId": "var_pipe_fluid_flowing",
           "value": true
-        },
-        {
-          "id": "tc_m5_s2_04",
-          "literalComponentId": "lc_m5_p1",
-          "variableId": "var_pump_fault",
-          "value": false
         }
       ]
     },
@@ -129,12 +111,6 @@
           "value": true
         },
         {
-          "id": "ic_m5_s3_03",
-          "literalComponentId": "lc_m5_p1",
-          "variableId": "var_pump_fault",
-          "value": false
-        },
-        {
           "id": "ic_m5_s3_04",
           "literalComponentId": "lc_m5_cv1",
           "variableId": "var_cv_open",
@@ -152,12 +128,6 @@
           "id": "tc_m5_s3_02",
           "literalComponentId": "lc_m5_cv1",
           "variableId": "var_cv_open",
-          "value": false
-        },
-        {
-          "id": "tc_m5_s3_03",
-          "literalComponentId": "lc_m5_p1",
-          "variableId": "var_pump_fault",
           "value": false
         }
       ]
