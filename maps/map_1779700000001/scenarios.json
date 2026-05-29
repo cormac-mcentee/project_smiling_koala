@@ -26,8 +26,7 @@
           "variableId": "var_pipe_fluid_flowing",
           "value": true
         }
-      ],
-      "graceTurns": 0
+      ]
     },
     {
       "id": "scenario_m1_s2",
@@ -55,8 +54,7 @@
           "variableId": "var_pipe_fluid_flowing",
           "value": false
         }
-      ],
-      "graceTurns": 0
+      ]
     }
   ]
 }
