@@ -38,8 +38,7 @@
           "variableId": "var_ecv_fluid_flowing",
           "value": true
         }
-      ],
-      "graceTurns": 0
+      ]
     },
     {
       "id": "scenario_m6_s2",
@@ -79,8 +78,7 @@
           "variableId": "var_ecv_fluid_flowing",
           "value": true
         }
-      ],
-      "graceTurns": 0
+      ]
     },
     {
       "id": "scenario_m6_s3",
@@ -126,8 +124,7 @@
           "variableId": "var_ecv_fluid_flowing",
           "value": false
         }
-      ],
-      "graceTurns": 0
+      ]
     }
   ]
 }
