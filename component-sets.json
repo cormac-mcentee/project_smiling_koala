@@ -90,11 +90,7 @@
             }
           ],
           "superiors": [],
-          "created": "2026-05-22T00:00:00.004Z",
-          "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAuMCAwLjAgMjU2LjAgMjU2LjAiIHdpZHRoPSIyNTYuMCIgaGVpZ2h0PSIyNTYuMCI+PHBhdGggZD0iTSAyNTYuMDAsMjAuNjQgTCAyNTYuMDAsMjM1LjM2IEEgODMuMjAsMTMuNDIgMCAwIDEgMC4wMCwyMzUuMzYgTCAwLjAwLDIwLjY0IEEgODMuMjAsMTMuNDIgMCAwIDEgMjU2LjAwLDIwLjY0IFogTSAwLjAwLDIwLjY0IEwgMjU2LjAwLDIwLjY0IE0gMC4wMCwyMzUuMzYgTCAyNTYuMDAsMjM1LjM2IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=",
-          "imageSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0.0 0.0 256.0 256.0\" width=\"256.0\" height=\"256.0\"><path d=\"M 256.00,20.64 L 256.00,235.36 A 83.20,13.42 0 0 1 0.00,235.36 L 0.00,20.64 A 83.20,13.42 0 0 1 256.00,20.64 Z M 0.00,20.64 L 256.00,20.64 M 0.00,235.36 L 256.00,235.36\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
-          "imageStencilName": "Tank",
-          "imageAspect": 1
+          "created": "2026-05-22T00:00:00.004Z"
         },
         {
           "id": "component_1779500000001",
@@ -142,13 +138,19 @@
               "name": "fluid_type",
               "type": "string",
               "defaultValue": ""
+            },
+            {
+              "id": "var_pump_fault_delay",
+              "name": "fault_delay",
+              "type": "number",
+              "defaultValue": 0
             }
           ],
           "actions": [
             {
               "id": "action_pump_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.running THEN\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nELSE\n  IF ANYSUP.fluid_present THEN\n    SET self.running = true\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n    SET self.fault = false\n  ELSE\n    SET self.fault = true\n  END\nEND"
+              "script": "IF self.running THEN\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nELSE\n  IF ANYSUP.fluid_present THEN\n    SET self.running = true\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n    SET self.fault = false\n  ELSE\n    SET self.fault = true\n    SET self.fault_delay = 2\n  END\nEND"
             },
             {
               "id": "action_pump_reset",
@@ -160,7 +162,7 @@
             {
               "id": "listener_pump_dry_run",
               "condition": "ANYSUP.fluid_present == false",
-              "script": "IF self.running THEN\n  SET self.fault = true\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+              "script": "IF self.running THEN\n  SET self.fault = true\n  SET self.fault_delay = 2\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
             },
             {
               "id": "listener_pump_running_on",
@@ -175,15 +177,11 @@
             {
               "id": "listener_pump_dead_head",
               "condition": "self.running AND ANYINF.blocked",
-              "script": "SET self.fault = true\nSET self.running = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+              "script": "SET self.fault = true\nSET self.fault_delay = 2\nSET self.running = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
             }
           ],
           "superiors": [],
-          "created": "2026-05-22T00:00:00.001Z",
-          "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAuMCAwLjAgMjU2LjAgMjU2LjAiIHdpZHRoPSIyNTYuMCIgaGVpZ2h0PSIyNTYuMCI+PHBhdGggZD0iTSA0My44OSwyMDYuMzMgTCAwLjAwLDI1Ni4wMCBMIDIxOS40MywyNTYuMDAgTCAxNzUuNTQsMjA2LjMzIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNIDIuMTksOTUuNTIgQSAxMDkuNzEsMTE0LjYzIDAgMCAxIDEwOS43MSwwLjAwIEwgMjU2LjAwLDAuMDAgTCAyNTYuMDAsNzYuNDIgTCAyMTMuNzYsNzYuNDIgQSAxMDkuNzEsMTE0LjYzIDAgMSAxIDIuMTksMTMzLjczIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNIDc4LjI2LDk1LjUyIEEgMzYuNTcsMzguMjEgMCAxIDEgNzguMjYsMTMzLjczIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=",
-          "imageSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0.0 0.0 256.0 256.0\" width=\"256.0\" height=\"256.0\"><path d=\"M 43.89,206.33 L 0.00,256.00 L 219.43,256.00 L 175.54,206.33\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 2.19,95.52 A 109.71,114.63 0 0 1 109.71,0.00 L 256.00,0.00 L 256.00,76.42 L 213.76,76.42 A 109.71,114.63 0 1 1 2.19,133.73\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 78.26,95.52 A 36.57,38.21 0 1 1 78.26,133.73\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
-          "imageStencilName": "Centrifugal Pump 1",
-          "imageAspect": 1
+          "created": "2026-05-22T00:00:00.001Z"
         },
         {
           "id": "component_1779399245576",
@@ -272,11 +270,7 @@
             }
           ],
           "superiors": [],
-          "created": "2026-05-21T21:34:05.576Z",
-          "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAuMCAwLjAgMjU2LjAgMjU2LjAiIHdpZHRoPSIyNTYuMCIgaGVpZ2h0PSIyNTYuMCI+PHBhdGggZD0iTSAwLjAwLDI1Ni4wMCBMIDAuMDAsMC4wMCBMIDI1Ni4wMCwyNTYuMDAgTCAyNTYuMDAsMC4wMCBaIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=",
-          "imageSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0.0 0.0 256.0 256.0\" width=\"256.0\" height=\"256.0\"><path d=\"M 0.00,256.00 L 0.00,0.00 L 256.00,256.00 L 256.00,0.00 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
-          "imageStencilName": "Gate Valve",
-          "imageAspect": 1
+          "created": "2026-05-21T21:34:05.576Z"
         },
         {
           "id": "component_control_valve_1779600000002",
@@ -360,11 +354,7 @@
             }
           ],
           "superiors": [],
-          "created": "2026-05-24T00:00:00.001Z",
-          "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAuMCAwLjAgMjU2LjAgMjU2LjAiIHdpZHRoPSIyNTYuMCIgaGVpZ2h0PSIyNTYuMCI+PHBhdGggZD0iTSAwLjAwLDAuMDAgTCA4My4zMyw4NC4wNSBBIDUyLjI0LDg1LjMzIDAgMCAxIDE3Mi45Myw4NC4wNSBMIDI1Ni4wMCwwLjAwIEwgMjU2LjAwLDI1Ni4wMCBMIDE3Mi45MywxNzIuODAgQSA1Mi4yNCw4NS4zMyAwIDAgMSA4My4zMywxNzIuODAgTCAwLjAwLDI1Ni4wMCBaIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNIDgzLjMzLDE3Mi44MCBBIDUyLjI0LDg1LjMzIDAgMCAxIDgzLjMzLDg0LjA1IE0gMTcyLjkzLDg0LjA1IEEgNTIuMjQsODUuMzMgMCAwIDEgMTcyLjkzLDE3Mi44MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+",
-          "imageSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0.0 0.0 256.0 256.0\" width=\"256.0\" height=\"256.0\"><path d=\"M 0.00,0.00 L 83.33,84.05 A 52.24,85.33 0 0 1 172.93,84.05 L 256.00,0.00 L 256.00,256.00 L 172.93,172.80 A 52.24,85.33 0 0 1 83.33,172.80 L 0.00,256.00 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 83.33,172.80 A 52.24,85.33 0 0 1 83.33,84.05 M 172.93,84.05 A 52.24,85.33 0 0 1 172.93,172.80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
-          "imageStencilName": "Globe Valve",
-          "imageAspect": 1
+          "created": "2026-05-24T00:00:00.001Z"
         },
         {
           "id": "component_ecv_1779600000003",
@@ -480,11 +470,7 @@
             }
           ],
           "superiors": [],
-          "created": "2026-05-24T00:00:00.002Z",
-          "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAuMCAwLjAgMjU2LjAgMjU2LjAiIHdpZHRoPSIyNTYuMCIgaGVpZ2h0PSIyNTYuMCI+PHBhdGggZD0iTSAwLjAwLDI1Ni4wMCBMIDAuMDAsODYuMjkgTCAyNTYuMDAsMjU2LjAwIEwgMjU2LjAwLDg2LjI5IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxyZWN0IHg9IjQ5LjYzIiB5PSIwLjAwIiB3aWR0aD0iMTU2LjczIiBoZWlnaHQ9Ijg2LjI5IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4Ii8+PHBhdGggZD0iTSAxMjguMDAsNDMuMTUgTCAxMjguMDAsMTY5LjcxIE0gNDkuNjMsNDMuMTUgTCAyMDYuMzcsNDMuMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==",
-          "imageSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0.0 0.0 256.0 256.0\" width=\"256.0\" height=\"256.0\"><path d=\"M 0.00,256.00 L 0.00,86.29 L 256.00,256.00 L 256.00,86.29 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"49.63\" y=\"0.00\" width=\"156.73\" height=\"86.29\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\"/><path d=\"M 128.00,43.15 L 128.00,169.71 M 49.63,43.15 L 206.37,43.15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
-          "imageStencilName": "Hydraulic Valve",
-          "imageAspect": 1
+          "created": "2026-05-24T00:00:00.002Z"
         },
         {
           "id": "component_pipe_1779600000001",
@@ -641,18 +627,24 @@
               "name": "fluid_type",
               "type": "string",
               "defaultValue": ""
+            },
+            {
+              "id": "var_heater_fault_delay",
+              "name": "fault_delay",
+              "type": "number",
+              "defaultValue": 0
             }
           ],
           "actions": [
             {
               "id": "action_heater_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.active THEN\n  SET self.active = false\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fault = false\nELSE\n  IF ANYSUP.fluid_flowing THEN\n    SET self.active = true\n    SET self.fault = false\n  ELSE\n    SET self.fault = true\n  END\nEND\nCALL self.update_flow"
+              "script": "IF self.active THEN\n  SET self.active = false\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fault = false\nELSE\n  IF ANYSUP.fluid_flowing THEN\n    SET self.active = true\n    SET self.fault = false\n  ELSE\n    SET self.fault = true\n    SET self.fault_delay = 2\n  END\nEND\nCALL self.update_flow"
             },
             {
               "id": "action_heater_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.fluid_flowing THEN\n  SET self.fluid_present = true\n  SET self.fluid_flowing = true\n  SET self.flow_rate = SUMSUP.flow_rate\n  SET self.fluid_type = SUP(0).fluid_type\n  IF self.active THEN\n    SET self.heating = true\n    SET self.temperature = 80\n  ELSE\n    SET self.heating = false\n    SET self.temperature = SUMSUP.temperature\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  IF self.active THEN\n    SET self.fault = true\n  END\nEND"
+              "script": "IF ANYSUP.fluid_flowing THEN\n  SET self.fluid_present = true\n  SET self.fluid_flowing = true\n  SET self.flow_rate = SUMSUP.flow_rate\n  SET self.fluid_type = SUP(0).fluid_type\n  IF self.active THEN\n    SET self.heating = true\n    SET self.temperature = 80\n  ELSE\n    SET self.heating = false\n    SET self.temperature = SUMSUP.temperature\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  IF self.active THEN\n    SET self.fault = true\n    SET self.fault_delay = 2\n  END\nEND"
             },
             {
               "id": "action_heater_reset",
@@ -669,7 +661,7 @@
             {
               "id": "listener_heater_upstream_off",
               "condition": "ANYSUP.fluid_flowing == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.heating = false\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nIF self.active THEN\n  SET self.fault = true\nEND"
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.heating = false\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nIF self.active THEN\n  SET self.fault = true\n  SET self.fault_delay = 2\nEND"
             },
             {
               "id": "listener_heater_present_on",
@@ -683,11 +675,7 @@
             }
           ],
           "superiors": [],
-          "created": "2026-05-22T00:00:00.003Z",
-          "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAuMCAwLjAgMjU2LjAgMjU2LjAiIHdpZHRoPSIyNTYuMCIgaGVpZ2h0PSIyNTYuMCI+PHJlY3QgeD0iMTA5LjcxIiB5PSIwLjAwIiB3aWR0aD0iMTQ2LjI5IiBoZWlnaHQ9IjI1Ni4wMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iOCIvPjxyZWN0IHg9IjAuMDAiIHk9IjM4LjQwIiB3aWR0aD0iNzMuMTQiIGhlaWdodD0iMTc5LjIwIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4Ii8+PHJlY3QgeD0iMTI4LjAwIiB5PSI0NC44MCIgd2lkdGg9IjEwOS43MSIgaGVpZ2h0PSIzOC40MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iOCIvPjxyZWN0IHg9IjEyOC4wMCIgeT0iMTA4LjgwIiB3aWR0aD0iMTA5LjcxIiBoZWlnaHQ9IjM4LjQwIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4Ii8+PHJlY3QgeD0iMTI4LjAwIiB5PSIxNzIuODAiIHdpZHRoPSIxMDkuNzEiIGhlaWdodD0iMzguNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjgiLz48cGF0aCBkPSJNIDczLjE0LDY0LjAwIEwgMTI4LjAwLDY0LjAwIE0gNzMuMTQsMTI4LjAwIEwgMTI4LjAwLDEyOC4wMCBNIDczLjE0LDE5Mi4wMCBMIDEyOC4wMCwxOTIuMDAgTSAxNTUuNDMsNDQuODAgTCAxNTUuNDMsODMuMjAgTSAxODIuODYsNDQuODAgTCAxODIuODYsODMuMjAgTSAyMTAuMjksNDQuODAgTCAyMTAuMjksODMuMjAgTSAxNTUuNDMsMTA4LjgwIEwgMTU1LjQzLDE0Ny4yMCBNIDE4Mi44NiwxMDguODAgTCAxODIuODYsMTQ3LjIwIE0gMjEwLjI5LDEwOC44MCBMIDIxMC4yOSwxNDcuMjAgTSAxNTUuNDMsMTcyLjgwIEwgMTU1LjQzLDIxMS4yMCBNIDE4Mi44NiwxNzIuODAgTCAxODIuODYsMjExLjIwIE0gMjEwLjI5LDE3Mi44MCBMIDIxMC4yOSwyMTEuMjAgTSA0NS43MSwxMDIuNDAgTCAyNy40MywxMDIuNDAgTCAyNy40MywxNTMuNjAgTCA0NS43MSwxNTMuNjAgTSAyNy40MywxMjguMDAgTCA0MC4yMywxMjguMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==",
-          "imageSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0.0 0.0 256.0 256.0\" width=\"256.0\" height=\"256.0\"><rect x=\"109.71\" y=\"0.00\" width=\"146.29\" height=\"256.00\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\"/><rect x=\"0.00\" y=\"38.40\" width=\"73.14\" height=\"179.20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\"/><rect x=\"128.00\" y=\"44.80\" width=\"109.71\" height=\"38.40\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\"/><rect x=\"128.00\" y=\"108.80\" width=\"109.71\" height=\"38.40\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\"/><rect x=\"128.00\" y=\"172.80\" width=\"109.71\" height=\"38.40\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\"/><path d=\"M 73.14,64.00 L 128.00,64.00 M 73.14,128.00 L 128.00,128.00 M 73.14,192.00 L 128.00,192.00 M 155.43,44.80 L 155.43,83.20 M 182.86,44.80 L 182.86,83.20 M 210.29,44.80 L 210.29,83.20 M 155.43,108.80 L 155.43,147.20 M 182.86,108.80 L 182.86,147.20 M 210.29,108.80 L 210.29,147.20 M 155.43,172.80 L 155.43,211.20 M 182.86,172.80 L 182.86,211.20 M 210.29,172.80 L 210.29,211.20 M 45.71,102.40 L 27.43,102.40 L 27.43,153.60 L 45.71,153.60 M 27.43,128.00 L 40.23,128.00\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
-          "imageStencilName": "Electric Heater",
-          "imageAspect": 1
+          "created": "2026-05-22T00:00:00.003Z"
         }
       ],
       "created": "2026-05-21T21:30:07.744Z"
@@ -695,7 +683,7 @@
     {
       "id": "componentset_1779500000010",
       "name": "Plant Boundary Components",
-      "description": "Theoretical entry and exit points — not operator-controllable.",
+      "description": "Theoretical entry and exit points â€” not operator-controllable.",
       "components": [
         {
           "id": "component_1779500000005",
@@ -878,13 +866,19 @@
               "name": "service_fluid_type",
               "type": "string",
               "defaultValue": ""
+            },
+            {
+              "id": "var_he_fault_delay",
+              "name": "fault_delay",
+              "type": "number",
+              "defaultValue": 0
             }
           ],
           "actions": [
             {
               "id": "action_he_update_flow",
               "name": "update_flow",
-              "script": "IF SUP(0).fluid_flowing THEN\n  SET self.process_flowing = true\n  SET self.process_temp_in = SUP(0).temperature\n  SET self.process_fluid_type = SUP(0).fluid_type\nELSE\n  SET self.process_flowing = false\n  SET self.process_fluid_type = \"\"\nEND\nIF SUP(1).fluid_flowing THEN\n  SET self.service_flowing = true\n  SET self.service_temp_in = SUP(1).temperature\n  SET self.service_fluid_type = SUP(1).fluid_type\nELSE\n  SET self.service_flowing = false\n  SET self.service_fluid_type = \"\"\nEND\nIF self.process_flowing AND self.service_flowing THEN\n  SET self.heat_transfer_active = true\n  SET self.process_temp_out = 80\n  SET self.service_temp_out = 40\n  SET self.fault = false\nELSE\n  SET self.heat_transfer_active = false\n  IF self.process_flowing THEN\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = 20\n    SET self.fault = true\n  ELSE\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = self.service_temp_in\n    SET self.fault = false\n  END\nEND\nIF self.process_flowing THEN\n  SET ALLINF(cold_outlet).fluid_present = true\n  SET ALLINF(cold_outlet).flow_rate = SUP(0).flow_rate\n  SET ALLINF(cold_outlet).temperature = self.process_temp_out\n  SET ALLINF(cold_outlet).fluid_type = self.process_fluid_type\nELSE\n  SET ALLINF(cold_outlet).fluid_present = false\n  SET ALLINF(cold_outlet).flow_rate = 0\n  SET ALLINF(cold_outlet).temperature = 20\n  SET ALLINF(cold_outlet).fluid_type = \"\"\nEND\nIF self.service_flowing THEN\n  SET ALLINF(hot_outlet).fluid_present = true\n  SET ALLINF(hot_outlet).flow_rate = SUP(1).flow_rate\n  SET ALLINF(hot_outlet).temperature = self.service_temp_out\n  SET ALLINF(hot_outlet).fluid_type = self.service_fluid_type\nELSE\n  SET ALLINF(hot_outlet).fluid_present = false\n  SET ALLINF(hot_outlet).flow_rate = 0\n  SET ALLINF(hot_outlet).temperature = 20\n  SET ALLINF(hot_outlet).fluid_type = \"\"\nEND"
+              "script": "IF SUP(0).fluid_flowing THEN\n  SET self.process_flowing = true\n  SET self.process_temp_in = SUP(0).temperature\n  SET self.process_fluid_type = SUP(0).fluid_type\nELSE\n  SET self.process_flowing = false\n  SET self.process_fluid_type = \"\"\nEND\nIF SUP(1).fluid_flowing THEN\n  SET self.service_flowing = true\n  SET self.service_temp_in = SUP(1).temperature\n  SET self.service_fluid_type = SUP(1).fluid_type\nELSE\n  SET self.service_flowing = false\n  SET self.service_fluid_type = \"\"\nEND\nIF self.process_flowing AND self.service_flowing THEN\n  SET self.heat_transfer_active = true\n  SET self.process_temp_out = 80\n  SET self.service_temp_out = 40\n  SET self.fault = false\nELSE\n  SET self.heat_transfer_active = false\n  IF self.process_flowing THEN\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = 20\n    SET self.fault = true\n    SET self.fault_delay = 2\n  ELSE\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = self.service_temp_in\n    SET self.fault = false\n  END\nEND\nIF self.process_flowing THEN\n  SET ALLINF(cold_outlet).fluid_present = true\n  SET ALLINF(cold_outlet).flow_rate = SUP(0).flow_rate\n  SET ALLINF(cold_outlet).temperature = self.process_temp_out\n  SET ALLINF(cold_outlet).fluid_type = self.process_fluid_type\nELSE\n  SET ALLINF(cold_outlet).fluid_present = false\n  SET ALLINF(cold_outlet).flow_rate = 0\n  SET ALLINF(cold_outlet).temperature = 20\n  SET ALLINF(cold_outlet).fluid_type = \"\"\nEND\nIF self.service_flowing THEN\n  SET ALLINF(hot_outlet).fluid_present = true\n  SET ALLINF(hot_outlet).flow_rate = SUP(1).flow_rate\n  SET ALLINF(hot_outlet).temperature = self.service_temp_out\n  SET ALLINF(hot_outlet).fluid_type = self.service_fluid_type\nELSE\n  SET ALLINF(hot_outlet).fluid_present = false\n  SET ALLINF(hot_outlet).flow_rate = 0\n  SET ALLINF(hot_outlet).temperature = 20\n  SET ALLINF(hot_outlet).fluid_type = \"\"\nEND"
             },
             {
               "id": "action_he_reset_fault",
@@ -925,11 +919,7 @@
             }
           ],
           "superiors": [],
-          "created": "2026-05-22T00:00:00.007Z",
-          "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAuMCAwLjAgMjU2LjAgMjU2LjAiIHdpZHRoPSIyNTYuMCIgaGVpZ2h0PSIyNTYuMCI+PHJlY3QgeD0iMC4wMCIgeT0iMC4wMCIgd2lkdGg9IjI1Ni4wMCIgaGVpZ2h0PSIyNTYuMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjgiLz48cGF0aCBkPSJNIDIwLjQ4LDAuMDAgTCAyMC40OCwyNTYuMDAgTSAyMzUuNTIsMC4wMCBMIDIzNS41MiwyNTYuMDAgTSAyMC40OCwzMi4wMCBMIDIzNS41MiwzMi4wMCBNIDIwLjQ4LDY0LjAwIEwgMjM1LjUyLDY0LjAwIE0gMjAuNDgsOTYuMDAgTCAyMzUuNTIsOTYuMDAgTSAyMC40OCwxMjguMDAgTCAyMzUuNTIsMTI4LjAwIE0gMjAuNDgsMTYwLjAwIEwgMjM1LjUyLDE2MC4wMCBNIDIwLjQ4LDE5Mi4wMCBMIDIzNS41MiwxOTIuMDAgTSAyMC40OCwyMjQuMDAgTCAyMzUuNTIsMjI0LjAwIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=",
-          "imageSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0.0 0.0 256.0 256.0\" width=\"256.0\" height=\"256.0\"><rect x=\"0.00\" y=\"0.00\" width=\"256.00\" height=\"256.00\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\"/><path d=\"M 20.48,0.00 L 20.48,256.00 M 235.52,0.00 L 235.52,256.00 M 20.48,32.00 L 235.52,32.00 M 20.48,64.00 L 235.52,64.00 M 20.48,96.00 L 235.52,96.00 M 20.48,128.00 L 235.52,128.00 M 20.48,160.00 L 235.52,160.00 M 20.48,192.00 L 235.52,192.00 M 20.48,224.00 L 235.52,224.00\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
-          "imageStencilName": "Fixed Straight Tubes Heat Exchanger",
-          "imageAspect": 1
+          "created": "2026-05-22T00:00:00.007Z"
         },
         {
           "id": "component_he_outlet_valve",
