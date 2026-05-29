@@ -38,8 +38,7 @@
           "variableId": "var_tank_receiving",
           "value": true
         }
-      ],
-      "graceTurns": 0
+      ]
     },
     {
       "id": "scenario_m3_s2",
@@ -97,8 +96,7 @@
           "variableId": "var_pump_fault",
           "value": false
         }
-      ],
-      "graceTurns": 0
+      ]
     },
     {
       "id": "scenario_m3_s3",
@@ -162,8 +160,7 @@
           "variableId": "var_pump_fault",
           "value": false
         }
-      ],
-      "graceTurns": 0
+      ]
     }
   ]
 }
