@@ -39,7 +39,7 @@
           "value": true
         }
       ],
-      "lossConditions": []
+      "graceTurns": 0
     },
     {
       "id": "scenario_m6_s2",
@@ -80,7 +80,7 @@
           "value": true
         }
       ],
-      "lossConditions": []
+      "graceTurns": 0
     },
     {
       "id": "scenario_m6_s3",
@@ -127,7 +127,7 @@
           "value": false
         }
       ],
-      "lossConditions": []
+      "graceTurns": 0
     }
   ]
 }
