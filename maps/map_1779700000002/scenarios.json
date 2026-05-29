@@ -51,14 +51,7 @@
           "value": true
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m2_s1_01",
-          "literalComponentId": "lc_m2_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     },
     {
       "id": "scenario_m2_s2",
@@ -111,12 +104,12 @@
           "value": true
         }
       ],
-      "lossConditions": []
+      "graceTurns": 0
     },
     {
       "id": "scenario_m2_s3",
       "name": "Safe Shutdown",
-      "description": "Flow is running. Shut down safely — close the discharge valve (V2) first to prevent water hammer, stop the pump, then close the suction valve (V1).",
+      "description": "Flow is running. Shut down safely â€” close the discharge valve (V2) first to prevent water hammer, stop the pump, then close the suction valve (V1).",
       "difficulty": "medium",
       "initialConditions": [
         {
@@ -170,14 +163,7 @@
           "value": false
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m2_s3_01",
-          "literalComponentId": "lc_m2_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     }
   ]
 }
