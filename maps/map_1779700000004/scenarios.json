@@ -19,21 +19,9 @@
           "value": false
         },
         {
-          "id": "ic_m4_s1_03",
-          "literalComponentId": "lc_m4_p1",
-          "variableId": "var_pump_fault",
-          "value": false
-        },
-        {
           "id": "ic_m4_s1_04",
           "literalComponentId": "lc_m4_h1",
           "variableId": "var_heater_active",
-          "value": false
-        },
-        {
-          "id": "ic_m4_s1_05",
-          "literalComponentId": "lc_m4_h1",
-          "variableId": "var_heater_fault",
           "value": false
         },
         {
@@ -55,53 +43,41 @@
           "literalComponentId": "lc_m4_pipe_3",
           "variableId": "var_pipe_fluid_flowing",
           "value": true
-        },
-        {
-          "id": "tc_m4_s1_03",
-          "literalComponentId": "lc_m4_h1",
-          "variableId": "var_heater_fault",
-          "value": false
         }
       ]
     },
     {
       "id": "scenario_m4_s2",
-      "name": "Heater Fault Recovery",
-      "description": "The heater was activated without flow and has faulted. Reset the heater fault, establish flow, then bring the heater back into service.",
+      "name": "Heater Failure — Emergency Deactivation",
+      "description": "The heater element has failed while energised. Deactivate the heater immediately to prevent electrical damage — do not attempt to restart it.",
       "difficulty": "easy",
       "initialConditions": [
         {
           "id": "ic_m4_s2_01",
           "literalComponentId": "lc_m4_v1",
           "variableId": "var_valve_open",
-          "value": false
+          "value": true
         },
         {
           "id": "ic_m4_s2_02",
           "literalComponentId": "lc_m4_p1",
           "variableId": "var_pump_running",
-          "value": false
+          "value": true
         },
         {
           "id": "ic_m4_s2_03",
-          "literalComponentId": "lc_m4_p1",
-          "variableId": "var_pump_fault",
-          "value": false
-        },
-        {
-          "id": "ic_m4_s2_04",
           "literalComponentId": "lc_m4_h1",
           "variableId": "var_heater_active",
           "value": true
         },
         {
-          "id": "ic_m4_s2_05",
+          "id": "ic_m4_s2_04",
           "literalComponentId": "lc_m4_h1",
-          "variableId": "var_heater_fault",
+          "variableId": "var_heater_broken",
           "value": true
         },
         {
-          "id": "ic_m4_s2_06",
+          "id": "ic_m4_s2_05",
           "literalComponentId": "lc_m4_v2",
           "variableId": "var_valve_open",
           "value": true
@@ -111,20 +87,16 @@
         {
           "id": "tc_m4_s2_01",
           "literalComponentId": "lc_m4_h1",
-          "variableId": "var_heater_heating",
-          "value": true
-        },
-        {
-          "id": "tc_m4_s2_02",
-          "literalComponentId": "lc_m4_h1",
-          "variableId": "var_heater_fault",
+          "variableId": "var_heater_active",
           "value": false
-        },
+        }
+      ],
+      "faultOverrides": [
         {
-          "id": "tc_m4_s2_03",
-          "literalComponentId": "lc_m4_pipe_3",
-          "variableId": "var_pipe_fluid_flowing",
-          "value": true
+          "id": "fo_m4_s2_01",
+          "literalComponentId": "lc_m4_h1",
+          "faultName": "heater_electrical",
+          "gracePeriod": 2
         }
       ]
     },
@@ -147,12 +119,6 @@
           "value": true
         },
         {
-          "id": "ic_m4_s3_03",
-          "literalComponentId": "lc_m4_p1",
-          "variableId": "var_pump_fault",
-          "value": false
-        },
-        {
           "id": "ic_m4_s3_04",
           "literalComponentId": "lc_m4_h1",
           "variableId": "var_heater_active",
@@ -163,12 +129,6 @@
           "literalComponentId": "lc_m4_h1",
           "variableId": "var_heater_heating",
           "value": true
-        },
-        {
-          "id": "ic_m4_s3_06",
-          "literalComponentId": "lc_m4_h1",
-          "variableId": "var_heater_fault",
-          "value": false
         },
         {
           "id": "ic_m4_s3_07",
@@ -188,18 +148,6 @@
           "id": "tc_m4_s3_02",
           "literalComponentId": "lc_m4_h1",
           "variableId": "var_heater_active",
-          "value": false
-        },
-        {
-          "id": "tc_m4_s3_03",
-          "literalComponentId": "lc_m4_h1",
-          "variableId": "var_heater_fault",
-          "value": false
-        },
-        {
-          "id": "tc_m4_s3_04",
-          "literalComponentId": "lc_m4_p1",
-          "variableId": "var_pump_fault",
           "value": false
         }
       ]
