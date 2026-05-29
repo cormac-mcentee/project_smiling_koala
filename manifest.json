@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.7",
-  "publishedAt": "2026-05-29T15:26:36.251Z",
+  "version": "1.0.0.1",
+  "publishedAt": "2026-05-29T19:01:26.502Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "path": "component-sets.json",
-      "sha256": "10f6d1a7d545124928cd47af7cd2c74d61afabb9cf57f65ad35c019014f042bc"
+      "sha256": "e61420bd6804124a4a0891028ee7498b20bb92973e632bea3407b54ba4f2c03d"
     },
     {
       "path": "editorial-packs.json",
@@ -42,7 +42,7 @@
     },
     {
       "path": "maps/map_1779700000002/scenarios.json",
-      "sha256": "dc2bcc6f7cfdac9f6d156aeb1f3a4cf8b637f901ca172064525ff78eb3ef3357"
+      "sha256": "91f91d1cb557952af3038b2a051aecdb841b059ba176ccdb80e2531dd5a40b4f"
     },
     {
       "path": "maps/map_1779700000002/schematic.json",
@@ -58,7 +58,7 @@
     },
     {
       "path": "maps/map_1779700000003/scenarios.json",
-      "sha256": "e7175907877aa423f89825b62471696e19725037a51d586a428354577430a621"
+      "sha256": "2ce911e27bfb3eccf2d6913c063f643c58b5a0274c7049e603af4478ff393633"
     },
     {
       "path": "maps/map_1779700000003/schematic.json",
@@ -74,7 +74,7 @@
     },
     {
       "path": "maps/map_1779700000004/scenarios.json",
-      "sha256": "360fb6dfbe86e3c6f8f5288cf0cfd5706450798d000c10f8387f0d0786f75dd9"
+      "sha256": "11a3acfc6afc360c1ef7bfe3248fc1e40d2d2ece77fe3862d61852d67fe37c05"
     },
     {
       "path": "maps/map_1779700000004/schematic.json",
@@ -90,7 +90,7 @@
     },
     {
       "path": "maps/map_1779700000005/scenarios.json",
-      "sha256": "bcbe5bc2bcf9b3a5a8ea29a6b85ce76f077d9ad06268651e1febd679257cae01"
+      "sha256": "9361cf137ef39aa63e24b017d848bcdcc92c0294dc68c0ba812d08087ff09008"
     },
     {
       "path": "maps/map_1779700000005/schematic.json",
@@ -122,7 +122,7 @@
     },
     {
       "path": "maps/map_1779399000674/scenarios.json",
-      "sha256": "51dd3f748ba25bd5c3b59a4051399a96cadfcaa7970d6bacfb6f96df74098f56"
+      "sha256": "d1672d23c6a2dce460c5758815b0d5e1072120d05d238da2296e58abb6a73984"
     },
     {
       "path": "maps/map_1779399000674/schematic.json",
@@ -137,5 +137,5 @@
       "productId": null
     }
   ],
-  "signature": "a11nS1nPRiVmydLouQTMEeKBklQWqDiiU25aX5LgX4qR4hCa2xkes5cMohFr/kHDEruPOIlnKSTzpMP3+vdFYA=="
+  "signature": "pWfHeq7pLN++9pGafJpORKB06HtEBAWwk395hB7no+QuvefZcv3rIPhsD8zGEKfaR9exrI56JM8lJhO1wgymcQ=="
 }
