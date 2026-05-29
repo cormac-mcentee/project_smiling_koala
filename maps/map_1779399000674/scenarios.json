@@ -74,8 +74,7 @@
           "variableId": "var_valve_open",
           "value": true
         }
-      ],
-      "graceTurns": 0
+      ]
     },
     {
       "id": "scenario_1779500000002",
@@ -145,8 +144,7 @@
           "variableId": "var_he_fault",
           "value": false
         }
-      ],
-      "graceTurns": 0
+      ]
     },
     {
       "id": "scenario_1779500000003",
@@ -213,8 +211,7 @@
       ],
       "faultWhitelist": [
         "lc_1779440947448"
-      ],
-      "graceTurns": 0
+      ]
     }
   ]
 }
