@@ -19,12 +19,6 @@
           "value": false
         },
         {
-          "id": "ic_m2_s1_03",
-          "literalComponentId": "lc_m2_p1",
-          "variableId": "var_pump_fault",
-          "value": false
-        },
-        {
           "id": "ic_m2_s1_04",
           "literalComponentId": "lc_m2_v2",
           "variableId": "var_valve_open",
@@ -54,8 +48,8 @@
     },
     {
       "id": "scenario_m2_s2",
-      "name": "Fault Recovery",
-      "description": "The pump has tripped on a fault. Both isolation valves are open. Reset the fault and restore flow to the outlet.",
+      "name": "Pump Failure — Isolate Upstream",
+      "description": "The pump has failed mechanically and cannot be restarted. Both isolation valves are open and fluid is present at the pump inlet — close the suction valve (V1) immediately to prevent further damage.",
       "difficulty": "easy",
       "initialConditions": [
         {
@@ -73,7 +67,7 @@
         {
           "id": "ic_m2_s2_03",
           "literalComponentId": "lc_m2_p1",
-          "variableId": "var_pump_fault",
+          "variableId": "var_pump_broken",
           "value": true
         },
         {
@@ -86,21 +80,17 @@
       "targetConditions": [
         {
           "id": "tc_m2_s2_01",
-          "literalComponentId": "lc_m2_p1",
-          "variableId": "var_pump_running",
-          "value": true
-        },
-        {
-          "id": "tc_m2_s2_02",
-          "literalComponentId": "lc_m2_p1",
-          "variableId": "var_pump_fault",
+          "literalComponentId": "lc_m2_v1",
+          "variableId": "var_valve_open",
           "value": false
-        },
+        }
+      ],
+      "faultOverrides": [
         {
-          "id": "tc_m2_s2_03",
-          "literalComponentId": "lc_m2_pipe_final",
-          "variableId": "var_pipe_fluid_flowing",
-          "value": true
+          "id": "fo_m2_s2_01",
+          "literalComponentId": "lc_m2_p1",
+          "faultName": "broken_flow",
+          "gracePeriod": 3
         }
       ]
     },
@@ -121,12 +111,6 @@
           "literalComponentId": "lc_m2_p1",
           "variableId": "var_pump_running",
           "value": true
-        },
-        {
-          "id": "ic_m2_s3_03",
-          "literalComponentId": "lc_m2_p1",
-          "variableId": "var_pump_fault",
-          "value": false
         },
         {
           "id": "ic_m2_s3_04",
@@ -152,12 +136,6 @@
           "id": "tc_m2_s3_03",
           "literalComponentId": "lc_m2_v2",
           "variableId": "var_valve_open",
-          "value": false
-        },
-        {
-          "id": "tc_m2_s3_04",
-          "literalComponentId": "lc_m2_p1",
-          "variableId": "var_pump_fault",
           "value": false
         }
       ]
