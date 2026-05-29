@@ -62,8 +62,7 @@
           "variableId": "var_heater_fault",
           "value": false
         }
-      ],
-      "graceTurns": 0
+      ]
     },
     {
       "id": "scenario_m4_s2",
@@ -127,8 +126,7 @@
           "variableId": "var_pipe_fluid_flowing",
           "value": true
         }
-      ],
-      "graceTurns": 0
+      ]
     },
     {
       "id": "scenario_m4_s3",
@@ -204,8 +202,7 @@
           "variableId": "var_pump_fault",
           "value": false
         }
-      ],
-      "graceTurns": 0
+      ]
     }
   ]
 }
