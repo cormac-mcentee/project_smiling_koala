@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.0",
-  "publishedAt": "2026-05-29T13:37:03.034Z",
+  "version": "1.0.2",
+  "publishedAt": "2026-05-29T13:54:28.257Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "path": "component-sets.json",
-      "sha256": "09bedcb6e7d38d8f88236615391ed3dc209eb856940ae8875e1b85c879aca584"
+      "sha256": "d566cf3d37404f7683a293e99d99c399eedcd31a150e97b735ddada26a825dd7"
     },
     {
       "path": "editorial-packs.json",
@@ -137,5 +137,5 @@
       "productId": null
     }
   ],
-  "signature": "Te+Wl40GK1bGeMFeD3ofmfUWcfzfy1WeB5JFG6pZGtKEEMkgvP0X6C/CxwbcWdQAEtXeTfqXN66YmnhGRaGE8Q=="
+  "signature": "zqkdgyNDQCvU9OQ+R8xc6UtW3QWViHX0SJ1Q6PWozhzw02qWxt/cqfD5IYNXnVbJC30wosulmojYGuWrDS+MQw=="
 }
