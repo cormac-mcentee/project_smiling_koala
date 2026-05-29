@@ -39,14 +39,7 @@
           "value": true
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m3_s1_01",
-          "literalComponentId": "lc_m3_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     },
     {
       "id": "scenario_m3_s2",
@@ -105,19 +98,12 @@
           "value": false
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m3_s2_01",
-          "literalComponentId": "lc_m3_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     },
     {
       "id": "scenario_m3_s3",
       "name": "Correct Startup Sequence",
-      "description": "The tank starts empty. Fill it before starting the pump — starting the pump dry will cause a fault.",
+      "description": "The tank starts empty. Fill it before starting the pump â€” starting the pump dry will cause a fault.",
       "difficulty": "medium",
       "initialConditions": [
         {
@@ -177,14 +163,7 @@
           "value": false
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m3_s3_01",
-          "literalComponentId": "lc_m3_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     }
   ]
 }
