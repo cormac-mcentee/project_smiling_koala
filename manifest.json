@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.0.1",
-  "publishedAt": "2026-05-29T19:01:26.502Z",
+  "version": "1.0.0.2",
+  "publishedAt": "2026-05-29T19:18:16.588Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -46,7 +46,7 @@
     },
     {
       "path": "maps/map_1779700000002/schematic.json",
-      "sha256": "2a2442f8e89b88028b60df87ce65a809a36846d41df84039682afc2e5b5e8c5b"
+      "sha256": "a71f76869e51e28d9767859d03740980bacd5aabad679300cfdff4bef5d69b6f"
     },
     {
       "path": "maps/map_1779700000003/map.json",
@@ -62,7 +62,7 @@
     },
     {
       "path": "maps/map_1779700000003/schematic.json",
-      "sha256": "8da12f78933bf6933096081e717269557fe2416461b61229011d5e762eb4110a"
+      "sha256": "de2dfccff9294db81d95f54337db7160bfe66336ba62130db93338584b68a7e5"
     },
     {
       "path": "maps/map_1779700000004/map.json",
@@ -78,7 +78,7 @@
     },
     {
       "path": "maps/map_1779700000004/schematic.json",
-      "sha256": "255cf92a49d918c906a116cf85c520dfad1726da385a7c1ebaa0cd95f2bb8108"
+      "sha256": "73e988455c9df57d7fffb0d97dade6f1be4b5bed8fc23ab58c299e2607462385"
     },
     {
       "path": "maps/map_1779700000005/map.json",
@@ -94,7 +94,7 @@
     },
     {
       "path": "maps/map_1779700000005/schematic.json",
-      "sha256": "a5e3de02debe7cbea365a19ed49f5a60f93a05a650fbba4e7f96b1ba2d07098e"
+      "sha256": "f8b42a2357ddcd59e940f9bdc37fa8f38b6fe08156bf5985fd527ad583152ea1"
     },
     {
       "path": "maps/map_1779700000006/map.json",
@@ -137,5 +137,5 @@
       "productId": null
     }
   ],
-  "signature": "pWfHeq7pLN++9pGafJpORKB06HtEBAWwk395hB7no+QuvefZcv3rIPhsD8zGEKfaR9exrI56JM8lJhO1wgymcQ=="
+  "signature": "7iAKNUjpG5XvbUbUpfWZUdSlB6kE97jWdAC0VzO29+kqFvGzFVIh6Rzg3njliOhwHtnH4NWu7FcJ/D2JTOceVw=="
 }
