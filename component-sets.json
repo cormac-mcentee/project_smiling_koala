@@ -942,6 +942,11 @@
               "id": "listener_he_sup1_off",
               "condition": "SUP(1).fluid_flowing == false",
               "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_he_fault_flow",
+              "condition": "SUP(0).fluid_flowing AND SUP(1).fluid_flowing == false",
+              "script": "ARM he_fault"
             }
           ],
           "outlets": [
