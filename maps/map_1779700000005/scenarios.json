@@ -51,14 +51,7 @@
           "value": true
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m5_s1_01",
-          "literalComponentId": "lc_m5_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     },
     {
       "id": "scenario_m5_s2",
@@ -117,7 +110,7 @@
           "value": false
         }
       ],
-      "lossConditions": []
+      "graceTurns": 0
     },
     {
       "id": "scenario_m5_s3",
@@ -170,14 +163,7 @@
           "value": false
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m5_s3_01",
-          "literalComponentId": "lc_m5_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     }
   ]
 }
