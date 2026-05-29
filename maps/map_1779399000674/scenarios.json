@@ -178,6 +178,14 @@
           "variableId": "var_valve_open",
           "value": false
         }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_s3_he1",
+          "literalComponentId": "lc_1779440947448",
+          "faultName": "he_fault",
+          "gracePeriod": 3
+        }
       ]
     }
   ]
