@@ -63,6 +63,12 @@
               "name": "level_high",
               "type": "boolean",
               "defaultValue": false
+            },
+            {
+              "id": "var_tank_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
             }
           ],
           "actions": [
@@ -87,10 +93,25 @@
               "id": "listener_tank_inflow_off",
               "condition": "ANYSUP.fluid_flowing == false",
               "script": "SET self.receiving = false\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_tank_broken_receiving",
+              "condition": "self.broken AND self.receiving",
+              "script": "ARM tank_leak"
             }
           ],
           "superiors": [],
-          "created": "2026-05-22T00:00:00.004Z"
+          "created": "2026-05-22T00:00:00.004Z",
+          "faults": [
+            {
+              "id": "fault_tank_leak",
+              "name": "tank_leak",
+              "description": "Broken tank receiving fluid — close inlet and drain.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 8000
+            }
+          ]
         },
         {
           "id": "component_1779500000001",
@@ -128,41 +149,30 @@
               "defaultValue": 20
             },
             {
-              "id": "var_pump_fault",
-              "name": "fault",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
               "id": "var_pump_fluid_type",
               "name": "fluid_type",
               "type": "string",
               "defaultValue": ""
             },
             {
-              "id": "var_pump_fault_delay",
-              "name": "fault_delay",
-              "type": "number",
-              "defaultValue": 0
+              "id": "var_pump_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
             }
           ],
           "actions": [
             {
               "id": "action_pump_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.running THEN\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nELSE\n  IF ANYSUP.fluid_present THEN\n    SET self.running = true\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n    SET self.fault = false\n  ELSE\n    SET self.fault = true\n    SET self.fault_delay = 2\n  END\nEND"
-            },
-            {
-              "id": "action_pump_reset",
-              "name": "reset_fault",
-              "script": "SET self.fault = false"
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.running THEN\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nELSE\n  IF ANYSUP.fluid_present THEN\n    SET self.running = true\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n  ELSE\n    ARM dry_run\n  END\nEND"
             }
           ],
           "listeners": [
             {
               "id": "listener_pump_dry_run",
               "condition": "ANYSUP.fluid_present == false",
-              "script": "IF self.running THEN\n  SET self.fault = true\n  SET self.fault_delay = 2\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+              "script": "IF self.running THEN\n  ARM dry_run\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
             },
             {
               "id": "listener_pump_running_on",
@@ -177,11 +187,42 @@
             {
               "id": "listener_pump_dead_head",
               "condition": "self.running AND ANYINF.blocked",
-              "script": "SET self.fault = true\nSET self.fault_delay = 2\nSET self.running = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+              "script": "ARM dry_run\nSET self.running = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_pump_broken_flow",
+              "condition": "self.broken AND ANYSUP.fluid_present",
+              "script": "ARM broken_flow"
             }
           ],
           "superiors": [],
-          "created": "2026-05-22T00:00:00.001Z"
+          "created": "2026-05-22T00:00:00.001Z",
+          "faults": [
+            {
+              "id": "fault_pump_dry_run",
+              "name": "dry_run",
+              "description": "Pump running without upstream fluid supply.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 8000
+            },
+            {
+              "id": "fault_pump_dead_head",
+              "name": "dead_head",
+              "description": "Pump running against a closed outlet.",
+              "defaultGracePeriod": 0,
+              "costMin": 5000,
+              "costMax": 15000
+            },
+            {
+              "id": "fault_pump_broken_flow",
+              "name": "broken_flow",
+              "description": "Fluid present at a seized pump — isolate upstream immediately.",
+              "defaultGracePeriod": 0,
+              "costMin": 5000,
+              "costMax": 20000
+            }
+          ]
         },
         {
           "id": "component_1779399245576",
@@ -617,39 +658,28 @@
               "defaultValue": 20
             },
             {
-              "id": "var_heater_fault",
-              "name": "fault",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
               "id": "var_heater_fluid_type",
               "name": "fluid_type",
               "type": "string",
               "defaultValue": ""
             },
             {
-              "id": "var_heater_fault_delay",
-              "name": "fault_delay",
-              "type": "number",
-              "defaultValue": 0
+              "id": "var_heater_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
             }
           ],
           "actions": [
             {
               "id": "action_heater_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.active THEN\n  SET self.active = false\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fault = false\nELSE\n  IF ANYSUP.fluid_flowing THEN\n    SET self.active = true\n    SET self.fault = false\n  ELSE\n    SET self.fault = true\n    SET self.fault_delay = 2\n  END\nEND\nCALL self.update_flow"
+              "script": "IF self.broken AND self.active == false THEN\n  RETURN\nEND\nIF self.active THEN\n  SET self.active = false\n  SET self.heating = false\n  SET self.temperature = 20\n  ELSE\n  IF ANYSUP.fluid_flowing THEN\n    SET self.active = true\n      ELSE\n    ARM dry_run\n  END\nEND\nCALL self.update_flow"
             },
             {
               "id": "action_heater_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.fluid_flowing THEN\n  SET self.fluid_present = true\n  SET self.fluid_flowing = true\n  SET self.flow_rate = SUMSUP.flow_rate\n  SET self.fluid_type = SUP(0).fluid_type\n  IF self.active THEN\n    SET self.heating = true\n    SET self.temperature = 80\n  ELSE\n    SET self.heating = false\n    SET self.temperature = SUMSUP.temperature\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  IF self.active THEN\n    SET self.fault = true\n    SET self.fault_delay = 2\n  END\nEND"
-            },
-            {
-              "id": "action_heater_reset",
-              "name": "reset_fault",
-              "script": "SET self.fault = false"
+              "script": "IF ANYSUP.fluid_flowing THEN\n  SET self.fluid_present = true\n  SET self.fluid_flowing = true\n  SET self.flow_rate = SUMSUP.flow_rate\n  SET self.fluid_type = SUP(0).fluid_type\n  IF self.active THEN\n    SET self.heating = true\n    SET self.temperature = 80\n  ELSE\n    SET self.heating = false\n    SET self.temperature = SUMSUP.temperature\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  IF self.active THEN\n    ARM dry_run\n  END\nEND"
             }
           ],
           "listeners": [
@@ -661,7 +691,7 @@
             {
               "id": "listener_heater_upstream_off",
               "condition": "ANYSUP.fluid_flowing == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.heating = false\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nIF self.active THEN\n  SET self.fault = true\n  SET self.fault_delay = 2\nEND"
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.heating = false\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nIF self.active THEN\n  ARM dry_run\nEND"
             },
             {
               "id": "listener_heater_present_on",
@@ -672,10 +702,33 @@
               "id": "listener_heater_present_off",
               "condition": "ANYSUP.fluid_present == false",
               "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.heating = false\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_heater_broken_active",
+              "condition": "self.broken AND self.active",
+              "script": "ARM heater_electrical"
             }
           ],
           "superiors": [],
-          "created": "2026-05-22T00:00:00.003Z"
+          "created": "2026-05-22T00:00:00.003Z",
+          "faults": [
+            {
+              "id": "fault_heater_dry_run",
+              "name": "dry_run",
+              "description": "Heater active without fluid flowing through it.",
+              "defaultGracePeriod": 0,
+              "costMin": 1500,
+              "costMax": 6000
+            },
+            {
+              "id": "fault_heater_electrical",
+              "name": "heater_electrical",
+              "description": "Broken heater element energised — deactivate immediately.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 10000
+            }
+          ]
         }
       ],
       "created": "2026-05-21T21:30:07.744Z"
@@ -850,12 +903,6 @@
               "defaultValue": 20
             },
             {
-              "id": "var_he_fault",
-              "name": "fault",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
               "id": "var_he_process_fluid_type",
               "name": "process_fluid_type",
               "type": "string",
@@ -866,24 +913,13 @@
               "name": "service_fluid_type",
               "type": "string",
               "defaultValue": ""
-            },
-            {
-              "id": "var_he_fault_delay",
-              "name": "fault_delay",
-              "type": "number",
-              "defaultValue": 0
             }
           ],
           "actions": [
             {
               "id": "action_he_update_flow",
               "name": "update_flow",
-              "script": "IF SUP(0).fluid_flowing THEN\n  SET self.process_flowing = true\n  SET self.process_temp_in = SUP(0).temperature\n  SET self.process_fluid_type = SUP(0).fluid_type\nELSE\n  SET self.process_flowing = false\n  SET self.process_fluid_type = \"\"\nEND\nIF SUP(1).fluid_flowing THEN\n  SET self.service_flowing = true\n  SET self.service_temp_in = SUP(1).temperature\n  SET self.service_fluid_type = SUP(1).fluid_type\nELSE\n  SET self.service_flowing = false\n  SET self.service_fluid_type = \"\"\nEND\nIF self.process_flowing AND self.service_flowing THEN\n  SET self.heat_transfer_active = true\n  SET self.process_temp_out = 80\n  SET self.service_temp_out = 40\n  SET self.fault = false\nELSE\n  SET self.heat_transfer_active = false\n  IF self.process_flowing THEN\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = 20\n    SET self.fault = true\n    SET self.fault_delay = 2\n  ELSE\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = self.service_temp_in\n    SET self.fault = false\n  END\nEND\nIF self.process_flowing THEN\n  SET ALLINF(cold_outlet).fluid_present = true\n  SET ALLINF(cold_outlet).flow_rate = SUP(0).flow_rate\n  SET ALLINF(cold_outlet).temperature = self.process_temp_out\n  SET ALLINF(cold_outlet).fluid_type = self.process_fluid_type\nELSE\n  SET ALLINF(cold_outlet).fluid_present = false\n  SET ALLINF(cold_outlet).flow_rate = 0\n  SET ALLINF(cold_outlet).temperature = 20\n  SET ALLINF(cold_outlet).fluid_type = \"\"\nEND\nIF self.service_flowing THEN\n  SET ALLINF(hot_outlet).fluid_present = true\n  SET ALLINF(hot_outlet).flow_rate = SUP(1).flow_rate\n  SET ALLINF(hot_outlet).temperature = self.service_temp_out\n  SET ALLINF(hot_outlet).fluid_type = self.service_fluid_type\nELSE\n  SET ALLINF(hot_outlet).fluid_present = false\n  SET ALLINF(hot_outlet).flow_rate = 0\n  SET ALLINF(hot_outlet).temperature = 20\n  SET ALLINF(hot_outlet).fluid_type = \"\"\nEND"
-            },
-            {
-              "id": "action_he_reset_fault",
-              "name": "reset_fault",
-              "script": "SET self.fault = false"
+              "script": "IF SUP(0).fluid_flowing THEN\n  SET self.process_flowing = true\n  SET self.process_temp_in = SUP(0).temperature\n  SET self.process_fluid_type = SUP(0).fluid_type\nELSE\n  SET self.process_flowing = false\n  SET self.process_fluid_type = \"\"\nEND\nIF SUP(1).fluid_flowing THEN\n  SET self.service_flowing = true\n  SET self.service_temp_in = SUP(1).temperature\n  SET self.service_fluid_type = SUP(1).fluid_type\nELSE\n  SET self.service_flowing = false\n  SET self.service_fluid_type = \"\"\nEND\nIF self.process_flowing AND self.service_flowing THEN\n  SET self.heat_transfer_active = true\n  SET self.process_temp_out = 80\n  SET self.service_temp_out = 40\n  ELSE\n  SET self.heat_transfer_active = false\n  IF self.process_flowing THEN\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = 20\n    ARM he_fault\n  ELSE\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = self.service_temp_in\n      END\nEND\nIF self.process_flowing THEN\n  SET ALLINF(cold_outlet).fluid_present = true\n  SET ALLINF(cold_outlet).flow_rate = SUP(0).flow_rate\n  SET ALLINF(cold_outlet).temperature = self.process_temp_out\n  SET ALLINF(cold_outlet).fluid_type = self.process_fluid_type\nELSE\n  SET ALLINF(cold_outlet).fluid_present = false\n  SET ALLINF(cold_outlet).flow_rate = 0\n  SET ALLINF(cold_outlet).temperature = 20\n  SET ALLINF(cold_outlet).fluid_type = \"\"\nEND\nIF self.service_flowing THEN\n  SET ALLINF(hot_outlet).fluid_present = true\n  SET ALLINF(hot_outlet).flow_rate = SUP(1).flow_rate\n  SET ALLINF(hot_outlet).temperature = self.service_temp_out\n  SET ALLINF(hot_outlet).fluid_type = self.service_fluid_type\nELSE\n  SET ALLINF(hot_outlet).fluid_present = false\n  SET ALLINF(hot_outlet).flow_rate = 0\n  SET ALLINF(hot_outlet).temperature = 20\n  SET ALLINF(hot_outlet).fluid_type = \"\"\nEND"
             }
           ],
           "listeners": [
@@ -919,7 +955,17 @@
             }
           ],
           "superiors": [],
-          "created": "2026-05-22T00:00:00.007Z"
+          "created": "2026-05-22T00:00:00.007Z",
+          "faults": [
+            {
+              "id": "fault_he_fault",
+              "name": "he_fault",
+              "description": "Heat exchanger operating in fault condition.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 12000
+            }
+          ]
         },
         {
           "id": "component_he_outlet_valve",
