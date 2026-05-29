@@ -19,12 +19,6 @@
           "value": false
         },
         {
-          "id": "ic_s1_03",
-          "literalComponentId": "lc_1779440791231",
-          "variableId": "var_pump_fault",
-          "value": false
-        },
-        {
           "id": "ic_s1_04",
           "literalComponentId": "lc_1779440776175",
           "variableId": "var_valve_open",
@@ -61,12 +55,6 @@
           "literalComponentId": "lc_1779440947448",
           "variableId": "var_he_heat_transfer_active",
           "value": true
-        },
-        {
-          "id": "tc_s1_02",
-          "literalComponentId": "lc_1779440791231",
-          "variableId": "var_pump_fault",
-          "value": false
         },
         {
           "id": "tc_s1_03",
@@ -127,21 +115,9 @@
           "value": false
         },
         {
-          "id": "tc_s2_02",
-          "literalComponentId": "lc_1779440791231",
-          "variableId": "var_pump_fault",
-          "value": false
-        },
-        {
           "id": "tc_s2_03",
           "literalComponentId": "lc_1779440947448",
           "variableId": "var_he_heat_transfer_active",
-          "value": false
-        },
-        {
-          "id": "tc_s2_04",
-          "literalComponentId": "lc_1779440947448",
-          "variableId": "var_he_fault",
           "value": false
         }
       ]
@@ -201,16 +177,7 @@
           "literalComponentId": "lc_1779440776175",
           "variableId": "var_valve_open",
           "value": false
-        },
-        {
-          "id": "tc_s3_03",
-          "literalComponentId": "lc_1779440791231",
-          "variableId": "var_pump_fault",
-          "value": false
         }
-      ],
-      "faultWhitelist": [
-        "lc_1779440947448"
       ]
     }
   ]
