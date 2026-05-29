@@ -63,20 +63,7 @@
           "value": false
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m4_s1_01",
-          "literalComponentId": "lc_m4_h1",
-          "variableId": "var_heater_fault",
-          "value": true
-        },
-        {
-          "id": "lc_m4_s1_02",
-          "literalComponentId": "lc_m4_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     },
     {
       "id": "scenario_m4_s2",
@@ -141,19 +128,12 @@
           "value": true
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m4_s2_01",
-          "literalComponentId": "lc_m4_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     },
     {
       "id": "scenario_m4_s3",
       "name": "Safe Shutdown",
-      "description": "The heater is running. Deactivate the heater before stopping the pump — losing flow while the heater is active will cause a fault.",
+      "description": "The heater is running. Deactivate the heater before stopping the pump â€” losing flow while the heater is active will cause a fault.",
       "difficulty": "medium",
       "initialConditions": [
         {
@@ -225,20 +205,7 @@
           "value": false
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_m4_s3_01",
-          "literalComponentId": "lc_m4_h1",
-          "variableId": "var_heater_fault",
-          "value": true
-        },
-        {
-          "id": "lc_m4_s3_02",
-          "literalComponentId": "lc_m4_p1",
-          "variableId": "var_pump_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     }
   ]
 }
