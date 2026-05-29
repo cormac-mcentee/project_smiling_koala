@@ -75,14 +75,7 @@
           "value": true
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_s1_01",
-          "literalComponentId": "lc_1779440947448",
-          "variableId": "var_he_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     },
     {
       "id": "scenario_1779500000002",
@@ -153,14 +146,7 @@
           "value": false
         }
       ],
-      "lossConditions": [
-        {
-          "id": "lc_s2_01",
-          "literalComponentId": "lc_1779440947448",
-          "variableId": "var_he_fault",
-          "value": true
-        }
-      ]
+      "graceTurns": 0
     },
     {
       "id": "scenario_1779500000003",
@@ -225,10 +211,10 @@
           "value": false
         }
       ],
-      "lossConditions": [],
       "faultWhitelist": [
         "lc_1779440947448"
-      ]
+      ],
+      "graceTurns": 0
     }
   ]
 }
