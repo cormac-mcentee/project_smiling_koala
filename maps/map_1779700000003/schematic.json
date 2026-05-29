@@ -188,24 +188,6 @@
       "label": "Running",
       "x": 850,
       "y": -18
-    },
-    "anc_m3_p1_fault": {
-      "id": "anc_m3_p1_fault",
-      "type": "light",
-      "lcId": "lc_m3_p1",
-      "bindTo": "var:fault",
-      "label": "Fault",
-      "x": 910,
-      "y": -18
-    },
-    "anc_m3_p1_reset": {
-      "id": "anc_m3_p1_reset",
-      "type": "button",
-      "lcId": "lc_m3_p1",
-      "bindTo": "act:reset_fault",
-      "label": "Reset",
-      "x": 790,
-      "y": -42
     }
   }
 }
