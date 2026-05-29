@@ -165,24 +165,6 @@
       "x": 570,
       "y": -18
     },
-    "anc_m4_p1_fault": {
-      "id": "anc_m4_p1_fault",
-      "type": "light",
-      "lcId": "lc_m4_p1",
-      "bindTo": "var:fault",
-      "label": "Fault",
-      "x": 630,
-      "y": -18
-    },
-    "anc_m4_p1_reset": {
-      "id": "anc_m4_p1_reset",
-      "type": "button",
-      "lcId": "lc_m4_p1",
-      "bindTo": "act:reset_fault",
-      "label": "Reset",
-      "x": 510,
-      "y": -42
-    },
     "anc_m4_h1_btn": {
       "id": "anc_m4_h1_btn",
       "type": "button",
@@ -200,24 +182,6 @@
       "label": "Heating",
       "x": 802,
       "y": -18
-    },
-    "anc_m4_h1_fault": {
-      "id": "anc_m4_h1_fault",
-      "type": "light",
-      "lcId": "lc_m4_h1",
-      "bindTo": "var:fault",
-      "label": "Fault",
-      "x": 862,
-      "y": -18
-    },
-    "anc_m4_h1_reset": {
-      "id": "anc_m4_h1_reset",
-      "type": "button",
-      "lcId": "lc_m4_h1",
-      "bindTo": "act:reset_fault",
-      "label": "Reset",
-      "x": 742,
-      "y": -42
     },
     "anc_m4_v2_btn": {
       "id": "anc_m4_v2_btn",
