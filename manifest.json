@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.0.3",
-  "publishedAt": "2026-05-30T07:49:23.412Z",
+  "version": "1.0.0.4",
+  "publishedAt": "2026-05-30T07:52:10.462Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -10,7 +10,35 @@
     },
     {
       "path": "component-sets.json",
-      "sha256": "dedf937ce7b56ac1898ae6eb6d56256571c7eccab4d5df6fcfe8fe47bdecf92a"
+      "sha256": "353134386eb20911158c61850cb9869fcf8862652fe02db11ab570f49b7ef27b"
+    },
+    {
+      "path": "component-images/component_1779500000004.svg",
+      "sha256": "994f3fb7dbb79a54a456e30bc55912a9b428966caf83d4076c60eb9edcadc702"
+    },
+    {
+      "path": "component-images/component_1779500000001.svg",
+      "sha256": "100dbab9b7aec986ab61f9911fb5bd5abe6f4a47aaa26f1f91596ee71fab5c2c"
+    },
+    {
+      "path": "component-images/component_1779399245576.svg",
+      "sha256": "745714361f9ef830fda56b1fd9a422e5fcc489878a333d2ab28c744b905d855c"
+    },
+    {
+      "path": "component-images/component_control_valve_1779600000002.svg",
+      "sha256": "c543605864fa4e5c704e7d77e90d4d70ecd3b40805861242f12602006988aed4"
+    },
+    {
+      "path": "component-images/component_ecv_1779600000003.svg",
+      "sha256": "61c7a19baa0278a0f6e030bd68579a2256e167a21b4e2b2d44c29b576d707464"
+    },
+    {
+      "path": "component-images/component_1779500000003.svg",
+      "sha256": "e254e180edf52269fa9a30469c75708cef29892ef44130f41a65315a7267954c"
+    },
+    {
+      "path": "component-images/component_1779500000007.svg",
+      "sha256": "bd74d8c3043f41f0d6f76b2bc22c64b6b83623123cccdd5bafafbfe571f0d860"
     },
     {
       "path": "editorial-packs.json",
@@ -137,5 +165,5 @@
       "productId": null
     }
   ],
-  "signature": "UJid4hluHWbSREMuGjbwhonZfmEuTJqPZJdNE7goLNobVi6gT/A+mGEG+DNM+evqwNeSFOOQ4utMR9iHOzn+Mg=="
+  "signature": "M+s25IxRUL4/jUr5m5+DZ7dpHk2io8NyJKPqUAJbGDAFsF5hkacJ15916Ezn4fwWYiGfHetLCsxHccbw+9D32g=="
 }
