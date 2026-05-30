@@ -2,43 +2,44 @@
   "nodes": [
     {
       "lcId": "lc_m6_ps1",
-      "x": 474,
-      "y": -100
+      "x": 488,
+      "y": -110,
+      "rotation": 90
     },
     {
       "lcId": "lc_m6_inlet",
-      "x": 50,
-      "y": 16
+      "x": 56,
+      "y": 34
     },
     {
       "lcId": "lc_m6_pipe_in",
-      "x": 150,
-      "y": 16
+      "x": 156,
+      "y": 10
     },
     {
       "lcId": "lc_m6_v1",
-      "x": 242,
-      "y": 0
+      "x": 240,
+      "y": 18
     },
     {
       "lcId": "lc_m6_pipe_mid",
-      "x": 382,
-      "y": 16
+      "x": 372,
+      "y": 10
     },
     {
       "lcId": "lc_m6_ecv1",
-      "x": 474,
-      "y": 0
+      "x": 480,
+      "y": 4.5
     },
     {
       "lcId": "lc_m6_pipe_out",
-      "x": 614,
-      "y": 16
+      "x": 612,
+      "y": 10
     },
     {
       "lcId": "lc_m6_outlet",
-      "x": 706,
-      "y": 16
+      "x": 704,
+      "y": 34
     }
   ],
   "connections": [
@@ -99,8 +100,8 @@
       "lcId": "lc_m6_ps1",
       "bindTo": "act:on_toggle",
       "label": "Energise",
-      "x": 510,
-      "y": -118
+      "x": 588,
+      "y": -108
     },
     "anc_m6_ps1_light": {
       "id": "anc_m6_ps1_light",
@@ -108,8 +109,8 @@
       "lcId": "lc_m6_ps1",
       "bindTo": "var:energised",
       "label": "Live",
-      "x": 570,
-      "y": -118
+      "x": 576,
+      "y": -72
     },
     "anc_m6_v1_btn": {
       "id": "anc_m6_v1_btn",
@@ -117,8 +118,8 @@
       "lcId": "lc_m6_v1",
       "bindTo": "act:on_toggle",
       "label": "Open/Close",
-      "x": 278,
-      "y": -18
+      "x": 264,
+      "y": 0
     },
     "anc_m6_v1_light": {
       "id": "anc_m6_v1_light",
@@ -126,8 +127,8 @@
       "lcId": "lc_m6_v1",
       "bindTo": "var:open",
       "label": "Open",
-      "x": 338,
-      "y": -18
+      "x": 312,
+      "y": 0
     },
     "anc_m6_ecv1_powered": {
       "id": "anc_m6_ecv1_powered",
@@ -135,8 +136,8 @@
       "lcId": "lc_m6_ecv1",
       "bindTo": "var:powered",
       "label": "Powered",
-      "x": 510,
-      "y": -18
+      "x": 492,
+      "y": -12
     },
     "anc_m6_ecv1_flow": {
       "id": "anc_m6_ecv1_flow",
@@ -144,8 +145,8 @@
       "lcId": "lc_m6_ecv1",
       "bindTo": "var:fluid_flowing",
       "label": "Flowing",
-      "x": 570,
-      "y": -18
+      "x": 564,
+      "y": -12
     }
   }
 }
