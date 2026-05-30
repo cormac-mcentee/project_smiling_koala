@@ -113,7 +113,7 @@
             }
           ],
           "imageStencilName": "Tank",
-          "imageAspect": 0.4638671875
+          "imageAspect": 0.4356060606060606
         },
         {
           "id": "component_1779500000001",
@@ -225,8 +225,8 @@
               "costMax": 20000
             }
           ],
-          "imageStencilName": "Screw Pump",
-          "imageAspect": 1
+          "imageStencilName": "Vacuum Pump",
+          "imageAspect": 1.927007299270073
         },
         {
           "id": "component_1779399245576",
@@ -317,7 +317,7 @@
           "superiors": [],
           "created": "2026-05-21T21:34:05.576Z",
           "imageStencilName": "Gate Valve",
-          "imageAspect": 1.517037037037037
+          "imageAspect": 1.6
         },
         {
           "id": "component_control_valve_1779600000002",
@@ -403,7 +403,7 @@
           "superiors": [],
           "created": "2026-05-24T00:00:00.001Z",
           "imageStencilName": "Globe Valve",
-          "imageAspect": 1.517037037037037
+          "imageAspect": 1.6
         },
         {
           "id": "component_ecv_1779600000003",
@@ -521,7 +521,7 @@
           "superiors": [],
           "created": "2026-05-24T00:00:00.002Z",
           "imageStencilName": "Hydraulic Valve",
-          "imageAspect": 1.0502564102564103
+          "imageAspect": 1.1
         },
         {
           "id": "component_pipe_1779600000001",
@@ -740,7 +740,7 @@
             }
           ],
           "imageStencilName": "Electric Heater",
-          "imageAspect": 1.3145057766367136
+          "imageAspect": 1.382198952879581
         }
       ],
       "created": "2026-05-21T21:30:07.744Z"
@@ -984,7 +984,7 @@
             }
           ],
           "imageStencilName": "Heat Exchanger (Straight Tubes)",
-          "imageAspect": 2.645994832041344
+          "imageAspect": 3.1058823529411765
         },
         {
           "id": "component_he_outlet_valve",
