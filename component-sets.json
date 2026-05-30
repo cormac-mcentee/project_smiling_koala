@@ -113,7 +113,7 @@
             }
           ],
           "imageStencilName": "Tank",
-          "imageAspect": 1
+          "imageAspect": 0.4638671875
         },
         {
           "id": "component_1779500000001",
