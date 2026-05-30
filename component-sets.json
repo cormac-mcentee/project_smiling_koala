@@ -1068,7 +1068,9 @@
           ],
           "outlets": [],
           "superiors": [],
-          "created": "2026-05-22T00:00:00.012Z"
+          "created": "2026-05-22T00:00:00.012Z",
+          "imageStencilName": "Gate Valve",
+          "imageAspect": 1.6
         }
       ],
       "created": "2026-05-22T00:00:00.011Z"
