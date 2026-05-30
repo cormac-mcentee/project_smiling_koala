@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.0.9",
-  "publishedAt": "2026-05-30T09:18:09.598Z",
+  "version": "1.0.0.10",
+  "publishedAt": "2026-05-30T10:08:33.488Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "path": "component-sets.json",
-      "sha256": "891d449755859af616a61ff56f5a870d2e46c6ab8780df5844df936b9339aab3"
+      "sha256": "2ffa8abdce3e3e5313a3da055cc1600e07b63f081151297a94c3cb067bf2f691"
     },
     {
       "path": "component-images/component_1779500000004.svg",
@@ -38,7 +38,7 @@
     },
     {
       "path": "component-images/component_1779500000007.svg",
-      "sha256": "13ecfda37ef1defdd2965116bf7d137f54e6a2faca1bd88f2512087d8b849628"
+      "sha256": "92ebfb2ff3aab9fae6d8fba2e0f7b85fc8fed27663a088faad4914fbc6afde4e"
     },
     {
       "path": "editorial-packs.json",
@@ -165,5 +165,5 @@
       "productId": null
     }
   ],
-  "signature": "O3cQQQN2ltBsCo866tvDhV46d3fBEeYMzygztPiWXPPRh6sL5kWRjWzsrNTssRf7pd/UmFA7WA6guI3j1Vy96Q=="
+  "signature": "sauKdfanuhSwRNrMAbDd3D1DaQz+oMthgKJOmBEOsV+hslmM93X27AZvf7H6EgOsvMCO/LulNXI3QUXgAhb3ug=="
 }
