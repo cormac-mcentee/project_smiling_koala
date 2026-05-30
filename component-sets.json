@@ -112,6 +112,8 @@
               "costMax": 8000
             }
           ],
+          "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAuMCAwLjAgMjU2LjAgMjU2LjAiIHdpZHRoPSIyNTYuMCIgaGVpZ2h0PSIyNTYuMCI+PHBhdGggZD0iTSAyNTYuMDAsMjAuNjQgTCAyNTYuMDAsMjM1LjM2IEEgODMuMjAsMTMuNDIgMCAwIDEgMC4wMCwyMzUuMzYgTCAwLjAwLDIwLjY0IEEgODMuMjAsMTMuNDIgMCAwIDEgMjU2LjAwLDIwLjY0IFogTSAwLjAwLDIwLjY0IEwgMjU2LjAwLDIwLjY0IE0gMC4wMCwyMzUuMzYgTCAyNTYuMDAsMjM1LjM2IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=",
+          "imageSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0.0 0.0 256.0 256.0\" width=\"256.0\" height=\"256.0\"><path d=\"M 256.00,20.64 L 256.00,235.36 A 83.20,13.42 0 0 1 0.00,235.36 L 0.00,20.64 A 83.20,13.42 0 0 1 256.00,20.64 Z M 0.00,20.64 L 256.00,20.64 M 0.00,235.36 L 256.00,235.36\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
           "imageStencilName": "Tank",
           "imageAspect": 1
         },
@@ -225,8 +227,10 @@
               "costMax": 20000
             }
           ],
-          "imageStencilName": "Centrifugal Pump 1",
-          "imageAspect": 1
+          "image": null,
+          "imageSvg": null,
+          "imageStencilName": null,
+          "imageAspect": null
         },
         {
           "id": "component_1779399245576",
@@ -316,8 +320,10 @@
           ],
           "superiors": [],
           "created": "2026-05-21T21:34:05.576Z",
-          "imageStencilName": "Gate Valve",
-          "imageAspect": 1
+          "image": null,
+          "imageSvg": null,
+          "imageStencilName": null,
+          "imageAspect": null
         },
         {
           "id": "component_control_valve_1779600000002",
@@ -402,8 +408,10 @@
           ],
           "superiors": [],
           "created": "2026-05-24T00:00:00.001Z",
-          "imageStencilName": "Globe Valve",
-          "imageAspect": 1
+          "image": null,
+          "imageSvg": null,
+          "imageStencilName": null,
+          "imageAspect": null
         },
         {
           "id": "component_ecv_1779600000003",
@@ -520,8 +528,10 @@
           ],
           "superiors": [],
           "created": "2026-05-24T00:00:00.002Z",
-          "imageStencilName": "Hydraulic Valve",
-          "imageAspect": 1
+          "image": null,
+          "imageSvg": null,
+          "imageStencilName": null,
+          "imageAspect": null
         },
         {
           "id": "component_pipe_1779600000001",
@@ -739,8 +749,10 @@
               "costMax": 10000
             }
           ],
-          "imageStencilName": "Electric Heater",
-          "imageAspect": 1
+          "image": null,
+          "imageSvg": null,
+          "imageStencilName": null,
+          "imageAspect": null
         }
       ],
       "created": "2026-05-21T21:30:07.744Z"
@@ -983,8 +995,10 @@
               "costMax": 12000
             }
           ],
-          "imageStencilName": "Fixed Straight Tubes Heat Exchanger",
-          "imageAspect": 1
+          "image": null,
+          "imageSvg": null,
+          "imageStencilName": null,
+          "imageAspect": null
         },
         {
           "id": "component_he_outlet_valve",
