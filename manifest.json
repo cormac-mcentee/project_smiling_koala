@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.0.2",
-  "publishedAt": "2026-05-30T07:48:01.077Z",
+  "version": "1.0.0.3",
+  "publishedAt": "2026-05-30T07:49:23.412Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -137,5 +137,5 @@
       "productId": null
     }
   ],
-  "signature": "e253URQ7gV0ELPwf31VvDgpuVqn67t64zzx7AKmTFp5D+4rW87dDUIY/3UdoAaX6+dREPhRBYa/QZ1CAJgjTFg=="
+  "signature": "UJid4hluHWbSREMuGjbwhonZfmEuTJqPZJdNE7goLNobVi6gT/A+mGEG+DNM+evqwNeSFOOQ4utMR9iHOzn+Mg=="
 }
