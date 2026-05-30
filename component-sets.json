@@ -984,7 +984,7 @@
             }
           ],
           "imageStencilName": "Heat Exchanger (Straight Tubes)",
-          "imageAspect": 2.8845070422535213
+          "imageAspect": 2.645994832041344
         },
         {
           "id": "component_he_outlet_valve",
