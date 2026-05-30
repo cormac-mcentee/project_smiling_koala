@@ -2,48 +2,48 @@
   "nodes": [
     {
       "lcId": "lc_m3_inlet",
-      "x": 50,
-      "y": 16
+      "x": 56,
+      "y": 10
     },
     {
       "lcId": "lc_m3_pipe_in",
-      "x": 150,
-      "y": 16
+      "x": 156,
+      "y": 10
     },
     {
       "lcId": "lc_m3_v1",
-      "x": 242,
-      "y": 0
+      "x": 240,
+      "y": -6
     },
     {
       "lcId": "lc_m3_tank",
-      "x": 382,
-      "y": 0
+      "x": 414,
+      "y": -72
     },
     {
       "lcId": "lc_m3_v2",
-      "x": 522,
-      "y": 0
+      "x": 528,
+      "y": -6
     },
     {
       "lcId": "lc_m3_pipe_mid",
-      "x": 662,
-      "y": 16
+      "x": 660,
+      "y": 10
     },
     {
       "lcId": "lc_m3_p1",
-      "x": 754,
-      "y": 0
+      "x": 744,
+      "y": -1
     },
     {
       "lcId": "lc_m3_pipe_out",
-      "x": 894,
-      "y": 16
+      "x": 900,
+      "y": 10
     },
     {
       "lcId": "lc_m3_outlet",
-      "x": 986,
-      "y": 16
+      "x": 992,
+      "y": 10
     }
   ],
   "connections": [
@@ -111,8 +111,8 @@
       "lcId": "lc_m3_v1",
       "bindTo": "act:on_toggle",
       "label": "Open/Close",
-      "x": 278,
-      "y": -18
+      "x": 264,
+      "y": -24
     },
     "anc_m3_v1_light": {
       "id": "anc_m3_v1_light",
@@ -120,8 +120,8 @@
       "lcId": "lc_m3_v1",
       "bindTo": "var:open",
       "label": "Open",
-      "x": 338,
-      "y": -18
+      "x": 324,
+      "y": -24
     },
     "anc_m3_t1_recv": {
       "id": "anc_m3_t1_recv",
@@ -129,8 +129,8 @@
       "lcId": "lc_m3_tank",
       "bindTo": "var:receiving",
       "label": "Receiving",
-      "x": 418,
-      "y": -18
+      "x": 516,
+      "y": -132
     },
     "anc_m3_t1_low": {
       "id": "anc_m3_t1_low",
@@ -138,8 +138,8 @@
       "lcId": "lc_m3_tank",
       "bindTo": "var:level_low",
       "label": "Low Level",
-      "x": 478,
-      "y": -18
+      "x": 516,
+      "y": -96
     },
     "anc_m3_t1_gauge": {
       "id": "anc_m3_t1_gauge",
@@ -150,8 +150,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "x": 448,
-      "y": -62
+      "x": 456,
+      "y": -108
     },
     "anc_m3_v2_btn": {
       "id": "anc_m3_v2_btn",
@@ -159,8 +159,8 @@
       "lcId": "lc_m3_v2",
       "bindTo": "act:on_toggle",
       "label": "Open/Close",
-      "x": 558,
-      "y": -18
+      "x": 552,
+      "y": -24
     },
     "anc_m3_v2_light": {
       "id": "anc_m3_v2_light",
@@ -168,8 +168,8 @@
       "lcId": "lc_m3_v2",
       "bindTo": "var:open",
       "label": "Open",
-      "x": 618,
-      "y": -18
+      "x": 612,
+      "y": -24
     },
     "anc_m3_p1_btn": {
       "id": "anc_m3_p1_btn",
@@ -177,8 +177,8 @@
       "lcId": "lc_m3_p1",
       "bindTo": "act:on_toggle",
       "label": "Start/Stop",
-      "x": 790,
-      "y": -18
+      "x": 768,
+      "y": -24
     },
     "anc_m3_p1_run": {
       "id": "anc_m3_p1_run",
@@ -186,8 +186,8 @@
       "lcId": "lc_m3_p1",
       "bindTo": "var:running",
       "label": "Running",
-      "x": 850,
-      "y": -18
+      "x": 828,
+      "y": -24
     }
   }
 }
