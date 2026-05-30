@@ -2,48 +2,48 @@
   "nodes": [
     {
       "lcId": "lc_m5_inlet",
-      "x": 50,
-      "y": 16
+      "x": 56,
+      "y": 10
     },
     {
       "lcId": "lc_m5_pipe_in",
-      "x": 150,
-      "y": 16
+      "x": 156,
+      "y": 10
     },
     {
       "lcId": "lc_m5_v1",
-      "x": 242,
-      "y": 0
+      "x": 240,
+      "y": -6
     },
     {
       "lcId": "lc_m5_pipe_1",
-      "x": 382,
-      "y": 16
+      "x": 372,
+      "y": 10
     },
     {
       "lcId": "lc_m5_p1",
-      "x": 474,
-      "y": 0
+      "x": 480,
+      "y": -1
     },
     {
       "lcId": "lc_m5_pipe_2",
-      "x": 614,
-      "y": 16
+      "x": 612,
+      "y": 10
     },
     {
       "lcId": "lc_m5_cv1",
-      "x": 706,
-      "y": 0
+      "x": 696,
+      "y": -6
     },
     {
       "lcId": "lc_m5_pipe_out",
-      "x": 846,
-      "y": 16
+      "x": 852,
+      "y": 10
     },
     {
       "lcId": "lc_m5_outlet",
-      "x": 938,
-      "y": 16
+      "x": 944,
+      "y": 10
     }
   ],
   "connections": [
@@ -111,8 +111,8 @@
       "lcId": "lc_m5_v1",
       "bindTo": "act:on_toggle",
       "label": "Open/Close",
-      "x": 278,
-      "y": -18
+      "x": 276,
+      "y": -24
     },
     "anc_m5_v1_light": {
       "id": "anc_m5_v1_light",
@@ -120,8 +120,8 @@
       "lcId": "lc_m5_v1",
       "bindTo": "var:open",
       "label": "Open",
-      "x": 338,
-      "y": -18
+      "x": 324,
+      "y": -24
     },
     "anc_m5_p1_btn": {
       "id": "anc_m5_p1_btn",
@@ -147,8 +147,8 @@
       "lcId": "lc_m5_cv1",
       "bindTo": "act:on_toggle",
       "label": "Open/Close",
-      "x": 742,
-      "y": -18
+      "x": 732,
+      "y": -24
     },
     "anc_m5_cv1_light": {
       "id": "anc_m5_cv1_light",
@@ -156,8 +156,8 @@
       "lcId": "lc_m5_cv1",
       "bindTo": "var:open",
       "label": "Open",
-      "x": 802,
-      "y": -18
+      "x": 780,
+      "y": -24
     }
   }
 }
