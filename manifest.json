@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.2",
-  "publishedAt": "2026-05-31T08:51:27.182Z",
+  "version": "1.0.3",
+  "publishedAt": "2026-05-31T08:53:49.229Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -10,7 +10,47 @@
     },
     {
       "path": "component-sets.json",
-      "sha256": "8e0af424d81678b5fcee073c1173d464b5dfecadde1c4aaca98d493b73e2afed"
+      "sha256": "9358efa0894e47f9bd2e832fdfefddae3c581e38d8fc11641084d7b82f05f898"
+    },
+    {
+      "path": "component-images/component_1779500000004.default.svg",
+      "sha256": "4ed04d1ffb46bd668623a3b1eb1f622ca5ae74c89680c5ca174f1eb8de459a3a"
+    },
+    {
+      "path": "component-images/component_1779500000001.default.svg",
+      "sha256": "bb5024bb4116d96e18862c57f26685790678b0cca135ce2d514dd9108886dcaf"
+    },
+    {
+      "path": "component-images/component_1779399245576.default.svg",
+      "sha256": "369a85006d0648df3d32fc887ae4a5290da5b5131ea21a55bd872a2e0182baa7"
+    },
+    {
+      "path": "component-images/component_control_valve_1779600000002.default.svg",
+      "sha256": "8cbbf923471b69ed004dab3aaff914d9302f5a7731c937c5d485d746cf788ac2"
+    },
+    {
+      "path": "component-images/component_ecv_1779600000003.default.svg",
+      "sha256": "d2ef6b47c6c4c6829c2261e30f4610c08dc5797f617ed8cf5e7a96e66b9baeed"
+    },
+    {
+      "path": "component-images/component_1779500000003.default.svg",
+      "sha256": "6a6a5cad19b2b9952e64508a0221ca36cd3a1e7fb3ab8a530913b422c9d56954"
+    },
+    {
+      "path": "component-images/component_1779500000007.default.svg",
+      "sha256": "ba79ed1e6af73df0575c410325a4f8f1b8563e2651101803977b9dbcbd987fee"
+    },
+    {
+      "path": "component-images/component_he_outlet_valve.default.svg",
+      "sha256": "369a85006d0648df3d32fc887ae4a5290da5b5131ea21a55bd872a2e0182baa7"
+    },
+    {
+      "path": "component-images/_global.barrier_overlay.svg",
+      "sha256": "c64a6b34e3bb6da06666f274be18d839ccb540a6d2559d0d048451b13aaa83b6"
+    },
+    {
+      "path": "component-images/_global.broken_overlay.svg",
+      "sha256": "269dc6856f49c30c6301159c87aacb65edc0f5bc5f795e1746057a4fc0a838d4"
     },
     {
       "path": "editorial-packs.json",
@@ -137,5 +177,5 @@
       "productId": null
     }
   ],
-  "signature": "OLHjJ1p3I6iS839qunDGrUDBQS/vyVtV0GeDTwLy9aCfO3enxqbLhI8NdTjss/Ea1ejkD+T3N7WL47Yy3YjGiw=="
+  "signature": "8lq71DRC/gFmueMItgUjAygpwu34xVDFYHOISkgz5AjoU0N0bkfiQZkDeOF0/WAHIFB2a+S84pIKc/MsKkWjuQ=="
 }
