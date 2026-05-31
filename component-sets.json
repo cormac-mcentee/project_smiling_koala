@@ -1188,5 +1188,17 @@
       ],
       "created": "2026-05-24T00:00:00.004Z"
     }
+  ],
+  "globalSkins": [
+    {
+      "name": "barrier_overlay",
+      "imageStencilName": "Status/Closed",
+      "imageAspect": 1
+    },
+    {
+      "name": "broken_overlay",
+      "imageStencilName": "Status/Fault",
+      "imageAspect": 1
+    }
   ]
 }
