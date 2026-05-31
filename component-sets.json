@@ -300,7 +300,7 @@
             {
               "id": "action_valve_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.open THEN\n  SET self.open = false\nELSE\n  SET self.open = true\nEND\nDEFAULT_SKIN SELF\nIF self.open == false THEN\n  ADD_OVERLAY SELF \"barrier_overlay\"\nEND\nCALL self.update_flow"
+              "script": "IF self.open THEN\n  SET self.open = false\nELSE\n  SET self.open = true\nEND\nCALL self.update_flow"
             },
             {
               "id": "action_valve_update_flow",
@@ -338,6 +338,16 @@
               "id": "listener_valve_signal_unblocked",
               "condition": "self.open",
               "script": "SET ALLSUP.blocked = false"
+            },
+            {
+              "id": "listener_valve_closed_visual",
+              "condition": "self.open == false",
+              "script": "DEFAULT_SKIN SELF\nADD_OVERLAY SELF \"barrier_overlay\""
+            },
+            {
+              "id": "listener_valve_open_visual",
+              "condition": "self.open",
+              "script": "DEFAULT_SKIN SELF"
             }
           ],
           "superiors": [],
@@ -404,7 +414,7 @@
             {
               "id": "action_cv_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.open THEN\n  SET self.open = false\nELSE\n  SET self.open = true\nEND\nDEFAULT_SKIN SELF\nIF self.open == false THEN\n  ADD_OVERLAY SELF \"barrier_overlay\"\nEND\nCALL self.update_flow"
+              "script": "IF self.open THEN\n  SET self.open = false\nELSE\n  SET self.open = true\nEND\nCALL self.update_flow"
             },
             {
               "id": "action_cv_update_flow",
@@ -432,6 +442,16 @@
               "id": "listener_cv_present_off",
               "condition": "ANYSUP.fluid_present == false",
               "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+            },
+            {
+              "id": "listener_cv_closed_visual",
+              "condition": "self.open == false",
+              "script": "DEFAULT_SKIN SELF\nADD_OVERLAY SELF \"barrier_overlay\""
+            },
+            {
+              "id": "listener_cv_open_visual",
+              "condition": "self.open",
+              "script": "DEFAULT_SKIN SELF"
             }
           ],
           "superiors": [],
@@ -510,7 +530,7 @@
             {
               "id": "action_ecv_update_opening",
               "name": "update_opening",
-              "script": "IF self.powered THEN\n  SET self.opening = self.signal\nELSE\n  IF self.fail_open THEN\n    SET self.opening = 100\n  ELSE\n    SET self.opening = 0\n  END\nEND\nCALL self.update_flow\nDEFAULT_SKIN SELF\nIF self.opening == 0 THEN\n  ADD_OVERLAY SELF \"barrier_overlay\"\nEND"
+              "script": "IF self.powered THEN\n  SET self.opening = self.signal\nELSE\n  IF self.fail_open THEN\n    SET self.opening = 100\n  ELSE\n    SET self.opening = 0\n  END\nEND\nCALL self.update_flow"
             },
             {
               "id": "action_ecv_update_flow",
@@ -558,6 +578,16 @@
               "id": "listener_ecv_supply_off",
               "condition": "ANYSUP.energised == false",
               "script": "SET self.powered = false\nCALL self.update_opening"
+            },
+            {
+              "id": "listener_ecv_closed_visual",
+              "condition": "self.opening == 0",
+              "script": "DEFAULT_SKIN SELF\nADD_OVERLAY SELF \"barrier_overlay\""
+            },
+            {
+              "id": "listener_ecv_open_visual",
+              "condition": "self.opening > 0",
+              "script": "DEFAULT_SKIN SELF"
             }
           ],
           "superiors": [],
@@ -1105,7 +1135,7 @@
             {
               "id": "action_hov_toggle",
               "name": "on_toggle",
-              "script": "IF self.open THEN\n  SET self.open = false\nELSE\n  SET self.open = true\nEND\nDEFAULT_SKIN SELF\nIF self.open == false THEN\n  ADD_OVERLAY SELF \"barrier_overlay\"\nEND\nCALL self.update_flow"
+              "script": "IF self.open THEN\n  SET self.open = false\nELSE\n  SET self.open = true\nEND\nCALL self.update_flow"
             },
             {
               "id": "action_hov_update_flow",
@@ -1138,6 +1168,16 @@
               "id": "listener_hov_signal_unblocked",
               "condition": "self.open",
               "script": "SET ALLSUP.blocked = false"
+            },
+            {
+              "id": "listener_hov_closed_visual",
+              "condition": "self.open == false",
+              "script": "DEFAULT_SKIN SELF\nADD_OVERLAY SELF \"barrier_overlay\""
+            },
+            {
+              "id": "listener_hov_open_visual",
+              "condition": "self.open",
+              "script": "DEFAULT_SKIN SELF"
             }
           ],
           "outlets": [],
