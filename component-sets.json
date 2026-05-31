@@ -679,7 +679,7 @@
             {
               "id": "action_pipe_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.fluid_flowing THEN\n  IF self.blocked THEN\n    SET self.fluid_present = true\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.fluid_type = \"\"\n    SET self.pressure_drop = 0\n    SET self.flow_pulse = false\n  ELSE\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n    SET self.pressure_drop = self.resistance * self.flow_rate ^ 2 + 9810 * self.elevation_change\n    SET self.flow_pulse = true\n  END\nELSE\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  SET self.pressure_drop = 0\n  SET self.flow_pulse = false\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\nEND"
+              "script": "IF ANYSUP.fluid_flowing THEN\n  IF self.blocked THEN\n    SET self.fluid_present = true\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.fluid_type = \"\"\n    SET self.pressure_drop = 0\n    SET self.flow_pulse = false\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n    SET self.pressure_drop = self.resistance * self.flow_rate ^ 2 + 9810 * self.elevation_change\n    SET self.flow_pulse = true\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  SET self.pressure_drop = 0\n  SET self.flow_pulse = false\n  DEFAULT_SKIN SELF\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\nEND"
             }
           ],
           "listeners": [
@@ -701,17 +701,31 @@
             {
               "id": "listener_pipe_present_off",
               "condition": "ANYSUP.fluid_present == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nSET self.pressure_drop = 0\nSET self.flow_pulse = false"
+              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nSET self.pressure_drop = 0\nSET self.flow_pulse = false\nDEFAULT_SKIN SELF"
             },
             {
               "id": "listener_pipe_blocked",
               "condition": "self.blocked",
-              "script": "SET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.fluid_type = \"\"\nSET self.pressure_drop = 0\nSET self.flow_pulse = false"
+              "script": "SET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.fluid_type = \"\"\nSET self.pressure_drop = 0\nSET self.flow_pulse = false\nDEFAULT_SKIN SELF"
             }
           ],
           "superiors": [],
           "created": "2026-05-24T00:00:00.000Z",
-          "skins": []
+          "defaultSkin": "default",
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "dry",
+              "colour": "#64748b"
+            },
+            {
+              "name": "flowing",
+              "colour": "#22d3ee"
+            }
+          ]
         },
         {
           "id": "component_1779500000003",
