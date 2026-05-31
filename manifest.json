@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.1",
-  "publishedAt": "2026-05-30T20:52:34.267Z",
+  "version": "1.0.2",
+  "publishedAt": "2026-05-31T08:51:27.182Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -10,39 +10,7 @@
     },
     {
       "path": "component-sets.json",
-      "sha256": "08cfa962edb16ec3ffde5a03f7d07bfa6979d430954291bfa5263ab8db2c29d0"
-    },
-    {
-      "path": "component-images/component_1779500000004.svg",
-      "sha256": "4ed04d1ffb46bd668623a3b1eb1f622ca5ae74c89680c5ca174f1eb8de459a3a"
-    },
-    {
-      "path": "component-images/component_1779500000001.svg",
-      "sha256": "bb5024bb4116d96e18862c57f26685790678b0cca135ce2d514dd9108886dcaf"
-    },
-    {
-      "path": "component-images/component_1779399245576.svg",
-      "sha256": "369a85006d0648df3d32fc887ae4a5290da5b5131ea21a55bd872a2e0182baa7"
-    },
-    {
-      "path": "component-images/component_control_valve_1779600000002.svg",
-      "sha256": "8cbbf923471b69ed004dab3aaff914d9302f5a7731c937c5d485d746cf788ac2"
-    },
-    {
-      "path": "component-images/component_ecv_1779600000003.svg",
-      "sha256": "d2ef6b47c6c4c6829c2261e30f4610c08dc5797f617ed8cf5e7a96e66b9baeed"
-    },
-    {
-      "path": "component-images/component_1779500000003.svg",
-      "sha256": "6a6a5cad19b2b9952e64508a0221ca36cd3a1e7fb3ab8a530913b422c9d56954"
-    },
-    {
-      "path": "component-images/component_1779500000007.svg",
-      "sha256": "ba79ed1e6af73df0575c410325a4f8f1b8563e2651101803977b9dbcbd987fee"
-    },
-    {
-      "path": "component-images/component_he_outlet_valve.svg",
-      "sha256": "369a85006d0648df3d32fc887ae4a5290da5b5131ea21a55bd872a2e0182baa7"
+      "sha256": "8e0af424d81678b5fcee073c1173d464b5dfecadde1c4aaca98d493b73e2afed"
     },
     {
       "path": "editorial-packs.json",
@@ -169,5 +137,5 @@
       "productId": null
     }
   ],
-  "signature": "8+gwpOgj1EfDAUecOWaSS1K0w9B5D3VJ0AvvTQu37O4GmKncP9nwwQLaTR6xIEWlnK31NjGKOJSL2dmZElp3Kg=="
+  "signature": "OLHjJ1p3I6iS839qunDGrUDBQS/vyVtV0GeDTwLy9aCfO3enxqbLhI8NdTjss/Ea1ejkD+T3N7WL47Yy3YjGiw=="
 }
