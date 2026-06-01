@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.7",
-  "publishedAt": "2026-06-01T15:21:55.304Z",
+  "version": "1.0.8",
+  "publishedAt": "2026-06-01T16:20:39.736Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "path": "component-sets.json",
-      "sha256": "7c7cc267af5237af11d60b31f3671bd7ff62aa2e394b25795dd7a3430dc17508"
+      "sha256": "7bb7d8aa29ba56a7d30349af759624c239f97e16e7aed6d67d2b8a254c1579ae"
     },
     {
       "path": "component-images/component_1779500000004.default.svg",
@@ -154,7 +154,7 @@
     },
     {
       "path": "maps/map_1779399000674/literal-components.json",
-      "sha256": "88bf565c0b8acd7c5a9d9863b1f0b186368e3ac61d7ecd877421348bce73e207"
+      "sha256": "2ac692da5d48d26ce8089e743cf906e2d813bb7999409b75abb266295a699045"
     },
     {
       "path": "maps/map_1779399000674/scenarios.json",
@@ -173,5 +173,5 @@
       "productId": null
     }
   ],
-  "signature": "HzaiVhMFlF2GtByYogGu/ZRLnywfQ3cYuqbk2LaKld0pEoKykeCpAnffA5HEWtnQcBknyamkqHy07OWN6fGMgA=="
+  "signature": "bArcB8MM+zi2u2mkr7Ik1v6/cN7yjZh+K4tJ6g+g8e/Vle6hdS1isYdIPruwqH65K8AcfvOmsubgiVFke7/Ujw=="
 }
