@@ -213,7 +213,8 @@
       "superiors": [
         {
           "lcId": "lc_1779440947448",
-          "outlet": "cold_outlet"
+          "outlet": "cold_outlet",
+          "portId": "process_out"
         }
       ],
       "variableOverrides": {},
@@ -229,7 +230,8 @@
       "superiors": [
         {
           "lcId": "lc_1779440947448",
-          "outlet": "hot_outlet"
+          "outlet": "hot_outlet",
+          "portId": "service_out"
         }
       ],
       "variableOverrides": {},
