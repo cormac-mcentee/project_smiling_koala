@@ -69,8 +69,8 @@
         "level": 100
       },
       "_canvas": {
-        "x": 747,
-        "y": -72
+        "x": 748,
+        "y": -53
       },
       "size": 2.1
     },
@@ -126,7 +126,7 @@
         "fluid_type": "service_water"
       },
       "_canvas": {
-        "x": 1160,
+        "x": 1208,
         "y": 250
       }
     },
@@ -139,7 +139,7 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 1152,
+        "x": 1200,
         "y": 90
       }
     },
@@ -171,8 +171,8 @@
         "elevation_change": 0
       },
       "_canvas": {
-        "x": 1140,
-        "y": 250
+        "x": 1164,
+        "y": 178
       }
     },
     {
@@ -209,7 +209,7 @@
     {
       "id": "lc_1779440925795",
       "name": "V3",
-      "componentId": "component_he_outlet_valve",
+      "componentId": "component_1779399245576",
       "superiors": [
         {
           "lcId": "lc_1779440947448",
@@ -225,7 +225,7 @@
     {
       "id": "lc_1779440878100",
       "name": "V5",
-      "componentId": "component_he_outlet_valve",
+      "componentId": "component_1779399245576",
       "superiors": [
         {
           "lcId": "lc_1779440947448",
