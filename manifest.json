@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.6",
-  "publishedAt": "2026-05-31T16:47:32.433Z",
+  "version": "1.0.7",
+  "publishedAt": "2026-06-01T15:21:55.304Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "path": "component-sets.json",
-      "sha256": "3a265383be42a6b1d08cce1de5f692f2c928a836b65f841fd2ab64e708d450b5"
+      "sha256": "7c7cc267af5237af11d60b31f3671bd7ff62aa2e394b25795dd7a3430dc17508"
     },
     {
       "path": "component-images/component_1779500000004.default.svg",
@@ -39,10 +39,6 @@
     {
       "path": "component-images/component_1779500000007.default.svg",
       "sha256": "ba79ed1e6af73df0575c410325a4f8f1b8563e2651101803977b9dbcbd987fee"
-    },
-    {
-      "path": "component-images/component_he_outlet_valve.default.svg",
-      "sha256": "369a85006d0648df3d32fc887ae4a5290da5b5131ea21a55bd872a2e0182baa7"
     },
     {
       "path": "component-images/_global.barrier_overlay.svg",
@@ -158,7 +154,7 @@
     },
     {
       "path": "maps/map_1779399000674/literal-components.json",
-      "sha256": "9a9af0892c34754250e85d81130a27742f0dc04e9cb082783be56ea2ff0918ac"
+      "sha256": "88bf565c0b8acd7c5a9d9863b1f0b186368e3ac61d7ecd877421348bce73e207"
     },
     {
       "path": "maps/map_1779399000674/scenarios.json",
@@ -166,7 +162,7 @@
     },
     {
       "path": "maps/map_1779399000674/schematic.json",
-      "sha256": "420debd6cd1fb845ec3fc17a8eb5ae0066af74541bccebb221ee596f73580679"
+      "sha256": "87cb691a0bfb90ef669ad8afa36ea837b5e7f273f7abb24dfd8a72cc1daa3de2"
     }
   ],
   "packs": [
@@ -177,5 +173,5 @@
       "productId": null
     }
   ],
-  "signature": "ehsgWlEf8neSzN8imf2DMmfW9goyXXtpvjQOeaJXQQpedR72jwo6m07/am5PHjWgCKydWhYXdn2g7FYPT0QLpw=="
+  "signature": "HzaiVhMFlF2GtByYogGu/ZRLnywfQ3cYuqbk2LaKld0pEoKykeCpAnffA5HEWtnQcBknyamkqHy07OWN6fGMgA=="
 }
