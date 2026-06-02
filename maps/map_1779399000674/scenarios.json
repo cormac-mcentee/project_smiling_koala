@@ -115,9 +115,39 @@
           "value": false
         },
         {
+          "id": "tc_s2_02",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_broken",
+          "value": false
+        },
+        {
           "id": "tc_s2_03",
-          "literalComponentId": "lc_1779440947448",
-          "variableId": "var_he_heat_transfer_active",
+          "literalComponentId": "lc_1779440309469",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_s2_04",
+          "literalComponentId": "lc_1779440776175",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_s2_05",
+          "literalComponentId": "lc_1779440847031",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_s2_06",
+          "literalComponentId": "lc_1779440878100",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_s2_07",
+          "literalComponentId": "lc_1779440925795",
+          "variableId": "var_valve_open",
           "value": false
         }
       ]
@@ -174,7 +204,37 @@
         },
         {
           "id": "tc_s3_02",
+          "literalComponentId": "lc_1779440791231",
+          "variableId": "var_pump_broken",
+          "value": false
+        },
+        {
+          "id": "tc_s3_03",
+          "literalComponentId": "lc_1779440309469",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_s3_04",
           "literalComponentId": "lc_1779440776175",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_s3_05",
+          "literalComponentId": "lc_1779440847031",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_s3_06",
+          "literalComponentId": "lc_1779440878100",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_s3_07",
+          "literalComponentId": "lc_1779440925795",
           "variableId": "var_valve_open",
           "value": false
         }
