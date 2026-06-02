@@ -17,7 +17,7 @@
       "componentId": "component_1779500000005",
       "superiors": [],
       "variableOverrides": {
-        "fluid_type": "process_water"
+        "flow.fluid_type": "process_water"
       },
       "_canvas": {
         "x": 56,
