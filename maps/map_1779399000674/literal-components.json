@@ -6,7 +6,7 @@
       "componentId": "component_1779500000005",
       "superiors": [],
       "variableOverrides": {
-        "fluid_type": "process_water"
+        "flow.fluid_type": "process_water"
       },
       "_canvas": {
         "x": 344,
@@ -122,8 +122,8 @@
       "componentId": "component_1779500000005",
       "superiors": [],
       "variableOverrides": {
-        "temperature": 60,
-        "fluid_type": "service_water"
+        "flow.temperature": 60,
+        "flow.fluid_type": "service_water"
       },
       "_canvas": {
         "x": 1208,
