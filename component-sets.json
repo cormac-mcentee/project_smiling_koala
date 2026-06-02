@@ -11,12 +11,6 @@
           "colour": "#3b82f6",
           "variables": [
             {
-              "id": "var_tank_fluid_present",
-              "name": "fluid_present",
-              "type": "boolean",
-              "defaultValue": true
-            },
-            {
               "id": "var_tank_level",
               "name": "level",
               "type": "number",
@@ -27,18 +21,6 @@
               "name": "receiving",
               "type": "boolean",
               "defaultValue": false
-            },
-            {
-              "id": "var_tank_temperature",
-              "name": "temperature",
-              "type": "number",
-              "defaultValue": 20
-            },
-            {
-              "id": "var_tank_fluid_type",
-              "name": "fluid_type",
-              "type": "string",
-              "defaultValue": ""
             },
             {
               "id": "var_tank_low_threshold",
@@ -69,13 +51,38 @@
               "name": "broken",
               "type": "boolean",
               "defaultValue": false
+            },
+            {
+              "id": "var_tank_flow",
+              "name": "flow",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "var_tank_fluid_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": true
+                },
+                {
+                  "id": "var_tank_fluid_type",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                },
+                {
+                  "id": "var_tank_temperature",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                }
+              ]
             }
           ],
           "actions": [
             {
               "id": "action_tank_update",
               "name": "update",
-              "script": "IF self.level > 0 THEN\n  SET self.fluid_present = true\nELSE\n  SET self.fluid_present = false\nEND\nIF self.level <= self.low_threshold THEN\n  SET self.level_low = true\nELSE\n  SET self.level_low = false\nEND\nIF self.level >= self.high_threshold THEN\n  SET self.level_high = true\nELSE\n  SET self.level_high = false\nEND"
+              "script": "IF self.level > 0 THEN\n  SET self.flow.present = true\nELSE\n  SET self.flow.present = false\nEND\nIF self.level <= self.low_threshold THEN\n  SET self.level_low = true\nELSE\n  SET self.level_low = false\nEND\nIF self.level >= self.high_threshold THEN\n  SET self.level_high = true\nELSE\n  SET self.level_high = false\nEND"
             },
             {
               "id": "action_tank_tick",
@@ -86,13 +93,13 @@
           "listeners": [
             {
               "id": "listener_tank_inflow_on",
-              "condition": "ANYSUP.fluid_flowing",
-              "script": "SET self.receiving = true\nSET self.temperature = SUMSUP.temperature\nSET self.fluid_type = SUP(0).fluid_type"
+              "condition": "ANYSUP.flow.flowing",
+              "script": "SET self.receiving = true\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
             },
             {
               "id": "listener_tank_inflow_off",
-              "condition": "ANYSUP.fluid_flowing == false",
-              "script": "SET self.receiving = false\nSET self.fluid_type = \"\""
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "SET self.receiving = false\nSET self.flow.fluid_type = \"\""
             },
             {
               "id": "listener_tank_broken_receiving",
@@ -140,73 +147,101 @@
               "defaultValue": false
             },
             {
-              "id": "var_pump_fluid_present",
-              "name": "fluid_present",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_pump_fluid_flowing",
-              "name": "fluid_flowing",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_pump_flow_rate",
-              "name": "flow_rate",
-              "type": "number",
-              "defaultValue": 0
-            },
-            {
-              "id": "var_pump_temperature",
-              "name": "temperature",
-              "type": "number",
-              "defaultValue": 20
-            },
-            {
-              "id": "var_pump_fluid_type",
-              "name": "fluid_type",
-              "type": "string",
-              "defaultValue": ""
+              "id": "var_pump_flow",
+              "name": "flow",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "var_pump_fluid_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_pump_fluid_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_pump_flow_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "var_pump_temperature",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "var_pump_fluid_type",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                }
+              ]
             },
             {
               "id": "var_pump_broken",
               "name": "broken",
               "type": "boolean",
               "defaultValue": false
+            },
+            {
+              "id": "var_pump_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false
             }
           ],
           "actions": [
             {
+              "id": "action_pump_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+            },
+            {
               "id": "action_pump_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.running THEN\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nELSE\n  IF ANYSUP.fluid_present THEN\n    SET self.running = true\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n  ELSE\n    ARM dry_run\n  END\nEND"
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.running THEN\n  SET self.running = false\n  CALL self.clear_flow\nELSE\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.fluid_type = SUP(0).flow.fluid_type\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
             }
           ],
           "listeners": [
             {
               "id": "listener_pump_dry_run",
-              "condition": "ANYSUP.fluid_present == false",
-              "script": "IF self.running THEN\n  ARM dry_run\n  SET self.running = false\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+              "condition": "ANYSUP.flow.present == false",
+              "script": "IF self.running THEN\n  ARM dry_run\n  SET self.broken = true\n  SET self.running = false\n  CALL self.clear_flow\nEND"
             },
             {
               "id": "listener_pump_running_on",
               "condition": "self.running",
-              "script": "SET self.fluid_present = true\nSET self.fluid_flowing = true\nSET self.flow_rate = 100\nSET self.temperature = SUMSUP.temperature\nSET self.fluid_type = SUP(0).fluid_type"
+              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.flow.rate = 100\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
             },
             {
               "id": "listener_pump_running_off",
-              "condition": "self.running == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+              "condition": "self.running == false AND self.flow.present",
+              "script": "CALL self.clear_flow"
             },
             {
               "id": "listener_pump_dead_head",
-              "condition": "self.running AND ANYINF.blocked",
-              "script": "ARM dry_run\nSET self.running = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+              "condition": "self.running AND ALLINF.blocked",
+              "script": "ARM dead_head\nSET self.broken = true\nSET self.running = false\nCALL self.clear_flow"
+            },
+            {
+              "id": "listener_pump_blocked",
+              "condition": "ALLINF.blocked",
+              "script": "SET self.blocked = true"
+            },
+            {
+              "id": "listener_pump_unblocked",
+              "condition": "ANYINF.blocked == false",
+              "script": "SET self.blocked = false"
             },
             {
               "id": "listener_pump_broken_flow",
-              "condition": "self.broken AND ANYSUP.fluid_present",
+              "condition": "self.broken AND ANYSUP.flow.present",
               "script": "ARM broken_flow"
             },
             {
@@ -266,37 +301,60 @@
               "defaultValue": false
             },
             {
-              "id": "var_valve_fluid_present",
-              "name": "fluid_present",
+              "id": "var_valve_flow",
+              "name": "flow",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "var_valve_fluid_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_valve_fluid_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_valve_flow_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "var_valve_temperature",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "var_valve_fluid_type",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                }
+              ]
+            },
+            {
+              "id": "var_valve_blocked",
+              "name": "blocked",
               "type": "boolean",
               "defaultValue": false
-            },
-            {
-              "id": "var_valve_fluid_flowing",
-              "name": "fluid_flowing",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_valve_flow_rate",
-              "name": "flow_rate",
-              "type": "number",
-              "defaultValue": 0
-            },
-            {
-              "id": "var_valve_temperature",
-              "name": "temperature",
-              "type": "number",
-              "defaultValue": 20
-            },
-            {
-              "id": "var_valve_fluid_type",
-              "name": "fluid_type",
-              "type": "string",
-              "defaultValue": ""
             }
           ],
           "actions": [
+            {
+              "id": "action_valve_copy_upstream",
+              "name": "copy_upstream",
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
+            },
+            {
+              "id": "action_valve_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+            },
             {
               "id": "action_valve_on_toggle",
               "name": "on_toggle",
@@ -305,39 +363,34 @@
             {
               "id": "action_valve_update_flow",
               "name": "update_flow",
-              "script": "IF self.open THEN\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\n  IF ANYSUP.fluid_flowing THEN\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n  ELSE\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.temperature = 20\n    SET self.fluid_type = \"\"\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+              "script": "IF self.open THEN\n  IF ANYSUP.flow.flowing THEN\n    CALL self.copy_upstream\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\nEND"
             }
           ],
           "listeners": [
             {
-              "id": "listener_valve_flow_on",
-              "condition": "ANYSUP.fluid_flowing",
+              "id": "listener_valve_upstream_changed",
+              "condition": "ANYSUP.flow.flowing OR ANYSUP.flow.present",
               "script": "CALL self.update_flow"
             },
             {
-              "id": "listener_valve_flow_off",
-              "condition": "ANYSUP.fluid_flowing == false",
-              "script": "SET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
-            },
-            {
-              "id": "listener_valve_pressure_on",
-              "condition": "ANYSUP.fluid_present",
+              "id": "listener_valve_upstream_gone",
+              "condition": "ANYSUP.flow.flowing == false AND ANYSUP.flow.present == false",
               "script": "CALL self.update_flow"
-            },
-            {
-              "id": "listener_valve_pressure_off",
-              "condition": "ANYSUP.fluid_present == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
             },
             {
               "id": "listener_valve_signal_blocked",
-              "condition": "self.open == false AND ANYSUP.fluid_flowing",
-              "script": "SET ALLSUP.blocked = true"
+              "condition": "self.open == false AND ANYSUP.flow.flowing",
+              "script": "SET ALLSUP.blocked = true\nSET self.blocked = true"
             },
             {
               "id": "listener_valve_signal_unblocked",
-              "condition": "self.open",
-              "script": "SET ALLSUP.blocked = false"
+              "condition": "self.open AND ANYINF.blocked == false",
+              "script": "SET ALLSUP.blocked = false\nSET self.blocked = false"
+            },
+            {
+              "id": "listener_valve_inf_blocked",
+              "condition": "self.open AND ALLINF.blocked",
+              "script": "SET ALLSUP.blocked = true\nSET self.blocked = true"
             },
             {
               "id": "listener_valve_closed_visual",
@@ -380,37 +433,49 @@
               "defaultValue": 100
             },
             {
-              "id": "var_cv_fluid_present",
-              "name": "fluid_present",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_cv_fluid_flowing",
-              "name": "fluid_flowing",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_cv_flow_rate",
-              "name": "flow_rate",
-              "type": "number",
-              "defaultValue": 0
-            },
-            {
-              "id": "var_cv_temperature",
-              "name": "temperature",
-              "type": "number",
-              "defaultValue": 20
-            },
-            {
-              "id": "var_cv_fluid_type",
-              "name": "fluid_type",
-              "type": "string",
-              "defaultValue": ""
+              "id": "var_cv_flow",
+              "name": "flow",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "var_cv_fluid_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_cv_fluid_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_cv_flow_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "var_cv_temperature",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "var_cv_fluid_type",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                }
+              ]
             }
           ],
           "actions": [
+            {
+              "id": "action_cv_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+            },
             {
               "id": "action_cv_on_toggle",
               "name": "on_toggle",
@@ -419,29 +484,29 @@
             {
               "id": "action_cv_update_flow",
               "name": "update_flow",
-              "script": "IF self.open AND self.opening > 0 THEN\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\n  IF ANYSUP.fluid_flowing THEN\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate * self.opening / 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n  ELSE\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.temperature = 20\n    SET self.fluid_type = \"\"\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+              "script": "IF self.open AND self.opening > 0 THEN\n  IF ANYSUP.flow.flowing THEN\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate * self.opening / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.fluid_type = SUP(0).flow.fluid_type\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\nEND"
             }
           ],
           "listeners": [
             {
               "id": "listener_cv_flow_on",
-              "condition": "ANYSUP.fluid_flowing",
+              "condition": "ANYSUP.flow.flowing",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_cv_flow_off",
-              "condition": "ANYSUP.fluid_flowing == false",
+              "condition": "ANYSUP.flow.flowing == false",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_cv_present_on",
-              "condition": "ANYSUP.fluid_present",
+              "condition": "ANYSUP.flow.present",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_cv_present_off",
-              "condition": "ANYSUP.fluid_present == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+              "condition": "ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow"
             },
             {
               "id": "listener_cv_closed_visual",
@@ -496,37 +561,54 @@
               "defaultValue": 0
             },
             {
-              "id": "var_ecv_fluid_present",
-              "name": "fluid_present",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_ecv_fluid_flowing",
-              "name": "fluid_flowing",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_ecv_flow_rate",
-              "name": "flow_rate",
-              "type": "number",
-              "defaultValue": 0
-            },
-            {
-              "id": "var_ecv_temperature",
-              "name": "temperature",
-              "type": "number",
-              "defaultValue": 20
-            },
-            {
-              "id": "var_ecv_fluid_type",
-              "name": "fluid_type",
-              "type": "string",
-              "defaultValue": ""
+              "id": "var_ecv_flow",
+              "name": "flow",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "var_ecv_fluid_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_ecv_fluid_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_ecv_flow_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "var_ecv_temperature",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "var_ecv_fluid_type",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                }
+              ]
             }
           ],
           "actions": [
+            {
+              "id": "action_ecv_copy_upstream",
+              "name": "copy_upstream",
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
+            },
+            {
+              "id": "action_ecv_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+            },
             {
               "id": "action_ecv_update_opening",
               "name": "update_opening",
@@ -535,29 +617,29 @@
             {
               "id": "action_ecv_update_flow",
               "name": "update_flow",
-              "script": "IF self.opening > 0 THEN\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\n  IF ANYSUP.fluid_flowing THEN\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate * self.opening / 100\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n  ELSE\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.temperature = 20\n    SET self.fluid_type = \"\"\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\nEND"
+              "script": "IF self.opening > 0 THEN\n  IF ANYSUP.flow.flowing THEN\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate * self.opening / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.fluid_type = SUP(0).flow.fluid_type\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\nEND"
             }
           ],
           "listeners": [
             {
               "id": "listener_ecv_flow_on",
-              "condition": "ANYSUP.fluid_flowing",
+              "condition": "ANYSUP.flow.flowing",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_ecv_flow_off",
-              "condition": "ANYSUP.fluid_flowing == false",
+              "condition": "ANYSUP.flow.flowing == false",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_ecv_present_on",
-              "condition": "ANYSUP.fluid_present",
+              "condition": "ANYSUP.flow.present",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_ecv_present_off",
-              "condition": "ANYSUP.fluid_present == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+              "condition": "ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow"
             },
             {
               "id": "listener_ecv_powered_on",
@@ -615,34 +697,41 @@
           },
           "variables": [
             {
-              "id": "var_pipe_fluid_present",
-              "name": "fluid_present",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_pipe_fluid_flowing",
-              "name": "fluid_flowing",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_pipe_flow_rate",
-              "name": "flow_rate",
-              "type": "number",
-              "defaultValue": 0
-            },
-            {
-              "id": "var_pipe_temperature",
-              "name": "temperature",
-              "type": "number",
-              "defaultValue": 20
-            },
-            {
-              "id": "var_pipe_fluid_type",
-              "name": "fluid_type",
-              "type": "string",
-              "defaultValue": ""
+              "id": "var_pipe_flow",
+              "name": "flow",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "var_pipe_fluid_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_pipe_fluid_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_pipe_flow_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "var_pipe_temperature",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "var_pipe_fluid_type",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                }
+              ]
             },
             {
               "id": "var_pipe_resistance",
@@ -677,36 +766,46 @@
           ],
           "actions": [
             {
+              "id": "action_pipe_copy_upstream",
+              "name": "copy_upstream",
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
+            },
+            {
+              "id": "action_pipe_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.pressure_drop = 0\nSET self.flow_pulse = false\nDEFAULT_SKIN SELF"
+            },
+            {
               "id": "action_pipe_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.fluid_flowing THEN\n  IF self.blocked THEN\n    SET self.fluid_present = true\n    SET self.fluid_flowing = false\n    SET self.flow_rate = 0\n    SET self.fluid_type = \"\"\n    SET self.pressure_drop = 0\n    SET self.flow_pulse = false\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.fluid_present = true\n    SET self.fluid_flowing = true\n    SET self.flow_rate = SUMSUP.flow_rate\n    SET self.temperature = SUMSUP.temperature\n    SET self.fluid_type = SUP(0).fluid_type\n    SET self.pressure_drop = self.resistance * self.flow_rate ^ 2 + 9810 * self.elevation_change\n    SET self.flow_pulse = true\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  SET self.pressure_drop = 0\n  SET self.flow_pulse = false\n  DEFAULT_SKIN SELF\n  IF ANYSUP.fluid_present THEN\n    SET self.fluid_present = true\n  ELSE\n    SET self.fluid_present = false\n  END\nEND"
+              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.flow.fluid_type = \"\"\n    SET self.pressure_drop = 0\n    SET self.flow_pulse = false\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.flow.present = true\n    CALL self.copy_upstream\n    SET self.pressure_drop = self.resistance * self.flow.rate ^ 2 + 9810 * self.elevation_change\n    SET self.flow_pulse = true\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  CALL self.clear_flow\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nEND"
             }
           ],
           "listeners": [
             {
               "id": "listener_pipe_flow_on",
-              "condition": "ANYSUP.fluid_flowing",
+              "condition": "ANYSUP.flow.flowing",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_pipe_flow_off",
-              "condition": "ANYSUP.fluid_flowing == false",
+              "condition": "ANYSUP.flow.flowing == false",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_pipe_present_on",
-              "condition": "ANYSUP.fluid_present",
+              "condition": "ANYSUP.flow.present",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_pipe_present_off",
-              "condition": "ANYSUP.fluid_present == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nSET self.pressure_drop = 0\nSET self.flow_pulse = false\nDEFAULT_SKIN SELF"
+              "condition": "ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow"
             },
             {
               "id": "listener_pipe_blocked",
               "condition": "self.blocked",
-              "script": "SET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.fluid_type = \"\"\nSET self.pressure_drop = 0\nSET self.flow_pulse = false\nDEFAULT_SKIN SELF"
+              "script": "CALL self.clear_flow"
             }
           ],
           "superiors": [],
@@ -745,34 +844,41 @@
               "defaultValue": false
             },
             {
-              "id": "var_heater_fluid_present",
-              "name": "fluid_present",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_heater_fluid_flowing",
-              "name": "fluid_flowing",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_heater_flow_rate",
-              "name": "flow_rate",
-              "type": "number",
-              "defaultValue": 0
-            },
-            {
-              "id": "var_heater_temperature",
-              "name": "temperature",
-              "type": "number",
-              "defaultValue": 20
-            },
-            {
-              "id": "var_heater_fluid_type",
-              "name": "fluid_type",
-              "type": "string",
-              "defaultValue": ""
+              "id": "var_heater_flow",
+              "name": "flow",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "var_heater_fluid_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_heater_fluid_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_heater_flow_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "var_heater_temperature",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "var_heater_fluid_type",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                }
+              ]
             },
             {
               "id": "var_heater_broken",
@@ -783,36 +889,41 @@
           ],
           "actions": [
             {
+              "id": "action_heater_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.heating = false\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+            },
+            {
               "id": "action_heater_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.broken AND self.active == false THEN\n  RETURN\nEND\nIF self.active THEN\n  SET self.active = false\n  SET self.heating = false\n  SET self.temperature = 20\n  ELSE\n  IF ANYSUP.fluid_flowing THEN\n    SET self.active = true\n      ELSE\n    ARM dry_run\n  END\nEND\nCALL self.update_flow"
+              "script": "IF self.broken AND self.active == false THEN\n  RETURN\nEND\nIF self.active THEN\n  SET self.active = false\n  SET self.heating = false\n  SET self.flow.temperature = 20\n  ELSE\n  IF ANYSUP.flow.flowing THEN\n    SET self.active = true\n      ELSE\n    ARM dry_run\n  END\nEND\nCALL self.update_flow"
             },
             {
               "id": "action_heater_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.fluid_flowing THEN\n  SET self.fluid_present = true\n  SET self.fluid_flowing = true\n  SET self.flow_rate = SUMSUP.flow_rate\n  SET self.fluid_type = SUP(0).fluid_type\n  IF self.active THEN\n    SET self.heating = true\n    SET self.temperature = 80\n  ELSE\n    SET self.heating = false\n    SET self.temperature = SUMSUP.temperature\n  END\nELSE\n  SET self.fluid_present = false\n  SET self.fluid_flowing = false\n  SET self.flow_rate = 0\n  SET self.heating = false\n  SET self.temperature = 20\n  SET self.fluid_type = \"\"\n  IF self.active THEN\n    ARM dry_run\n  END\nEND"
+              "script": "IF ANYSUP.flow.flowing THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.fluid_type = SUP(0).flow.fluid_type\n  IF self.active THEN\n    SET self.heating = true\n    SET self.flow.temperature = 80\n  ELSE\n    SET self.heating = false\n    SET self.flow.temperature = SUMSUP.flow.temperature\n  END\nELSE\n  CALL self.clear_flow\n  IF self.active THEN\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
             }
           ],
           "listeners": [
             {
               "id": "listener_heater_upstream_on",
-              "condition": "ANYSUP.fluid_flowing",
+              "condition": "ANYSUP.flow.flowing",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_heater_upstream_off",
-              "condition": "ANYSUP.fluid_flowing == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.heating = false\nSET self.temperature = 20\nSET self.fluid_type = \"\"\nIF self.active THEN\n  ARM dry_run\nEND"
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.clear_flow\nIF self.active THEN\n  ARM dry_run\n  SET self.broken = true\nEND"
             },
             {
               "id": "listener_heater_present_on",
-              "condition": "ANYSUP.fluid_present",
-              "script": "SET self.fluid_present = true"
+              "condition": "ANYSUP.flow.present",
+              "script": "CALL self.update_flow"
             },
             {
               "id": "listener_heater_present_off",
-              "condition": "ANYSUP.fluid_present == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.flow_rate = 0\nSET self.heating = false\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+              "condition": "ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow"
             },
             {
               "id": "listener_heater_broken_active",
@@ -869,34 +980,41 @@
           "name": "Inlet",
           "variables": [
             {
-              "id": "var_inlet_fluid_present",
-              "name": "fluid_present",
-              "type": "boolean",
-              "defaultValue": true
-            },
-            {
-              "id": "var_inlet_fluid_flowing",
-              "name": "fluid_flowing",
-              "type": "boolean",
-              "defaultValue": true
-            },
-            {
-              "id": "var_inlet_flow_rate",
-              "name": "flow_rate",
-              "type": "number",
-              "defaultValue": 100
-            },
-            {
-              "id": "var_inlet_temperature",
-              "name": "temperature",
-              "type": "number",
-              "defaultValue": 20
-            },
-            {
-              "id": "var_inlet_fluid_type",
-              "name": "fluid_type",
-              "type": "string",
-              "defaultValue": "water"
+              "id": "var_inlet_flow",
+              "name": "flow",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "var_inlet_fluid_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": true
+                },
+                {
+                  "id": "var_inlet_fluid_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": true
+                },
+                {
+                  "id": "var_inlet_flow_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 100
+                },
+                {
+                  "id": "var_inlet_temperature",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "var_inlet_fluid_type",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": "water"
+                }
+              ]
             }
           ],
           "actions": [],
@@ -911,63 +1029,76 @@
           "name": "Outlet",
           "variables": [
             {
-              "id": "var_outlet_fluid_present",
-              "name": "fluid_present",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_outlet_fluid_flowing",
-              "name": "fluid_flowing",
-              "type": "boolean",
-              "defaultValue": false
+              "id": "var_outlet_flow",
+              "name": "flow",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "var_outlet_fluid_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_outlet_fluid_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "var_outlet_flow_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "var_outlet_temperature",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "var_outlet_fluid_type",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                }
+              ]
             },
             {
               "id": "var_outlet_receiving",
               "name": "receiving",
               "type": "boolean",
               "defaultValue": false
-            },
-            {
-              "id": "var_outlet_flow_rate",
-              "name": "flow_rate",
-              "type": "number",
-              "defaultValue": 0
-            },
-            {
-              "id": "var_outlet_temperature",
-              "name": "temperature",
-              "type": "number",
-              "defaultValue": 20
-            },
-            {
-              "id": "var_outlet_fluid_type",
-              "name": "fluid_type",
-              "type": "string",
-              "defaultValue": ""
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "id": "action_outlet_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.flowing = false\nSET self.receiving = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+            }
+          ],
           "listeners": [
             {
               "id": "listener_outlet_flow_on",
-              "condition": "ANYSUP.fluid_flowing",
-              "script": "SET self.fluid_present = true\nSET self.fluid_flowing = true\nSET self.receiving = true\nSET self.flow_rate = SUMSUP.flow_rate\nSET self.temperature = SUMSUP.temperature\nSET self.fluid_type = SUP(0).fluid_type"
+              "condition": "ANYSUP.flow.flowing",
+              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.receiving = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
             },
             {
               "id": "listener_outlet_flow_off",
-              "condition": "ANYSUP.fluid_flowing == false",
-              "script": "SET self.fluid_flowing = false\nSET self.receiving = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.clear_flow"
             },
             {
               "id": "listener_outlet_present_on",
-              "condition": "ANYSUP.fluid_present",
-              "script": "SET self.fluid_present = true"
+              "condition": "ANYSUP.flow.present",
+              "script": "SET self.flow.present = true"
             },
             {
               "id": "listener_outlet_present_off",
-              "condition": "ANYSUP.fluid_present == false",
-              "script": "SET self.fluid_present = false\nSET self.fluid_flowing = false\nSET self.receiving = false\nSET self.flow_rate = 0\nSET self.temperature = 20\nSET self.fluid_type = \"\""
+              "condition": "ANYSUP.flow.present == false",
+              "script": "SET self.flow.present = false\nCALL self.clear_flow"
             }
           ],
           "superiors": [],
@@ -1041,40 +1172,172 @@
               "name": "service_fluid_type",
               "type": "string",
               "defaultValue": ""
+            },
+            {
+              "id": "var_he_process_blocked",
+              "name": "process_blocked",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_he_service_blocked",
+              "name": "service_blocked",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_he_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_he_process_out",
+              "name": "process_out",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "f_he_po_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "f_he_po_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "f_he_po_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "f_he_po_temp",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "f_he_po_fluid",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                }
+              ]
+            },
+            {
+              "id": "var_he_service_out",
+              "name": "service_out",
+              "type": "composite",
+              "fields": [
+                {
+                  "id": "f_he_so_present",
+                  "name": "present",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "f_he_so_flowing",
+                  "name": "flowing",
+                  "type": "boolean",
+                  "defaultValue": false
+                },
+                {
+                  "id": "f_he_so_rate",
+                  "name": "rate",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "f_he_so_temp",
+                  "name": "temperature",
+                  "type": "number",
+                  "defaultValue": 20
+                },
+                {
+                  "id": "f_he_so_fluid",
+                  "name": "fluid_type",
+                  "type": "string",
+                  "defaultValue": ""
+                }
+              ]
             }
           ],
           "actions": [
             {
+              "id": "action_he_update_process_side",
+              "name": "update_process_side",
+              "script": "IF SUP(0).flow.flowing THEN\n  SET self.process_flowing = true\n  SET self.process_temp_in = SUP(0).flow.temperature\n  SET self.process_fluid_type = SUP(0).flow.fluid_type\nELSE\n  SET self.process_flowing = false\n  SET self.process_fluid_type = \"\"\nEND"
+            },
+            {
+              "id": "action_he_update_service_side",
+              "name": "update_service_side",
+              "script": "IF SUP(1).flow.flowing THEN\n  SET self.service_flowing = true\n  SET self.service_temp_in = SUP(1).flow.temperature\n  SET self.service_fluid_type = SUP(1).flow.fluid_type\nELSE\n  SET self.service_flowing = false\n  SET self.service_fluid_type = \"\"\nEND"
+            },
+            {
+              "id": "action_he_update_heat_transfer",
+              "name": "update_heat_transfer",
+              "script": "IF self.process_flowing AND self.service_flowing THEN\n  SET self.heat_transfer_active = true\n  SET self.process_temp_out = 80\n  SET self.service_temp_out = 40\nELSE\n  SET self.heat_transfer_active = false\n  SET self.process_temp_out = self.process_temp_in\n  IF self.service_flowing THEN\n    SET self.service_temp_out = self.service_temp_in\n  ELSE\n    SET self.service_temp_out = 20\n  END\nEND"
+            },
+            {
+              "id": "action_he_update_ports",
+              "name": "update_ports",
+              "script": "IF self.process_flowing THEN\n  SET self.process_out.present = true\n  SET self.process_out.flowing = true\n  SET self.process_out.rate = SUP(0).flow.rate\n  SET self.process_out.temperature = self.process_temp_out\n  SET self.process_out.fluid_type = self.process_fluid_type\nELSE\n  SET self.process_out.present = false\n  SET self.process_out.flowing = false\n  SET self.process_out.rate = 0\n  SET self.process_out.temperature = 20\n  SET self.process_out.fluid_type = \"\"\nEND\nIF self.service_flowing THEN\n  SET self.service_out.present = true\n  SET self.service_out.flowing = true\n  SET self.service_out.rate = SUP(1).flow.rate\n  SET self.service_out.temperature = self.service_temp_out\n  SET self.service_out.fluid_type = self.service_fluid_type\nELSE\n  SET self.service_out.present = false\n  SET self.service_out.flowing = false\n  SET self.service_out.rate = 0\n  SET self.service_out.temperature = 20\n  SET self.service_out.fluid_type = \"\"\nEND"
+            },
+            {
               "id": "action_he_update_flow",
               "name": "update_flow",
-              "script": "IF SUP(0).fluid_flowing THEN\n  SET self.process_flowing = true\n  SET self.process_temp_in = SUP(0).temperature\n  SET self.process_fluid_type = SUP(0).fluid_type\nELSE\n  SET self.process_flowing = false\n  SET self.process_fluid_type = \"\"\nEND\nIF SUP(1).fluid_flowing THEN\n  SET self.service_flowing = true\n  SET self.service_temp_in = SUP(1).temperature\n  SET self.service_fluid_type = SUP(1).fluid_type\nELSE\n  SET self.service_flowing = false\n  SET self.service_fluid_type = \"\"\nEND\nIF self.process_flowing AND self.service_flowing THEN\n  SET self.heat_transfer_active = true\n  SET self.process_temp_out = 80\n  SET self.service_temp_out = 40\n  ELSE\n  SET self.heat_transfer_active = false\n  IF self.process_flowing THEN\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = 20\n    ARM he_fault\n  ELSE\n    SET self.process_temp_out = self.process_temp_in\n    SET self.service_temp_out = self.service_temp_in\n      END\nEND\nIF self.process_flowing THEN\n  SET PORT(process_out) self.fluid_present = true\n  SET PORT(process_out) self.fluid_flowing = true\n  SET PORT(process_out) self.flow_rate = SUP(0).flow_rate\n  SET PORT(process_out) self.temperature = self.process_temp_out\n  SET PORT(process_out) self.fluid_type = self.process_fluid_type\nELSE\n  SET PORT(process_out) self.fluid_present = false\n  SET PORT(process_out) self.fluid_flowing = false\n  SET PORT(process_out) self.flow_rate = 0\n  SET PORT(process_out) self.temperature = 20\n  SET PORT(process_out) self.fluid_type = \"\"\nEND\nIF self.service_flowing THEN\n  SET PORT(service_out) self.fluid_present = true\n  SET PORT(service_out) self.fluid_flowing = true\n  SET PORT(service_out) self.flow_rate = SUP(1).flow_rate\n  SET PORT(service_out) self.temperature = self.service_temp_out\n  SET PORT(service_out) self.fluid_type = self.service_fluid_type\nELSE\n  SET PORT(service_out) self.fluid_present = false\n  SET PORT(service_out) self.fluid_flowing = false\n  SET PORT(service_out) self.flow_rate = 0\n  SET PORT(service_out) self.temperature = 20\n  SET PORT(service_out) self.fluid_type = \"\"\nEND"
+              "script": "CALL self.update_process_side\nCALL self.update_service_side\nCALL self.update_heat_transfer\nCALL self.update_ports"
             }
           ],
           "listeners": [
             {
-              "id": "listener_he_sup0_on",
-              "condition": "SUP(0).fluid_flowing",
+              "id": "listener_he_process_on",
+              "condition": "SUP(0).flow.flowing",
               "script": "CALL self.update_flow"
             },
             {
-              "id": "listener_he_sup0_off",
-              "condition": "SUP(0).fluid_flowing == false",
+              "id": "listener_he_process_off",
+              "condition": "SUP(0).flow.flowing == false",
               "script": "CALL self.update_flow"
             },
             {
-              "id": "listener_he_sup1_on",
-              "condition": "SUP(1).fluid_flowing",
+              "id": "listener_he_service_on",
+              "condition": "SUP(1).flow.flowing",
               "script": "CALL self.update_flow"
             },
             {
-              "id": "listener_he_sup1_off",
-              "condition": "SUP(1).fluid_flowing == false",
+              "id": "listener_he_service_off",
+              "condition": "SUP(1).flow.flowing == false",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_he_fault_flow",
-              "condition": "SUP(0).fluid_flowing AND SUP(1).fluid_flowing == false",
+              "condition": "SUP(0).flow.flowing AND SUP(1).flow.flowing == false",
               "script": "ARM he_fault"
+            },
+            {
+              "id": "listener_he_process_outlet_blocked",
+              "condition": "ANYINF(cold_outlet).blocked",
+              "script": "SET self.process_blocked = true\nSET self.blocked = true\nSET SUP(0).blocked = true"
+            },
+            {
+              "id": "listener_he_process_outlet_unblocked",
+              "condition": "ANYINF(cold_outlet).blocked == false",
+              "script": "SET self.process_blocked = false\nIF self.service_blocked THEN\n  SET self.blocked = true\nELSE\n  SET self.blocked = false\nEND\nSET SUP(0).blocked = false"
+            },
+            {
+              "id": "listener_he_service_outlet_blocked",
+              "condition": "ANYINF(hot_outlet).blocked",
+              "script": "SET self.service_blocked = true\nSET self.blocked = true\nSET SUP(1).blocked = true"
+            },
+            {
+              "id": "listener_he_service_outlet_unblocked",
+              "condition": "ANYINF(hot_outlet).blocked == false",
+              "script": "SET self.service_blocked = false\nIF self.process_blocked THEN\n  SET self.blocked = true\nELSE\n  SET self.blocked = false\nEND\nSET SUP(1).blocked = false"
             }
           ],
           "outlets": [
