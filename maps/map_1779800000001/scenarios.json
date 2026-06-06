@@ -1,0 +1,204 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_1b1_s1",
+      "name": "Commission the Treatment Stage",
+      "description": "All equipment is shut down and isolated. Open the inlet valve (V1), start the pump (P1), activate the heater (H1), open the control valve (CV1), then open the outlet valve (V2) to establish treated flow.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_1b1_s1_01",
+          "literalComponentId": "lc_1b1_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b1_s1_02",
+          "literalComponentId": "lc_1b1_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_1b1_s1_03",
+          "literalComponentId": "lc_1b1_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        },
+        {
+          "id": "ic_1b1_s1_04",
+          "literalComponentId": "lc_1b1_cv1",
+          "variableId": "var_cv_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b1_s1_05",
+          "literalComponentId": "lc_1b1_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b1_s1_06",
+          "literalComponentId": "lc_1b1_t1",
+          "variableId": "var_tank_level",
+          "value": 0
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_1b1_s1_01",
+          "literalComponentId": "lc_1b1_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_1b1_s1_02",
+          "literalComponentId": "lc_1b1_h1",
+          "variableId": "var_heater_heating",
+          "value": true
+        },
+        {
+          "id": "tc_1b1_s1_03",
+          "literalComponentId": "lc_1b1_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "tc_1b1_s1_04",
+          "literalComponentId": "lc_1b1_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_1b1_s2",
+      "name": "Heater Dry-Run Recovery",
+      "description": "The heater was activated before flow was established and has tripped. Flow is now stopped. Turn off the heater immediately to prevent further electrical damage.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_1b1_s2_01",
+          "literalComponentId": "lc_1b1_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b1_s2_02",
+          "literalComponentId": "lc_1b1_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_1b1_s2_03",
+          "literalComponentId": "lc_1b1_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        },
+        {
+          "id": "ic_1b1_s2_04",
+          "literalComponentId": "lc_1b1_h1",
+          "variableId": "var_heater_broken",
+          "value": true
+        },
+        {
+          "id": "ic_1b1_s2_05",
+          "literalComponentId": "lc_1b1_cv1",
+          "variableId": "var_cv_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b1_s2_06",
+          "literalComponentId": "lc_1b1_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_1b1_s2_01",
+          "literalComponentId": "lc_1b1_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_1b1_s2_01",
+          "literalComponentId": "lc_1b1_h1",
+          "faultName": "heater_electrical",
+          "gracePeriod": 5
+        }
+      ]
+    },
+    {
+      "id": "scenario_1b1_s3",
+      "name": "Safe Shutdown",
+      "description": "The treatment stage is running normally. Shut it down safely: deactivate the heater first, then close CV1, stop P1, and close both isolation valves.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_1b1_s3_01",
+          "literalComponentId": "lc_1b1_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b1_s3_02",
+          "literalComponentId": "lc_1b1_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_1b1_s3_03",
+          "literalComponentId": "lc_1b1_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        },
+        {
+          "id": "ic_1b1_s3_04",
+          "literalComponentId": "lc_1b1_cv1",
+          "variableId": "var_cv_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b1_s3_05",
+          "literalComponentId": "lc_1b1_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b1_s3_06",
+          "literalComponentId": "lc_1b1_t1",
+          "variableId": "var_tank_level",
+          "value": 75
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_1b1_s3_01",
+          "literalComponentId": "lc_1b1_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        },
+        {
+          "id": "tc_1b1_s3_02",
+          "literalComponentId": "lc_1b1_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "tc_1b1_s3_03",
+          "literalComponentId": "lc_1b1_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_1b1_s3_04",
+          "literalComponentId": "lc_1b1_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ]
+    }
+  ]
+}
