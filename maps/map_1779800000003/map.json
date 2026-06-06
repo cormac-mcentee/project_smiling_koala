@@ -1,0 +1,6 @@
+{
+  "id": "map_1779800000003",
+  "name": "Heating Circuit",
+  "description": "A two-loop system: a process stream and a hot service stream meet at a heat exchanger. The service side uses a heater and an electrically-controlled valve. A reserve tank provides buffer capacity. Combines all Cycle 1 components.",
+  "config": {}
+}
