@@ -1,0 +1,417 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_1b3_inlet_a",
+      "name": "Process Inlet",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "flow.fluid_type": "process_water",
+        "flow.colour": "#2a7abf"
+      },
+      "_canvas": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_p_a1",
+      "name": "Pipe_A1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_inlet_a"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 90,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_v1",
+      "name": "V1",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_1b3_p_a1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 180,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_p_a2",
+      "name": "Pipe_A2",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_v1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.03
+      },
+      "_canvas": {
+        "x": 280,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_p1",
+      "name": "P1",
+      "componentId": "component_1779500000001",
+      "superiors": [
+        "lc_1b3_p_a2"
+      ],
+      "variableOverrides": {
+        "outlet_pressure": 110
+      },
+      "_canvas": {
+        "x": 380,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_p_a3",
+      "name": "Pipe_A3",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_p1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.03
+      },
+      "_canvas": {
+        "x": 480,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_he",
+      "name": "HE1",
+      "componentId": "component_1779500000007",
+      "superiors": [
+        "lc_1b3_p_a3",
+        "lc_1b3_p_b4"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 580,
+        "y": 120
+      }
+    },
+    {
+      "id": "lc_1b3_p_a4",
+      "name": "Pipe_A4",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1b3_he",
+          "outlet": "cold_outlet",
+          "portId": "process_out"
+        }
+      ],
+      "variableOverrides": {
+        "resistance": 0.03
+      },
+      "_canvas": {
+        "x": 680,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_cv1",
+      "name": "CV1",
+      "componentId": "component_control_valve_1779600000002",
+      "superiors": [
+        "lc_1b3_p_a4"
+      ],
+      "variableOverrides": {
+        "opening": 100
+      },
+      "_canvas": {
+        "x": 780,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_p_a5",
+      "name": "Pipe_A5",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_cv1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 880,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_outlet_a",
+      "name": "Process Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_1b3_p_a5"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 970,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b3_inlet_b",
+      "name": "Service Inlet",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "flow.fluid_type": "service_water",
+        "flow.temperature": 30,
+        "flow.colour": "#f97316"
+      },
+      "_canvas": {
+        "x": 0,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_p_b1",
+      "name": "Pipe_B1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_inlet_b"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 90,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_v2",
+      "name": "V2",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_1b3_p_b1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 180,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_p_b2",
+      "name": "Pipe_B2",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_v2"
+      ],
+      "variableOverrides": {
+        "resistance": 0.03
+      },
+      "_canvas": {
+        "x": 280,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_p2",
+      "name": "P2",
+      "componentId": "component_1779500000001",
+      "superiors": [
+        "lc_1b3_p_b2"
+      ],
+      "variableOverrides": {
+        "outlet_pressure": 110
+      },
+      "_canvas": {
+        "x": 380,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_p_b3",
+      "name": "Pipe_B3",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_p2"
+      ],
+      "variableOverrides": {
+        "resistance": 0.03
+      },
+      "_canvas": {
+        "x": 480,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_h1",
+      "name": "H1",
+      "componentId": "component_1779500000003",
+      "superiors": [
+        "lc_1b3_p_b3"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 580,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_p_b4",
+      "name": "Pipe_B4",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_h1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.03
+      },
+      "_canvas": {
+        "x": 680,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_p_b5",
+      "name": "Pipe_B5",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1b3_he",
+          "outlet": "hot_outlet",
+          "portId": "service_out"
+        }
+      ],
+      "variableOverrides": {
+        "resistance": 0.03
+      },
+      "_canvas": {
+        "x": 780,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_ps1",
+      "name": "PS1",
+      "componentId": "component_power_supply_1779600000005",
+      "superiors": [],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 880,
+        "y": 340
+      }
+    },
+    {
+      "id": "lc_1b3_ecv1",
+      "name": "ECV1",
+      "componentId": "component_ecv_1779600000003",
+      "superiors": [
+        "lc_1b3_p_b5",
+        "lc_1b3_ps1"
+      ],
+      "variableOverrides": {
+        "signal": 100,
+        "fail_open": false
+      },
+      "_canvas": {
+        "x": 880,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_p_b6",
+      "name": "Pipe_B6",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_ecv1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 980,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_outlet_b",
+      "name": "Service Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_1b3_p_b6"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1070,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_1b3_inlet_c",
+      "name": "Reserve Fill Inlet",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "flow.fluid_type": "raw_water",
+        "flow.colour": "#94a3b8"
+      },
+      "_canvas": {
+        "x": 0,
+        "y": 460
+      }
+    },
+    {
+      "id": "lc_1b3_p_c1",
+      "name": "Pipe_C1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b3_inlet_c"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 90,
+        "y": 460
+      }
+    },
+    {
+      "id": "lc_1b3_v3",
+      "name": "V3",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_1b3_p_c1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 180,
+        "y": 460
+      }
+    },
+    {
+      "id": "lc_1b3_t1",
+      "name": "Reserve Tank T1",
+      "componentId": "component_1779500000004",
+      "superiors": [
+        "lc_1b3_v3"
+      ],
+      "variableOverrides": {
+        "level": 80,
+        "low_threshold": 20,
+        "high_threshold": 90
+      },
+      "_canvas": {
+        "x": 280,
+        "y": 460
+      }
+    }
+  ]
+}
