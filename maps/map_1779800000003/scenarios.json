@@ -1,0 +1,276 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_1b3_s1",
+      "name": "Establish Heat Transfer",
+      "description": "Both loops are shut down. Commission the process loop (V1 → P1 → CV1) and the service loop (V2 → P2 → H1) simultaneously, then power up ECV1 (PS1) to open the service outlet. Heat transfer becomes active when both sides of HE1 are flowing.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_1b3_s1_01",
+          "literalComponentId": "lc_1b3_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b3_s1_02",
+          "literalComponentId": "lc_1b3_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_1b3_s1_03",
+          "literalComponentId": "lc_1b3_cv1",
+          "variableId": "var_cv_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b3_s1_04",
+          "literalComponentId": "lc_1b3_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b3_s1_05",
+          "literalComponentId": "lc_1b3_p2",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_1b3_s1_06",
+          "literalComponentId": "lc_1b3_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        },
+        {
+          "id": "ic_1b3_s1_07",
+          "literalComponentId": "lc_1b3_ps1",
+          "variableId": "var_ps_energised",
+          "value": false
+        },
+        {
+          "id": "ic_1b3_s1_08",
+          "literalComponentId": "lc_1b3_ecv1",
+          "variableId": "var_ecv_signal",
+          "value": 100
+        },
+        {
+          "id": "ic_1b3_s1_09",
+          "literalComponentId": "lc_1b3_t1",
+          "variableId": "var_tank_level",
+          "value": 80
+        },
+        {
+          "id": "ic_1b3_s1_10",
+          "literalComponentId": "lc_1b3_v3",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_1b3_s1_01",
+          "literalComponentId": "lc_1b3_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_1b3_s1_02",
+          "literalComponentId": "lc_1b3_p2",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_1b3_s1_03",
+          "literalComponentId": "lc_1b3_h1",
+          "variableId": "var_heater_heating",
+          "value": true
+        },
+        {
+          "id": "tc_1b3_s1_04",
+          "literalComponentId": "lc_1b3_he",
+          "variableId": "var_he_heat_transfer_active",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_1b3_s2",
+      "name": "Service Loop Failure",
+      "description": "Both loops are running. Heater H1 has tripped on a dry-run fault — the service side is no longer heating. The process loop continues to run without heating benefit. Shut down the service loop safely (H1 off, P2 off, V2 closed) to prevent further electrical damage.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_1b3_s2_01",
+          "literalComponentId": "lc_1b3_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s2_02",
+          "literalComponentId": "lc_1b3_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s2_03",
+          "literalComponentId": "lc_1b3_cv1",
+          "variableId": "var_cv_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s2_04",
+          "literalComponentId": "lc_1b3_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s2_05",
+          "literalComponentId": "lc_1b3_p2",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s2_06",
+          "literalComponentId": "lc_1b3_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s2_07",
+          "literalComponentId": "lc_1b3_h1",
+          "variableId": "var_heater_broken",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s2_08",
+          "literalComponentId": "lc_1b3_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s2_09",
+          "literalComponentId": "lc_1b3_ecv1",
+          "variableId": "var_ecv_signal",
+          "value": 100
+        },
+        {
+          "id": "ic_1b3_s2_10",
+          "literalComponentId": "lc_1b3_t1",
+          "variableId": "var_tank_level",
+          "value": 80
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_1b3_s2_01",
+          "literalComponentId": "lc_1b3_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        },
+        {
+          "id": "tc_1b3_s2_02",
+          "literalComponentId": "lc_1b3_p2",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "tc_1b3_s2_03",
+          "literalComponentId": "lc_1b3_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_1b3_s2_01",
+          "literalComponentId": "lc_1b3_h1",
+          "faultName": "heater_electrical",
+          "gracePeriod": 4
+        }
+      ]
+    },
+    {
+      "id": "scenario_1b3_s3",
+      "name": "Reserve Tank Low — Refill",
+      "description": "Both loops are running. The reserve tank T1 level is critically low. Open V3 to allow the fill inlet to replenish the tank before the level drops to zero.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_1b3_s3_01",
+          "literalComponentId": "lc_1b3_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s3_02",
+          "literalComponentId": "lc_1b3_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s3_03",
+          "literalComponentId": "lc_1b3_cv1",
+          "variableId": "var_cv_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s3_04",
+          "literalComponentId": "lc_1b3_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s3_05",
+          "literalComponentId": "lc_1b3_p2",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s3_06",
+          "literalComponentId": "lc_1b3_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s3_07",
+          "literalComponentId": "lc_1b3_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s3_08",
+          "literalComponentId": "lc_1b3_ecv1",
+          "variableId": "var_ecv_signal",
+          "value": 100
+        },
+        {
+          "id": "ic_1b3_s3_09",
+          "literalComponentId": "lc_1b3_t1",
+          "variableId": "var_tank_level",
+          "value": 15
+        },
+        {
+          "id": "ic_1b3_s3_10",
+          "literalComponentId": "lc_1b3_t1",
+          "variableId": "var_tank_level_low",
+          "value": true
+        },
+        {
+          "id": "ic_1b3_s3_11",
+          "literalComponentId": "lc_1b3_v3",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_1b3_s3_01",
+          "literalComponentId": "lc_1b3_t1",
+          "variableId": "var_tank_receiving",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
