@@ -1,0 +1,205 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_1b2_inlet",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b2_p_in",
+      "x": 90,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b2_v1",
+      "x": 180,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b2_p_suct",
+      "x": 280,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b2_p1",
+      "x": 380,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b2_t1",
+      "x": 380,
+      "y": 200
+    },
+    {
+      "lcId": "lc_1b2_p_dose",
+      "x": 460,
+      "y": 200
+    },
+    {
+      "lcId": "lc_1b2_v2",
+      "x": 560,
+      "y": 200
+    },
+    {
+      "lcId": "lc_1b2_p_merge",
+      "x": 500,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b2_p_out",
+      "x": 620,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b2_outlet",
+      "x": 720,
+      "y": 0
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_1b2_01",
+      "srcLcId": "lc_1b2_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_p_in",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_02",
+      "srcLcId": "lc_1b2_p_in",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_03",
+      "srcLcId": "lc_1b2_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_p_suct",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_04",
+      "srcLcId": "lc_1b2_p_suct",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_p1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_05",
+      "srcLcId": "lc_1b2_p1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_p_merge",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_06",
+      "srcLcId": "lc_1b2_t1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_p_dose",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_07",
+      "srcLcId": "lc_1b2_p_dose",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_v2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_08",
+      "srcLcId": "lc_1b2_v2",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_p_merge",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_09",
+      "srcLcId": "lc_1b2_p_merge",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_p_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_10",
+      "srcLcId": "lc_1b2_p_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_1b2_v1_btn": {
+      "id": "anc_1b2_v1_btn",
+      "type": "button",
+      "lcId": "lc_1b2_v1",
+      "bindTo": "act:on_toggle",
+      "label": "Open/Close",
+      "x": 180,
+      "y": -30
+    },
+    "anc_1b2_v1_lgt": {
+      "id": "anc_1b2_v1_lgt",
+      "type": "light",
+      "lcId": "lc_1b2_v1",
+      "bindTo": "var:open",
+      "label": "V1",
+      "x": 240,
+      "y": -30
+    },
+    "anc_1b2_p1_btn": {
+      "id": "anc_1b2_p1_btn",
+      "type": "button",
+      "lcId": "lc_1b2_p1",
+      "bindTo": "act:on_toggle",
+      "label": "Start/Stop",
+      "x": 380,
+      "y": -30
+    },
+    "anc_1b2_p1_lgt": {
+      "id": "anc_1b2_p1_lgt",
+      "type": "light",
+      "lcId": "lc_1b2_p1",
+      "bindTo": "var:running",
+      "label": "P1",
+      "x": 440,
+      "y": -30
+    },
+    "anc_1b2_t1_ctr": {
+      "id": "anc_1b2_t1_ctr",
+      "type": "counter",
+      "lcId": "lc_1b2_t1",
+      "bindTo": "var:level",
+      "label": "T1 Level",
+      "x": 380,
+      "y": 240
+    },
+    "anc_1b2_t1_lgt": {
+      "id": "anc_1b2_t1_lgt",
+      "type": "light",
+      "lcId": "lc_1b2_t1",
+      "bindTo": "var:level_low",
+      "label": "Low",
+      "x": 440,
+      "y": 240
+    },
+    "anc_1b2_v2_btn": {
+      "id": "anc_1b2_v2_btn",
+      "type": "button",
+      "lcId": "lc_1b2_v2",
+      "bindTo": "act:on_toggle",
+      "label": "Dose On/Off",
+      "x": 560,
+      "y": 240
+    },
+    "anc_1b2_v2_lgt": {
+      "id": "anc_1b2_v2_lgt",
+      "type": "light",
+      "lcId": "lc_1b2_v2",
+      "bindTo": "var:open",
+      "label": "V2",
+      "x": 620,
+      "y": 240
+    }
+  }
+}
