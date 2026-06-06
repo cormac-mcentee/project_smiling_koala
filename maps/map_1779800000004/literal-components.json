@@ -1,0 +1,222 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_1b4_inlet",
+      "name": "Feed Inlet",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "flow.fluid_type": "process_water",
+        "flow.colour": "#2a7abf"
+      },
+      "_canvas": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_p_in",
+      "name": "Pipe_In",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b4_inlet"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 90,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_v1",
+      "name": "V1",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_1b4_p_in"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 180,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_p_suct",
+      "name": "Pipe_Suction",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b4_v1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.03
+      },
+      "_canvas": {
+        "x": 280,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_p1",
+      "name": "P1 (Fill Pump)",
+      "componentId": "component_1779500000001",
+      "superiors": [
+        "lc_1b4_p_suct"
+      ],
+      "variableOverrides": {
+        "outlet_pressure": 100
+      },
+      "_canvas": {
+        "x": 380,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_p_disc",
+      "name": "Pipe_Fill_Disc",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b4_p1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.04
+      },
+      "_canvas": {
+        "x": 490,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_v2",
+      "name": "V2",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_1b4_p_disc"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 590,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_p_fill",
+      "name": "Pipe_Fill",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b4_v2"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 690,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_t1",
+      "name": "Transfer Tank T1",
+      "componentId": "component_1779500000004",
+      "superiors": [
+        "lc_1b4_p_fill"
+      ],
+      "variableOverrides": {
+        "level": 0,
+        "low_threshold": 20,
+        "high_threshold": 90
+      },
+      "_canvas": {
+        "x": 790,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_p_tank_out",
+      "name": "Pipe_Tank_Out",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b4_t1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 900,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_v3",
+      "name": "V3",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_1b4_p_tank_out"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 990,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_p_xfer_suct",
+      "name": "Pipe_Xfer_Suction",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b4_v3"
+      ],
+      "variableOverrides": {
+        "resistance": 0.03
+      },
+      "_canvas": {
+        "x": 1090,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_p2",
+      "name": "P2 (Transfer Pump)",
+      "componentId": "component_1779500000001",
+      "superiors": [
+        "lc_1b4_p_xfer_suct"
+      ],
+      "variableOverrides": {
+        "outlet_pressure": 100
+      },
+      "_canvas": {
+        "x": 1190,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_p_xfer_disc",
+      "name": "Pipe_Xfer_Disc",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1b4_p2"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 1300,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_1b4_outlet",
+      "name": "Transfer Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_1b4_p_xfer_disc"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1390,
+        "y": 0
+      }
+    }
+  ]
+}
