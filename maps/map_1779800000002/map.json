@@ -1,0 +1,6 @@
+{
+  "id": "map_1779800000002",
+  "name": "Chemical Dosing Loop",
+  "description": "A pump delivers process water to the outlet while a dosing valve injects chemical from a storage tank into the discharge line. Manage normal operation, respond to low tank level, and isolate a failed pump.",
+  "config": {}
+}
