@@ -16,6 +16,21 @@
         "map_1779700000006",
         "map_1779399000674"
       ]
+    },
+    {
+      "id": "mappack_1779800000001",
+      "name": "Cycle 1 Content Maps",
+      "description": "Multi-component production scenarios combining all Cycle 1 components in real-process contexts.",
+      "tags": [
+        "content",
+        "cycle1"
+      ],
+      "mapIds": [
+        "map_1779800000001",
+        "map_1779800000002",
+        "map_1779800000003",
+        "map_1779800000004"
+      ]
     }
   ]
 }
