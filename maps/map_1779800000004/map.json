@@ -1,0 +1,6 @@
+{
+  "id": "map_1779800000004",
+  "name": "Pump-and-Tank Transfer",
+  "description": "A fill pump charges a transfer tank from the inlet; a transfer pump discharges the tank to the outlet. Practise fill sequencing, transfer startup, and preventing tank drain-down mid-transfer.",
+  "config": {}
+}
