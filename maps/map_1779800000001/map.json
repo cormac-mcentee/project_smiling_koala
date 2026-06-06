@@ -1,0 +1,6 @@
+{
+  "id": "map_1779800000001",
+  "name": "Water Treatment Stage",
+  "description": "A multi-component water treatment process: inlet fluid is pumped through a heater and throttled into a treated water tank before transfer to the outlet. Practise commissioning, fault recovery, and correct shutdown sequencing.",
+  "config": {}
+}
