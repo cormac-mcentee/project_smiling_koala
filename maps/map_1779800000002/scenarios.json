@@ -1,0 +1,156 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_1b2_s1",
+      "name": "Start the Dosing Loop",
+      "description": "The pump and dosing valve are shut. Open V1, start P1 to deliver process water, then open V2 to inject chemical from tank T1 into the discharge line.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_1b2_s1_01",
+          "literalComponentId": "lc_1b2_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b2_s1_02",
+          "literalComponentId": "lc_1b2_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_1b2_s1_03",
+          "literalComponentId": "lc_1b2_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_1b2_s1_04",
+          "literalComponentId": "lc_1b2_t1",
+          "variableId": "var_tank_level",
+          "value": 100
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_1b2_s1_01",
+          "literalComponentId": "lc_1b2_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_1b2_s1_02",
+          "literalComponentId": "lc_1b2_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "tc_1b2_s1_03",
+          "literalComponentId": "lc_1b2_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_1b2_s2",
+      "name": "Low Chemical Level",
+      "description": "The dosing loop is running but the chemical tank T1 is critically low. Close the dosing valve (V2) to stop injection before the tank empties completely.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_1b2_s2_01",
+          "literalComponentId": "lc_1b2_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b2_s2_02",
+          "literalComponentId": "lc_1b2_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_1b2_s2_03",
+          "literalComponentId": "lc_1b2_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b2_s2_04",
+          "literalComponentId": "lc_1b2_t1",
+          "variableId": "var_tank_level",
+          "value": 15
+        },
+        {
+          "id": "ic_1b2_s2_05",
+          "literalComponentId": "lc_1b2_t1",
+          "variableId": "var_tank_level_low",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_1b2_s2_01",
+          "literalComponentId": "lc_1b2_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "scenario_1b2_s3",
+      "name": "Pump Fault — Isolate",
+      "description": "Pump P1 has failed while both the main line and the dosing valve are open. Fluid is present at the pump inlet. Close V1 to isolate the failed pump before damage escalates.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_1b2_s3_01",
+          "literalComponentId": "lc_1b2_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b2_s3_02",
+          "literalComponentId": "lc_1b2_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_1b2_s3_03",
+          "literalComponentId": "lc_1b2_p1",
+          "variableId": "var_pump_broken",
+          "value": true
+        },
+        {
+          "id": "ic_1b2_s3_04",
+          "literalComponentId": "lc_1b2_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_1b2_s3_05",
+          "literalComponentId": "lc_1b2_t1",
+          "variableId": "var_tank_level",
+          "value": 100
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_1b2_s3_01",
+          "literalComponentId": "lc_1b2_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_1b2_s3_01",
+          "literalComponentId": "lc_1b2_p1",
+          "faultName": "broken_flow",
+          "gracePeriod": 3
+        }
+      ]
+    }
+  ]
+}
