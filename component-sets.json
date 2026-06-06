@@ -53,36 +53,27 @@
               "defaultValue": false
             },
             {
+              "id": "var_tank_fluid_present",
+              "name": "fluid_present",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
               "id": "var_tank_flow",
               "name": "flow",
-              "type": "composite",
-              "fields": [
-                {
-                  "id": "var_tank_fluid_present",
-                  "name": "present",
-                  "type": "boolean",
+              "$ref": "flow_composite",
+              "overrides": {
+                "present": {
                   "defaultValue": true
-                },
-                {
-                  "id": "var_tank_fluid_type",
-                  "name": "fluid_type",
-                  "type": "string",
-                  "defaultValue": ""
-                },
-                {
-                  "id": "var_tank_temperature",
-                  "name": "temperature",
-                  "type": "number",
-                  "defaultValue": 20
                 }
-              ]
+              }
             }
           ],
           "actions": [
             {
               "id": "action_tank_update",
               "name": "update",
-              "script": "IF self.level > 0 THEN\n  SET self.flow.present = true\nELSE\n  SET self.flow.present = false\nEND\nIF self.level <= self.low_threshold THEN\n  SET self.level_low = true\nELSE\n  SET self.level_low = false\nEND\nIF self.level >= self.high_threshold THEN\n  SET self.level_high = true\nELSE\n  SET self.level_high = false\nEND"
+              "script": "IF self.level > 0 THEN\n  SET self.flow.present = true\n  SET self.fluid_present = true\nELSE\n  SET self.flow.present = false\n  SET self.fluid_present = false\nEND\nIF self.level <= self.low_threshold THEN\n  SET self.level_low = true\nELSE\n  SET self.level_low = false\nEND\nIF self.level >= self.high_threshold THEN\n  SET self.level_high = true\nELSE\n  SET self.level_high = false\nEND"
             },
             {
               "id": "action_tank_tick",
@@ -94,7 +85,7 @@
             {
               "id": "listener_tank_inflow_on",
               "condition": "ANYSUP.flow.flowing",
-              "script": "SET self.receiving = true\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
+              "script": "SET self.receiving = true\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
             },
             {
               "id": "listener_tank_inflow_off",
@@ -147,41 +138,15 @@
               "defaultValue": false
             },
             {
+              "id": "var_pump_outlet_pressure",
+              "name": "outlet_pressure",
+              "type": "number",
+              "defaultValue": 100
+            },
+            {
               "id": "var_pump_flow",
               "name": "flow",
-              "type": "composite",
-              "fields": [
-                {
-                  "id": "var_pump_fluid_present",
-                  "name": "present",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_pump_fluid_flowing",
-                  "name": "flowing",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_pump_flow_rate",
-                  "name": "rate",
-                  "type": "number",
-                  "defaultValue": 0
-                },
-                {
-                  "id": "var_pump_temperature",
-                  "name": "temperature",
-                  "type": "number",
-                  "defaultValue": 20
-                },
-                {
-                  "id": "var_pump_fluid_type",
-                  "name": "fluid_type",
-                  "type": "string",
-                  "defaultValue": ""
-                }
-              ]
+              "$ref": "flow_composite"
             },
             {
               "id": "var_pump_broken",
@@ -200,12 +165,12 @@
             {
               "id": "action_pump_clear_flow",
               "name": "clear_flow",
-              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
             },
             {
               "id": "action_pump_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.running THEN\n  SET self.running = false\n  CALL self.clear_flow\nELSE\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.fluid_type = SUP(0).flow.fluid_type\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.running THEN\n  SET self.running = false\n  CALL self.clear_flow\nELSE\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.fluid_type = SUP(0).flow.fluid_type\n    SET self.flow.pressure = self.outlet_pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
             }
           ],
           "listeners": [
@@ -217,7 +182,7 @@
             {
               "id": "listener_pump_running_on",
               "condition": "self.running",
-              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.flow.rate = 100\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
+              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.flow.rate = 100\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type\nSET self.flow.pressure = self.outlet_pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
             },
             {
               "id": "listener_pump_running_off",
@@ -303,39 +268,7 @@
             {
               "id": "var_valve_flow",
               "name": "flow",
-              "type": "composite",
-              "fields": [
-                {
-                  "id": "var_valve_fluid_present",
-                  "name": "present",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_valve_fluid_flowing",
-                  "name": "flowing",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_valve_flow_rate",
-                  "name": "rate",
-                  "type": "number",
-                  "defaultValue": 0
-                },
-                {
-                  "id": "var_valve_temperature",
-                  "name": "temperature",
-                  "type": "number",
-                  "defaultValue": 20
-                },
-                {
-                  "id": "var_valve_fluid_type",
-                  "name": "fluid_type",
-                  "type": "string",
-                  "defaultValue": ""
-                }
-              ]
+              "$ref": "flow_composite"
             },
             {
               "id": "var_valve_blocked",
@@ -348,12 +281,12 @@
             {
               "id": "action_valve_copy_upstream",
               "name": "copy_upstream",
-              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
             },
             {
               "id": "action_valve_clear_flow",
               "name": "clear_flow",
-              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
             },
             {
               "id": "action_valve_on_toggle",
@@ -435,46 +368,14 @@
             {
               "id": "var_cv_flow",
               "name": "flow",
-              "type": "composite",
-              "fields": [
-                {
-                  "id": "var_cv_fluid_present",
-                  "name": "present",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_cv_fluid_flowing",
-                  "name": "flowing",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_cv_flow_rate",
-                  "name": "rate",
-                  "type": "number",
-                  "defaultValue": 0
-                },
-                {
-                  "id": "var_cv_temperature",
-                  "name": "temperature",
-                  "type": "number",
-                  "defaultValue": 20
-                },
-                {
-                  "id": "var_cv_fluid_type",
-                  "name": "fluid_type",
-                  "type": "string",
-                  "defaultValue": ""
-                }
-              ]
+              "$ref": "flow_composite"
             }
           ],
           "actions": [
             {
               "id": "action_cv_clear_flow",
               "name": "clear_flow",
-              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
             },
             {
               "id": "action_cv_on_toggle",
@@ -484,7 +385,7 @@
             {
               "id": "action_cv_update_flow",
               "name": "update_flow",
-              "script": "IF self.open AND self.opening > 0 THEN\n  IF ANYSUP.flow.flowing THEN\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate * self.opening / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.fluid_type = SUP(0).flow.fluid_type\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\nEND"
+              "script": "IF self.open AND self.opening > 0 THEN\n  IF ANYSUP.flow.flowing THEN\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate * self.opening / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.fluid_type = SUP(0).flow.fluid_type\n    SET self.flow.pressure = MINSUP.flow.pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\nEND"
             }
           ],
           "listeners": [
@@ -543,6 +444,12 @@
               "defaultValue": false
             },
             {
+              "id": "var_ecv_auto",
+              "name": "auto",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
               "id": "var_ecv_signal",
               "name": "signal",
               "type": "number",
@@ -561,53 +468,27 @@
               "defaultValue": 0
             },
             {
+              "id": "var_ecv_fluid_flowing",
+              "name": "fluid_flowing",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
               "id": "var_ecv_flow",
               "name": "flow",
-              "type": "composite",
-              "fields": [
-                {
-                  "id": "var_ecv_fluid_present",
-                  "name": "present",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_ecv_fluid_flowing",
-                  "name": "flowing",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_ecv_flow_rate",
-                  "name": "rate",
-                  "type": "number",
-                  "defaultValue": 0
-                },
-                {
-                  "id": "var_ecv_temperature",
-                  "name": "temperature",
-                  "type": "number",
-                  "defaultValue": 20
-                },
-                {
-                  "id": "var_ecv_fluid_type",
-                  "name": "fluid_type",
-                  "type": "string",
-                  "defaultValue": ""
-                }
-              ]
+              "$ref": "flow_composite"
             }
           ],
           "actions": [
             {
               "id": "action_ecv_copy_upstream",
               "name": "copy_upstream",
-              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
             },
             {
               "id": "action_ecv_clear_flow",
               "name": "clear_flow",
-              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"\nSET self.fluid_flowing = false"
             },
             {
               "id": "action_ecv_update_opening",
@@ -617,7 +498,7 @@
             {
               "id": "action_ecv_update_flow",
               "name": "update_flow",
-              "script": "IF self.opening > 0 THEN\n  IF ANYSUP.flow.flowing THEN\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate * self.opening / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.fluid_type = SUP(0).flow.fluid_type\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\nEND"
+              "script": "IF self.opening > 0 THEN\n  IF ANYSUP.flow.flowing THEN\n    SET self.flow.flowing = true\n    SET self.fluid_flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate * self.opening / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.fluid_type = SUP(0).flow.fluid_type\n    SET self.flow.pressure = MINSUP.flow.pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\nEND"
             }
           ],
           "listeners": [
@@ -640,6 +521,11 @@
               "id": "listener_ecv_present_off",
               "condition": "ANYSUP.flow.present == false",
               "script": "CALL self.clear_flow"
+            },
+            {
+              "id": "listener_ecv_signal_in",
+              "condition": "ANYSUP.signal >= 0 AND self.auto",
+              "script": "SET self.signal = ANYSUP.signal\nCALL self.update_opening"
             },
             {
               "id": "listener_ecv_powered_on",
@@ -699,39 +585,7 @@
             {
               "id": "var_pipe_flow",
               "name": "flow",
-              "type": "composite",
-              "fields": [
-                {
-                  "id": "var_pipe_fluid_present",
-                  "name": "present",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_pipe_fluid_flowing",
-                  "name": "flowing",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_pipe_flow_rate",
-                  "name": "rate",
-                  "type": "number",
-                  "defaultValue": 0
-                },
-                {
-                  "id": "var_pipe_temperature",
-                  "name": "temperature",
-                  "type": "number",
-                  "defaultValue": 20
-                },
-                {
-                  "id": "var_pipe_fluid_type",
-                  "name": "fluid_type",
-                  "type": "string",
-                  "defaultValue": ""
-                }
-              ]
+              "$ref": "flow_composite"
             },
             {
               "id": "var_pipe_resistance",
@@ -758,8 +612,8 @@
               "defaultValue": false
             },
             {
-              "id": "var_pipe_flow_pulse",
-              "name": "flow_pulse",
+              "id": "var_pipe_fluid_flowing",
+              "name": "fluid_flowing",
               "type": "boolean",
               "defaultValue": false
             }
@@ -768,17 +622,17 @@
             {
               "id": "action_pipe_copy_upstream",
               "name": "copy_upstream",
-              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type\nSET self.flow.pressure = MINSUP.flow.pressure - self.resistance * self.flow.rate\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
             },
             {
               "id": "action_pipe_clear_flow",
               "name": "clear_flow",
-              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.pressure_drop = 0\nSET self.flow_pulse = false\nDEFAULT_SKIN SELF"
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"\nSET self.pressure_drop = 0\nSET self.fluid_flowing = false\nDEFAULT_SKIN SELF"
             },
             {
               "id": "action_pipe_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.flow.fluid_type = \"\"\n    SET self.pressure_drop = 0\n    SET self.flow_pulse = false\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.flow.present = true\n    CALL self.copy_upstream\n    SET self.pressure_drop = self.resistance * self.flow.rate ^ 2 + 9810 * self.elevation_change\n    SET self.flow_pulse = true\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  CALL self.clear_flow\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nEND"
+              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.flow.fluid_type = \"\"\n    SET self.flow.pressure = 0\n    SET self.pressure_drop = 0\n    SET self.fluid_flowing = false\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.flow.present = true\n    CALL self.copy_upstream\n    SET self.pressure_drop = self.resistance * self.flow.rate\n    SET self.fluid_flowing = true\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  CALL self.clear_flow\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nEND"
             }
           ],
           "listeners": [
@@ -846,39 +700,7 @@
             {
               "id": "var_heater_flow",
               "name": "flow",
-              "type": "composite",
-              "fields": [
-                {
-                  "id": "var_heater_fluid_present",
-                  "name": "present",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_heater_fluid_flowing",
-                  "name": "flowing",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_heater_flow_rate",
-                  "name": "rate",
-                  "type": "number",
-                  "defaultValue": 0
-                },
-                {
-                  "id": "var_heater_temperature",
-                  "name": "temperature",
-                  "type": "number",
-                  "defaultValue": 20
-                },
-                {
-                  "id": "var_heater_fluid_type",
-                  "name": "fluid_type",
-                  "type": "string",
-                  "defaultValue": ""
-                }
-              ]
+              "$ref": "flow_composite"
             },
             {
               "id": "var_heater_broken",
@@ -891,17 +713,17 @@
             {
               "id": "action_heater_clear_flow",
               "name": "clear_flow",
-              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.heating = false\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.heating = false\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
             },
             {
               "id": "action_heater_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.broken AND self.active == false THEN\n  RETURN\nEND\nIF self.active THEN\n  SET self.active = false\n  SET self.heating = false\n  SET self.flow.temperature = 20\n  ELSE\n  IF ANYSUP.flow.flowing THEN\n    SET self.active = true\n      ELSE\n    ARM dry_run\n  END\nEND\nCALL self.update_flow"
+              "script": "IF self.broken AND self.active == false THEN\n  RETURN\nEND\nIF self.active THEN\n  SET self.active = false\n  SET self.heating = false\n  SET self.flow.temperature = 20\nELSE\n  IF ANYSUP.flow.flowing THEN\n    SET self.active = true\n  ELSE\n    ARM dry_run\n  END\nEND\nCALL self.update_flow"
             },
             {
               "id": "action_heater_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.flow.flowing THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.fluid_type = SUP(0).flow.fluid_type\n  IF self.active THEN\n    SET self.heating = true\n    SET self.flow.temperature = 80\n  ELSE\n    SET self.heating = false\n    SET self.flow.temperature = SUMSUP.flow.temperature\n  END\nELSE\n  CALL self.clear_flow\n  IF self.active THEN\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
+              "script": "IF ANYSUP.flow.flowing THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.fluid_type = SUP(0).flow.fluid_type\n  SET self.flow.pressure = MINSUP.flow.pressure\n  SET self.flow.phase = SUP(0).flow.phase\n  SET self.flow.colour = SUP(0).flow.colour\n  IF self.active THEN\n    SET self.heating = true\n    SET self.flow.temperature = 80\n  ELSE\n    SET self.heating = false\n    SET self.flow.temperature = SUMSUP.flow.temperature\n  END\nELSE\n  CALL self.clear_flow\n  IF self.active THEN\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
             }
           ],
           "listeners": [
@@ -973,7 +795,7 @@
     {
       "id": "componentset_1779500000010",
       "name": "Plant Boundary Components",
-      "description": "Theoretical entry and exit points â€” not operator-controllable.",
+      "description": "Theoretical entry and exit points — not operator-controllable.",
       "components": [
         {
           "id": "component_1779500000005",
@@ -982,39 +804,21 @@
             {
               "id": "var_inlet_flow",
               "name": "flow",
-              "type": "composite",
-              "fields": [
-                {
-                  "id": "var_inlet_fluid_present",
-                  "name": "present",
-                  "type": "boolean",
+              "$ref": "flow_composite",
+              "overrides": {
+                "present": {
                   "defaultValue": true
                 },
-                {
-                  "id": "var_inlet_fluid_flowing",
-                  "name": "flowing",
-                  "type": "boolean",
+                "flowing": {
                   "defaultValue": true
                 },
-                {
-                  "id": "var_inlet_flow_rate",
-                  "name": "rate",
-                  "type": "number",
+                "rate": {
                   "defaultValue": 100
                 },
-                {
-                  "id": "var_inlet_temperature",
-                  "name": "temperature",
-                  "type": "number",
-                  "defaultValue": 20
-                },
-                {
-                  "id": "var_inlet_fluid_type",
-                  "name": "fluid_type",
-                  "type": "string",
+                "fluid_type": {
                   "defaultValue": "water"
                 }
-              ]
+              }
             }
           ],
           "actions": [],
@@ -1031,39 +835,7 @@
             {
               "id": "var_outlet_flow",
               "name": "flow",
-              "type": "composite",
-              "fields": [
-                {
-                  "id": "var_outlet_fluid_present",
-                  "name": "present",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_outlet_fluid_flowing",
-                  "name": "flowing",
-                  "type": "boolean",
-                  "defaultValue": false
-                },
-                {
-                  "id": "var_outlet_flow_rate",
-                  "name": "rate",
-                  "type": "number",
-                  "defaultValue": 0
-                },
-                {
-                  "id": "var_outlet_temperature",
-                  "name": "temperature",
-                  "type": "number",
-                  "defaultValue": 20
-                },
-                {
-                  "id": "var_outlet_fluid_type",
-                  "name": "fluid_type",
-                  "type": "string",
-                  "defaultValue": ""
-                }
-              ]
+              "$ref": "flow_composite"
             },
             {
               "id": "var_outlet_receiving",
@@ -1076,14 +848,14 @@
             {
               "id": "action_outlet_clear_flow",
               "name": "clear_flow",
-              "script": "SET self.flow.flowing = false\nSET self.receiving = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\""
+              "script": "SET self.flow.flowing = false\nSET self.receiving = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
             }
           ],
           "listeners": [
             {
               "id": "listener_outlet_flow_on",
               "condition": "ANYSUP.flow.flowing",
-              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.receiving = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type"
+              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.receiving = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
             },
             {
               "id": "listener_outlet_flow_off",
@@ -1225,6 +997,24 @@
                   "name": "fluid_type",
                   "type": "string",
                   "defaultValue": ""
+                },
+                {
+                  "id": "f_he_po_pressure",
+                  "name": "pressure",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "f_he_po_phase",
+                  "name": "phase",
+                  "type": "string",
+                  "defaultValue": "liquid"
+                },
+                {
+                  "id": "f_he_po_colour",
+                  "name": "colour",
+                  "type": "string",
+                  "defaultValue": ""
                 }
               ]
             },
@@ -1262,6 +1052,24 @@
                   "name": "fluid_type",
                   "type": "string",
                   "defaultValue": ""
+                },
+                {
+                  "id": "f_he_so_pressure",
+                  "name": "pressure",
+                  "type": "number",
+                  "defaultValue": 0
+                },
+                {
+                  "id": "f_he_so_phase",
+                  "name": "phase",
+                  "type": "string",
+                  "defaultValue": "liquid"
+                },
+                {
+                  "id": "f_he_so_colour",
+                  "name": "colour",
+                  "type": "string",
+                  "defaultValue": ""
                 }
               ]
             }
@@ -1285,7 +1093,7 @@
             {
               "id": "action_he_update_ports",
               "name": "update_ports",
-              "script": "IF self.process_flowing THEN\n  SET self.process_out.present = true\n  SET self.process_out.flowing = true\n  SET self.process_out.rate = SUP(0).flow.rate\n  SET self.process_out.temperature = self.process_temp_out\n  SET self.process_out.fluid_type = self.process_fluid_type\nELSE\n  SET self.process_out.present = false\n  SET self.process_out.flowing = false\n  SET self.process_out.rate = 0\n  SET self.process_out.temperature = 20\n  SET self.process_out.fluid_type = \"\"\nEND\nIF self.service_flowing THEN\n  SET self.service_out.present = true\n  SET self.service_out.flowing = true\n  SET self.service_out.rate = SUP(1).flow.rate\n  SET self.service_out.temperature = self.service_temp_out\n  SET self.service_out.fluid_type = self.service_fluid_type\nELSE\n  SET self.service_out.present = false\n  SET self.service_out.flowing = false\n  SET self.service_out.rate = 0\n  SET self.service_out.temperature = 20\n  SET self.service_out.fluid_type = \"\"\nEND"
+              "script": "IF self.process_flowing THEN\n  SET self.process_out.present = true\n  SET self.process_out.flowing = true\n  SET self.process_out.rate = SUP(0).flow.rate\n  SET self.process_out.temperature = self.process_temp_out\n  SET self.process_out.fluid_type = self.process_fluid_type\n  SET self.process_out.pressure = SUP(0).flow.pressure\n  SET self.process_out.phase = SUP(0).flow.phase\n  SET self.process_out.colour = SUP(0).flow.colour\nELSE\n  SET self.process_out.present = false\n  SET self.process_out.flowing = false\n  SET self.process_out.rate = 0\n  SET self.process_out.temperature = 20\n  SET self.process_out.fluid_type = \"\"\n  SET self.process_out.pressure = 0\n  SET self.process_out.phase = \"liquid\"\n  SET self.process_out.colour = \"\"\nEND\nIF self.service_flowing THEN\n  SET self.service_out.present = true\n  SET self.service_out.flowing = true\n  SET self.service_out.rate = SUP(1).flow.rate\n  SET self.service_out.temperature = self.service_temp_out\n  SET self.service_out.fluid_type = self.service_fluid_type\n  SET self.service_out.pressure = SUP(1).flow.pressure\n  SET self.service_out.phase = SUP(1).flow.phase\n  SET self.service_out.colour = SUP(1).flow.colour\nELSE\n  SET self.service_out.present = false\n  SET self.service_out.flowing = false\n  SET self.service_out.rate = 0\n  SET self.service_out.temperature = 20\n  SET self.service_out.fluid_type = \"\"\n  SET self.service_out.pressure = 0\n  SET self.service_out.phase = \"liquid\"\n  SET self.service_out.colour = \"\"\nEND"
             },
             {
               "id": "action_he_update_flow",
@@ -1409,7 +1217,7 @@
     {
       "id": "componentset_electrical_1779600000004",
       "name": "Electrical Components",
-      "description": "Stub electrical components. Full suite (wiring, loads, protection) to follow.",
+      "description": "Electrical supply, protection, switching, and motor load components.",
       "components": [
         {
           "id": "component_power_supply_1779600000005",
@@ -1433,9 +1241,999 @@
           "superiors": [],
           "created": "2026-05-24T00:00:00.003Z",
           "skins": []
+        },
+        {
+          "id": "component_wire_1779700000001",
+          "name": "Wire",
+          "isEdge": true,
+          "lineStyle": {
+            "width": 2,
+            "style": "solid",
+            "colour": "#facc15",
+            "namePresent": false
+          },
+          "variables": [
+            {
+              "id": "var_wire_energised",
+              "name": "energised",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_wire_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_wire_supply_on",
+              "condition": "ANYSUP.energised AND self.broken == false",
+              "script": "SET self.energised = true"
+            },
+            {
+              "id": "listener_wire_supply_off",
+              "condition": "ANYSUP.energised == false OR self.broken",
+              "script": "SET self.energised = false"
+            },
+            {
+              "id": "listener_wire_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.001Z",
+          "faults": [
+            {
+              "id": "fault_wire_break",
+              "name": "wire_break",
+              "description": "Wire broken — no supply to downstream equipment.",
+              "defaultGracePeriod": 2,
+              "costMin": 500,
+              "costMax": 2000
+            }
+          ],
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "energised",
+              "colour": "#facc15"
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_switch_1779700000002",
+          "name": "Switch",
+          "variables": [
+            {
+              "id": "var_switch_closed",
+              "name": "closed",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_switch_energised",
+              "name": "energised",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_switch_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.closed THEN\n  SET self.closed = false\n  SET self.energised = false\nELSE\n  SET self.closed = true\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_switch_supply_on",
+              "condition": "ANYSUP.energised AND self.closed",
+              "script": "SET self.energised = true"
+            },
+            {
+              "id": "listener_switch_supply_off",
+              "condition": "ANYSUP.energised == false OR self.closed == false",
+              "script": "SET self.energised = false"
+            },
+            {
+              "id": "listener_switch_closed_visual",
+              "condition": "self.closed == false",
+              "script": "ADD_OVERLAY SELF \"barrier_overlay\""
+            },
+            {
+              "id": "listener_switch_open_visual",
+              "condition": "self.closed",
+              "script": "DEFAULT_SKIN SELF"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.002Z",
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Switch",
+              "imageAspect": 1.6
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_fuse_1779700000003",
+          "name": "Fuse / Circuit Breaker",
+          "variables": [
+            {
+              "id": "var_fuse_closed",
+              "name": "closed",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_fuse_energised",
+              "name": "energised",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_fuse_tripped",
+              "name": "tripped",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_fuse_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_fuse_reset",
+              "name": "reset",
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.tripped THEN\n  SET self.tripped = false\n  SET self.closed = true\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_fuse_supply_on",
+              "condition": "ANYSUP.energised AND self.closed AND self.tripped == false",
+              "script": "SET self.energised = true"
+            },
+            {
+              "id": "listener_fuse_supply_off",
+              "condition": "ANYSUP.energised == false OR self.closed == false OR self.tripped",
+              "script": "SET self.energised = false"
+            },
+            {
+              "id": "listener_fuse_tripped_visual",
+              "condition": "self.tripped",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            },
+            {
+              "id": "listener_fuse_normal_visual",
+              "condition": "self.tripped == false AND self.broken == false",
+              "script": "DEFAULT_SKIN SELF"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.003Z",
+          "faults": [
+            {
+              "id": "fault_fuse_overload",
+              "name": "fuse_overload",
+              "description": "Circuit breaker tripped on overload — investigate and reset.",
+              "defaultGracePeriod": 0,
+              "costMin": 500,
+              "costMax": 3000
+            }
+          ],
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Circuit Breaker",
+              "imageAspect": 0.6
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_motor_load_1779700000004",
+          "name": "Electric Motor Load",
+          "variables": [
+            {
+              "id": "var_motor_energised",
+              "name": "energised",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_motor_running",
+              "name": "running",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_motor_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_motor_supply_on",
+              "condition": "ANYSUP.energised AND self.broken == false",
+              "script": "SET self.energised = true\nSET self.running = true"
+            },
+            {
+              "id": "listener_motor_supply_off",
+              "condition": "ANYSUP.energised == false",
+              "script": "SET self.energised = false\nSET self.running = false"
+            },
+            {
+              "id": "listener_motor_broken_running",
+              "condition": "self.broken AND self.running",
+              "script": "ARM motor_fault\nSET self.running = false"
+            },
+            {
+              "id": "listener_motor_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.004Z",
+          "faults": [
+            {
+              "id": "fault_motor_fault",
+              "name": "motor_fault",
+              "description": "Motor fault — de-energise and investigate.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 8000
+            }
+          ],
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Electric Motor",
+              "imageAspect": 1
+            }
+          ],
+          "defaultSkin": "default"
         }
       ],
       "created": "2026-05-24T00:00:00.004Z"
+    },
+    {
+      "id": "componentset_instrumentation_1779700000010",
+      "name": "Instrumentation and Control",
+      "description": "Sensors, signal cables, and on/off controllers for Cycle 3.",
+      "components": [
+        {
+          "id": "component_signal_cable_1779700000011",
+          "name": "Signal Cable",
+          "isEdge": true,
+          "lineStyle": {
+            "width": 1,
+            "style": "dashed",
+            "colour": "#a78bfa",
+            "namePresent": false
+          },
+          "variables": [
+            {
+              "id": "var_sc_connected",
+              "name": "connected",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_sc_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 0
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_cable_transmit",
+              "condition": "ANYSUP.signal >= 0",
+              "script": "IF self.connected THEN\n  SET self.signal = ANYSUP.signal\nELSE\n  SET self.signal = 0\nEND"
+            },
+            {
+              "id": "listener_cable_disconnected",
+              "condition": "self.connected == false",
+              "script": "SET self.signal = 0"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.011Z",
+          "faults": [
+            {
+              "id": "fault_cable_break",
+              "name": "cable_break",
+              "description": "Signal cable disconnected — control signal lost.",
+              "defaultGracePeriod": 2,
+              "costMin": 300,
+              "costMax": 1500
+            }
+          ],
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "live",
+              "colour": "#a78bfa"
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_flow_meter_1779700000012",
+          "name": "Analogue Flow Meter",
+          "variables": [
+            {
+              "id": "var_afm_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_afm_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_afm_clear_flow",
+              "name": "clear_flow",
+              "$ref": "scriptTemplate:clear_flow"
+            },
+            {
+              "id": "action_afm_copy_upstream",
+              "name": "copy_upstream",
+              "$ref": "scriptTemplate:copy_upstream"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_afm_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.copy_upstream\nSET self.flow.present = true\nSET self.signal = self.flow.rate"
+            },
+            {
+              "id": "listener_afm_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.clear_flow\nSET self.signal = 0"
+            },
+            {
+              "id": "listener_afm_present_on",
+              "condition": "ANYSUP.flow.present",
+              "script": "SET self.flow.present = true"
+            },
+            {
+              "id": "listener_afm_present_off",
+              "condition": "ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow\nSET self.signal = 0"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.012Z",
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Flow Meter",
+              "imageAspect": 1
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_pressure_gauge_1779700000013",
+          "name": "Analogue Pressure Gauge",
+          "variables": [
+            {
+              "id": "var_apg_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_apg_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_apg_clear_flow",
+              "name": "clear_flow",
+              "$ref": "scriptTemplate:clear_flow"
+            },
+            {
+              "id": "action_apg_copy_upstream",
+              "name": "copy_upstream",
+              "$ref": "scriptTemplate:copy_upstream"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_apg_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.copy_upstream\nSET self.flow.present = true\nSET self.signal = self.flow.pressure"
+            },
+            {
+              "id": "listener_apg_present_on",
+              "condition": "ANYSUP.flow.present",
+              "script": "SET self.flow.present = true\nSET self.signal = MINSUP.flow.pressure"
+            },
+            {
+              "id": "listener_apg_flow_off",
+              "condition": "ANYSUP.flow.flowing == false AND ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow\nSET self.signal = 0"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.013Z",
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Pressure Gauge",
+              "imageAspect": 1
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_thermometer_1779700000014",
+          "name": "Analogue Thermometer",
+          "variables": [
+            {
+              "id": "var_ath_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_ath_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_ath_clear_flow",
+              "name": "clear_flow",
+              "$ref": "scriptTemplate:clear_flow"
+            },
+            {
+              "id": "action_ath_copy_upstream",
+              "name": "copy_upstream",
+              "$ref": "scriptTemplate:copy_upstream"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_ath_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.copy_upstream\nSET self.flow.present = true\nSET self.signal = self.flow.temperature"
+            },
+            {
+              "id": "listener_ath_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.clear_flow\nSET self.signal = 20"
+            },
+            {
+              "id": "listener_ath_present_on",
+              "condition": "ANYSUP.flow.present",
+              "script": "SET self.flow.present = true"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.014Z",
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Thermometer",
+              "imageAspect": 0.5
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_level_sensor_1779700000015",
+          "name": "Level Sensor",
+          "variables": [
+            {
+              "id": "var_ls_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_ls_level_low",
+              "name": "level_low",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ls_level_high",
+              "name": "level_high",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ls_low_setpoint",
+              "name": "low_setpoint",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_ls_high_setpoint",
+              "name": "high_setpoint",
+              "type": "number",
+              "defaultValue": 80
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_ls_level_read",
+              "condition": "ANYSUP.level >= 0",
+              "script": "SET self.signal = SUMSUP.level\nIF self.signal <= self.low_setpoint THEN\n  SET self.level_low = true\nELSE\n  SET self.level_low = false\nEND\nIF self.signal >= self.high_setpoint THEN\n  SET self.level_high = true\nELSE\n  SET self.level_high = false\nEND"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.015Z",
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Level Sensor",
+              "imageAspect": 0.4
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_flow_sensor_1779700000016",
+          "name": "Flow Sensor",
+          "variables": [
+            {
+              "id": "var_fs_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_fs_flow_present",
+              "name": "flow_present",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_fs_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_fs_clear_flow",
+              "name": "clear_flow",
+              "$ref": "scriptTemplate:clear_flow"
+            },
+            {
+              "id": "action_fs_copy_upstream",
+              "name": "copy_upstream",
+              "$ref": "scriptTemplate:copy_upstream"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_fs_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.copy_upstream\nSET self.flow.present = true\nSET self.flow_present = true\nSET self.signal = self.flow.rate"
+            },
+            {
+              "id": "listener_fs_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.clear_flow\nSET self.flow_present = false\nSET self.signal = 0"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.016Z",
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Flow Switch",
+              "imageAspect": 1
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_level_controller_1779700000017",
+          "name": "Level Controller",
+          "variables": [
+            {
+              "id": "var_lc_enabled",
+              "name": "enabled",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_lc_setpoint",
+              "name": "setpoint",
+              "type": "number",
+              "defaultValue": 50
+            },
+            {
+              "id": "var_lc_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_lc_output",
+              "name": "output",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_lc_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.enabled THEN\n  SET self.enabled = false\n  SET self.signal = 0\n  SET self.output = false\nELSE\n  SET self.enabled = true\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_lc_measure",
+              "condition": "ANYSUP.signal >= 0",
+              "script": "IF self.enabled THEN\n  IF ANYSUP.signal < self.setpoint THEN\n    SET self.output = true\n    SET self.signal = 100\n  ELSE\n    SET self.output = false\n    SET self.signal = 0\n  END\nEND"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.017Z",
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "PID Controller",
+              "imageAspect": 0.8
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_flow_controller_1779700000018",
+          "name": "Flow Controller",
+          "variables": [
+            {
+              "id": "var_fc_enabled",
+              "name": "enabled",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_fc_setpoint",
+              "name": "setpoint",
+              "type": "number",
+              "defaultValue": 50
+            },
+            {
+              "id": "var_fc_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_fc_output",
+              "name": "output",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_fc_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.enabled THEN\n  SET self.enabled = false\n  SET self.signal = 0\n  SET self.output = false\nELSE\n  SET self.enabled = true\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_fc_measure",
+              "condition": "ANYSUP.signal >= 0",
+              "script": "IF self.enabled THEN\n  IF ANYSUP.signal < self.setpoint THEN\n    SET self.output = true\n    SET self.signal = 100\n  ELSE\n    SET self.output = false\n    SET self.signal = 0\n  END\nEND"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.018Z",
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "PID Controller",
+              "imageAspect": 0.8
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_temp_controller_1779700000019",
+          "name": "Temperature Controller",
+          "variables": [
+            {
+              "id": "var_tc_enabled",
+              "name": "enabled",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_tc_setpoint",
+              "name": "setpoint",
+              "type": "number",
+              "defaultValue": 60
+            },
+            {
+              "id": "var_tc_signal",
+              "name": "signal",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_tc_output",
+              "name": "output",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_tc_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.enabled THEN\n  SET self.enabled = false\n  SET self.signal = 0\n  SET self.output = false\nELSE\n  SET self.enabled = true\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_tc_measure",
+              "condition": "ANYSUP.signal >= 0",
+              "script": "IF self.enabled THEN\n  IF ANYSUP.signal < self.setpoint THEN\n    SET self.output = true\n    SET self.signal = 100\n  ELSE\n    SET self.output = false\n    SET self.signal = 0\n  END\nEND"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.019Z",
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "PID Controller",
+              "imageAspect": 0.8
+            }
+          ],
+          "defaultSkin": "default"
+        }
+      ],
+      "created": "2026-06-06T00:00:00.010Z"
+    },
+    {
+      "id": "componentset_safety_1779700000020",
+      "name": "Pressure Safety Devices",
+      "description": "PRV, Pressure Regulator, and Rupture Disc for Cycle 4.",
+      "components": [
+        {
+          "id": "component_prv_1779700000021",
+          "name": "PRV",
+          "isSink": true,
+          "variables": [
+            {
+              "id": "var_prv_open",
+              "name": "open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_prv_set_pressure",
+              "name": "set_pressure",
+              "type": "number",
+              "defaultValue": 100
+            },
+            {
+              "id": "var_prv_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_prv_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"\nSET self.open = false"
+            },
+            {
+              "id": "action_prv_reset",
+              "name": "reset",
+              "script": "IF MINSUP.flow.pressure < self.set_pressure THEN\n  SET self.open = false\n  CALL self.clear_flow\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_prv_check",
+              "condition": "ANYSUP.flow.present",
+              "script": "IF MINSUP.flow.pressure > self.set_pressure THEN\n  SET self.open = true\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.pressure = 0\n  SET self.flow.phase = SUP(0).flow.phase\n  SET self.flow.colour = SUP(0).flow.colour\n  ARM prv_chatter\nELSE\n  SET self.open = false\n  CALL self.clear_flow\nEND"
+            },
+            {
+              "id": "listener_prv_no_supply",
+              "condition": "ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow"
+            },
+            {
+              "id": "listener_prv_open_visual",
+              "condition": "self.open",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.021Z",
+          "faults": [
+            {
+              "id": "fault_prv_chatter",
+              "name": "prv_chatter",
+              "description": "PRV chattering under overpressure — reduce upstream pressure immediately.",
+              "defaultGracePeriod": 3,
+              "costMin": 2000,
+              "costMax": 8000
+            }
+          ],
+          "imageStencilName": "Relief Valve",
+          "imageAspect": 0.8,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Relief Valve",
+              "imageAspect": 0.8
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_pressure_regulator_1779700000022",
+          "name": "Pressure Regulator",
+          "variables": [
+            {
+              "id": "var_pr_regulating",
+              "name": "regulating",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_pr_set_pressure",
+              "name": "set_pressure",
+              "type": "number",
+              "defaultValue": 50
+            },
+            {
+              "id": "var_pr_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_pr_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.fluid_type = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
+            },
+            {
+              "id": "action_pr_copy_upstream",
+              "name": "copy_upstream",
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.fluid_type = SUP(0).flow.fluid_type\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_reg_flow",
+              "condition": "ANYSUP.flow.flowing OR ANYSUP.flow.present",
+              "script": "IF ANYSUP.flow.flowing AND self.regulating THEN\n  CALL self.copy_upstream\n  SET self.flow.pressure = self.set_pressure\nELSE IF ANYSUP.flow.flowing AND self.regulating == false THEN\n  CALL self.copy_upstream\n  SET self.flow.pressure = MINSUP.flow.pressure\nELSE IF ANYSUP.flow.present THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = false\n  SET self.flow.rate = 0\n  SET self.flow.pressure = MINSUP.flow.pressure\n  SET self.flow.phase = SUP(0).flow.phase\n  SET self.flow.colour = SUP(0).flow.colour\nELSE\n  CALL self.clear_flow\nEND"
+            },
+            {
+              "id": "listener_reg_no_supply",
+              "condition": "ANYSUP.flow.flowing == false AND ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.022Z",
+          "imageStencilName": "Pressure Regulator",
+          "imageAspect": 1.2,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Pressure Regulator",
+              "imageAspect": 1.2
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_rupture_disc_1779700000023",
+          "name": "Rupture Disc",
+          "isSink": true,
+          "variables": [
+            {
+              "id": "var_rd_intact",
+              "name": "intact",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_rd_burst_pressure",
+              "name": "burst_pressure",
+              "type": "number",
+              "defaultValue": 150
+            },
+            {
+              "id": "var_rd_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_disc_check",
+              "condition": "ANYSUP.flow.present",
+              "script": "IF self.intact THEN\n  IF MINSUP.flow.pressure > self.burst_pressure THEN\n    SET self.intact = false\n    ARM disc_burst\n  END\nELSE\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.pressure = 0\n  SET self.flow.phase = SUP(0).flow.phase\n  SET self.flow.colour = SUP(0).flow.colour\nEND"
+            },
+            {
+              "id": "listener_disc_no_supply",
+              "condition": "ANYSUP.flow.present == false",
+              "script": "IF self.intact == false THEN\n  SET self.flow.present = false\n  SET self.flow.flowing = false\nEND"
+            },
+            {
+              "id": "listener_disc_burst_visual",
+              "condition": "self.intact == false",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-06T00:00:00.023Z",
+          "faults": [
+            {
+              "id": "fault_disc_burst",
+              "name": "disc_burst",
+              "description": "Rupture disc burst — immediate process loss.",
+              "defaultGracePeriod": 0,
+              "costMin": 10000,
+              "costMax": 50000
+            }
+          ],
+          "imageStencilName": "Rupture Disc",
+          "imageAspect": 0.8,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Rupture Disc",
+              "imageAspect": 0.8
+            }
+          ],
+          "defaultSkin": "default"
+        }
+      ],
+      "created": "2026-06-06T00:00:00.020Z"
     }
   ],
   "globalSkins": [
