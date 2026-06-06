@@ -1,0 +1,289 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_1b4_inlet",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_p_in",
+      "x": 90,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_v1",
+      "x": 180,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_p_suct",
+      "x": 280,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_p1",
+      "x": 380,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_p_disc",
+      "x": 490,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_v2",
+      "x": 590,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_p_fill",
+      "x": 690,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_t1",
+      "x": 790,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_p_tank_out",
+      "x": 900,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_v3",
+      "x": 990,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_p_xfer_suct",
+      "x": 1090,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_p2",
+      "x": 1190,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_p_xfer_disc",
+      "x": 1300,
+      "y": 0
+    },
+    {
+      "lcId": "lc_1b4_outlet",
+      "x": 1390,
+      "y": 0
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_1b4_01",
+      "srcLcId": "lc_1b4_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_p_in",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_02",
+      "srcLcId": "lc_1b4_p_in",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_03",
+      "srcLcId": "lc_1b4_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_p_suct",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_04",
+      "srcLcId": "lc_1b4_p_suct",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_p1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_05",
+      "srcLcId": "lc_1b4_p1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_p_disc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_06",
+      "srcLcId": "lc_1b4_p_disc",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_v2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_07",
+      "srcLcId": "lc_1b4_v2",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_p_fill",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_08",
+      "srcLcId": "lc_1b4_p_fill",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_t1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_09",
+      "srcLcId": "lc_1b4_t1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_p_tank_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_10",
+      "srcLcId": "lc_1b4_p_tank_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_v3",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_11",
+      "srcLcId": "lc_1b4_v3",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_p_xfer_suct",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_12",
+      "srcLcId": "lc_1b4_p_xfer_suct",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_p2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_13",
+      "srcLcId": "lc_1b4_p2",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_p_xfer_disc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b4_14",
+      "srcLcId": "lc_1b4_p_xfer_disc",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b4_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_1b4_v1_btn": {
+      "id": "anc_1b4_v1_btn",
+      "type": "button",
+      "lcId": "lc_1b4_v1",
+      "bindTo": "act:on_toggle",
+      "label": "Open/Close",
+      "x": 180,
+      "y": -30
+    },
+    "anc_1b4_v1_lgt": {
+      "id": "anc_1b4_v1_lgt",
+      "type": "light",
+      "lcId": "lc_1b4_v1",
+      "bindTo": "var:open",
+      "label": "V1",
+      "x": 240,
+      "y": -30
+    },
+    "anc_1b4_p1_btn": {
+      "id": "anc_1b4_p1_btn",
+      "type": "button",
+      "lcId": "lc_1b4_p1",
+      "bindTo": "act:on_toggle",
+      "label": "Start/Stop",
+      "x": 380,
+      "y": -30
+    },
+    "anc_1b4_p1_lgt": {
+      "id": "anc_1b4_p1_lgt",
+      "type": "light",
+      "lcId": "lc_1b4_p1",
+      "bindTo": "var:running",
+      "label": "P1",
+      "x": 440,
+      "y": -30
+    },
+    "anc_1b4_v2_btn": {
+      "id": "anc_1b4_v2_btn",
+      "type": "button",
+      "lcId": "lc_1b4_v2",
+      "bindTo": "act:on_toggle",
+      "label": "Open/Close",
+      "x": 590,
+      "y": -30
+    },
+    "anc_1b4_v2_lgt": {
+      "id": "anc_1b4_v2_lgt",
+      "type": "light",
+      "lcId": "lc_1b4_v2",
+      "bindTo": "var:open",
+      "label": "V2",
+      "x": 650,
+      "y": -30
+    },
+    "anc_1b4_t1_ctr": {
+      "id": "anc_1b4_t1_ctr",
+      "type": "counter",
+      "lcId": "lc_1b4_t1",
+      "bindTo": "var:level",
+      "label": "T1 Level",
+      "x": 790,
+      "y": -50
+    },
+    "anc_1b4_t1_lgt": {
+      "id": "anc_1b4_t1_lgt",
+      "type": "light",
+      "lcId": "lc_1b4_t1",
+      "bindTo": "var:level_low",
+      "label": "Low",
+      "x": 860,
+      "y": -50
+    },
+    "anc_1b4_v3_btn": {
+      "id": "anc_1b4_v3_btn",
+      "type": "button",
+      "lcId": "lc_1b4_v3",
+      "bindTo": "act:on_toggle",
+      "label": "Open/Close",
+      "x": 990,
+      "y": -30
+    },
+    "anc_1b4_v3_lgt": {
+      "id": "anc_1b4_v3_lgt",
+      "type": "light",
+      "lcId": "lc_1b4_v3",
+      "bindTo": "var:open",
+      "label": "V3",
+      "x": 1050,
+      "y": -30
+    },
+    "anc_1b4_p2_btn": {
+      "id": "anc_1b4_p2_btn",
+      "type": "button",
+      "lcId": "lc_1b4_p2",
+      "bindTo": "act:on_toggle",
+      "label": "Start/Stop",
+      "x": 1190,
+      "y": -30
+    },
+    "anc_1b4_p2_lgt": {
+      "id": "anc_1b4_p2_lgt",
+      "type": "light",
+      "lcId": "lc_1b4_p2",
+      "bindTo": "var:running",
+      "label": "P2",
+      "x": 1250,
+      "y": -30
+    }
+  }
+}
