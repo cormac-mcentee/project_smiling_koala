@@ -1,0 +1,106 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_2a1_s1",
+      "name": "Complete the Circuit",
+      "description": "The power supply PS1 is on and SW2 is already closed, but SW1 is open so the lamp is dark. Close SW1 to allow current to flow through to the lamp.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_2a1_s1_01",
+          "literalComponentId": "lc_2a1_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2a1_s1_02",
+          "literalComponentId": "lc_2a1_sw1",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2a1_s1_03",
+          "literalComponentId": "lc_2a1_sw2",
+          "variableId": "var_switch_closed",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2a1_s1_01",
+          "literalComponentId": "lc_2a1_lamp1",
+          "variableId": "var_lamp_lit",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2a1_s2",
+      "name": "Break the Circuit",
+      "description": "The circuit is complete and Lamp1 is lit. Open either switch to interrupt current flow and turn the lamp off. Note that a single open switch is sufficient to break the whole circuit.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_2a1_s2_01",
+          "literalComponentId": "lc_2a1_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2a1_s2_02",
+          "literalComponentId": "lc_2a1_sw1",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2a1_s2_03",
+          "literalComponentId": "lc_2a1_sw2",
+          "variableId": "var_switch_closed",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2a1_s2_01",
+          "literalComponentId": "lc_2a1_lamp1",
+          "variableId": "var_lamp_lit",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "scenario_2a1_s3",
+      "name": "Series Switches",
+      "description": "Both SW1 and SW2 are open and the lamp is dark. In a series circuit every switch must be closed for current to reach the load — one open switch breaks the path. Close both SW1 and SW2 to light the lamp.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_2a1_s3_01",
+          "literalComponentId": "lc_2a1_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2a1_s3_02",
+          "literalComponentId": "lc_2a1_sw1",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2a1_s3_03",
+          "literalComponentId": "lc_2a1_sw2",
+          "variableId": "var_switch_closed",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2a1_s3_01",
+          "literalComponentId": "lc_2a1_lamp1",
+          "variableId": "var_lamp_lit",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
