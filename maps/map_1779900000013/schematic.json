@@ -2,188 +2,211 @@
   "nodes": [
     {
       "lcId": "lc_2b3_ps_s",
-      "x": 330,
-      "y": -200
+      "x": 320,
+      "y": -206
     },
     {
       "lcId": "lc_2b3_wire_sa",
-      "x": 440,
-      "y": -200
+      "x": 444,
+      "y": -206
     },
     {
       "lcId": "lc_2b3_sw_s_iso",
-      "x": 550,
-      "y": -200
+      "x": 540,
+      "y": -198
     },
     {
       "lcId": "lc_2b3_wire_sb",
       "x": 660,
-      "y": -200
+      "y": -206
     },
     {
       "lcId": "lc_2b3_f_service",
-      "x": 770,
-      "y": -200
+      "x": 780,
+      "y": -198
     },
     {
       "lcId": "lc_2b3_wire_sc",
-      "x": 880,
-      "y": -200
+      "x": 876,
+      "y": -206
     },
     {
       "lcId": "lc_2b3_m_service",
-      "x": 990,
-      "y": -200
+      "x": 984,
+      "y": -192
     },
     {
       "lcId": "lc_2b3_shaft_s",
-      "x": 715,
-      "y": -100
+      "x": 708,
+      "y": -86,
+      "rotation": 180
     },
     {
       "lcId": "lc_2b3_t1",
-      "x": 0,
+      "x": 3,
       "y": 0
     },
     {
       "lcId": "lc_2b3_pipe_s1",
-      "x": 110,
-      "y": 0
+      "x": 108,
+      "y": 10
     },
     {
       "lcId": "lc_2b3_v_s1",
-      "x": 220,
-      "y": 0
+      "x": 216,
+      "y": -6
     },
     {
       "lcId": "lc_2b3_pipe_s2",
-      "x": 330,
-      "y": 0
+      "x": 324,
+      "y": 10
     },
     {
       "lcId": "lc_2b3_p_service",
-      "x": 440,
-      "y": 0
+      "x": 432,
+      "y": -1
     },
     {
       "lcId": "lc_2b3_pipe_s3",
-      "x": 550,
-      "y": 0
+      "x": 540,
+      "y": 10
     },
     {
       "lcId": "lc_2b3_he1",
-      "x": 660,
-      "y": 100
+      "x": 672,
+      "y": 104.5,
+      "portOverrides": {
+        "service_in": {
+          "edge": "top",
+          "px": 0.2235347863504972
+        },
+        "service_out": {
+          "edge": "top",
+          "px": 0.7273847496899369
+        }
+      }
     },
     {
       "lcId": "lc_2b3_pipe_s4",
-      "x": 770,
-      "y": 0
+      "x": 780,
+      "y": 10
     },
     {
       "lcId": "lc_2b3_v_s2",
-      "x": 880,
-      "y": 0
+      "x": 888,
+      "y": -6
     },
     {
       "lcId": "lc_2b3_pipe_s5",
-      "x": 990,
-      "y": 0
+      "x": 996,
+      "y": 10
     },
     {
       "lcId": "lc_2b3_outlet_service",
-      "x": 1100,
-      "y": 0
+      "x": 1112,
+      "y": 10
     },
     {
       "lcId": "lc_2b3_inlet_p",
-      "x": 0,
-      "y": 200
+      "x": 8,
+      "y": 202
     },
     {
       "lcId": "lc_2b3_pipe_p1",
-      "x": 110,
-      "y": 200
+      "x": 108,
+      "y": 202
     },
     {
       "lcId": "lc_2b3_v_p1",
-      "x": 220,
-      "y": 200
+      "x": 216,
+      "y": 210
     },
     {
       "lcId": "lc_2b3_pipe_p2",
-      "x": 330,
-      "y": 200
+      "x": 324,
+      "y": 202
     },
     {
       "lcId": "lc_2b3_p_process",
-      "x": 440,
-      "y": 200
+      "x": 432,
+      "y": 191,
+      "portOverrides": {
+        "shaft_input": {
+          "edge": "bottom",
+          "px": 0.5235197470855741
+        }
+      }
     },
     {
       "lcId": "lc_2b3_pipe_p3",
-      "x": 550,
-      "y": 200
+      "x": 540,
+      "y": 202
     },
     {
       "lcId": "lc_2b3_pipe_p4",
-      "x": 770,
-      "y": 200
+      "x": 780,
+      "y": 202
     },
     {
       "lcId": "lc_2b3_v_p2",
-      "x": 880,
-      "y": 200
+      "x": 888,
+      "y": 210
     },
     {
       "lcId": "lc_2b3_pipe_p5",
-      "x": 990,
-      "y": 200
+      "x": 996,
+      "y": 202
     },
     {
       "lcId": "lc_2b3_outlet_process",
-      "x": 1100,
-      "y": 200
+      "x": 1112,
+      "y": 202
     },
     {
       "lcId": "lc_2b3_ps_p",
-      "x": 330,
-      "y": 400
+      "x": 320,
+      "y": 394
     },
     {
       "lcId": "lc_2b3_wire_pa",
-      "x": 440,
-      "y": 400
+      "x": 444,
+      "y": 394
     },
     {
       "lcId": "lc_2b3_sw_p_iso",
-      "x": 550,
-      "y": 400
+      "x": 540,
+      "y": 402
     },
     {
       "lcId": "lc_2b3_wire_pb",
       "x": 660,
-      "y": 400
+      "y": 394
     },
     {
       "lcId": "lc_2b3_f_process",
-      "x": 770,
-      "y": 400
+      "x": 780,
+      "y": 402
     },
     {
       "lcId": "lc_2b3_wire_pc",
-      "x": 880,
-      "y": 400
+      "x": 876,
+      "y": 394
     },
     {
       "lcId": "lc_2b3_m_process",
-      "x": 990,
-      "y": 400
+      "x": 984,
+      "y": 408,
+      "portOverrides": {
+        "shaft_output": {
+          "edge": "top",
+          "px": 0.5
+        }
+      }
     },
     {
       "lcId": "lc_2b3_shaft_p",
-      "x": 715,
-      "y": 300
+      "x": 708,
+      "y": 298
     }
   ],
   "connections": [
@@ -537,8 +560,8 @@
       "lcId": "lc_2b3_v_s2",
       "bindTo": "act:on_toggle",
       "label": "Toggle",
-      "x": 865,
-      "y": -28
+      "x": 876,
+      "y": 84
     },
     "anc_2b3_vs2_light": {
       "id": "anc_2b3_vs2_light",
@@ -546,8 +569,8 @@
       "lcId": "lc_2b3_v_s2",
       "bindTo": "var:open",
       "label": "Open",
-      "x": 910,
-      "y": -28
+      "x": 924,
+      "y": 84
     },
     "anc_2b3_he1_heat": {
       "id": "anc_2b3_he1_heat",
@@ -555,8 +578,8 @@
       "lcId": "lc_2b3_he1",
       "bindTo": "var:heat_transfer_active",
       "label": "HX Active",
-      "x": 660,
-      "y": 70
+      "x": 696,
+      "y": 156
     },
     "anc_2b3_outs_light": {
       "id": "anc_2b3_outs_light",
@@ -564,8 +587,8 @@
       "lcId": "lc_2b3_outlet_service",
       "bindTo": "var:receiving",
       "label": "Receiving",
-      "x": 1100,
-      "y": -28
+      "x": 1104,
+      "y": 60
     },
     "anc_2b3_vp1_btn": {
       "id": "anc_2b3_vp1_btn",
@@ -573,8 +596,8 @@
       "lcId": "lc_2b3_v_p1",
       "bindTo": "act:on_toggle",
       "label": "Toggle",
-      "x": 205,
-      "y": 228
+      "x": 204,
+      "y": 180
     },
     "anc_2b3_vp1_light": {
       "id": "anc_2b3_vp1_light",
@@ -582,8 +605,8 @@
       "lcId": "lc_2b3_v_p1",
       "bindTo": "var:open",
       "label": "Open",
-      "x": 250,
-      "y": 228
+      "x": 264,
+      "y": 180
     },
     "anc_2b3_pp_light": {
       "id": "anc_2b3_pp_light",
@@ -591,8 +614,8 @@
       "lcId": "lc_2b3_p_process",
       "bindTo": "var:running",
       "label": "Running",
-      "x": 440,
-      "y": 228
+      "x": 444,
+      "y": 156
     },
     "anc_2b3_vp2_btn": {
       "id": "anc_2b3_vp2_btn",
@@ -600,8 +623,8 @@
       "lcId": "lc_2b3_v_p2",
       "bindTo": "act:on_toggle",
       "label": "Toggle",
-      "x": 865,
-      "y": 228
+      "x": 864,
+      "y": 180
     },
     "anc_2b3_vp2_light": {
       "id": "anc_2b3_vp2_light",
@@ -609,8 +632,8 @@
       "lcId": "lc_2b3_v_p2",
       "bindTo": "var:open",
       "label": "Open",
-      "x": 910,
-      "y": 228
+      "x": 924,
+      "y": 180
     },
     "anc_2b3_outp_light": {
       "id": "anc_2b3_outp_light",
@@ -618,8 +641,8 @@
       "lcId": "lc_2b3_outlet_process",
       "bindTo": "var:receiving",
       "label": "Receiving",
-      "x": 1100,
-      "y": 228
+      "x": 1116,
+      "y": 180
     },
     "anc_2b3_psp_btn": {
       "id": "anc_2b3_psp_btn",
@@ -627,8 +650,8 @@
       "lcId": "lc_2b3_ps_p",
       "bindTo": "act:on_toggle",
       "label": "Toggle",
-      "x": 330,
-      "y": 428
+      "x": 336,
+      "y": 444
     },
     "anc_2b3_psp_light": {
       "id": "anc_2b3_psp_light",
@@ -636,8 +659,8 @@
       "lcId": "lc_2b3_ps_p",
       "bindTo": "var:energised",
       "label": "On",
-      "x": 370,
-      "y": 428
+      "x": 396,
+      "y": 444
     },
     "anc_2b3_swp_btn": {
       "id": "anc_2b3_swp_btn",
@@ -645,8 +668,8 @@
       "lcId": "lc_2b3_sw_p_iso",
       "bindTo": "act:on_toggle",
       "label": "Toggle",
-      "x": 535,
-      "y": 428
+      "x": 540,
+      "y": 480
     },
     "anc_2b3_swp_light": {
       "id": "anc_2b3_swp_light",
@@ -654,8 +677,8 @@
       "lcId": "lc_2b3_sw_p_iso",
       "bindTo": "var:closed",
       "label": "Closed",
-      "x": 580,
-      "y": 428
+      "x": 600,
+      "y": 480
     },
     "anc_2b3_fp_light": {
       "id": "anc_2b3_fp_light",
@@ -663,8 +686,8 @@
       "lcId": "lc_2b3_f_process",
       "bindTo": "var:tripped",
       "label": "Tripped",
-      "x": 755,
-      "y": 428
+      "x": 828,
+      "y": 516
     },
     "anc_2b3_fp_reset": {
       "id": "anc_2b3_fp_reset",
@@ -672,8 +695,8 @@
       "lcId": "lc_2b3_f_process",
       "bindTo": "act:reset",
       "label": "Reset",
-      "x": 805,
-      "y": 428
+      "x": 768,
+      "y": 516
     },
     "anc_2b3_mp_light": {
       "id": "anc_2b3_mp_light",
@@ -681,8 +704,8 @@
       "lcId": "lc_2b3_m_process",
       "bindTo": "var:running",
       "label": "Running",
-      "x": 990,
-      "y": 428
+      "x": 1104,
+      "y": 456
     }
   }
 }
