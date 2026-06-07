@@ -1,0 +1,166 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_2b1_s1",
+      "name": "Full Electrical Startup",
+      "description": "All valves are closed and the MCC is de-energised (PS1 on but SW_MCC open). Start up in the correct sequence: open V_Suction → close SW_MCC to energise the motor → the shaft turns and P1 auto-starts → open V_Discharge to establish flow.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_2b1_s1_01",
+          "literalComponentId": "lc_2b1_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b1_s1_02",
+          "literalComponentId": "lc_2b1_sw_mcc",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2b1_s1_03",
+          "literalComponentId": "lc_2b1_f_motor",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2b1_s1_04",
+          "literalComponentId": "lc_2b1_v_suction",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_2b1_s1_05",
+          "literalComponentId": "lc_2b1_v_discharge",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2b1_s1_01",
+          "literalComponentId": "lc_2b1_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2b1_s2",
+      "name": "Motor Protection Trip",
+      "description": "The system was running, but the motor fuse F_Motor has tripped. M1 is de-energised; the shaft is stationary so P1 has stopped automatically. Restore the system: open SW_MCC to isolate, reset F_Motor, then close SW_MCC — the motor auto-starts, the shaft turns, and P1 auto-restarts.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_2b1_s2_01",
+          "literalComponentId": "lc_2b1_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b1_s2_02",
+          "literalComponentId": "lc_2b1_sw_mcc",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2b1_s2_03",
+          "literalComponentId": "lc_2b1_f_motor",
+          "variableId": "var_fuse_tripped",
+          "value": true
+        },
+        {
+          "id": "ic_2b1_s2_04",
+          "literalComponentId": "lc_2b1_v_suction",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b1_s2_05",
+          "literalComponentId": "lc_2b1_v_discharge",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2b1_s2_01",
+          "literalComponentId": "lc_2b1_m1",
+          "variableId": "var_dm_running",
+          "value": true
+        },
+        {
+          "id": "tc_2b1_s2_02",
+          "literalComponentId": "lc_2b1_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2b1_s3",
+      "name": "Emergency Isolation",
+      "description": "The system is running normally. A downstream fault requires full emergency isolation. Shut down in sequence: open SW_MCC first to stop the motor — the shaft stops, P1 stops automatically — then close V_Discharge → close V_Suction → de-energise PS1. Closing the discharge valve while the shaft is turning will dead-head the pump.",
+      "difficulty": "hard",
+      "initialConditions": [
+        {
+          "id": "ic_2b1_s3_01",
+          "literalComponentId": "lc_2b1_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b1_s3_02",
+          "literalComponentId": "lc_2b1_sw_mcc",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2b1_s3_03",
+          "literalComponentId": "lc_2b1_f_motor",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2b1_s3_04",
+          "literalComponentId": "lc_2b1_v_suction",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b1_s3_05",
+          "literalComponentId": "lc_2b1_v_discharge",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2b1_s3_01",
+          "literalComponentId": "lc_2b1_v_discharge",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_2b1_s3_02",
+          "literalComponentId": "lc_2b1_m1",
+          "variableId": "var_dm_running",
+          "value": false
+        },
+        {
+          "id": "tc_2b1_s3_03",
+          "literalComponentId": "lc_2b1_v_suction",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_2b1_s3_04",
+          "literalComponentId": "lc_2b1_ps1",
+          "variableId": "var_ps_energised",
+          "value": false
+        }
+      ]
+    }
+  ]
+}
