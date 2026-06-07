@@ -2,58 +2,68 @@
   "nodes": [
     {
       "lcId": "lc_1b2_inlet",
-      "x": 0,
-      "y": 0
+      "x": 8,
+      "y": 10
     },
     {
       "lcId": "lc_1b2_p_in",
-      "x": 90,
-      "y": 0
+      "x": 84,
+      "y": 10
     },
     {
       "lcId": "lc_1b2_v1",
-      "x": 180,
-      "y": 0
+      "x": 192,
+      "y": -6
     },
     {
       "lcId": "lc_1b2_p_suct",
-      "x": 280,
-      "y": 0
+      "x": 276,
+      "y": 10
     },
     {
       "lcId": "lc_1b2_p1",
-      "x": 380,
-      "y": 0
+      "x": 384,
+      "y": -1
     },
     {
       "lcId": "lc_1b2_t1",
-      "x": 380,
-      "y": 200
+      "x": 387,
+      "y": 192
     },
     {
       "lcId": "lc_1b2_p_dose",
-      "x": 460,
-      "y": 200
+      "x": 468,
+      "y": 226
     },
     {
       "lcId": "lc_1b2_v2",
-      "x": 560,
-      "y": 200
+      "x": 552,
+      "y": 210
     },
     {
-      "lcId": "lc_1b2_p_merge",
-      "x": 500,
+      "lcId": "lc_1b2_p_pump_out",
+      "x": 480,
+      "y": 10
+    },
+    {
+      "lcId": "lc_1b2_p_dose_jct",
+      "x": 576,
+      "y": 210
+    },
+    {
+      "lcId": "lc_1b2_j1",
+      "x": 576,
       "y": 0
     },
     {
       "lcId": "lc_1b2_p_out",
-      "x": 620,
-      "y": 0
+      "x": 780,
+      "y": 10
     },
     {
       "lcId": "lc_1b2_outlet",
-      "x": 720,
-      "y": 0
+      "x": 896,
+      "y": 10
     }
   ],
   "connections": [
@@ -89,8 +99,15 @@
       "id": "conn_1b2_05",
       "srcLcId": "lc_1b2_p1",
       "srcPortId": "output",
-      "dstLcId": "lc_1b2_p_merge",
+      "dstLcId": "lc_1b2_p_pump_out",
       "dstPortId": "input"
+    },
+    {
+      "id": "conn_1b2_05b",
+      "srcLcId": "lc_1b2_p_pump_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_j1",
+      "dstPortId": "input_a"
     },
     {
       "id": "conn_1b2_06",
@@ -110,12 +127,19 @@
       "id": "conn_1b2_08",
       "srcLcId": "lc_1b2_v2",
       "srcPortId": "output",
-      "dstLcId": "lc_1b2_p_merge",
+      "dstLcId": "lc_1b2_p_dose_jct",
       "dstPortId": "input"
     },
     {
+      "id": "conn_1b2_08b",
+      "srcLcId": "lc_1b2_p_dose_jct",
+      "srcPortId": "output",
+      "dstLcId": "lc_1b2_j1",
+      "dstPortId": "input_b"
+    },
+    {
       "id": "conn_1b2_09",
-      "srcLcId": "lc_1b2_p_merge",
+      "srcLcId": "lc_1b2_j1",
       "srcPortId": "output",
       "dstLcId": "lc_1b2_p_out",
       "dstPortId": "input"
@@ -171,8 +195,8 @@
       "lcId": "lc_1b2_t1",
       "bindTo": "var:level",
       "label": "T1 Level",
-      "x": 380,
-      "y": 240
+      "x": 408,
+      "y": 168
     },
     "anc_1b2_t1_lgt": {
       "id": "anc_1b2_t1_lgt",
@@ -180,8 +204,8 @@
       "lcId": "lc_1b2_t1",
       "bindTo": "var:level_low",
       "label": "Low",
-      "x": 440,
-      "y": 240
+      "x": 408,
+      "y": 312
     },
     "anc_1b2_v2_btn": {
       "id": "anc_1b2_v2_btn",
@@ -189,8 +213,8 @@
       "lcId": "lc_1b2_v2",
       "bindTo": "act:on_toggle",
       "label": "Dose On/Off",
-      "x": 560,
-      "y": 240
+      "x": 564,
+      "y": 288
     },
     "anc_1b2_v2_lgt": {
       "id": "anc_1b2_v2_lgt",
@@ -198,8 +222,8 @@
       "lcId": "lc_1b2_v2",
       "bindTo": "var:open",
       "label": "V2",
-      "x": 620,
-      "y": 240
+      "x": 624,
+      "y": 288
     }
   }
 }
