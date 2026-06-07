@@ -1,0 +1,6 @@
+{
+  "id": "map_1779900000002",
+  "name": "Circuit Protection",
+  "description": "A fuse or circuit breaker limits current to protect downstream equipment. This map shows three parallel lamp branches sharing a main switch and individual fuses — learn where fuses sit in a circuit, how to safely recover from a blown fuse, and how to identify which branch has faulted.",
+  "config": {}
+}
