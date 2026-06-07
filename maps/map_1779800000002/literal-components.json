@@ -6,12 +6,18 @@
       "componentId": "component_1779500000005",
       "superiors": [],
       "variableOverrides": {
-        "flow.fluid_type": "process_water",
-        "flow.colour": "#2a7abf"
+        "flow.colour": "#2a7abf",
+        "flow.composition": [
+          {
+            "name": "process_water",
+            "colour": "#2a7abf",
+            "mole_fraction": 1
+          }
+        ]
       },
       "_canvas": {
-        "x": 0,
-        "y": 0
+        "x": 8,
+        "y": 10
       }
     },
     {
@@ -25,8 +31,8 @@
         "resistance": 0.02
       },
       "_canvas": {
-        "x": 90,
-        "y": 0
+        "x": 84,
+        "y": 10
       }
     },
     {
@@ -38,8 +44,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 180,
-        "y": 0
+        "x": 192,
+        "y": -6
       }
     },
     {
@@ -53,8 +59,8 @@
         "resistance": 0.03
       },
       "_canvas": {
-        "x": 280,
-        "y": 0
+        "x": 276,
+        "y": 10
       }
     },
     {
@@ -68,8 +74,8 @@
         "outlet_pressure": 100
       },
       "_canvas": {
-        "x": 380,
-        "y": 0
+        "x": 384,
+        "y": -1
       }
     },
     {
@@ -80,11 +86,21 @@
       "variableOverrides": {
         "level": 100,
         "low_threshold": 20,
-        "high_threshold": 90
+        "high_threshold": 90,
+        "static_rate": 10,
+        "flow.colour": "#22c55e",
+        "flow.composition": [
+          {
+            "name": "chemical",
+            "colour": "#22c55e",
+            "mole_fraction": 1,
+            "colour_strength": 5
+          }
+        ]
       },
       "_canvas": {
-        "x": 380,
-        "y": 200
+        "x": 387,
+        "y": 192
       }
     },
     {
@@ -98,8 +114,8 @@
         "resistance": 0.05
       },
       "_canvas": {
-        "x": 460,
-        "y": 200
+        "x": 468,
+        "y": 226
       }
     },
     {
@@ -111,23 +127,51 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 560,
-        "y": 200
+        "x": 552,
+        "y": 210
       }
     },
     {
-      "id": "lc_1b2_p_merge",
-      "name": "Pipe_Merge",
+      "id": "lc_1b2_p_pump_out",
+      "name": "Pipe_PumpOut",
       "componentId": "component_pipe_1779600000001",
       "superiors": [
-        "lc_1b2_p1",
+        "lc_1b2_p1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 480,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_1b2_p_dose_jct",
+      "name": "Pipe_DoseJct",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
         "lc_1b2_v2"
       ],
       "variableOverrides": {
         "resistance": 0.02
       },
       "_canvas": {
-        "x": 500,
+        "x": 576,
+        "y": 210
+      }
+    },
+    {
+      "id": "lc_1b2_j1",
+      "name": "J1",
+      "componentId": "component_junction_1779600000004",
+      "superiors": [
+        "lc_1b2_p_pump_out",
+        "lc_1b2_p_dose_jct"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 576,
         "y": 0
       }
     },
@@ -136,14 +180,14 @@
       "name": "Pipe_Out",
       "componentId": "component_pipe_1779600000001",
       "superiors": [
-        "lc_1b2_p_merge"
+        "lc_1b2_j1"
       ],
       "variableOverrides": {
         "resistance": 0.02
       },
       "_canvas": {
-        "x": 620,
-        "y": 0
+        "x": 780,
+        "y": 10
       }
     },
     {
@@ -155,8 +199,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 720,
-        "y": 0
+        "x": 896,
+        "y": 10
       }
     }
   ]
