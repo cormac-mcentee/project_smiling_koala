@@ -32,28 +32,34 @@
     },
     {
       "lcId": "lc_1b2_p_dose",
-      "x": 468,
-      "y": 226
+      "x": 420,
+      "y": 250
     },
     {
       "lcId": "lc_1b2_v2",
-      "x": 552,
+      "x": 456,
       "y": 210
     },
     {
       "lcId": "lc_1b2_p_pump_out",
-      "x": 480,
+      "x": 492,
       "y": 10
     },
     {
       "lcId": "lc_1b2_p_dose_jct",
-      "x": 576,
-      "y": 210
+      "x": 588,
+      "y": 202
     },
     {
       "lcId": "lc_1b2_j1",
       "x": 576,
-      "y": 0
+      "y": 0,
+      "portOverrides": {
+        "input_b": {
+          "edge": "bottom",
+          "px": 0.48898071625344147
+        }
+      }
     },
     {
       "lcId": "lc_1b2_p_out",
@@ -213,7 +219,7 @@
       "lcId": "lc_1b2_v2",
       "bindTo": "act:on_toggle",
       "label": "Dose On/Off",
-      "x": 564,
+      "x": 492,
       "y": 288
     },
     "anc_1b2_v2_lgt": {
@@ -222,7 +228,7 @@
       "lcId": "lc_1b2_v2",
       "bindTo": "var:open",
       "label": "V2",
-      "x": 624,
+      "x": 552,
       "y": 288
     }
   }
