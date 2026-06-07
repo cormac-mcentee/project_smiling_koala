@@ -17,7 +17,7 @@
     },
     {
       "lcId": "lc_m3_tank",
-      "x": 414,
+      "x": 411,
       "y": -72
     },
     {
@@ -189,5 +189,29 @@
       "x": 828,
       "y": -24
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_m3_01",
+      "type": "text",
+      "x": 254,
+      "y": -214,
+      "content": "Fill the tank via V1. Open V2 before starting P1 to transfer contents.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_m3_02",
+      "type": "text",
+      "x": 250,
+      "y": -183,
+      "content": "Never start P1 with V2 closed — no suction will fault the pump.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
