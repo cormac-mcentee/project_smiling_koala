@@ -1,0 +1,383 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_2b2_ps1",
+      "x": 656,
+      "y": -110
+    },
+    {
+      "lcId": "lc_2b2_wire_a",
+      "x": 732,
+      "y": -62
+    },
+    {
+      "lcId": "lc_2b2_sw_enable",
+      "x": 804,
+      "y": -126
+    },
+    {
+      "lcId": "lc_2b2_wire_b",
+      "x": 804,
+      "y": -38
+    },
+    {
+      "lcId": "lc_2b2_inlet",
+      "x": 8,
+      "y": 82
+    },
+    {
+      "lcId": "lc_2b2_pipe_a",
+      "x": 108,
+      "y": 82
+    },
+    {
+      "lcId": "lc_2b2_v1",
+      "x": 216,
+      "y": 90
+    },
+    {
+      "lcId": "lc_2b2_pipe_b",
+      "x": 324,
+      "y": 82
+    },
+    {
+      "lcId": "lc_2b2_p1",
+      "x": 432,
+      "y": 71
+    },
+    {
+      "lcId": "lc_2b2_pipe_c",
+      "x": 540,
+      "y": 82
+    },
+    {
+      "lcId": "lc_2b2_v2",
+      "x": 672,
+      "y": 90
+    },
+    {
+      "lcId": "lc_2b2_pipe_d",
+      "x": 708,
+      "y": 178
+    },
+    {
+      "lcId": "lc_2b2_ecv1",
+      "x": 792,
+      "y": 64.5,
+      "portOverrides": {
+        "input": {
+          "edge": "left",
+          "px": 0.6413658727908284
+        },
+        "output": {
+          "edge": "right",
+          "px": 0.6462405580594774
+        }
+      }
+    },
+    {
+      "lcId": "lc_2b2_pipe_e",
+      "x": 900,
+      "y": 82
+    },
+    {
+      "lcId": "lc_2b2_h1",
+      "x": 1032,
+      "y": 85.5
+    },
+    {
+      "lcId": "lc_2b2_pipe_f",
+      "x": 1140,
+      "y": 82
+    },
+    {
+      "lcId": "lc_2b2_v3",
+      "x": 1248,
+      "y": 90
+    },
+    {
+      "lcId": "lc_2b2_pipe_g",
+      "x": 1356,
+      "y": 82
+    },
+    {
+      "lcId": "lc_2b2_outlet",
+      "x": 1472,
+      "y": 82
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_2b2_ps1_wa",
+      "srcLcId": "lc_2b2_ps1",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_wire_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_wa_sw",
+      "srcLcId": "lc_2b2_wire_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_sw_enable",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_sw_wb",
+      "srcLcId": "lc_2b2_sw_enable",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_wire_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_wb_ecv",
+      "srcLcId": "lc_2b2_wire_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_ecv1",
+      "dstPortId": "control"
+    },
+    {
+      "id": "conn_2b2_in_pa",
+      "srcLcId": "lc_2b2_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_pipe_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_pa_v1",
+      "srcLcId": "lc_2b2_pipe_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_v1_pb",
+      "srcLcId": "lc_2b2_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_pipe_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_pb_p1",
+      "srcLcId": "lc_2b2_pipe_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_p1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_p1_pc",
+      "srcLcId": "lc_2b2_p1",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_pipe_c",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_pc_v2",
+      "srcLcId": "lc_2b2_pipe_c",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_v2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_v2_pd",
+      "srcLcId": "lc_2b2_v2",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_pipe_d",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_pd_ecv",
+      "srcLcId": "lc_2b2_pipe_d",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_ecv1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_ecv_pe",
+      "srcLcId": "lc_2b2_ecv1",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_pipe_e",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_pe_h1",
+      "srcLcId": "lc_2b2_pipe_e",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_h1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_h1_pf",
+      "srcLcId": "lc_2b2_h1",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_pipe_f",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_pf_v3",
+      "srcLcId": "lc_2b2_pipe_f",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_v3",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_v3_pg",
+      "srcLcId": "lc_2b2_v3",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_pipe_g",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b2_pg_out",
+      "srcLcId": "lc_2b2_pipe_g",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b2_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_2b2_ps1_btn": {
+      "id": "anc_2b2_ps1_btn",
+      "type": "button",
+      "lcId": "lc_2b2_ps1",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle",
+      "x": 700,
+      "y": -150
+    },
+    "anc_2b2_ps1_light": {
+      "id": "anc_2b2_ps1_light",
+      "type": "light",
+      "lcId": "lc_2b2_ps1",
+      "bindTo": "var:energised",
+      "label": "On",
+      "x": 740,
+      "y": -150
+    },
+    "anc_2b2_sw_btn": {
+      "id": "anc_2b2_sw_btn",
+      "type": "button",
+      "lcId": "lc_2b2_sw_enable",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle",
+      "x": 828,
+      "y": -144
+    },
+    "anc_2b2_sw_light": {
+      "id": "anc_2b2_sw_light",
+      "type": "light",
+      "lcId": "lc_2b2_sw_enable",
+      "bindTo": "var:closed",
+      "label": "Closed",
+      "x": 876,
+      "y": -144
+    },
+    "anc_2b2_ecv_light": {
+      "id": "anc_2b2_ecv_light",
+      "type": "light",
+      "lcId": "lc_2b2_ecv1",
+      "bindTo": "var:powered",
+      "label": "Powered",
+      "x": 804,
+      "y": 24
+    },
+    "anc_2b2_v1_btn": {
+      "id": "anc_2b2_v1_btn",
+      "type": "button",
+      "lcId": "lc_2b2_v1",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle",
+      "x": 205,
+      "y": 50
+    },
+    "anc_2b2_v1_light": {
+      "id": "anc_2b2_v1_light",
+      "type": "light",
+      "lcId": "lc_2b2_v1",
+      "bindTo": "var:open",
+      "label": "Open",
+      "x": 250,
+      "y": 50
+    },
+    "anc_2b2_p1_btn": {
+      "id": "anc_2b2_p1_btn",
+      "type": "button",
+      "lcId": "lc_2b2_p1",
+      "bindTo": "act:on_toggle",
+      "label": "Start",
+      "x": 425,
+      "y": 50
+    },
+    "anc_2b2_p1_light": {
+      "id": "anc_2b2_p1_light",
+      "type": "light",
+      "lcId": "lc_2b2_p1",
+      "bindTo": "var:running",
+      "label": "Running",
+      "x": 475,
+      "y": 50
+    },
+    "anc_2b2_v2_btn": {
+      "id": "anc_2b2_v2_btn",
+      "type": "button",
+      "lcId": "lc_2b2_v2",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle",
+      "x": 645,
+      "y": 50
+    },
+    "anc_2b2_v2_light": {
+      "id": "anc_2b2_v2_light",
+      "type": "light",
+      "lcId": "lc_2b2_v2",
+      "bindTo": "var:open",
+      "label": "Open",
+      "x": 690,
+      "y": 50
+    },
+    "anc_2b2_h1_btn": {
+      "id": "anc_2b2_h1_btn",
+      "type": "button",
+      "lcId": "lc_2b2_h1",
+      "bindTo": "act:on_toggle",
+      "label": "Activate",
+      "x": 1005,
+      "y": 50
+    },
+    "anc_2b2_h1_heat": {
+      "id": "anc_2b2_h1_heat",
+      "type": "light",
+      "lcId": "lc_2b2_h1",
+      "bindTo": "var:active",
+      "label": "On",
+      "x": 1055,
+      "y": 50
+    },
+    "anc_2b2_v3_btn": {
+      "id": "anc_2b2_v3_btn",
+      "type": "button",
+      "lcId": "lc_2b2_v3",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle",
+      "x": 1225,
+      "y": 50
+    },
+    "anc_2b2_v3_light": {
+      "id": "anc_2b2_v3_light",
+      "type": "light",
+      "lcId": "lc_2b2_v3",
+      "bindTo": "var:open",
+      "label": "Open",
+      "x": 1270,
+      "y": 50
+    },
+    "anc_2b2_out_light": {
+      "id": "anc_2b2_out_light",
+      "type": "light",
+      "lcId": "lc_2b2_outlet",
+      "bindTo": "var:receiving",
+      "label": "Receiving",
+      "x": 1460,
+      "y": 50
+    }
+  }
+}
