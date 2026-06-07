@@ -22,8 +22,8 @@
     },
     {
       "lcId": "lc_1779500000002",
-      "x": 748,
-      "y": -53,
+      "x": 747,
+      "y": -48,
       "portOverrides": {
         "input": {
           "edge": "left",
@@ -392,5 +392,29 @@
       "x": 1248,
       "y": -84
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_m674_01",
+      "type": "text",
+      "x": 278,
+      "y": 15,
+      "content": "Process stream: establish flow through the exchanger before opening the service side.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_m674_02",
+      "type": "text",
+      "x": 1100,
+      "y": 335,
+      "content": "Service stream (right side): flows counter-current to the process stream.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
