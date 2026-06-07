@@ -1,0 +1,95 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_2a1_ps1",
+      "name": "PS1",
+      "componentId": "component_power_supply_1779600000005",
+      "superiors": [],
+      "variableOverrides": {
+        "energised": true
+      },
+      "_canvas": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "lc_2a1_wire_a",
+      "name": "Wire_A",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_2a1_ps1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 180,
+        "y": 50
+      }
+    },
+    {
+      "id": "lc_2a1_sw1",
+      "name": "SW1",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        "lc_2a1_wire_a"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 310,
+        "y": 50
+      }
+    },
+    {
+      "id": "lc_2a1_wire_b",
+      "name": "Wire_B",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_2a1_sw1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 440,
+        "y": 50
+      }
+    },
+    {
+      "id": "lc_2a1_sw2",
+      "name": "SW2",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        "lc_2a1_wire_b"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 570,
+        "y": 50
+      }
+    },
+    {
+      "id": "lc_2a1_wire_c",
+      "name": "Wire_C",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_2a1_sw2"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 700,
+        "y": 50
+      }
+    },
+    {
+      "id": "lc_2a1_lamp1",
+      "name": "Lamp1",
+      "componentId": "component_lamp_1779700000005",
+      "superiors": [
+        "lc_2a1_wire_c"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 820,
+        "y": 50
+      }
+    }
+  ]
+}
