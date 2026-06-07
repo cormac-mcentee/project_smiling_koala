@@ -1,0 +1,218 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_2b2_s1",
+      "name": "Energise and Heat",
+      "description": "All valves are closed, the pump is off, and the heater enable switch SW_Enable is open so ECV1 is closed. Correct startup sequence: open V1 → start P1 → open V2 → open V3 → close SW_Enable (ECV1 opens, flow reaches H1) → activate H1. Do not activate the heater before flow is established — it will dry-run fault immediately.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_2b2_s1_01",
+          "literalComponentId": "lc_2b2_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s1_02",
+          "literalComponentId": "lc_2b2_sw_enable",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2b2_s1_03",
+          "literalComponentId": "lc_2b2_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_2b2_s1_04",
+          "literalComponentId": "lc_2b2_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_2b2_s1_05",
+          "literalComponentId": "lc_2b2_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_2b2_s1_06",
+          "literalComponentId": "lc_2b2_v3",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_2b2_s1_07",
+          "literalComponentId": "lc_2b2_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2b2_s1_01",
+          "literalComponentId": "lc_2b2_h1",
+          "variableId": "var_heater_heating",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2b2_s2",
+      "name": "Heater Interlock Test",
+      "description": "The system is running with H1 active and ECV1 powered. Open SW_Enable to test the interlock — ECV1 closes, flow to H1 stops, and heating ceases while the process loop (pump and valves) continues. Confirm H1 is no longer heating. Then restore the enable.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_2b2_s2_01",
+          "literalComponentId": "lc_2b2_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s2_02",
+          "literalComponentId": "lc_2b2_sw_enable",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s2_03",
+          "literalComponentId": "lc_2b2_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s2_04",
+          "literalComponentId": "lc_2b2_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s2_05",
+          "literalComponentId": "lc_2b2_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s2_06",
+          "literalComponentId": "lc_2b2_v3",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s2_07",
+          "literalComponentId": "lc_2b2_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2b2_s2_01",
+          "literalComponentId": "lc_2b2_h1",
+          "variableId": "var_heater_heating",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_2b2_s2_01",
+          "literalComponentId": "lc_2b2_h1",
+          "faultName": "dry_run",
+          "gracePeriod": 10
+        }
+      ]
+    },
+    {
+      "id": "scenario_2b2_s3",
+      "name": "Power Supply Failure During Operation",
+      "description": "PS1 has tripped mid-operation (IC: energised=false). Wire_B is dead, ECV1 is closed, and H1 is losing flow. Respond quickly: deactivate H1 before it faults on dry-run, close V1, V2, and V3 to isolate the process, then restore PS1 to re-energise the system.",
+      "difficulty": "hard",
+      "initialConditions": [
+        {
+          "id": "ic_2b2_s3_01",
+          "literalComponentId": "lc_2b2_ps1",
+          "variableId": "var_ps_energised",
+          "value": false
+        },
+        {
+          "id": "ic_2b2_s3_02",
+          "literalComponentId": "lc_2b2_sw_enable",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s3_03",
+          "literalComponentId": "lc_2b2_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s3_04",
+          "literalComponentId": "lc_2b2_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s3_05",
+          "literalComponentId": "lc_2b2_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s3_06",
+          "literalComponentId": "lc_2b2_v3",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b2_s3_07",
+          "literalComponentId": "lc_2b2_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2b2_s3_01",
+          "literalComponentId": "lc_2b2_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        },
+        {
+          "id": "tc_2b2_s3_02",
+          "literalComponentId": "lc_2b2_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_2b2_s3_03",
+          "literalComponentId": "lc_2b2_v3",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_2b2_s3_04",
+          "literalComponentId": "lc_2b2_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_2b2_s3_01",
+          "literalComponentId": "lc_2b2_h1",
+          "faultName": "dry_run",
+          "gracePeriod": 5
+        },
+        {
+          "id": "fo_2b2_s3_02",
+          "literalComponentId": "lc_2b2_p1",
+          "faultName": "broken_flow",
+          "gracePeriod": 2
+        }
+      ]
+    }
+  ]
+}
