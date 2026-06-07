@@ -17,7 +17,14 @@
       "componentId": "component_1779500000005",
       "superiors": [],
       "variableOverrides": {
-        "flow.fluid_type": "process_water"
+        "flow.colour": "#2a7abf",
+        "flow.composition": [
+          {
+            "name": "process_water",
+            "colour": "#2a7abf",
+            "mole_fraction": 1
+          }
+        ]
       },
       "_canvas": {
         "x": 56,
@@ -79,7 +86,8 @@
       ],
       "variableOverrides": {
         "signal": 100,
-        "fail_open": false
+        "fail_open": false,
+        "auto": false
       },
       "_canvas": {
         "x": 480,
