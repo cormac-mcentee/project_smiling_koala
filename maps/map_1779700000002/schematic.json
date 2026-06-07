@@ -159,5 +159,29 @@
       "x": 768,
       "y": -24
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_m2_01",
+      "type": "text",
+      "x": 264,
+      "y": -81,
+      "content": "V1 (suction) and V2 (discharge) isolation valves protect the pump.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_m2_02",
+      "type": "text",
+      "x": 270,
+      "y": -55,
+      "content": "Start-up: open V1, start P1, then open V2. Reverse order to shut down.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
