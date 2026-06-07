@@ -6,8 +6,14 @@
       "componentId": "component_1779500000005",
       "superiors": [],
       "variableOverrides": {
-        "flow.fluid_type": "raw_water",
-        "flow.colour": "#2a7abf"
+        "flow.colour": "#2a7abf",
+        "flow.composition": [
+          {
+            "name": "raw_water",
+            "colour": "#2a7abf",
+            "mole_fraction": 1
+          }
+        ]
       },
       "_canvas": {
         "x": 0,
