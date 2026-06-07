@@ -1,0 +1,6 @@
+{
+  "id": "map_1779900000013",
+  "name": "Motor-Driven Heat Exchanger Circuit",
+  "description": "A cooling water system where two independent motor-driven pump circuits — service (cooling) and process — both feed a heat exchanger. Both electrical and fluid sides must be managed together. The service circuit must be commissioned before the process circuit to maintain safe heat transfer.",
+  "config": {}
+}
