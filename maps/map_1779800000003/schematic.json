@@ -362,8 +362,8 @@
       "lcId": "lc_1b3_he",
       "bindTo": "var:heat_transfer_active",
       "label": "HX Active",
-      "x": 580,
-      "y": 80
+      "x": 600,
+      "y": 108
     },
     "anc_1b3_v2_btn": {
       "id": "anc_1b3_v2_btn",
