@@ -1,0 +1,178 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_2a2_s1",
+      "name": "Normal Protected Circuit",
+      "description": "SW_Main is open and all three lamps are dark. Each branch has its own fuse protecting the lamp. Close SW_Main to energise all three branches. All fuses are healthy so none blow — observe the lamp in each branch lighting up.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_2a2_s1_01",
+          "literalComponentId": "lc_2a2_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2a2_s1_02",
+          "literalComponentId": "lc_2a2_sw_main",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2a2_s1_03",
+          "literalComponentId": "lc_2a2_f1",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2a2_s1_04",
+          "literalComponentId": "lc_2a2_f2",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2a2_s1_05",
+          "literalComponentId": "lc_2a2_f3",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2a2_s1_01",
+          "literalComponentId": "lc_2a2_lamp1",
+          "variableId": "var_lamp_lit",
+          "value": true
+        },
+        {
+          "id": "tc_2a2_s1_02",
+          "literalComponentId": "lc_2a2_lamp2",
+          "variableId": "var_lamp_lit",
+          "value": true
+        },
+        {
+          "id": "tc_2a2_s1_03",
+          "literalComponentId": "lc_2a2_lamp3",
+          "variableId": "var_lamp_lit",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2a2_s2",
+      "name": "Overload Recovery",
+      "description": "F1 has tripped and Lamp1 is dark. SW_Main is open. The correct recovery sequence is: open SW_Main (already open) → reset F1 → re-close SW_Main. Do not reset a fuse while the circuit is still energised — it may trip again immediately.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_2a2_s2_01",
+          "literalComponentId": "lc_2a2_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2a2_s2_02",
+          "literalComponentId": "lc_2a2_sw_main",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2a2_s2_03",
+          "literalComponentId": "lc_2a2_f1",
+          "variableId": "var_fuse_tripped",
+          "value": true
+        },
+        {
+          "id": "ic_2a2_s2_04",
+          "literalComponentId": "lc_2a2_f2",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2a2_s2_05",
+          "literalComponentId": "lc_2a2_f3",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2a2_s2_01",
+          "literalComponentId": "lc_2a2_lamp1",
+          "variableId": "var_lamp_lit",
+          "value": true
+        },
+        {
+          "id": "tc_2a2_s2_02",
+          "literalComponentId": "lc_2a2_lamp2",
+          "variableId": "var_lamp_lit",
+          "value": true
+        },
+        {
+          "id": "tc_2a2_s2_03",
+          "literalComponentId": "lc_2a2_lamp3",
+          "variableId": "var_lamp_lit",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2a2_s3",
+      "name": "Fault Identification",
+      "description": "SW_Main is closed and the circuit is energised. Lamps 1 and 3 are lit, but Lamp2 is dark. Identify which fuse has tripped (check the Tripped indicators on F1, F2, and F3), then reset only the faulty one to restore Lamp2 without disturbing the other branches.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_2a2_s3_01",
+          "literalComponentId": "lc_2a2_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2a2_s3_02",
+          "literalComponentId": "lc_2a2_sw_main",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2a2_s3_03",
+          "literalComponentId": "lc_2a2_f1",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2a2_s3_04",
+          "literalComponentId": "lc_2a2_f2",
+          "variableId": "var_fuse_tripped",
+          "value": true
+        },
+        {
+          "id": "ic_2a2_s3_05",
+          "literalComponentId": "lc_2a2_f3",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2a2_s3_01",
+          "literalComponentId": "lc_2a2_lamp1",
+          "variableId": "var_lamp_lit",
+          "value": true
+        },
+        {
+          "id": "tc_2a2_s3_02",
+          "literalComponentId": "lc_2a2_lamp2",
+          "variableId": "var_lamp_lit",
+          "value": true
+        },
+        {
+          "id": "tc_2a2_s3_03",
+          "literalComponentId": "lc_2a2_lamp3",
+          "variableId": "var_lamp_lit",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
