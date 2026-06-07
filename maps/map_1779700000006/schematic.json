@@ -90,7 +90,7 @@
       "srcLcId": "lc_m6_ps1",
       "srcPortId": "output",
       "dstLcId": "lc_m6_ecv1",
-      "dstPortId": "input"
+      "dstPortId": "control"
     }
   ],
   "anchorMap": {
