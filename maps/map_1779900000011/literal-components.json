@@ -1,0 +1,243 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_2b1_ps1",
+      "name": "PS1",
+      "componentId": "component_power_supply_1779600000005",
+      "superiors": [],
+      "variableOverrides": {
+        "energised": true
+      },
+      "_canvas": {
+        "x": 50,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_2b1_wire_a",
+      "name": "Wire_A",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_2b1_ps1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 180,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_2b1_sw_mcc",
+      "name": "SW_MCC",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        "lc_2b1_wire_a"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 310,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_2b1_wire_b",
+      "name": "Wire_B",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_2b1_sw_mcc"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 440,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_2b1_f_motor",
+      "name": "F_Motor",
+      "componentId": "component_fuse_1779700000003",
+      "superiors": [
+        "lc_2b1_wire_b"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 570,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_2b1_wire_c",
+      "name": "Wire_C",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_2b1_f_motor"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 700,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_2b1_m1",
+      "name": "M1",
+      "componentId": "component_drive_motor_1779950000011",
+      "superiors": [
+        "lc_2b1_wire_c"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 820,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_2b1_shaft_a",
+      "name": "Shaft_A",
+      "componentId": "component_shaft_1779950000010",
+      "superiors": [
+        "lc_2b1_m1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 695,
+        "y": -20
+      }
+    },
+    {
+      "id": "lc_2b1_inlet",
+      "name": "Inlet",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "flow.colour": "#2a7abf",
+        "flow.composition": [
+          {
+            "name": "process_water",
+            "colour": "#2a7abf",
+            "mole_fraction": 1
+          }
+        ]
+      },
+      "_canvas": {
+        "x": 50,
+        "y": 80
+      }
+    },
+    {
+      "id": "lc_2b1_pipe_a",
+      "name": "Pipe_A",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_2b1_inlet"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 180,
+        "y": 80
+      }
+    },
+    {
+      "id": "lc_2b1_v_suction",
+      "name": "V_Suction",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_2b1_pipe_a"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 310,
+        "y": 80
+      }
+    },
+    {
+      "id": "lc_2b1_pipe_b",
+      "name": "Pipe_B",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_2b1_v_suction"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 440,
+        "y": 80
+      }
+    },
+    {
+      "id": "lc_2b1_p1",
+      "name": "P1",
+      "componentId": "component_torque_pump_1779950000004",
+      "superiors": [
+        "lc_2b1_pipe_b",
+        "lc_2b1_shaft_a"
+      ],
+      "variableOverrides": {
+        "outlet_pressure": 110
+      },
+      "_canvas": {
+        "x": 570,
+        "y": 80
+      }
+    },
+    {
+      "id": "lc_2b1_pipe_c",
+      "name": "Pipe_C",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_2b1_p1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 700,
+        "y": 80
+      }
+    },
+    {
+      "id": "lc_2b1_v_discharge",
+      "name": "V_Discharge",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_2b1_pipe_c"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 820,
+        "y": 80
+      }
+    },
+    {
+      "id": "lc_2b1_pipe_d",
+      "name": "Pipe_D",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_2b1_v_discharge"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 940,
+        "y": 80
+      }
+    },
+    {
+      "id": "lc_2b1_outlet",
+      "name": "Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_2b1_pipe_d"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1060,
+        "y": 80
+      }
+    }
+  ]
+}
