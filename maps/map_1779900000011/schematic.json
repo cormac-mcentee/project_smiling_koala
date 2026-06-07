@@ -1,0 +1,322 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_2b1_ps1",
+      "x": 50,
+      "y": -120
+    },
+    {
+      "lcId": "lc_2b1_wire_a",
+      "x": 180,
+      "y": -120
+    },
+    {
+      "lcId": "lc_2b1_sw_mcc",
+      "x": 310,
+      "y": -120
+    },
+    {
+      "lcId": "lc_2b1_wire_b",
+      "x": 440,
+      "y": -120
+    },
+    {
+      "lcId": "lc_2b1_f_motor",
+      "x": 570,
+      "y": -120
+    },
+    {
+      "lcId": "lc_2b1_wire_c",
+      "x": 700,
+      "y": -120
+    },
+    {
+      "lcId": "lc_2b1_m1",
+      "x": 820,
+      "y": -120
+    },
+    {
+      "lcId": "lc_2b1_shaft_a",
+      "x": 695,
+      "y": -20
+    },
+    {
+      "lcId": "lc_2b1_inlet",
+      "x": 50,
+      "y": 80
+    },
+    {
+      "lcId": "lc_2b1_pipe_a",
+      "x": 180,
+      "y": 80
+    },
+    {
+      "lcId": "lc_2b1_v_suction",
+      "x": 310,
+      "y": 80
+    },
+    {
+      "lcId": "lc_2b1_pipe_b",
+      "x": 440,
+      "y": 80
+    },
+    {
+      "lcId": "lc_2b1_p1",
+      "x": 570,
+      "y": 80
+    },
+    {
+      "lcId": "lc_2b1_pipe_c",
+      "x": 700,
+      "y": 80
+    },
+    {
+      "lcId": "lc_2b1_v_discharge",
+      "x": 820,
+      "y": 80
+    },
+    {
+      "lcId": "lc_2b1_pipe_d",
+      "x": 940,
+      "y": 80
+    },
+    {
+      "lcId": "lc_2b1_outlet",
+      "x": 1060,
+      "y": 80
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_2b1_ps1_wa",
+      "srcLcId": "lc_2b1_ps1",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_wire_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_wa_sw",
+      "srcLcId": "lc_2b1_wire_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_sw_mcc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_sw_wb",
+      "srcLcId": "lc_2b1_sw_mcc",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_wire_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_wb_fm",
+      "srcLcId": "lc_2b1_wire_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_f_motor",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_fm_wc",
+      "srcLcId": "lc_2b1_f_motor",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_wire_c",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_wc_m1",
+      "srcLcId": "lc_2b1_wire_c",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_m1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_m1_sha",
+      "srcLcId": "lc_2b1_m1",
+      "srcPortId": "shaft_output",
+      "dstLcId": "lc_2b1_shaft_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_sha_p1",
+      "srcLcId": "lc_2b1_shaft_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_p1",
+      "dstPortId": "shaft_input"
+    },
+    {
+      "id": "conn_2b1_in_pa",
+      "srcLcId": "lc_2b1_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_pipe_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_pa_vs",
+      "srcLcId": "lc_2b1_pipe_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_v_suction",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_vs_pb",
+      "srcLcId": "lc_2b1_v_suction",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_pipe_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_pb_p1",
+      "srcLcId": "lc_2b1_pipe_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_p1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_p1_pc",
+      "srcLcId": "lc_2b1_p1",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_pipe_c",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_pc_vd",
+      "srcLcId": "lc_2b1_pipe_c",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_v_discharge",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_vd_pd",
+      "srcLcId": "lc_2b1_v_discharge",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_pipe_d",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2b1_pd_out",
+      "srcLcId": "lc_2b1_pipe_d",
+      "srcPortId": "output",
+      "dstLcId": "lc_2b1_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_2b1_ps1_btn": {
+      "id": "anc_2b1_ps1_btn",
+      "type": "button",
+      "lcId": "lc_2b1_ps1",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle",
+      "x": 50,
+      "y": -150
+    },
+    "anc_2b1_ps1_light": {
+      "id": "anc_2b1_ps1_light",
+      "type": "light",
+      "lcId": "lc_2b1_ps1",
+      "bindTo": "var:energised",
+      "label": "On",
+      "x": 90,
+      "y": -150
+    },
+    "anc_2b1_sw_btn": {
+      "id": "anc_2b1_sw_btn",
+      "type": "button",
+      "lcId": "lc_2b1_sw_mcc",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle",
+      "x": 295,
+      "y": -150
+    },
+    "anc_2b1_sw_light": {
+      "id": "anc_2b1_sw_light",
+      "type": "light",
+      "lcId": "lc_2b1_sw_mcc",
+      "bindTo": "var:closed",
+      "label": "Closed",
+      "x": 340,
+      "y": -150
+    },
+    "anc_2b1_fm_light": {
+      "id": "anc_2b1_fm_light",
+      "type": "light",
+      "lcId": "lc_2b1_f_motor",
+      "bindTo": "var:tripped",
+      "label": "Tripped",
+      "x": 555,
+      "y": -150
+    },
+    "anc_2b1_fm_reset": {
+      "id": "anc_2b1_fm_reset",
+      "type": "button",
+      "lcId": "lc_2b1_f_motor",
+      "bindTo": "act:reset",
+      "label": "Reset",
+      "x": 605,
+      "y": -150
+    },
+    "anc_2b1_m1_light": {
+      "id": "anc_2b1_m1_light",
+      "type": "light",
+      "lcId": "lc_2b1_m1",
+      "bindTo": "var:running",
+      "label": "Running",
+      "x": 820,
+      "y": -150
+    },
+    "anc_2b1_vs_btn": {
+      "id": "anc_2b1_vs_btn",
+      "type": "button",
+      "lcId": "lc_2b1_v_suction",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle",
+      "x": 295,
+      "y": 50
+    },
+    "anc_2b1_vs_light": {
+      "id": "anc_2b1_vs_light",
+      "type": "light",
+      "lcId": "lc_2b1_v_suction",
+      "bindTo": "var:open",
+      "label": "Open",
+      "x": 340,
+      "y": 50
+    },
+    "anc_2b1_p1_light": {
+      "id": "anc_2b1_p1_light",
+      "type": "light",
+      "lcId": "lc_2b1_p1",
+      "bindTo": "var:running",
+      "label": "Running",
+      "x": 570,
+      "y": 50
+    },
+    "anc_2b1_vd_btn": {
+      "id": "anc_2b1_vd_btn",
+      "type": "button",
+      "lcId": "lc_2b1_v_discharge",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle",
+      "x": 805,
+      "y": 50
+    },
+    "anc_2b1_vd_light": {
+      "id": "anc_2b1_vd_light",
+      "type": "light",
+      "lcId": "lc_2b1_v_discharge",
+      "bindTo": "var:open",
+      "label": "Open",
+      "x": 850,
+      "y": 50
+    },
+    "anc_2b1_out_light": {
+      "id": "anc_2b1_out_light",
+      "type": "light",
+      "lcId": "lc_2b1_outlet",
+      "bindTo": "var:receiving",
+      "label": "Receiving",
+      "x": 1060,
+      "y": 50
+    }
+  }
+}
