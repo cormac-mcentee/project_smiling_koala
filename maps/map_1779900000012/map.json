@@ -1,0 +1,6 @@
+{
+  "id": "map_1779900000012",
+  "name": "Electrically-Controlled Heating System",
+  "description": "A process heating system where the heater can only be active when the ECV (heater contactor) is electrically enabled. The ECV here models a heater contactor — it only opens to allow flow to the heater when the enable circuit is closed. Teach safe sequencing, interlock testing, and response to power loss.",
+  "config": {}
+}
