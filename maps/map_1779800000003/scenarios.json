@@ -53,18 +53,6 @@
           "literalComponentId": "lc_1b3_ecv1",
           "variableId": "var_ecv_signal",
           "value": 100
-        },
-        {
-          "id": "ic_1b3_s1_09",
-          "literalComponentId": "lc_1b3_t1",
-          "variableId": "var_tank_level",
-          "value": 80
-        },
-        {
-          "id": "ic_1b3_s1_10",
-          "literalComponentId": "lc_1b3_v3",
-          "variableId": "var_valve_open",
-          "value": false
         }
       ],
       "targetConditions": [
@@ -153,12 +141,6 @@
           "literalComponentId": "lc_1b3_ecv1",
           "variableId": "var_ecv_signal",
           "value": 100
-        },
-        {
-          "id": "ic_1b3_s2_10",
-          "literalComponentId": "lc_1b3_t1",
-          "variableId": "var_tank_level",
-          "value": 80
         }
       ],
       "targetConditions": [
@@ -187,88 +169,6 @@
           "literalComponentId": "lc_1b3_h1",
           "faultName": "heater_electrical",
           "gracePeriod": 4
-        }
-      ]
-    },
-    {
-      "id": "scenario_1b3_s3",
-      "name": "Reserve Tank Low — Refill",
-      "description": "Both loops are running. The reserve tank T1 level is critically low. Open V3 to allow the fill inlet to replenish the tank before the level drops to zero.",
-      "difficulty": "easy",
-      "initialConditions": [
-        {
-          "id": "ic_1b3_s3_01",
-          "literalComponentId": "lc_1b3_v1",
-          "variableId": "var_valve_open",
-          "value": true
-        },
-        {
-          "id": "ic_1b3_s3_02",
-          "literalComponentId": "lc_1b3_p1",
-          "variableId": "var_pump_running",
-          "value": true
-        },
-        {
-          "id": "ic_1b3_s3_03",
-          "literalComponentId": "lc_1b3_cv1",
-          "variableId": "var_cv_open",
-          "value": true
-        },
-        {
-          "id": "ic_1b3_s3_04",
-          "literalComponentId": "lc_1b3_v2",
-          "variableId": "var_valve_open",
-          "value": true
-        },
-        {
-          "id": "ic_1b3_s3_05",
-          "literalComponentId": "lc_1b3_p2",
-          "variableId": "var_pump_running",
-          "value": true
-        },
-        {
-          "id": "ic_1b3_s3_06",
-          "literalComponentId": "lc_1b3_h1",
-          "variableId": "var_heater_active",
-          "value": true
-        },
-        {
-          "id": "ic_1b3_s3_07",
-          "literalComponentId": "lc_1b3_ps1",
-          "variableId": "var_ps_energised",
-          "value": true
-        },
-        {
-          "id": "ic_1b3_s3_08",
-          "literalComponentId": "lc_1b3_ecv1",
-          "variableId": "var_ecv_signal",
-          "value": 100
-        },
-        {
-          "id": "ic_1b3_s3_09",
-          "literalComponentId": "lc_1b3_t1",
-          "variableId": "var_tank_level",
-          "value": 15
-        },
-        {
-          "id": "ic_1b3_s3_10",
-          "literalComponentId": "lc_1b3_t1",
-          "variableId": "var_tank_level_low",
-          "value": true
-        },
-        {
-          "id": "ic_1b3_s3_11",
-          "literalComponentId": "lc_1b3_v3",
-          "variableId": "var_valve_open",
-          "value": false
-        }
-      ],
-      "targetConditions": [
-        {
-          "id": "tc_1b3_s3_01",
-          "literalComponentId": "lc_1b3_t1",
-          "variableId": "var_tank_receiving",
-          "value": true
         }
       ]
     }
