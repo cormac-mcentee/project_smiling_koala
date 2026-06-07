@@ -159,5 +159,29 @@
       "x": 780,
       "y": -24
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_m5_01",
+      "type": "text",
+      "x": 315,
+      "y": -79,
+      "content": "CV1 throttles flow — it can be adjusted from fully open to nearly closed.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_m5_02",
+      "type": "text",
+      "x": 314,
+      "y": -55,
+      "content": "Closing CV1 fully with P1 running blocks discharge and will stall the pump.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
