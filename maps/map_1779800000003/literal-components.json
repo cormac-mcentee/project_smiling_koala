@@ -6,12 +6,18 @@
       "componentId": "component_1779500000005",
       "superiors": [],
       "variableOverrides": {
-        "flow.fluid_type": "process_water",
-        "flow.colour": "#2a7abf"
+        "flow.colour": "#2a7abf",
+        "flow.composition": [
+          {
+            "name": "process_water",
+            "colour": "#2a7abf",
+            "mole_fraction": 1
+          }
+        ]
       },
       "_canvas": {
-        "x": 0,
-        "y": 0
+        "x": 8,
+        "y": 10
       }
     },
     {
@@ -25,8 +31,8 @@
         "resistance": 0.02
       },
       "_canvas": {
-        "x": 90,
-        "y": 0
+        "x": 84,
+        "y": 10
       }
     },
     {
@@ -38,8 +44,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 180,
-        "y": 0
+        "x": 192,
+        "y": -6
       }
     },
     {
@@ -53,8 +59,8 @@
         "resistance": 0.03
       },
       "_canvas": {
-        "x": 280,
-        "y": 0
+        "x": 276,
+        "y": 10
       }
     },
     {
@@ -68,8 +74,8 @@
         "outlet_pressure": 110
       },
       "_canvas": {
-        "x": 380,
-        "y": 0
+        "x": 384,
+        "y": -1
       }
     },
     {
@@ -83,8 +89,8 @@
         "resistance": 0.03
       },
       "_canvas": {
-        "x": 480,
-        "y": 0
+        "x": 492,
+        "y": 10
       }
     },
     {
@@ -97,8 +103,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 580,
-        "y": 120
+        "x": 576,
+        "y": 128.5
       }
     },
     {
@@ -116,8 +122,8 @@
         "resistance": 0.03
       },
       "_canvas": {
-        "x": 680,
-        "y": 0
+        "x": 684,
+        "y": 10
       }
     },
     {
@@ -131,8 +137,8 @@
         "opening": 100
       },
       "_canvas": {
-        "x": 780,
-        "y": 0
+        "x": 792,
+        "y": -6
       }
     },
     {
@@ -146,8 +152,8 @@
         "resistance": 0.02
       },
       "_canvas": {
-        "x": 880,
-        "y": 0
+        "x": 876,
+        "y": 10
       }
     },
     {
@@ -159,8 +165,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 970,
-        "y": 0
+        "x": 968,
+        "y": 10
       }
     },
     {
@@ -169,13 +175,19 @@
       "componentId": "component_1779500000005",
       "superiors": [],
       "variableOverrides": {
-        "flow.fluid_type": "service_water",
         "flow.temperature": 30,
-        "flow.colour": "#f97316"
+        "flow.colour": "#f97316",
+        "flow.composition": [
+          {
+            "name": "service_water",
+            "colour": "#f97316",
+            "mole_fraction": 1
+          }
+        ]
       },
       "_canvas": {
-        "x": 0,
-        "y": 240
+        "x": 8,
+        "y": 250
       }
     },
     {
@@ -189,8 +201,8 @@
         "resistance": 0.02
       },
       "_canvas": {
-        "x": 90,
-        "y": 240
+        "x": 84,
+        "y": 250
       }
     },
     {
@@ -202,8 +214,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 180,
-        "y": 240
+        "x": 192,
+        "y": 234
       }
     },
     {
@@ -217,8 +229,8 @@
         "resistance": 0.03
       },
       "_canvas": {
-        "x": 280,
-        "y": 240
+        "x": 276,
+        "y": 250
       }
     },
     {
@@ -232,8 +244,8 @@
         "outlet_pressure": 110
       },
       "_canvas": {
-        "x": 380,
-        "y": 240
+        "x": 384,
+        "y": 239
       }
     },
     {
@@ -247,8 +259,8 @@
         "resistance": 0.03
       },
       "_canvas": {
-        "x": 480,
-        "y": 240
+        "x": 444,
+        "y": 322
       }
     },
     {
@@ -260,8 +272,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 580,
-        "y": 240
+        "x": 528,
+        "y": 229.5
       }
     },
     {
@@ -275,8 +287,8 @@
         "resistance": 0.03
       },
       "_canvas": {
-        "x": 680,
-        "y": 240
+        "x": 684,
+        "y": 250
       }
     },
     {
@@ -294,8 +306,8 @@
         "resistance": 0.03
       },
       "_canvas": {
-        "x": 780,
-        "y": 240
+        "x": 756,
+        "y": 130
       }
     },
     {
@@ -305,8 +317,8 @@
       "superiors": [],
       "variableOverrides": {},
       "_canvas": {
-        "x": 880,
-        "y": 340
+        "x": 896,
+        "y": 394
       }
     },
     {
@@ -319,11 +331,12 @@
       ],
       "variableOverrides": {
         "signal": 100,
-        "fail_open": false
+        "fail_open": false,
+        "auto": false
       },
       "_canvas": {
-        "x": 880,
-        "y": 240
+        "x": 888,
+        "y": 244.5
       }
     },
     {
@@ -337,8 +350,8 @@
         "resistance": 0.02
       },
       "_canvas": {
-        "x": 980,
-        "y": 240
+        "x": 996,
+        "y": 274
       }
     },
     {
@@ -350,67 +363,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 1070,
-        "y": 240
-      }
-    },
-    {
-      "id": "lc_1b3_inlet_c",
-      "name": "Reserve Fill Inlet",
-      "componentId": "component_1779500000005",
-      "superiors": [],
-      "variableOverrides": {
-        "flow.fluid_type": "raw_water",
-        "flow.colour": "#94a3b8"
-      },
-      "_canvas": {
-        "x": 0,
-        "y": 460
-      }
-    },
-    {
-      "id": "lc_1b3_p_c1",
-      "name": "Pipe_C1",
-      "componentId": "component_pipe_1779600000001",
-      "superiors": [
-        "lc_1b3_inlet_c"
-      ],
-      "variableOverrides": {
-        "resistance": 0.02
-      },
-      "_canvas": {
-        "x": 90,
-        "y": 460
-      }
-    },
-    {
-      "id": "lc_1b3_v3",
-      "name": "V3",
-      "componentId": "component_1779399245576",
-      "superiors": [
-        "lc_1b3_p_c1"
-      ],
-      "variableOverrides": {},
-      "_canvas": {
-        "x": 180,
-        "y": 460
-      }
-    },
-    {
-      "id": "lc_1b3_t1",
-      "name": "Reserve Tank T1",
-      "componentId": "component_1779500000004",
-      "superiors": [
-        "lc_1b3_v3"
-      ],
-      "variableOverrides": {
-        "level": 80,
-        "low_threshold": 20,
-        "high_threshold": 90
-      },
-      "_canvas": {
-        "x": 280,
-        "y": 460
+        "x": 1064,
+        "y": 274
       }
     }
   ]
