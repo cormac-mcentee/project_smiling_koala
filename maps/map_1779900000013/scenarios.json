@@ -1,0 +1,250 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_2b3_s1",
+      "name": "Commission Both Circuits",
+      "description": "Both MCCs are de-energised and all valves are closed. Commission the service circuit first (cooling side must flow before the process side enters the heat exchanger): open V_S1 → close SW_S_Iso — the shaft turns and P_Service auto-starts → open V_S2. Then commission the process circuit: open V_P1 → close SW_P_Iso — the shaft turns and P_Process auto-starts → open V_P2. Heat transfer becomes active when both sides flow.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_2b3_s1_01",
+          "literalComponentId": "lc_2b3_ps_s",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s1_02",
+          "literalComponentId": "lc_2b3_sw_s_iso",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s1_03",
+          "literalComponentId": "lc_2b3_f_service",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s1_04",
+          "literalComponentId": "lc_2b3_v_s1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s1_06",
+          "literalComponentId": "lc_2b3_v_s2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s1_07",
+          "literalComponentId": "lc_2b3_ps_p",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s1_08",
+          "literalComponentId": "lc_2b3_sw_p_iso",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s1_09",
+          "literalComponentId": "lc_2b3_f_process",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s1_10",
+          "literalComponentId": "lc_2b3_v_p1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s1_12",
+          "literalComponentId": "lc_2b3_v_p2",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2b3_s1_01",
+          "literalComponentId": "lc_2b3_he1",
+          "variableId": "var_he_heat_transfer_active",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2b3_s2",
+      "name": "Service Side Electrical Fault",
+      "description": "Both circuits are running with heat transfer active, but the service motor fuse F_Service has just tripped. M_Service is de-energised; the shaft is stationary so P_Service has stopped automatically. Respond: open SW_P_Iso to stop M_Process — P_Process auto-stops when the shaft stops — then close V_P1 to isolate the process side. Open SW_S_Iso, reset F_Service, close SW_S_Iso — M_Service auto-restarts and P_Service auto-restarts. Open V_P1, then close SW_P_Iso — M_Process auto-restarts and P_Process auto-restarts.",
+      "difficulty": "hard",
+      "initialConditions": [
+        {
+          "id": "ic_2b3_s2_01",
+          "literalComponentId": "lc_2b3_ps_s",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s2_02",
+          "literalComponentId": "lc_2b3_sw_s_iso",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s2_03",
+          "literalComponentId": "lc_2b3_f_service",
+          "variableId": "var_fuse_tripped",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s2_04",
+          "literalComponentId": "lc_2b3_v_s1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s2_06",
+          "literalComponentId": "lc_2b3_v_s2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s2_07",
+          "literalComponentId": "lc_2b3_ps_p",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s2_08",
+          "literalComponentId": "lc_2b3_sw_p_iso",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s2_09",
+          "literalComponentId": "lc_2b3_f_process",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s2_10",
+          "literalComponentId": "lc_2b3_v_p1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s2_12",
+          "literalComponentId": "lc_2b3_v_p2",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2b3_s2_01",
+          "literalComponentId": "lc_2b3_he1",
+          "variableId": "var_he_heat_transfer_active",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2b3_s3",
+      "name": "Controlled Dual Shutdown",
+      "description": "Both circuits are running with full heat transfer. Shut down safely in the correct order — process first, then service (the cooling side stays running until the process side is isolated): open SW_P_Iso to stop M_Process — P_Process auto-stops when the shaft stops — then close V_P2 → de-energise PS_Process. Then open SW_S_Iso to stop M_Service — P_Service auto-stops — then close V_S2 → de-energise PS_Service. Closing a discharge valve while the pump shaft is still turning will dead-head the pump.",
+      "difficulty": "hard",
+      "initialConditions": [
+        {
+          "id": "ic_2b3_s3_01",
+          "literalComponentId": "lc_2b3_ps_s",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s3_02",
+          "literalComponentId": "lc_2b3_sw_s_iso",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s3_03",
+          "literalComponentId": "lc_2b3_f_service",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s3_04",
+          "literalComponentId": "lc_2b3_v_s1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s3_06",
+          "literalComponentId": "lc_2b3_v_s2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s3_07",
+          "literalComponentId": "lc_2b3_ps_p",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s3_08",
+          "literalComponentId": "lc_2b3_sw_p_iso",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s3_09",
+          "literalComponentId": "lc_2b3_f_process",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2b3_s3_10",
+          "literalComponentId": "lc_2b3_v_p1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2b3_s3_12",
+          "literalComponentId": "lc_2b3_v_p2",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2b3_s3_01",
+          "literalComponentId": "lc_2b3_m_service",
+          "variableId": "var_dm_running",
+          "value": false
+        },
+        {
+          "id": "tc_2b3_s3_02",
+          "literalComponentId": "lc_2b3_m_process",
+          "variableId": "var_dm_running",
+          "value": false
+        },
+        {
+          "id": "tc_2b3_s3_03",
+          "literalComponentId": "lc_2b3_ps_s",
+          "variableId": "var_ps_energised",
+          "value": false
+        },
+        {
+          "id": "tc_2b3_s3_04",
+          "literalComponentId": "lc_2b3_ps_p",
+          "variableId": "var_ps_energised",
+          "value": false
+        }
+      ]
+    }
+  ]
+}
