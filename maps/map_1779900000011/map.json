@@ -1,0 +1,6 @@
+{
+  "id": "map_1779900000011",
+  "name": "Motor-Driven Pump Station",
+  "description": "The pump station from Cycle 1 integrated with a full MCC (motor control centre): power supply, motor isolator switch, motor fuse, and an electric motor. The pump will only run when the motor is energised. Covers full startup, protection trip recovery, and emergency isolation.",
+  "config": {}
+}
