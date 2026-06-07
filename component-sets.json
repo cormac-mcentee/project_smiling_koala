@@ -3084,5 +3084,89 @@
       "imageStencilName": "Status/Fault",
       "imageAspect": 1
     }
-  ]
+  ],
+  "schemas": {
+    "flow_composite": {
+      "type": "composite",
+      "fields": [
+        {
+          "id": "f_flow_present",
+          "name": "present",
+          "type": "boolean",
+          "defaultValue": false
+        },
+        {
+          "id": "f_flow_flowing",
+          "name": "flowing",
+          "type": "boolean",
+          "defaultValue": false
+        },
+        {
+          "id": "f_flow_rate",
+          "name": "rate",
+          "type": "number",
+          "defaultValue": 0
+        },
+        {
+          "id": "f_flow_temperature",
+          "name": "temperature",
+          "type": "number",
+          "defaultValue": 20
+        },
+        {
+          "id": "f_flow_pressure",
+          "name": "pressure",
+          "type": "number",
+          "defaultValue": 0
+        },
+        {
+          "id": "f_flow_phase",
+          "name": "phase",
+          "type": "string",
+          "defaultValue": "liquid"
+        },
+        {
+          "id": "f_flow_colour",
+          "name": "colour",
+          "type": "string",
+          "defaultValue": ""
+        },
+        {
+          "id": "f_flow_composition",
+          "name": "composition",
+          "type": "string",
+          "defaultValue": ""
+        }
+      ]
+    },
+    "shaft_composite": {
+      "type": "composite",
+      "fields": [
+        {
+          "id": "f_shaft_driving",
+          "name": "driving",
+          "type": "boolean",
+          "defaultValue": false
+        },
+        {
+          "id": "f_shaft_rpm",
+          "name": "rpm",
+          "type": "number",
+          "defaultValue": 0
+        },
+        {
+          "id": "f_shaft_torque",
+          "name": "torque",
+          "type": "number",
+          "defaultValue": 0
+        }
+      ]
+    }
+  },
+  "scriptTemplates": {
+    "clear_flow": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"",
+    "copy_upstream": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUP(0).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour",
+    "clear_shaft": "SET self.shaft.driving = false\nSET self.shaft.rpm = 0\nSET self.shaft.torque = 0",
+    "copy_shaft_upstream": "SET self.shaft.driving = true\nSET self.shaft.rpm = SUMSUP.shaft.rpm\nSET self.shaft.torque = SUMSUP.shaft.torque"
+  }
 }
