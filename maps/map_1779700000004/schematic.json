@@ -201,5 +201,29 @@
       "x": 1020,
       "y": -36
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_m4_01",
+      "type": "text",
+      "x": 262,
+      "y": -92,
+      "content": "Flow must be established before H1 is energised — dry heat faults the element.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_m4_02",
+      "type": "text",
+      "x": 260,
+      "y": -64,
+      "content": "Sequence: open V1 → start P1 → open V2 → switch on H1. Reverse to shut down.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
