@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.13",
-  "publishedAt": "2026-06-07T15:45:07.777Z",
+  "version": "1.0.13.1",
+  "publishedAt": "2026-06-07T15:50:17.980Z",
   "projectId": "project_1779398994828",
   "files": [
     {
@@ -314,7 +314,7 @@
     },
     {
       "path": "maps/map_1779900000013/literal-components.json",
-      "sha256": "da117aed7cf8a7f99f026b710efdfcdc498725dc449cab9d23d3fd973b517df3"
+      "sha256": "51a80d0db03a7b94f79ffe855882393821ddc14b7c18bf2fa62dc81da40aed49"
     },
     {
       "path": "maps/map_1779900000013/scenarios.json",
@@ -322,7 +322,7 @@
     },
     {
       "path": "maps/map_1779900000013/schematic.json",
-      "sha256": "287e87223d56869cf83c6d4363e0a759cf3cef751c7f36e41b99e6e7cfa238e9"
+      "sha256": "235fb9b73b16f047fe69c47ed0e8048c9f34d91c1b971ab3a6e072196b653140"
     }
   ],
   "packs": [
@@ -345,5 +345,5 @@
       "productId": null
     }
   ],
-  "signature": "bQSTrpAnbkzY2FZ9zsGkl0RndLVSjyTnOxyngqnAK2IsdxWWWyqcMym820h3AHqJnLtu6nKEUsZwnzZvNpCHgA=="
+  "signature": "PLLfir9ETg/UUL1uGuGESQjaMD2wJ4bj77F3XP1AOPYIdV5nEa6v7mM2EsS7kbJ/9Sq0rNJzBBSiMgf0kPJ6Ew=="
 }
