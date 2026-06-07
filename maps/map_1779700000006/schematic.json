@@ -148,5 +148,29 @@
       "x": 564,
       "y": -12
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_m6_01",
+      "type": "text",
+      "x": 38,
+      "y": -79,
+      "content": "ECV1 is electrically operated — it opens when PS1 is energised, closes on power loss.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_m6_02",
+      "type": "text",
+      "x": 40,
+      "y": -52,
+      "content": "V1 provides manual isolation regardless of power state.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
