@@ -12,7 +12,7 @@
     },
     {
       "lcId": "lc_m1_v1",
-      "x": 252,
+      "x": 264,
       "y": -6
     },
     {
@@ -75,5 +75,29 @@
       "x": 336,
       "y": -24
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_m1_01",
+      "type": "text",
+      "x": 154,
+      "y": -48,
+      "content": "Fluid enters from the left — V1 controls all downstream flow.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_m1_02",
+      "type": "text",
+      "x": 153,
+      "y": 81,
+      "content": "Toggle V1 open to start flow; close it to isolate the line.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
