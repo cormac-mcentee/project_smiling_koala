@@ -1,0 +1,166 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_2a3_s1",
+      "name": "Start the Motor-Pump",
+      "description": "The motor isolator SW_Iso is open. The suction and discharge valves are already open. Close SW_Iso to energise M1 — the motor drives the shaft, which automatically starts pump P1. The pump has no separate start button; the motor IS the control.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_2a3_s1_01",
+          "literalComponentId": "lc_2a3_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2a3_s1_02",
+          "literalComponentId": "lc_2a3_sw_iso",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2a3_s1_03",
+          "literalComponentId": "lc_2a3_f_motor",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2a3_s1_04",
+          "literalComponentId": "lc_2a3_v_suction",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2a3_s1_05",
+          "literalComponentId": "lc_2a3_v_discharge",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2a3_s1_01",
+          "literalComponentId": "lc_2a3_m1",
+          "variableId": "var_dm_running",
+          "value": true
+        },
+        {
+          "id": "tc_2a3_s1_02",
+          "literalComponentId": "lc_2a3_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2a3_s2",
+      "name": "Motor Overload Trip",
+      "description": "The motor fuse F_Motor has tripped. M1 is not running; the shaft is stationary so P1 has stopped automatically. Reset the sequence: reset F_Motor, then close SW_Iso — the motor auto-starts, the shaft turns, and P1 auto-runs.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_2a3_s2_01",
+          "literalComponentId": "lc_2a3_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2a3_s2_02",
+          "literalComponentId": "lc_2a3_sw_iso",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_2a3_s2_03",
+          "literalComponentId": "lc_2a3_f_motor",
+          "variableId": "var_fuse_tripped",
+          "value": true
+        },
+        {
+          "id": "ic_2a3_s2_04",
+          "literalComponentId": "lc_2a3_v_suction",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2a3_s2_05",
+          "literalComponentId": "lc_2a3_v_discharge",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2a3_s2_01",
+          "literalComponentId": "lc_2a3_m1",
+          "variableId": "var_dm_running",
+          "value": true
+        },
+        {
+          "id": "tc_2a3_s2_02",
+          "literalComponentId": "lc_2a3_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_2a3_s3",
+      "name": "Controlled Electrical Shutdown",
+      "description": "The motor-pump is running with flow to the outlet. Shut it down in the correct order: open SW_Iso first — this stops the motor, which stops the shaft, which stops the pump. Only then close V_Discharge. Finally de-energise PS1. Closing the discharge valve while the shaft is still turning will dead-head the pump.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_2a3_s3_01",
+          "literalComponentId": "lc_2a3_ps1",
+          "variableId": "var_ps_energised",
+          "value": true
+        },
+        {
+          "id": "ic_2a3_s3_02",
+          "literalComponentId": "lc_2a3_sw_iso",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_2a3_s3_03",
+          "literalComponentId": "lc_2a3_f_motor",
+          "variableId": "var_fuse_tripped",
+          "value": false
+        },
+        {
+          "id": "ic_2a3_s3_04",
+          "literalComponentId": "lc_2a3_v_suction",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_2a3_s3_05",
+          "literalComponentId": "lc_2a3_v_discharge",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_2a3_s3_01",
+          "literalComponentId": "lc_2a3_m1",
+          "variableId": "var_dm_running",
+          "value": false
+        },
+        {
+          "id": "tc_2a3_s3_02",
+          "literalComponentId": "lc_2a3_ps1",
+          "variableId": "var_ps_energised",
+          "value": false
+        },
+        {
+          "id": "tc_2a3_s3_03",
+          "literalComponentId": "lc_2a3_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": false
+        }
+      ]
+    }
+  ]
+}
