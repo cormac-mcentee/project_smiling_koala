@@ -2,78 +2,78 @@
   "nodes": [
     {
       "lcId": "lc_2a2_ps1",
-      "x": 50,
-      "y": 50
+      "x": 56,
+      "y": 58
     },
     {
       "lcId": "lc_2a2_wire_main",
       "x": 180,
-      "y": 50
+      "y": 58
     },
     {
       "lcId": "lc_2a2_sw_main",
-      "x": 310,
-      "y": 50
+      "x": 300,
+      "y": 42
     },
     {
       "lcId": "lc_2a2_wire_b1",
-      "x": 440,
-      "y": -60
+      "x": 444,
+      "y": -62
     },
     {
       "lcId": "lc_2a2_f1",
-      "x": 570,
-      "y": -60
+      "x": 564,
+      "y": -54
     },
     {
       "lcId": "lc_2a2_wire_d1",
-      "x": 700,
-      "y": -60
+      "x": 708,
+      "y": -62
     },
     {
       "lcId": "lc_2a2_lamp1",
-      "x": 820,
-      "y": -60
+      "x": 828,
+      "y": -54
     },
     {
       "lcId": "lc_2a2_wire_b2",
-      "x": 440,
-      "y": 50
+      "x": 444,
+      "y": 58
     },
     {
       "lcId": "lc_2a2_f2",
-      "x": 570,
-      "y": 50
+      "x": 564,
+      "y": 42
     },
     {
       "lcId": "lc_2a2_wire_d2",
-      "x": 700,
-      "y": 50
+      "x": 708,
+      "y": 58
     },
     {
       "lcId": "lc_2a2_lamp2",
-      "x": 820,
-      "y": 50
+      "x": 828,
+      "y": 42
     },
     {
       "lcId": "lc_2a2_wire_b3",
-      "x": 440,
-      "y": 160
+      "x": 444,
+      "y": 154
     },
     {
       "lcId": "lc_2a2_f3",
-      "x": 570,
-      "y": 160
+      "x": 564,
+      "y": 162
     },
     {
       "lcId": "lc_2a2_wire_d3",
-      "x": 700,
-      "y": 160
+      "x": 708,
+      "y": 154
     },
     {
       "lcId": "lc_2a2_lamp3",
-      "x": 820,
-      "y": 160
+      "x": 828,
+      "y": 162
     }
   ],
   "connections": [
@@ -219,8 +219,8 @@
       "lcId": "lc_2a2_f1",
       "bindTo": "var:tripped",
       "label": "Tripped",
-      "x": 570,
-      "y": -90
+      "x": 612,
+      "y": -84
     },
     "anc_2a2_f1_reset": {
       "id": "anc_2a2_f1_reset",
@@ -228,8 +228,8 @@
       "lcId": "lc_2a2_f1",
       "bindTo": "act:reset",
       "label": "Reset",
-      "x": 620,
-      "y": -90
+      "x": 564,
+      "y": -84
     },
     "anc_2a2_lamp1_lit": {
       "id": "anc_2a2_lamp1_lit",
@@ -237,8 +237,8 @@
       "lcId": "lc_2a2_lamp1",
       "bindTo": "var:lit",
       "label": "Lit",
-      "x": 820,
-      "y": -90
+      "x": 948,
+      "y": 0
     },
     "anc_2a2_f2_light": {
       "id": "anc_2a2_f2_light",
@@ -246,8 +246,8 @@
       "lcId": "lc_2a2_f2",
       "bindTo": "var:tripped",
       "label": "Tripped",
-      "x": 570,
-      "y": 20
+      "x": 720,
+      "y": 120
     },
     "anc_2a2_f2_reset": {
       "id": "anc_2a2_f2_reset",
@@ -255,8 +255,8 @@
       "lcId": "lc_2a2_f2",
       "bindTo": "act:reset",
       "label": "Reset",
-      "x": 620,
-      "y": 20
+      "x": 660,
+      "y": 120
     },
     "anc_2a2_lamp2_lit": {
       "id": "anc_2a2_lamp2_lit",
@@ -264,8 +264,8 @@
       "lcId": "lc_2a2_lamp2",
       "bindTo": "var:lit",
       "label": "Lit",
-      "x": 820,
-      "y": 20
+      "x": 948,
+      "y": 96
     },
     "anc_2a2_f3_light": {
       "id": "anc_2a2_f3_light",
@@ -273,8 +273,8 @@
       "lcId": "lc_2a2_f3",
       "bindTo": "var:tripped",
       "label": "Tripped",
-      "x": 570,
-      "y": 130
+      "x": 648,
+      "y": 288
     },
     "anc_2a2_f3_reset": {
       "id": "anc_2a2_f3_reset",
@@ -282,8 +282,8 @@
       "lcId": "lc_2a2_f3",
       "bindTo": "act:reset",
       "label": "Reset",
-      "x": 620,
-      "y": 130
+      "x": 588,
+      "y": 288
     },
     "anc_2a2_lamp3_lit": {
       "id": "anc_2a2_lamp3_lit",
@@ -291,8 +291,8 @@
       "lcId": "lc_2a2_lamp3",
       "bindTo": "var:lit",
       "label": "Lit",
-      "x": 820,
-      "y": 130
+      "x": 948,
+      "y": 216
     }
   }
 }
