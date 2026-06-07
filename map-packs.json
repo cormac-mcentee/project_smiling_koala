@@ -2,7 +2,7 @@
   "mapPacks": [
     {
       "id": "mappack_1779398997874",
-      "name": "Tutorial Pack",
+      "name": "Basic Componets",
       "description": "Introductory scenarios covering the fundamental components and procedures.",
       "tags": [
         "tutorial"
@@ -19,7 +19,7 @@
     },
     {
       "id": "mappack_1779800000001",
-      "name": "Cycle 1 Content Maps",
+      "name": "Basic Components part 2",
       "description": "Multi-component production scenarios combining all Cycle 1 components in real-process contexts.",
       "tags": [
         "content",
@@ -30,6 +30,23 @@
         "map_1779800000002",
         "map_1779800000003",
         "map_1779800000004"
+      ]
+    },
+    {
+      "id": "mappack_1779900000001",
+      "name": "Electricity",
+      "description": "Electrical circuits, motor protection, and electrical-fluid integration spanning Package 2A (component introductions) and Package 2B (real-world integration).",
+      "tags": [
+        "content",
+        "cycle2"
+      ],
+      "mapIds": [
+        "map_1779900000001",
+        "map_1779900000002",
+        "map_1779900000003",
+        "map_1779900000011",
+        "map_1779900000012",
+        "map_1779900000013"
       ]
     }
   ]
