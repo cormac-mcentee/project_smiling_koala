@@ -9,8 +9,8 @@
         "energised": true
       },
       "_canvas": {
-        "x": 50,
-        "y": 50
+        "x": 56,
+        "y": 58
       }
     },
     {
@@ -23,7 +23,7 @@
       "variableOverrides": {},
       "_canvas": {
         "x": 180,
-        "y": 50
+        "y": 58
       }
     },
     {
@@ -35,8 +35,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 310,
-        "y": 50
+        "x": 300,
+        "y": 42
       }
     },
     {
@@ -48,8 +48,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 440,
-        "y": 50
+        "x": 444,
+        "y": 58
       }
     },
     {
@@ -61,8 +61,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 570,
-        "y": 50
+        "x": 564,
+        "y": 42
       }
     },
     {
@@ -74,8 +74,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 700,
-        "y": 50
+        "x": 708,
+        "y": 58
       }
     },
     {
@@ -87,8 +87,8 @@
       ],
       "variableOverrides": {},
       "_canvas": {
-        "x": 820,
-        "y": 50
+        "x": 828,
+        "y": 42
       }
     }
   ]
