@@ -446,5 +446,29 @@
       "x": 960,
       "y": 216
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_1b3_01",
+      "type": "text",
+      "x": 38,
+      "y": -131,
+      "content": "The process stream (top) and the service stream (bottom) exchange heat at the HE. The service ECV is electrically interlocked with PS1.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_1b3_02",
+      "type": "text",
+      "x": 41,
+      "y": -99,
+      "content": "Commission the service side first — the HE must have service flow before the process side is started.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
