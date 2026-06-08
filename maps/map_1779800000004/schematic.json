@@ -2,78 +2,78 @@
   "nodes": [
     {
       "lcId": "lc_1b4_inlet",
-      "x": 0,
-      "y": 0
+      "x": 8,
+      "y": 10
     },
     {
       "lcId": "lc_1b4_p_in",
-      "x": 90,
-      "y": 0
+      "x": 84,
+      "y": 10
     },
     {
       "lcId": "lc_1b4_v1",
-      "x": 180,
-      "y": 0
+      "x": 192,
+      "y": -6
     },
     {
       "lcId": "lc_1b4_p_suct",
-      "x": 280,
-      "y": 0
+      "x": 276,
+      "y": 10
     },
     {
       "lcId": "lc_1b4_p1",
-      "x": 380,
-      "y": 0
+      "x": 384,
+      "y": -1
     },
     {
       "lcId": "lc_1b4_p_disc",
-      "x": 490,
-      "y": 0
+      "x": 492,
+      "y": 10
     },
     {
       "lcId": "lc_1b4_v2",
-      "x": 590,
-      "y": 0
+      "x": 600,
+      "y": -6
     },
     {
       "lcId": "lc_1b4_p_fill",
-      "x": 690,
-      "y": 0
+      "x": 684,
+      "y": 10
     },
     {
       "lcId": "lc_1b4_t1",
-      "x": 790,
+      "x": 795,
       "y": 0
     },
     {
       "lcId": "lc_1b4_p_tank_out",
       "x": 900,
-      "y": 0
+      "y": 10
     },
     {
       "lcId": "lc_1b4_v3",
-      "x": 990,
-      "y": 0
+      "x": 984,
+      "y": -6
     },
     {
       "lcId": "lc_1b4_p_xfer_suct",
-      "x": 1090,
-      "y": 0
+      "x": 1092,
+      "y": 10
     },
     {
       "lcId": "lc_1b4_p2",
-      "x": 1190,
-      "y": 0
+      "x": 1200,
+      "y": -1
     },
     {
       "lcId": "lc_1b4_p_xfer_disc",
-      "x": 1300,
-      "y": 0
+      "x": 1308,
+      "y": 10
     },
     {
       "lcId": "lc_1b4_outlet",
-      "x": 1390,
-      "y": 0
+      "x": 1400,
+      "y": 10
     }
   ],
   "connections": [
@@ -285,5 +285,29 @@
       "x": 1250,
       "y": -30
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_1b4_01",
+      "type": "text",
+      "x": 205,
+      "y": -101,
+      "content": "P1 fills T1 from the inlet. P2 draws from T1 and discharges to the outlet. Both pumps share the same pipeline.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_1b4_02",
+      "type": "text",
+      "x": 244,
+      "y": -70,
+      "content": "Fill T1 to level before starting P2. If T1 empties during transfer, P2 runs dry.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
