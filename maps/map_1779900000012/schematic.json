@@ -63,7 +63,7 @@
     {
       "lcId": "lc_2b2_ecv1",
       "x": 792,
-      "y": 64.5,
+      "y": 76.5,
       "portOverrides": {
         "input": {
           "edge": "left",
@@ -379,5 +379,29 @@
       "x": 1460,
       "y": 50
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_2b2_01",
+      "type": "text",
+      "x": -77,
+      "y": -17,
+      "content": "H1 can only activate when ECV1 is energised by the enable circuit (PS1 and SW_Enable, top right). Cutting power closes ECV1 and deactivates H1.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_2b2_02",
+      "type": "text",
+      "x": -2,
+      "y": 13,
+      "content": "Establish process flow through P1 before closing SW_Enable to energise the heater circuit.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
