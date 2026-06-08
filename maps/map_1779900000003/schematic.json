@@ -2,88 +2,88 @@
   "nodes": [
     {
       "lcId": "lc_2a3_ps1",
-      "x": 50,
-      "y": -100
+      "x": 56,
+      "y": -110
     },
     {
       "lcId": "lc_2a3_wire_a",
       "x": 180,
-      "y": -100
+      "y": -110
     },
     {
       "lcId": "lc_2a3_sw_iso",
-      "x": 310,
-      "y": -100
+      "x": 300,
+      "y": -102
     },
     {
       "lcId": "lc_2a3_wire_b",
-      "x": 440,
-      "y": -100
+      "x": 444,
+      "y": -110
     },
     {
       "lcId": "lc_2a3_f_motor",
-      "x": 570,
-      "y": -100
+      "x": 564,
+      "y": -102
     },
     {
       "lcId": "lc_2a3_wire_c",
-      "x": 700,
-      "y": -100
+      "x": 708,
+      "y": -110
     },
     {
       "lcId": "lc_2a3_m1",
-      "x": 820,
-      "y": -100
+      "x": 816,
+      "y": -96
     },
     {
       "lcId": "lc_2a3_shaft_a",
-      "x": 695,
-      "y": 0
+      "x": 684,
+      "y": 10
     },
     {
       "lcId": "lc_2a3_inlet",
-      "x": 50,
-      "y": 100
+      "x": 56,
+      "y": 106
     },
     {
       "lcId": "lc_2a3_pipe_a",
       "x": 180,
-      "y": 100
+      "y": 106
     },
     {
       "lcId": "lc_2a3_v_suction",
-      "x": 310,
-      "y": 100
+      "x": 312,
+      "y": 90
     },
     {
       "lcId": "lc_2a3_pipe_b",
-      "x": 440,
-      "y": 100
+      "x": 444,
+      "y": 106
     },
     {
       "lcId": "lc_2a3_p1",
-      "x": 570,
-      "y": 100
+      "x": 576,
+      "y": 95
     },
     {
       "lcId": "lc_2a3_pipe_c",
-      "x": 700,
-      "y": 100
+      "x": 708,
+      "y": 106
     },
     {
       "lcId": "lc_2a3_v_discharge",
-      "x": 820,
-      "y": 100
+      "x": 816,
+      "y": 90
     },
     {
       "lcId": "lc_2a3_pipe_d",
-      "x": 940,
-      "y": 100
+      "x": 948,
+      "y": 106
     },
     {
       "lcId": "lc_2a3_outlet",
-      "x": 1060,
-      "y": 100
+      "x": 1064,
+      "y": 106
     }
   ],
   "connections": [
@@ -318,5 +318,29 @@
       "x": 1060,
       "y": 70
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_2a3_01",
+      "type": "text",
+      "x": -152,
+      "y": 8,
+      "content": "The MCC circuit (top) energises the motor, which drives the pump via the shaft. The pump runs only when the motor is energised.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_2a3_02",
+      "type": "text",
+      "x": 73,
+      "y": 39,
+      "content": "Open the motor isolator before resetting a tripped fuse — resetting under load blows it again.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
