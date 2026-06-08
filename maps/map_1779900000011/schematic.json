@@ -2,88 +2,88 @@
   "nodes": [
     {
       "lcId": "lc_2b1_ps1",
-      "x": 50,
-      "y": -120
+      "x": 56,
+      "y": -110
     },
     {
       "lcId": "lc_2b1_wire_a",
       "x": 180,
-      "y": -120
+      "y": -110
     },
     {
       "lcId": "lc_2b1_sw_mcc",
-      "x": 310,
-      "y": -120
+      "x": 300,
+      "y": -126
     },
     {
       "lcId": "lc_2b1_wire_b",
-      "x": 440,
-      "y": -120
+      "x": 444,
+      "y": -110
     },
     {
       "lcId": "lc_2b1_f_motor",
-      "x": 570,
-      "y": -120
+      "x": 564,
+      "y": -126
     },
     {
       "lcId": "lc_2b1_wire_c",
-      "x": 700,
-      "y": -120
+      "x": 708,
+      "y": -110
     },
     {
       "lcId": "lc_2b1_m1",
-      "x": 820,
+      "x": 816,
       "y": -120
     },
     {
       "lcId": "lc_2b1_shaft_a",
-      "x": 695,
-      "y": -20
+      "x": 684,
+      "y": -14
     },
     {
       "lcId": "lc_2b1_inlet",
-      "x": 50,
-      "y": 80
+      "x": 56,
+      "y": 82
     },
     {
       "lcId": "lc_2b1_pipe_a",
       "x": 180,
-      "y": 80
+      "y": 82
     },
     {
       "lcId": "lc_2b1_v_suction",
-      "x": 310,
-      "y": 80
+      "x": 312,
+      "y": 90
     },
     {
       "lcId": "lc_2b1_pipe_b",
-      "x": 440,
-      "y": 80
+      "x": 444,
+      "y": 82
     },
     {
       "lcId": "lc_2b1_p1",
-      "x": 570,
-      "y": 80
+      "x": 576,
+      "y": 71
     },
     {
       "lcId": "lc_2b1_pipe_c",
-      "x": 700,
-      "y": 80
+      "x": 708,
+      "y": 82
     },
     {
       "lcId": "lc_2b1_v_discharge",
-      "x": 820,
-      "y": 80
+      "x": 816,
+      "y": 90
     },
     {
       "lcId": "lc_2b1_pipe_d",
-      "x": 940,
-      "y": 80
+      "x": 948,
+      "y": 82
     },
     {
       "lcId": "lc_2b1_outlet",
-      "x": 1060,
-      "y": 80
+      "x": 1064,
+      "y": 82
     }
   ],
   "connections": [
@@ -318,5 +318,29 @@
       "x": 1060,
       "y": 50
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_2b1_01",
+      "type": "text",
+      "x": -247,
+      "y": -29,
+      "content": "The MCC (top) must be energised and the motor isolator closed before the pump will run. Suction and discharge valves control the fluid path.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_2b1_02",
+      "type": "text",
+      "x": -195,
+      "y": -1,
+      "content": "Startup: open suction valve → close motor isolator → open discharge valve. Shutdown reverses this order.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
