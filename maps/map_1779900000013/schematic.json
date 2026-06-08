@@ -707,5 +707,29 @@
       "x": 1104,
       "y": 456
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_2b3_01",
+      "type": "text",
+      "x": -191,
+      "y": -115,
+      "content": "The service circuit (top) feeds the HE cooling side. The process circuit (bottom) feeds the HE process side. Commission service first.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_2b3_02",
+      "type": "text",
+      "x": -113,
+      "y": -78,
+      "content": "Both motor isolators must be closed and both fluid valve pairs open for the HE to achieve heat transfer.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
