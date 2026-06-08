@@ -294,5 +294,29 @@
       "x": 948,
       "y": 216
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_2a2_01",
+      "type": "text",
+      "x": -281,
+      "y": -43,
+      "content": "Three parallel lamp branches share a main switch. Each branch has its own fuse — a blown fuse disconnects only that branch.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_2a2_02",
+      "type": "text",
+      "x": -236,
+      "y": -17,
+      "content": "To reset a fuse: open the main switch, reset the fuse, then re-close. Resetting with the switch closed blows it again immediately.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
