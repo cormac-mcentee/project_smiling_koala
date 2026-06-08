@@ -231,5 +231,29 @@
       "x": 552,
       "y": 288
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_1b2_01",
+      "type": "text",
+      "x": 72,
+      "y": -106,
+      "content": "P1 pumps process water to the outlet. T1 supplies chemical through the dosing pump and V2, injecting into the discharge line at the junction.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_1b2_02",
+      "type": "text",
+      "x": 134,
+      "y": -75,
+      "content": "Start P1 before enabling dosing. Monitor T1 level — close V2 and stop the dosing pump before the tank empties.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
