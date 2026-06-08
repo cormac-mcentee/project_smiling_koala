@@ -2,78 +2,78 @@
   "nodes": [
     {
       "lcId": "lc_1b1_inlet",
-      "x": 0,
-      "y": 0
+      "x": 8,
+      "y": 10
     },
     {
       "lcId": "lc_1b1_p_in",
-      "x": 90,
-      "y": 0
+      "x": 84,
+      "y": 10
     },
     {
       "lcId": "lc_1b1_v1",
-      "x": 180,
-      "y": 0
+      "x": 192,
+      "y": -6
     },
     {
       "lcId": "lc_1b1_p_suct",
-      "x": 280,
-      "y": 0
+      "x": 276,
+      "y": 10
     },
     {
       "lcId": "lc_1b1_p1",
-      "x": 380,
-      "y": 0
+      "x": 384,
+      "y": -1
     },
     {
       "lcId": "lc_1b1_p_disc",
-      "x": 490,
-      "y": 0
+      "x": 492,
+      "y": 10
     },
     {
       "lcId": "lc_1b1_h1",
-      "x": 590,
-      "y": 0
+      "x": 600,
+      "y": -10.5
     },
     {
       "lcId": "lc_1b1_p_hout",
-      "x": 700,
-      "y": 0
+      "x": 708,
+      "y": 10
     },
     {
       "lcId": "lc_1b1_cv1",
-      "x": 800,
-      "y": 0
+      "x": 792,
+      "y": -6
     },
     {
       "lcId": "lc_1b1_p_cvout",
       "x": 900,
-      "y": 0
+      "y": 10
     },
     {
       "lcId": "lc_1b1_t1",
-      "x": 1000,
+      "x": 1011,
       "y": 0
     },
     {
       "lcId": "lc_1b1_p_tout",
-      "x": 1100,
-      "y": 0
+      "x": 1092,
+      "y": 10
     },
     {
       "lcId": "lc_1b1_v2",
-      "x": 1190,
-      "y": 0
+      "x": 1200,
+      "y": -6
     },
     {
       "lcId": "lc_1b1_p_vout",
-      "x": 1290,
-      "y": 0
+      "x": 1284,
+      "y": 10
     },
     {
       "lcId": "lc_1b1_outlet",
-      "x": 1380,
-      "y": 0
+      "x": 1376,
+      "y": 10
     }
   ],
   "connections": [
@@ -276,5 +276,29 @@
       "x": 1250,
       "y": -30
     }
-  }
+  },
+  "landmarks": [
+    {
+      "id": "lm_1b1_01",
+      "type": "text",
+      "x": 632,
+      "y": -67,
+      "content": "Inlet water is pumped by P1 through H1 and throttled by CV1 into the treatment tank T1. V2 transfers from T1 to the outlet.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_1b1_02",
+      "type": "text",
+      "x": 637,
+      "y": 124,
+      "content": "Start P1 after opening V1. Activate H1 only with flow established. Open V2 only after T1 has level.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
 }
