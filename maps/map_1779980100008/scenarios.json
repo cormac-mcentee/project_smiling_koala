@@ -1,0 +1,206 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_f19_s1",
+      "name": "Commission Full Loop",
+      "description": "All equipment is off and isolated. Commission the full loop in the correct sequence: open V1 and V2, start P1, then activate H1, then activate C1. Each step must be done in order — starting P1 before opening V2 will cause a dead-head.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_f19_s1_01",
+          "literalComponentId": "lc_f19_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f19_s1_02",
+          "literalComponentId": "lc_f19_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f19_s1_03",
+          "literalComponentId": "lc_f19_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "ic_f19_s1_04",
+          "literalComponentId": "lc_f19_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        },
+        {
+          "id": "ic_f19_s1_05",
+          "literalComponentId": "lc_f19_c1",
+          "variableId": "var_cooler_active",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f19_s1_01",
+          "literalComponentId": "lc_f19_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "tc_f19_s1_02",
+          "literalComponentId": "lc_f19_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        },
+        {
+          "id": "tc_f19_s1_03",
+          "literalComponentId": "lc_f19_c1",
+          "variableId": "var_cooler_active",
+          "value": true
+        },
+        {
+          "id": "tc_f19_s1_04",
+          "literalComponentId": "lc_f19_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        },
+        {
+          "id": "tc_f19_s1_05",
+          "literalComponentId": "lc_f19_prv1",
+          "variableId": "var_prv_open",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "scenario_f19_s2",
+      "name": "Strainer Fouling — Diagnose and Isolate",
+      "description": "The system is running normally but flow is decreasing and pressure is building on the pump discharge. STR1 is fouling. Safely shut down: turn off H1 first, then stop P1, then close V1 to isolate for strainer maintenance.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_f19_s2_01",
+          "literalComponentId": "lc_f19_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f19_s2_02",
+          "literalComponentId": "lc_f19_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f19_s2_03",
+          "literalComponentId": "lc_f19_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_f19_s2_04",
+          "literalComponentId": "lc_f19_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        },
+        {
+          "id": "ic_f19_s2_05",
+          "literalComponentId": "lc_f19_c1",
+          "variableId": "var_cooler_active",
+          "value": true
+        },
+        {
+          "id": "ic_f19_s2_06",
+          "literalComponentId": "lc_f19_str1",
+          "variableId": "var_str_fouled",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f19_s2_01",
+          "literalComponentId": "lc_f19_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        },
+        {
+          "id": "tc_f19_s2_02",
+          "literalComponentId": "lc_f19_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "tc_f19_s2_03",
+          "literalComponentId": "lc_f19_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_f19_s2_01",
+          "literalComponentId": "lc_f19_str1",
+          "faultName": "fouled_strainer",
+          "gracePeriod": 0
+        }
+      ]
+    },
+    {
+      "id": "scenario_f19_s3",
+      "name": "Cooler Fan Failure",
+      "description": "The system is running but the cooler fan has failed. Outlet temperature is rising. Turn off the heater H1 to prevent thermal damage, then assess whether the process can continue with cooler C1 de-rated.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_f19_s3_01",
+          "literalComponentId": "lc_f19_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f19_s3_02",
+          "literalComponentId": "lc_f19_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f19_s3_03",
+          "literalComponentId": "lc_f19_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_f19_s3_04",
+          "literalComponentId": "lc_f19_h1",
+          "variableId": "var_heater_active",
+          "value": true
+        },
+        {
+          "id": "ic_f19_s3_05",
+          "literalComponentId": "lc_f19_c1",
+          "variableId": "var_cooler_active",
+          "value": false
+        },
+        {
+          "id": "ic_f19_s3_06",
+          "literalComponentId": "lc_f19_c1",
+          "variableId": "var_cooler_broken",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f19_s3_01",
+          "literalComponentId": "lc_f19_h1",
+          "variableId": "var_heater_active",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_f19_s3_01",
+          "literalComponentId": "lc_f19_c1",
+          "faultName": "fan_fault",
+          "gracePeriod": 8
+        }
+      ]
+    }
+  ]
+}
