@@ -40,11 +40,24 @@
       }
     },
     {
+      "id": "lc_2a2_spl_main",
+      "name": "SPL1",
+      "componentId": "component_wire_splitter_1779700000007",
+      "superiors": [
+        "lc_2a2_sw_main"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 422,
+        "y": 62
+      }
+    },
+    {
       "id": "lc_2a2_wire_b1",
       "name": "Wire_B1",
       "componentId": "component_wire_1779700000001",
       "superiors": [
-        "lc_2a2_sw_main"
+        "lc_2a2_spl_main"
       ],
       "variableOverrides": {},
       "_canvas": {
@@ -62,7 +75,7 @@
       "variableOverrides": {},
       "_canvas": {
         "x": 564,
-        "y": -54
+        "y": -78
       }
     },
     {
@@ -96,7 +109,7 @@
       "name": "Wire_B2",
       "componentId": "component_wire_1779700000001",
       "superiors": [
-        "lc_2a2_sw_main"
+        "lc_2a2_spl_main"
       ],
       "variableOverrides": {},
       "_canvas": {
@@ -148,7 +161,7 @@
       "name": "Wire_B3",
       "componentId": "component_wire_1779700000001",
       "superiors": [
-        "lc_2a2_sw_main"
+        "lc_2a2_spl_main"
       ],
       "variableOverrides": {},
       "_canvas": {
