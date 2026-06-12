@@ -248,7 +248,7 @@
       "id": "anc_2b2_ps1_light",
       "type": "light",
       "lcId": "lc_2b2_ps1",
-      "bindTo": "var:energised",
+      "bindTo": "var:on",
       "label": "On",
       "x": 740,
       "y": -150
