@@ -20,7 +20,7 @@
               "id": "var_tank_static_rate",
               "name": "static_rate",
               "type": "number",
-              "defaultValue": 0
+              "defaultValue": 100
             },
             {
               "id": "var_tank_receiving",
@@ -59,6 +59,13 @@
               "defaultValue": false
             },
             {
+              "id": "var_tank_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            },
+            {
               "id": "var_tank_fluid_present",
               "name": "fluid_present",
               "type": "boolean",
@@ -79,7 +86,7 @@
             {
               "id": "action_tank_update",
               "name": "update",
-              "script": "IF self.level > 0 THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.fluid_present = true\n  SET self.flow.rate = self.static_rate * self.level / 100\nELSE\n  SET self.flow.present = false\n  SET self.flow.flowing = false\n  SET self.fluid_present = false\n  SET self.flow.rate = 0\nEND\nIF self.level <= self.low_threshold THEN\n  SET self.level_low = true\nELSE\n  SET self.level_low = false\nEND\nIF self.level >= self.high_threshold THEN\n  SET self.level_high = true\nELSE\n  SET self.level_high = false\nEND"
+              "script": "IF self.level > 0 THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.fluid_present = true\n  IF self.receiving THEN\n    SET self.flow.rate = SUMSUP.flow.rate\n  ELSE\n    SET self.flow.rate = self.static_rate\n  END\n  SET self.flow.pressure = self.level\nELSE\n  SET self.flow.present = false\n  SET self.flow.flowing = false\n  SET self.fluid_present = false\n  SET self.flow.rate = 0\n  SET self.flow.pressure = 0\nEND\nIF self.level <= self.low_threshold THEN\n  SET self.level_low = true\nELSE\n  SET self.level_low = false\nEND\nIF self.level >= self.high_threshold THEN\n  SET self.level_high = true\nELSE\n  SET self.level_high = false\nEND"
             },
             {
               "id": "action_tank_tick",
@@ -91,7 +98,7 @@
             {
               "id": "listener_tank_inflow_on",
               "condition": "ANYSUP.flow.flowing",
-              "script": "SET self.receiving = true\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUP(0).flow.composition\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
+              "script": "SET self.receiving = true\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.flow.phase = SUPBYPORT(input).flow.phase\nSET self.flow.colour = SUPBYPORT(input).flow.colour"
             },
             {
               "id": "listener_tank_inflow_off",
@@ -176,7 +183,7 @@
             {
               "id": "action_pump_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.running THEN\n  SET self.running = false\n  CALL self.clear_flow\nELSE\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUP(0).flow.composition\n    SET self.flow.pressure = self.outlet_pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.running THEN\n  SET self.running = false\n  CALL self.clear_flow\nELSE\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure + self.outlet_pressure\n    SET self.flow.phase = SUPBYPORT(input).flow.phase\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
             }
           ],
           "listeners": [
@@ -188,7 +195,7 @@
             {
               "id": "listener_pump_running_on",
               "condition": "self.running",
-              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.flow.rate = 100\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUP(0).flow.composition\nSET self.flow.pressure = self.outlet_pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
+              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure + self.outlet_pressure\nSET self.flow.phase = SUPBYPORT(input).flow.phase\nSET self.flow.colour = SUPBYPORT(input).flow.colour"
             },
             {
               "id": "listener_pump_running_off",
@@ -300,7 +307,7 @@
             {
               "id": "action_ep_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.powered == false THEN\n  RETURN\nEND\nIF self.running THEN\n  SET self.running = false\n  CALL self.clear_flow\nELSE\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUP(0).flow.composition\n    SET self.flow.pressure = self.outlet_pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.powered == false THEN\n  RETURN\nEND\nIF self.running THEN\n  SET self.running = false\n  CALL self.clear_flow\nELSE\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure + self.outlet_pressure\n    SET self.flow.phase = SUPBYPORT(input).flow.phase\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
             }
           ],
           "listeners": [
@@ -453,7 +460,7 @@
             {
               "id": "action_tp_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.shaft.driving AND self.broken == false THEN\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = self.rated_rate * SUMSUP.shaft.rpm / self.rated_rpm\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUP(0).flow.composition\n    SET self.flow.pressure = self.outlet_pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n    SET self.running = false\n    CALL self.clear_flow\n  END\nELSE\n  SET self.running = false\n  CALL self.clear_flow\nEND"
+              "script": "IF ANYSUP.shaft.driving AND self.broken == false THEN\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = self.rated_rate * SUMSUP.shaft.rpm / self.rated_rpm\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure + self.outlet_pressure\n    SET self.flow.phase = SUPBYPORT(input).flow.phase\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n    SET self.running = false\n    CALL self.clear_flow\n  END\nELSE\n  SET self.running = false\n  CALL self.clear_flow\nEND"
             }
           ],
           "listeners": [
@@ -583,6 +590,13 @@
               "name": "broken",
               "type": "boolean",
               "defaultValue": false
+            },
+            {
+              "id": "var_vfd_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -594,7 +608,7 @@
             {
               "id": "action_vfd_update_flow",
               "name": "update_flow",
-              "script": "IF self.signal > self.min_speed_pct AND self.broken == false THEN\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = self.rated_rate * self.signal / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUP(0).flow.composition\n    SET self.flow.pressure = self.outlet_pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n    SET self.running = false\n    CALL self.clear_flow\n  END\nELSE\n  SET self.running = false\n  CALL self.clear_flow\nEND"
+              "script": "IF self.signal > self.min_speed_pct AND self.broken == false THEN\n  IF ANYSUP.flow.present THEN\n    SET self.running = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = self.rated_rate * self.signal / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = self.outlet_pressure\n    SET self.flow.phase = SUPBYPORT(input).flow.phase\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n  ELSE\n    ARM dry_run\n    SET self.broken = true\n    SET self.running = false\n    CALL self.clear_flow\n  END\nELSE\n  SET self.running = false\n  CALL self.clear_flow\nEND"
             }
           ],
           "listeners": [
@@ -675,6 +689,13 @@
               "name": "broken",
               "type": "boolean",
               "defaultValue": false
+            },
+            {
+              "id": "var_bp_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -686,7 +707,7 @@
             {
               "id": "action_bp_update_flow",
               "name": "update_flow",
-              "script": "IF self.powered AND ANYSUP.flow.flowing AND self.broken == false THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.temperature = SUMSUP.flow.temperature\n  SET self.flow.composition = SUP(0).flow.composition\n  SET self.flow.pressure = MINSUP.flow.pressure + self.boost_amount\n  SET self.flow.phase = SUP(0).flow.phase\n  SET self.flow.colour = SUP(0).flow.colour\nELSE\n  CALL self.clear_flow\nEND"
+              "script": "IF self.powered AND ANYSUP.flow.flowing AND self.broken == false THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.temperature = SUMSUP.flow.temperature\n  SET self.flow.composition = SUPBYPORT(input).flow.composition\n  SET self.flow.pressure = MINSUP.flow.pressure + self.boost_amount\n  SET self.flow.phase = SUPBYPORT(input).flow.phase\n  SET self.flow.colour = SUPBYPORT(input).flow.colour\nELSE\n  CALL self.clear_flow\nEND"
             }
           ],
           "listeners": [
@@ -723,7 +744,7 @@
               "id": "fault_bp_cavitation",
               "name": "cavitation",
               "description": "Booster pump cavitating — inlet pressure below minimum.",
-              "defaultGracePeriod": 2,
+              "defaultGracePeriod": 0,
               "costMin": 3000,
               "costMax": 10000
             }
@@ -766,7 +787,7 @@
             {
               "id": "action_valve_copy_upstream",
               "name": "copy_upstream",
-              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUP(0).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUPBYPORT(input).flow.phase\nSET self.flow.colour = SUPBYPORT(input).flow.colour"
             },
             {
               "id": "action_valve_clear_flow",
@@ -854,6 +875,13 @@
               "id": "var_cv_flow",
               "name": "flow",
               "$ref": "flow_composite"
+            },
+            {
+              "id": "var_cv_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -870,7 +898,7 @@
             {
               "id": "action_cv_update_flow",
               "name": "update_flow",
-              "script": "IF self.open AND self.opening > 0 THEN\n  IF ANYSUP.flow.flowing THEN\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate * self.opening / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUP(0).flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\nEND"
+              "script": "IF self.blocked THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = false\n  SET self.flow.rate = 0\n  SET self.flow.temperature = 20\n  SET self.flow.fluid_type = \"\"\nELSE\n  IF self.open AND self.opening > 0 THEN\n    IF ANYSUP.flow.flowing THEN\n      SET self.flow.flowing = true\n      SET self.flow.rate = SUMSUP.flow.rate * self.opening / 100\n      SET self.flow.temperature = SUMSUP.flow.temperature\n      SET self.flow.composition = SUPBYPORT(input).flow.composition\n      SET self.flow.pressure = MINSUP.flow.pressure\n      SET self.flow.phase = SUPBYPORT(input).flow.phase\n      SET self.flow.colour = SUPBYPORT(input).flow.colour\n    ELSE\n      CALL self.clear_flow\n    END\n    IF ANYSUP.flow.present THEN\n      SET self.flow.present = true\n    END\n  ELSE\n    CALL self.clear_flow\n  END\nEND"
             }
           ],
           "listeners": [
@@ -893,6 +921,16 @@
               "id": "listener_cv_present_off",
               "condition": "ANYSUP.flow.present == false",
               "script": "CALL self.clear_flow"
+            },
+            {
+              "id": "listener_cv_blocked_on",
+              "condition": "self.blocked",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_cv_blocked_off",
+              "condition": "self.blocked == false AND ANYSUP.flow.present",
+              "script": "CALL self.update_flow"
             },
             {
               "id": "listener_cv_closed_visual",
@@ -923,38 +961,20 @@
           "name": "Electrical Control Valve",
           "variables": [
             {
+              "id": "var_ecv_open",
+              "name": "open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
               "id": "var_ecv_powered",
               "name": "powered",
               "type": "boolean",
               "defaultValue": false
             },
             {
-              "id": "var_ecv_auto",
-              "name": "auto",
-              "type": "boolean",
-              "defaultValue": true
-            },
-            {
-              "id": "var_ecv_signal",
-              "name": "signal",
-              "type": "number",
-              "defaultValue": 0
-            },
-            {
               "id": "var_ecv_fail_open",
               "name": "fail_open",
-              "type": "boolean",
-              "defaultValue": false
-            },
-            {
-              "id": "var_ecv_opening",
-              "name": "opening",
-              "type": "number",
-              "defaultValue": 0
-            },
-            {
-              "id": "var_ecv_fluid_flowing",
-              "name": "fluid_flowing",
               "type": "boolean",
               "defaultValue": false
             },
@@ -972,27 +992,27 @@
           ],
           "actions": [
             {
-              "id": "action_ecv_copy_upstream",
-              "name": "copy_upstream",
-              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUP(0).flow.composition\nSET self.flow.pressure = SUP(0).flow.pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
-            },
-            {
               "id": "action_ecv_clear_flow",
               "name": "clear_flow",
-              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"\nSET self.fluid_flowing = false"
-            },
-            {
-              "id": "action_ecv_update_opening",
-              "name": "update_opening",
-              "script": "IF self.powered THEN\n  SET self.opening = self.signal\nELSE\n  IF self.fail_open THEN\n    SET self.opening = 100\n  ELSE\n    SET self.opening = 0\n  END\nEND\nCALL self.update_flow"
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
             },
             {
               "id": "action_ecv_update_flow",
               "name": "update_flow",
-              "script": "IF self.opening > 0 THEN\n  SET self.blocked = false\n  IF ANYSUP.flow.flowing THEN\n    SET self.flow.flowing = true\n    SET self.fluid_flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate * self.opening / 100\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUP(0).flow.composition\n    SET self.flow.pressure = SUP(0).flow.pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\n  SET self.blocked = true\nEND"
+              "script": "IF self.open THEN\n  IF ANYSUP.flow.flowing THEN\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure\n    SET self.flow.phase = SUPBYPORT(input).flow.phase\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n  ELSE\n    CALL self.clear_flow\n  END\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nELSE\n  CALL self.clear_flow\nEND"
             }
           ],
           "listeners": [
+            {
+              "id": "listener_ecv_energised",
+              "condition": "ANYSUP.electricity.energised",
+              "script": "SET self.powered = true\nSET self.open = true\nCALL self.update_flow"
+            },
+            {
+              "id": "listener_ecv_de_energised",
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "SET self.powered = false\nIF self.fail_open THEN\n  SET self.open = true\nELSE\n  SET self.open = false\nEND\nCALL self.update_flow"
+            },
             {
               "id": "listener_ecv_flow_on",
               "condition": "ANYSUP.flow.flowing",
@@ -1014,48 +1034,28 @@
               "script": "CALL self.clear_flow"
             },
             {
-              "id": "listener_ecv_signal_in",
-              "condition": "ANYSUP.signal >= 0 AND self.auto",
-              "script": "SET self.signal = ANYSUP.signal\nCALL self.update_opening"
-            },
-            {
-              "id": "listener_ecv_powered_on",
-              "condition": "self.powered",
-              "script": "CALL self.update_opening"
-            },
-            {
-              "id": "listener_ecv_powered_off",
-              "condition": "self.powered == false",
-              "script": "CALL self.update_opening"
-            },
-            {
-              "id": "listener_ecv_supply_on",
-              "condition": "ANYSUP.energised",
-              "script": "SET self.powered = true\nCALL self.update_opening"
-            },
-            {
-              "id": "listener_ecv_supply_off",
-              "condition": "ANYSUP.energised == false",
-              "script": "SET self.powered = false\nCALL self.update_opening"
-            },
-            {
-              "id": "listener_ecv_inf_blocked",
-              "condition": "self.opening > 0 AND ALLINF.blocked",
+              "id": "listener_ecv_signal_blocked",
+              "condition": "self.open == false AND ANYSUP.flow.flowing",
               "script": "SET self.blocked = true"
             },
             {
-              "id": "listener_ecv_inf_unblocked",
-              "condition": "self.blocked AND ANYINF.blocked == false AND self.opening > 0",
+              "id": "listener_ecv_signal_unblocked",
+              "condition": "self.open AND ANYINF.blocked == false",
               "script": "SET self.blocked = false"
             },
             {
+              "id": "listener_ecv_inf_blocked",
+              "condition": "self.open AND ALLINF.blocked",
+              "script": "SET self.blocked = true"
+            },
+            {
               "id": "listener_ecv_closed_visual",
-              "condition": "self.opening == 0",
+              "condition": "self.open == false",
               "script": "DEFAULT_SKIN SELF\nADD_OVERLAY SELF \"barrier_overlay\""
             },
             {
               "id": "listener_ecv_open_visual",
-              "condition": "self.opening > 0",
+              "condition": "self.open",
               "script": "DEFAULT_SKIN SELF"
             }
           ],
@@ -1063,15 +1063,18 @@
           "ports": [
             {
               "id": "input",
-              "edge": "left"
+              "edge": "left",
+              "label": "Fluid In"
             },
             {
               "id": "control",
-              "edge": "top"
+              "edge": "top",
+              "label": "Control"
             },
             {
               "id": "output",
-              "edge": "right"
+              "edge": "right",
+              "label": "Fluid Out"
             }
           ],
           "created": "2026-05-24T00:00:00.002Z",
@@ -1138,7 +1141,7 @@
             {
               "id": "action_pipe_copy_upstream",
               "name": "copy_upstream",
-              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUP(0).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure - self.resistance * self.flow.rate\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.flow.pressure = MAX(MINSUP.flow.pressure - self.resistance * self.flow.rate - self.elevation_change, 0)\nSET self.flow.phase = SUPBYPORT(input).flow.phase\nSET self.flow.colour = SUPBYPORT(input).flow.colour"
             },
             {
               "id": "action_pipe_clear_flow",
@@ -1148,7 +1151,7 @@
             {
               "id": "action_pipe_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.flow.composition = \"\"\n    SET self.flow.pressure = 0\n    SET self.pressure_drop = 0\n    SET self.fluid_flowing = false\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.flow.present = true\n    CALL self.copy_upstream\n    SET self.pressure_drop = self.resistance * self.flow.rate\n    SET self.fluid_flowing = true\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  CALL self.clear_flow\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nEND"
+              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.flow.composition = \"\"\n    SET self.flow.pressure = 0\n    SET self.pressure_drop = 0\n    SET self.fluid_flowing = false\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.flow.present = true\n    CALL self.copy_upstream\n    SET self.pressure_drop = self.resistance * self.flow.rate + self.elevation_change\n    SET self.fluid_flowing = true\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  CALL self.clear_flow\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nEND"
             }
           ],
           "listeners": [
@@ -1195,6 +1198,7 @@
           "id": "component_junction_1779600000004",
           "name": "Junction",
           "colour": "#6b7280",
+          "nodeDisplayMode": "circle",
           "variables": [
             {
               "id": "var_junction_flow",
@@ -1218,7 +1222,7 @@
             {
               "id": "action_junction_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.flow.composition = \"\"\n    SET self.flow.pressure = 0\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate\n    SET self.flow.temperature = WMIX(flow.rate).flow.temperature\n    SET self.flow.composition = COMP_MERGE.flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = WCAVRE(colour, mole_fraction).flow.composition\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  CALL self.clear_flow\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nEND"
+              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.flow.composition = \"\"\n    SET self.flow.pressure = 0\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate\n    SET self.flow.temperature = WMIX(flow.rate).flow.temperature\n    SET self.flow.composition = COMP_MERGE.flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure\n    SET self.flow.phase = SUPBYPORT(input_a).flow.phase\n    SET self.flow.colour = WCAVRE(colour, mole_fraction).flow.composition\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  CALL self.clear_flow\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nEND"
             }
           ],
           "listeners": [
@@ -1279,6 +1283,185 @@
           ]
         },
         {
+          "id": "component_splitter_1779600000005",
+          "name": "Splitter",
+          "colour": "#6b7280",
+          "nodeDisplayMode": "circle",
+          "variables": [
+            {
+              "id": "var_splitter_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            },
+            {
+              "id": "var_splitter_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_splitter_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"\nDEFAULT_SKIN SELF"
+            },
+            {
+              "id": "action_splitter_update_flow",
+              "name": "update_flow",
+              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.flow.temperature = 20\n    SET self.flow.composition = \"\"\n    SET self.flow.pressure = 0\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUPBYPORT(input).flow.rate / 2\n    SET self.flow.temperature = SUPBYPORT(input).flow.temperature\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = SUPBYPORT(input).flow.pressure\n    SET self.flow.phase = SUPBYPORT(input).flow.phase\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  CALL self.clear_flow\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_splitter_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_splitter_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_splitter_present_on",
+              "condition": "ANYSUP.flow.present",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_splitter_present_off",
+              "condition": "ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow"
+            },
+            {
+              "id": "listener_splitter_all_inf_blocked",
+              "condition": "ALLINF.blocked",
+              "script": "SET self.blocked = true\nCALL self.update_flow"
+            },
+            {
+              "id": "listener_splitter_inf_unblocked",
+              "condition": "ANYINF.blocked == false",
+              "script": "SET self.blocked = false\nCALL self.update_flow"
+            }
+          ],
+          "superiors": [],
+          "ports": [
+            {
+              "id": "input",
+              "edge": "left",
+              "px": 0.5,
+              "label": "In"
+            },
+            {
+              "id": "output_a",
+              "edge": "right",
+              "px": 0.25,
+              "label": "Out A"
+            },
+            {
+              "id": "output_b",
+              "edge": "right",
+              "px": 0.75,
+              "label": "Out B"
+            }
+          ],
+          "imageStencilName": "Junction",
+          "imageAspect": 1,
+          "defaultSkin": "default",
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "flowing",
+              "colour": "#22d3ee"
+            }
+          ]
+        },
+        {
+          "id": "component_fluid_connector_1779600000006",
+          "name": "Fluid Connector",
+          "colour": "#6b7280",
+          "variables": [
+            {
+              "id": "var_fcon_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            },
+            {
+              "id": "var_fcon_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_fcon_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"\nDEFAULT_SKIN SELF"
+            },
+            {
+              "id": "action_fcon_update_flow",
+              "name": "update_flow",
+              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.flow.composition = \"\"\n    SET self.flow.pressure = 0\n    DEFAULT_SKIN SELF\n  ELSE\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUPBYPORT(input).flow.rate\n    SET self.flow.temperature = SUPBYPORT(input).flow.temperature\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = SUPBYPORT(input).flow.pressure\n    SET self.flow.phase = SUPBYPORT(input).flow.phase\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n    SET_SKIN SELF \"flowing\"\n  END\nELSE\n  CALL self.clear_flow\n  IF ANYSUP.flow.present THEN\n    SET self.flow.present = true\n  END\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_fcon_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_fcon_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_fcon_present_on",
+              "condition": "ANYSUP.flow.present",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_fcon_present_off",
+              "condition": "ANYSUP.flow.present == false",
+              "script": "CALL self.clear_flow"
+            }
+          ],
+          "superiors": [],
+          "ports": [
+            {
+              "id": "input",
+              "edge": "left",
+              "px": 0.5,
+              "label": "In"
+            },
+            {
+              "id": "output",
+              "edge": "right",
+              "px": 0.5,
+              "label": "Out"
+            }
+          ],
+          "imageStencilName": "Junction",
+          "imageAspect": 1,
+          "defaultSkin": "default",
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "flowing",
+              "colour": "#22d3ee"
+            }
+          ],
+          "nodeDisplayMode": "circle"
+        },
+        {
           "id": "component_1779500000003",
           "name": "Heater",
           "colour": "#f97316",
@@ -1328,7 +1511,7 @@
             {
               "id": "action_heater_update_flow",
               "name": "update_flow",
-              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.heating = false\n  ELSE\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate\n    SET self.flow.composition = SUP(0).flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure\n    SET self.flow.phase = SUP(0).flow.phase\n    SET self.flow.colour = SUP(0).flow.colour\n    IF self.active THEN\n      SET self.heating = true\n      SET self.flow.temperature = 80\n    ELSE\n      SET self.heating = false\n      SET self.flow.temperature = SUMSUP.flow.temperature\n    END\n  END\nELSE\n  CALL self.clear_flow\n  IF self.active THEN\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
+              "script": "IF ANYSUP.flow.flowing THEN\n  IF self.blocked THEN\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n    SET self.heating = false\n  ELSE\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure\n    SET self.flow.phase = SUPBYPORT(input).flow.phase\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n    IF self.active THEN\n      SET self.heating = true\n      SET self.flow.temperature = 80\n    ELSE\n      SET self.heating = false\n      SET self.flow.temperature = SUMSUP.flow.temperature\n    END\n  END\nELSE\n  CALL self.clear_flow\n  IF self.active THEN\n    ARM dry_run\n    SET self.broken = true\n  END\nEND"
             }
           ],
           "listeners": [
@@ -1430,10 +1613,20 @@
                 "rate": {
                   "defaultValue": 100
                 },
+                "pressure": {
+                  "defaultValue": 100
+                },
                 "composition": {
                   "defaultValue": ""
                 }
               }
+            },
+            {
+              "id": "var_inlet_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [],
@@ -1457,6 +1650,13 @@
               "name": "receiving",
               "type": "boolean",
               "defaultValue": false
+            },
+            {
+              "id": "var_outlet_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -1470,7 +1670,7 @@
             {
               "id": "listener_outlet_flow_on",
               "condition": "ANYSUP.flow.flowing",
-              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.receiving = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUP(0).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
+              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.receiving = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUPBYPORT(input).flow.phase\nSET self.flow.colour = SUPBYPORT(input).flow.colour"
             },
             {
               "id": "listener_outlet_flow_off",
@@ -1693,12 +1893,12 @@
             {
               "id": "action_he_update_process_side",
               "name": "update_process_side",
-              "script": "IF SUP(0).flow.flowing THEN\n  SET self.process_flowing = true\n  SET self.process_temp_in = SUP(0).flow.temperature\n  SET self.process_composition = SUP(0).flow.composition\nELSE\n  SET self.process_flowing = false\n  SET self.process_composition = \"\"\nEND"
+              "script": "IF SUPBYPORT(process_in).flow.flowing THEN\n  SET self.process_flowing = true\n  SET self.process_temp_in = SUPBYPORT(process_in).flow.temperature\n  SET self.process_composition = SUPBYPORT(process_in).flow.composition\nELSE\n  SET self.process_flowing = false\n  SET self.process_composition = \"\"\nEND"
             },
             {
               "id": "action_he_update_service_side",
               "name": "update_service_side",
-              "script": "IF SUP(1).flow.flowing THEN\n  SET self.service_flowing = true\n  SET self.service_temp_in = SUP(1).flow.temperature\n  SET self.service_composition = SUP(1).flow.composition\nELSE\n  SET self.service_flowing = false\n  SET self.service_composition = \"\"\nEND"
+              "script": "IF SUPBYPORT(service_in).flow.flowing THEN\n  SET self.service_flowing = true\n  SET self.service_temp_in = SUPBYPORT(service_in).flow.temperature\n  SET self.service_composition = SUPBYPORT(service_in).flow.composition\nELSE\n  SET self.service_flowing = false\n  SET self.service_composition = \"\"\nEND"
             },
             {
               "id": "action_he_update_heat_transfer",
@@ -1708,7 +1908,7 @@
             {
               "id": "action_he_update_ports",
               "name": "update_ports",
-              "script": "IF self.process_flowing THEN\n  SET self.process_out.present = true\n  SET self.process_out.flowing = true\n  SET self.process_out.rate = SUP(0).flow.rate\n  SET self.process_out.temperature = self.process_temp_out\n  SET self.process_out.composition = self.process_composition\n  SET self.process_out.pressure = SUP(0).flow.pressure\n  SET self.process_out.phase = SUP(0).flow.phase\n  SET self.process_out.colour = SUP(0).flow.colour\nELSE\n  SET self.process_out.present = false\n  SET self.process_out.flowing = false\n  SET self.process_out.rate = 0\n  SET self.process_out.temperature = 20\n  SET self.process_out.composition = \"\"\n  SET self.process_out.pressure = 0\n  SET self.process_out.phase = \"liquid\"\n  SET self.process_out.colour = \"\"\nEND\nIF self.service_flowing THEN\n  SET self.service_out.present = true\n  SET self.service_out.flowing = true\n  SET self.service_out.rate = SUP(1).flow.rate\n  SET self.service_out.temperature = self.service_temp_out\n  SET self.service_out.composition = self.service_composition\n  SET self.service_out.pressure = SUP(1).flow.pressure\n  SET self.service_out.phase = SUP(1).flow.phase\n  SET self.service_out.colour = SUP(1).flow.colour\nELSE\n  SET self.service_out.present = false\n  SET self.service_out.flowing = false\n  SET self.service_out.rate = 0\n  SET self.service_out.temperature = 20\n  SET self.service_out.composition = \"\"\n  SET self.service_out.pressure = 0\n  SET self.service_out.phase = \"liquid\"\n  SET self.service_out.colour = \"\"\nEND"
+              "script": "IF self.process_flowing THEN\n  SET self.process_out.present = true\n  SET self.process_out.flowing = true\n  SET self.process_out.rate = SUPBYPORT(process_in).flow.rate\n  SET self.process_out.temperature = self.process_temp_out\n  SET self.process_out.composition = self.process_composition\n  SET self.process_out.pressure = SUPBYPORT(process_in).flow.pressure\n  SET self.process_out.phase = SUPBYPORT(process_in).flow.phase\n  SET self.process_out.colour = SUPBYPORT(process_in).flow.colour\nELSE\n  SET self.process_out.present = false\n  SET self.process_out.flowing = false\n  SET self.process_out.rate = 0\n  SET self.process_out.temperature = 20\n  SET self.process_out.composition = \"\"\n  SET self.process_out.pressure = 0\n  SET self.process_out.phase = \"liquid\"\n  SET self.process_out.colour = \"\"\nEND\nIF self.service_flowing THEN\n  SET self.service_out.present = true\n  SET self.service_out.flowing = true\n  SET self.service_out.rate = SUPBYPORT(service_in).flow.rate\n  SET self.service_out.temperature = self.service_temp_out\n  SET self.service_out.composition = self.service_composition\n  SET self.service_out.pressure = SUPBYPORT(service_in).flow.pressure\n  SET self.service_out.phase = SUPBYPORT(service_in).flow.phase\n  SET self.service_out.colour = SUPBYPORT(service_in).flow.colour\nELSE\n  SET self.service_out.present = false\n  SET self.service_out.flowing = false\n  SET self.service_out.rate = 0\n  SET self.service_out.temperature = 20\n  SET self.service_out.composition = \"\"\n  SET self.service_out.pressure = 0\n  SET self.service_out.phase = \"liquid\"\n  SET self.service_out.colour = \"\"\nEND"
             },
             {
               "id": "action_he_update_flow",
@@ -1719,48 +1919,48 @@
           "listeners": [
             {
               "id": "listener_he_process_on",
-              "condition": "SUP(0).flow.flowing",
+              "condition": "SUPBYPORT(process_in).flow.flowing",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_he_process_off",
-              "condition": "SUP(0).flow.flowing == false",
+              "condition": "SUPBYPORT(process_in).flow.flowing == false",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_he_service_on",
-              "condition": "SUP(1).flow.flowing",
+              "condition": "SUPBYPORT(service_in).flow.flowing",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_he_service_off",
-              "condition": "SUP(1).flow.flowing == false",
+              "condition": "SUPBYPORT(service_in).flow.flowing == false",
               "script": "CALL self.update_flow"
             },
             {
               "id": "listener_he_fault_flow",
-              "condition": "SUP(0).flow.flowing AND SUP(1).flow.flowing == false",
+              "condition": "SUPBYPORT(process_in).flow.flowing AND SUPBYPORT(service_in).flow.flowing == false",
               "script": "ARM he_fault"
             },
             {
               "id": "listener_he_process_outlet_blocked",
               "condition": "ANYINF(cold_outlet).blocked",
-              "script": "SET self.process_blocked = true\nSET self.blocked = true\nSET SUP(0).blocked = true"
+              "script": "SET self.process_blocked = true\nSET self.blocked = true\nSET SUPBYPORT(process_in).blocked = true"
             },
             {
               "id": "listener_he_process_outlet_unblocked",
               "condition": "ANYINF(cold_outlet).blocked == false",
-              "script": "SET self.process_blocked = false\nIF self.service_blocked THEN\n  SET self.blocked = true\nELSE\n  SET self.blocked = false\nEND\nSET SUP(0).blocked = false"
+              "script": "SET self.process_blocked = false\nIF self.service_blocked THEN\n  SET self.blocked = true\nELSE\n  SET self.blocked = false\nEND\nSET SUPBYPORT(process_in).blocked = false"
             },
             {
               "id": "listener_he_service_outlet_blocked",
               "condition": "ANYINF(hot_outlet).blocked",
-              "script": "SET self.service_blocked = true\nSET self.blocked = true\nSET SUP(1).blocked = true"
+              "script": "SET self.service_blocked = true\nSET self.blocked = true\nSET SUPBYPORT(service_in).blocked = true"
             },
             {
               "id": "listener_he_service_outlet_unblocked",
               "condition": "ANYINF(hot_outlet).blocked == false",
-              "script": "SET self.service_blocked = false\nIF self.process_blocked THEN\n  SET self.blocked = true\nELSE\n  SET self.blocked = false\nEND\nSET SUP(1).blocked = false"
+              "script": "SET self.service_blocked = false\nIF self.process_blocked THEN\n  SET self.blocked = true\nELSE\n  SET self.blocked = false\nEND\nSET SUPBYPORT(service_in).blocked = false"
             }
           ],
           "outlets": [
@@ -1839,22 +2039,65 @@
           "name": "Power Supply",
           "variables": [
             {
-              "id": "var_ps_energised",
-              "name": "energised",
+              "id": "var_ps_on",
+              "name": "on",
               "type": "boolean",
               "defaultValue": true
+            },
+            {
+              "id": "var_ps_rated_voltage",
+              "name": "rated_voltage",
+              "type": "number",
+              "defaultValue": 415
+            },
+            {
+              "id": "var_ps_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_ps_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
             }
           ],
           "actions": [
             {
               "id": "action_ps_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.energised THEN\n  SET self.energised = false\nELSE\n  SET self.energised = true\nEND"
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.on THEN\n  SET self.on = false\nELSE\n  SET self.on = true\nEND"
             }
           ],
-          "listeners": [],
+          "listeners": [
+            {
+              "id": "listener_ps_on",
+              "condition": "self.on AND self.broken == false",
+              "script": "SET self.electricity.energised = true\nSET self.electricity.current_type = \"ac\"\nSET self.electricity.voltage = self.rated_voltage\nSET self.electricity.frequency = 50"
+            },
+            {
+              "id": "listener_ps_off",
+              "condition": "self.on == false OR self.broken",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0"
+            },
+            {
+              "id": "listener_ps_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
           "superiors": [],
           "created": "2026-05-24T00:00:00.003Z",
+          "faults": [
+            {
+              "id": "fault_ps_mains_failure",
+              "name": "mains_failure",
+              "description": "Mains supply has failed — no output available.",
+              "defaultGracePeriod": 0,
+              "costMin": 0,
+              "costMax": 0
+            }
+          ],
           "skins": []
         },
         {
@@ -1869,29 +2112,35 @@
           },
           "variables": [
             {
-              "id": "var_wire_energised",
-              "name": "energised",
-              "type": "boolean",
-              "defaultValue": false
+              "id": "var_wire_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
             },
             {
               "id": "var_wire_broken",
               "name": "broken",
               "type": "boolean",
               "defaultValue": false
+            },
+            {
+              "id": "var_wire_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [],
           "listeners": [
             {
               "id": "listener_wire_supply_on",
-              "condition": "ANYSUP.energised AND self.broken == false",
-              "script": "SET self.energised = true"
+              "condition": "ANYSUP.electricity.energised AND self.broken == false",
+              "script": "SET self.electricity.energised = true\nSET self.electricity.current_type = SUPBYPORT(input).electricity.current_type\nSET self.electricity.voltage = MINSUP.electricity.voltage\nSET self.electricity.frequency = MINSUP.electricity.frequency"
             },
             {
               "id": "listener_wire_supply_off",
-              "condition": "ANYSUP.energised == false OR self.broken",
-              "script": "SET self.energised = false"
+              "condition": "ANYSUP.electricity.energised == false OR self.broken",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0"
             },
             {
               "id": "listener_wire_broken_visual",
@@ -1906,7 +2155,7 @@
               "id": "fault_wire_break",
               "name": "wire_break",
               "description": "Wire broken — no supply to downstream equipment.",
-              "defaultGracePeriod": 2,
+              "defaultGracePeriod": 0,
               "costMin": 500,
               "costMax": 2000
             }
@@ -1926,6 +2175,7 @@
         {
           "id": "component_switch_1779700000002",
           "name": "Switch",
+          "colour": "#facc15",
           "variables": [
             {
               "id": "var_switch_closed",
@@ -1934,29 +2184,35 @@
               "defaultValue": false
             },
             {
-              "id": "var_switch_energised",
-              "name": "energised",
+              "id": "var_switch_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_switch_overloaded",
+              "name": "overloaded",
               "type": "boolean",
-              "defaultValue": false
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
             {
               "id": "action_switch_on_toggle",
               "name": "on_toggle",
-              "script": "IF self.closed THEN\n  SET self.closed = false\n  SET self.energised = false\nELSE\n  SET self.closed = true\nEND"
+              "script": "IF self.closed THEN\n  SET self.closed = false\n  SET self.electricity.energised = false\n  SET self.electricity.current_type = null\n  SET self.electricity.voltage = 0\n  SET self.electricity.frequency = 0\nELSE\n  SET self.closed = true\nEND"
             }
           ],
           "listeners": [
             {
               "id": "listener_switch_supply_on",
-              "condition": "ANYSUP.energised AND self.closed",
-              "script": "SET self.energised = true"
+              "condition": "ANYSUP.electricity.energised AND self.closed",
+              "script": "SET self.electricity.energised = true\nSET self.electricity.current_type = SUPBYPORT(input).electricity.current_type\nSET self.electricity.voltage = MINSUP.electricity.voltage\nSET self.electricity.frequency = MINSUP.electricity.frequency"
             },
             {
               "id": "listener_switch_supply_off",
-              "condition": "ANYSUP.energised == false OR self.closed == false",
-              "script": "SET self.energised = false"
+              "condition": "ANYSUP.electricity.energised == false OR self.closed == false",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0"
             },
             {
               "id": "listener_switch_closed_visual",
@@ -1974,8 +2230,8 @@
           "skins": [
             {
               "name": "default",
-              "imageStencilName": "Switch",
-              "imageAspect": 1.6
+              "imageStencilName": "Reed Switch",
+              "imageAspect": 3.473684210526316
             }
           ],
           "defaultSkin": "default"
@@ -1983,6 +2239,7 @@
         {
           "id": "component_fuse_1779700000003",
           "name": "Fuse / Circuit Breaker",
+          "colour": "#facc15",
           "variables": [
             {
               "id": "var_fuse_closed",
@@ -1991,10 +2248,9 @@
               "defaultValue": true
             },
             {
-              "id": "var_fuse_energised",
-              "name": "energised",
-              "type": "boolean",
-              "defaultValue": false
+              "id": "var_fuse_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
             },
             {
               "id": "var_fuse_tripped",
@@ -2007,6 +2263,13 @@
               "name": "broken",
               "type": "boolean",
               "defaultValue": false
+            },
+            {
+              "id": "var_fuse_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -2019,13 +2282,18 @@
           "listeners": [
             {
               "id": "listener_fuse_supply_on",
-              "condition": "ANYSUP.energised AND self.closed AND self.tripped == false",
-              "script": "SET self.energised = true"
+              "condition": "ANYSUP.electricity.energised AND self.closed AND self.tripped == false",
+              "script": "SET self.electricity.energised = true\nSET self.electricity.current_type = SUPBYPORT(input).electricity.current_type\nSET self.electricity.voltage = MINSUP.electricity.voltage\nSET self.electricity.frequency = MINSUP.electricity.frequency"
             },
             {
               "id": "listener_fuse_supply_off",
-              "condition": "ANYSUP.energised == false OR self.closed == false OR self.tripped",
-              "script": "SET self.energised = false"
+              "condition": "ANYSUP.electricity.energised == false OR self.closed == false OR self.tripped",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0"
+            },
+            {
+              "id": "listener_fuse_overload_trip",
+              "condition": "ANYINF.overloaded AND self.closed AND self.tripped == false",
+              "script": "ARM fuse_overload\nSET self.tripped = true\nSET self.closed = false"
             },
             {
               "id": "listener_fuse_tripped_visual",
@@ -2053,8 +2321,8 @@
           "skins": [
             {
               "name": "default",
-              "imageStencilName": "Circuit Breaker",
-              "imageAspect": 0.6
+              "imageStencilName": "Fuse 1",
+              "imageAspect": 4.47457627118644
             }
           ],
           "defaultSkin": "default"
@@ -2062,12 +2330,12 @@
         {
           "id": "component_motor_load_1779700000004",
           "name": "Electric Motor Load",
+          "colour": "#f59e0b",
           "variables": [
             {
-              "id": "var_motor_energised",
-              "name": "energised",
-              "type": "boolean",
-              "defaultValue": false
+              "id": "var_motor_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
             },
             {
               "id": "var_motor_running",
@@ -2080,24 +2348,35 @@
               "name": "broken",
               "type": "boolean",
               "defaultValue": false
+            },
+            {
+              "id": "var_motor_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false
             }
           ],
           "actions": [],
           "listeners": [
             {
               "id": "listener_motor_supply_on",
-              "condition": "ANYSUP.energised AND self.broken == false",
-              "script": "SET self.energised = true\nSET self.running = true"
+              "condition": "ANYSUP.electricity.energised AND self.broken == false",
+              "script": "IF ANYSUP.electricity.current_type == \"dc\" THEN\n  ARM wrong_current_type\n  SET self.electricity.energised = false\n  SET self.running = false\nELSE\n  SET self.electricity.energised = true\n  SET self.running = true\nEND"
             },
             {
               "id": "listener_motor_supply_off",
-              "condition": "ANYSUP.energised == false",
-              "script": "SET self.energised = false\nSET self.running = false"
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "SET self.electricity.energised = false\nSET self.running = false"
             },
             {
               "id": "listener_motor_broken_running",
               "condition": "self.broken AND self.running",
-              "script": "ARM motor_fault\nSET self.running = false"
+              "script": "ARM motor_fault\nSET self.running = false\nSET self.overloaded = true"
+            },
+            {
+              "id": "listener_motor_recovered",
+              "condition": "self.broken == false",
+              "script": "SET self.overloaded = false"
             },
             {
               "id": "listener_motor_broken_visual",
@@ -2115,13 +2394,21 @@
               "defaultGracePeriod": 0,
               "costMin": 2000,
               "costMax": 8000
+            },
+            {
+              "id": "fault_motor_wrong_current_type",
+              "name": "wrong_current_type",
+              "description": "AC motor supplied with DC — motor requires AC supply.",
+              "defaultGracePeriod": 0,
+              "costMin": 1000,
+              "costMax": 5000
             }
           ],
           "skins": [
             {
               "name": "default",
-              "imageStencilName": "Electric Motor",
-              "imageAspect": 1
+              "imageStencilName": "Motor 2",
+              "imageAspect": 1.6296296296296295
             }
           ],
           "defaultSkin": "default"
@@ -2129,13 +2416,13 @@
         {
           "id": "component_lamp_1779700000005",
           "name": "Lamp / Indicator Load",
+          "colour": "#fbbf24",
           "isSink": true,
           "variables": [
             {
-              "id": "var_lamp_energised",
-              "name": "energised",
-              "type": "boolean",
-              "defaultValue": false
+              "id": "var_lamp_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
             },
             {
               "id": "var_lamp_lit",
@@ -2148,13 +2435,13 @@
           "listeners": [
             {
               "id": "listener_lamp_on",
-              "condition": "ANYSUP.energised",
-              "script": "SET self.energised = true\nSET self.lit = true"
+              "condition": "ANYSUP.electricity.energised",
+              "script": "SET self.electricity.energised = true\nSET self.lit = true"
             },
             {
               "id": "listener_lamp_off",
-              "condition": "ANYSUP.energised == false",
-              "script": "SET self.energised = false\nSET self.lit = false"
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "SET self.electricity.energised = false\nSET self.lit = false"
             }
           ],
           "superiors": [],
@@ -2163,15 +2450,175 @@
           "skins": [
             {
               "name": "default",
-              "imageStencilName": "Indicator Lamp",
-              "imageAspect": 1
+              "imageStencilName": "Flourescent Lamp",
+              "imageAspect": 2.5384615384615383
             },
             {
               "name": "lit",
-              "colour": "#fbbf24"
+              "colour": "#fbbf24",
+              "imageStencilName": "Status/Alarm",
+              "imageAspect": 0.8324873096446701
             }
           ],
           "defaultSkin": "default"
+        },
+        {
+          "id": "component_wire_junction_1779700000006",
+          "name": "Wire Junction",
+          "colour": "#facc15",
+          "variables": [
+            {
+              "id": "var_wjn_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_wjn_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_wjn_on",
+              "condition": "ANYSUP.electricity.energised",
+              "script": "SET self.electricity.energised = true\nIF SUPBYPORT(input_a).electricity.energised THEN\n  SET self.electricity.current_type = SUPBYPORT(input_a).electricity.current_type\n  SET self.electricity.voltage = SUPBYPORT(input_a).electricity.voltage\n  SET self.electricity.frequency = SUPBYPORT(input_a).electricity.frequency\nELSE\n  IF SUPBYPORT(input_b).electricity.energised THEN\n    SET self.electricity.current_type = SUPBYPORT(input_b).electricity.current_type\n    SET self.electricity.voltage = SUPBYPORT(input_b).electricity.voltage\n    SET self.electricity.frequency = SUPBYPORT(input_b).electricity.frequency\n  ELSE\n    IF SUPBYPORT(input_c).electricity.energised THEN\n      SET self.electricity.current_type = SUPBYPORT(input_c).electricity.current_type\n      SET self.electricity.voltage = SUPBYPORT(input_c).electricity.voltage\n      SET self.electricity.frequency = SUPBYPORT(input_c).electricity.frequency\n    END\n  END\nEND\nIF SUPBYPORT(input_a).electricity.energised AND SUPBYPORT(input_b).electricity.energised AND SUPBYPORT(input_a).electricity.current_type != SUPBYPORT(input_b).electricity.current_type THEN\n  ARM mixed_current_fault\n  SET self.electricity.energised = false\n  SET self.electricity.current_type = null\n  SET self.electricity.voltage = 0\n  SET self.electricity.frequency = 0\nEND"
+            },
+            {
+              "id": "listener_wjn_off",
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0"
+            }
+          ],
+          "superiors": [],
+          "ports": [
+            {
+              "id": "input_a",
+              "edge": "left",
+              "px": 0.25,
+              "label": "In A"
+            },
+            {
+              "id": "input_b",
+              "edge": "left",
+              "px": 0.75,
+              "label": "In B"
+            },
+            {
+              "id": "input_c",
+              "edge": "left",
+              "px": 0.5,
+              "label": "In C"
+            },
+            {
+              "id": "output",
+              "edge": "right",
+              "px": 0.5,
+              "label": "Out"
+            }
+          ],
+          "defaultSkin": "default",
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "energised",
+              "colour": "#facc15"
+            }
+          ],
+          "nodeDisplayMode": "circle",
+          "faults": [
+            {
+              "id": "fault_wjn_mixed_current",
+              "name": "mixed_current_fault",
+              "description": "AC and DC sources connected to the same bus — incompatible current types.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 10000
+            }
+          ]
+        },
+        {
+          "id": "component_wire_splitter_1779700000007",
+          "name": "Wire Splitter",
+          "colour": "#facc15",
+          "variables": [
+            {
+              "id": "var_wsp_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_wsp_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_wsp_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_wsp_on",
+              "condition": "ANYSUP.electricity.energised AND self.broken == false",
+              "script": "SET self.electricity.energised = true\nSET self.electricity.current_type = SUPBYPORT(input).electricity.current_type\nSET self.electricity.voltage = MINSUP.electricity.voltage\nSET self.electricity.frequency = MINSUP.electricity.frequency"
+            },
+            {
+              "id": "listener_wsp_off",
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0"
+            }
+          ],
+          "superiors": [],
+          "ports": [
+            {
+              "id": "input",
+              "edge": "left",
+              "px": 0.5,
+              "label": "In"
+            },
+            {
+              "id": "output_a",
+              "edge": "right",
+              "px": 0.25,
+              "label": "Out A"
+            },
+            {
+              "id": "output_b",
+              "edge": "right",
+              "px": 0.75,
+              "label": "Out B"
+            },
+            {
+              "id": "output_c",
+              "edge": "right",
+              "px": 0.5,
+              "label": "Out C"
+            }
+          ],
+          "defaultSkin": "default",
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "energised",
+              "colour": "#facc15"
+            }
+          ],
+          "nodeDisplayMode": "circle"
         }
       ],
       "created": "2026-05-24T00:00:00.004Z"
@@ -2225,7 +2672,7 @@
               "id": "fault_cable_break",
               "name": "cable_break",
               "description": "Signal cable disconnected — control signal lost.",
-              "defaultGracePeriod": 2,
+              "defaultGracePeriod": 0,
               "costMin": 300,
               "costMax": 1500
             }
@@ -2245,6 +2692,7 @@
         {
           "id": "component_flow_meter_1779700000012",
           "name": "Analogue Flow Meter",
+          "colour": "#a78bfa",
           "variables": [
             {
               "id": "var_afm_signal",
@@ -2256,6 +2704,13 @@
               "id": "var_afm_flow",
               "name": "flow",
               "$ref": "flow_composite"
+            },
+            {
+              "id": "var_afm_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -2306,6 +2761,7 @@
         {
           "id": "component_pressure_gauge_1779700000013",
           "name": "Analogue Pressure Gauge",
+          "colour": "#a78bfa",
           "variables": [
             {
               "id": "var_apg_signal",
@@ -2317,6 +2773,13 @@
               "id": "var_apg_flow",
               "name": "flow",
               "$ref": "flow_composite"
+            },
+            {
+              "id": "var_apg_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -2362,6 +2825,7 @@
         {
           "id": "component_thermometer_1779700000014",
           "name": "Analogue Thermometer",
+          "colour": "#a78bfa",
           "variables": [
             {
               "id": "var_ath_signal",
@@ -2373,6 +2837,13 @@
               "id": "var_ath_flow",
               "name": "flow",
               "$ref": "flow_composite"
+            },
+            {
+              "id": "var_ath_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -2418,6 +2889,7 @@
         {
           "id": "component_level_sensor_1779700000015",
           "name": "Level Sensor",
+          "colour": "#a78bfa",
           "variables": [
             {
               "id": "var_ls_signal",
@@ -2472,6 +2944,7 @@
         {
           "id": "component_flow_sensor_1779700000016",
           "name": "Flow Sensor",
+          "colour": "#a78bfa",
           "variables": [
             {
               "id": "var_fs_signal",
@@ -2489,6 +2962,13 @@
               "id": "var_fs_flow",
               "name": "flow",
               "$ref": "flow_composite"
+            },
+            {
+              "id": "var_fs_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -2529,6 +3009,7 @@
         {
           "id": "component_level_controller_1779700000017",
           "name": "Level Controller",
+          "colour": "#a78bfa",
           "variables": [
             {
               "id": "var_lc_enabled",
@@ -2583,6 +3064,7 @@
         {
           "id": "component_flow_controller_1779700000018",
           "name": "Flow Controller",
+          "colour": "#a78bfa",
           "variables": [
             {
               "id": "var_fc_enabled",
@@ -2637,6 +3119,7 @@
         {
           "id": "component_temp_controller_1779700000019",
           "name": "Temperature Controller",
+          "colour": "#a78bfa",
           "variables": [
             {
               "id": "var_tc_enabled",
@@ -2699,6 +3182,7 @@
         {
           "id": "component_prv_1779700000021",
           "name": "PRV",
+          "colour": "#ef4444",
           "isSink": true,
           "variables": [
             {
@@ -2717,6 +3201,13 @@
               "id": "var_prv_flow",
               "name": "flow",
               "$ref": "flow_composite"
+            },
+            {
+              "id": "var_prv_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -2735,7 +3226,7 @@
             {
               "id": "listener_prv_check",
               "condition": "ANYSUP.flow.present",
-              "script": "IF MINSUP.flow.pressure > self.set_pressure THEN\n  SET self.open = true\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.pressure = 0\n  SET self.flow.phase = SUP(0).flow.phase\n  SET self.flow.colour = SUP(0).flow.colour\n  ARM prv_chatter\nELSE\n  SET self.open = false\n  CALL self.clear_flow\nEND"
+              "script": "IF MINSUP.flow.pressure > self.set_pressure THEN\n  SET self.open = true\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.pressure = 0\n  SET self.flow.phase = SUPBYPORT(input).flow.phase\n  SET self.flow.colour = SUPBYPORT(input).flow.colour\n  ARM prv_chatter\nELSE\n  SET self.open = false\n  CALL self.clear_flow\nEND"
             },
             {
               "id": "listener_prv_no_supply",
@@ -2755,7 +3246,7 @@
               "id": "fault_prv_chatter",
               "name": "prv_chatter",
               "description": "PRV chattering under overpressure — reduce upstream pressure immediately.",
-              "defaultGracePeriod": 3,
+              "defaultGracePeriod": 0,
               "costMin": 2000,
               "costMax": 8000
             }
@@ -2774,6 +3265,7 @@
         {
           "id": "component_pressure_regulator_1779700000022",
           "name": "Pressure Regulator",
+          "colour": "#ef4444",
           "variables": [
             {
               "id": "var_pr_regulating",
@@ -2791,6 +3283,13 @@
               "id": "var_pr_flow",
               "name": "flow",
               "$ref": "flow_composite"
+            },
+            {
+              "id": "var_pr_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [
@@ -2802,14 +3301,14 @@
             {
               "id": "action_pr_copy_upstream",
               "name": "copy_upstream",
-              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUP(0).flow.composition\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour"
+              "script": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.flow.phase = SUPBYPORT(input).flow.phase\nSET self.flow.colour = SUPBYPORT(input).flow.colour"
             }
           ],
           "listeners": [
             {
               "id": "listener_reg_flow",
               "condition": "ANYSUP.flow.flowing OR ANYSUP.flow.present",
-              "script": "IF ANYSUP.flow.flowing AND self.regulating THEN\n  CALL self.copy_upstream\n  SET self.flow.pressure = self.set_pressure\nELSE IF ANYSUP.flow.flowing AND self.regulating == false THEN\n  CALL self.copy_upstream\n  SET self.flow.pressure = MINSUP.flow.pressure\nELSE IF ANYSUP.flow.present THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = false\n  SET self.flow.rate = 0\n  SET self.flow.pressure = MINSUP.flow.pressure\n  SET self.flow.phase = SUP(0).flow.phase\n  SET self.flow.colour = SUP(0).flow.colour\nELSE\n  CALL self.clear_flow\nEND"
+              "script": "IF ANYSUP.flow.flowing AND self.regulating THEN\n  CALL self.copy_upstream\n  SET self.flow.pressure = self.set_pressure\nELSE\n  IF ANYSUP.flow.flowing AND self.regulating == false THEN\n    CALL self.copy_upstream\n    SET self.flow.pressure = MINSUP.flow.pressure\n  ELSE\n    IF ANYSUP.flow.present THEN\n      SET self.flow.present = true\n      SET self.flow.flowing = false\n      SET self.flow.rate = 0\n      SET self.flow.pressure = MINSUP.flow.pressure\n      SET self.flow.phase = SUPBYPORT(input).flow.phase\n      SET self.flow.colour = SUPBYPORT(input).flow.colour\n    ELSE\n      CALL self.clear_flow\n    END\n  END\nEND"
             },
             {
               "id": "listener_reg_no_supply",
@@ -2833,6 +3332,7 @@
         {
           "id": "component_rupture_disc_1779700000023",
           "name": "Rupture Disc",
+          "colour": "#ef4444",
           "isSink": true,
           "variables": [
             {
@@ -2851,6 +3351,13 @@
               "id": "var_rd_flow",
               "name": "flow",
               "$ref": "flow_composite"
+            },
+            {
+              "id": "var_rd_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
             }
           ],
           "actions": [],
@@ -2858,7 +3365,7 @@
             {
               "id": "listener_disc_check",
               "condition": "ANYSUP.flow.present",
-              "script": "IF self.intact THEN\n  IF MINSUP.flow.pressure > self.burst_pressure THEN\n    SET self.intact = false\n    ARM disc_burst\n  END\nELSE\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.pressure = 0\n  SET self.flow.phase = SUP(0).flow.phase\n  SET self.flow.colour = SUP(0).flow.colour\nEND"
+              "script": "IF self.intact THEN\n  IF MINSUP.flow.pressure > self.burst_pressure THEN\n    SET self.intact = false\n    ARM disc_burst\n  END\nELSE\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.pressure = 0\n  SET self.flow.phase = SUPBYPORT(input).flow.phase\n  SET self.flow.colour = SUPBYPORT(input).flow.colour\nEND"
             },
             {
               "id": "listener_disc_no_supply",
@@ -2950,7 +3457,7 @@
               "id": "fault_shaft_break",
               "name": "shaft_break",
               "description": "Shaft broken — no torque transmission to pump.",
-              "defaultGracePeriod": 2,
+              "defaultGracePeriod": 0,
               "costMin": 1000,
               "costMax": 5000
             }
@@ -2970,6 +3477,7 @@
         {
           "id": "component_drive_motor_1779950000011",
           "name": "Drive Motor",
+          "colour": "#f59e0b",
           "ports": [
             {
               "id": "input",
@@ -2988,8 +3496,13 @@
           ],
           "variables": [
             {
-              "id": "var_dm_energised",
-              "name": "energised",
+              "id": "var_dm_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_dm_overloaded",
+              "name": "overloaded",
               "type": "boolean",
               "defaultValue": false
             },
@@ -3027,18 +3540,23 @@
           "listeners": [
             {
               "id": "listener_dm_supply_on",
-              "condition": "ANYSUP.energised AND self.broken == false",
-              "script": "SET self.energised = true\nSET self.running = true\nSET self.shaft.driving = true\nSET self.shaft.rpm = self.rated_rpm\nSET self.shaft.torque = 100"
+              "condition": "ANYSUP.electricity.energised AND self.broken == false",
+              "script": "IF ANYSUP.electricity.current_type == \"dc\" THEN\n  ARM wrong_current_type\n  SET self.electricity.energised = false\n  SET self.running = false\n  CALL self.clear_shaft\nELSE\n  SET self.electricity.energised = true\n  SET self.running = true\n  SET self.shaft.driving = true\n  SET self.shaft.rpm = self.rated_rpm\n  SET self.shaft.torque = 100\nEND"
             },
             {
               "id": "listener_dm_supply_off",
-              "condition": "ANYSUP.energised == false",
-              "script": "SET self.energised = false\nSET self.running = false\nCALL self.clear_shaft"
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "SET self.electricity.energised = false\nSET self.running = false\nCALL self.clear_shaft"
             },
             {
               "id": "listener_dm_broken_running",
               "condition": "self.broken AND self.running",
-              "script": "ARM motor_overload\nSET self.running = false\nCALL self.clear_shaft"
+              "script": "ARM motor_overload\nSET self.running = false\nSET self.overloaded = true\nCALL self.clear_shaft"
+            },
+            {
+              "id": "listener_dm_recovered",
+              "condition": "self.broken == false",
+              "script": "SET self.overloaded = false"
             },
             {
               "id": "listener_dm_broken_visual",
@@ -3056,6 +3574,14 @@
               "defaultGracePeriod": 0,
               "costMin": 3000,
               "costMax": 12000
+            },
+            {
+              "id": "fault_dm_wrong_current_type",
+              "name": "wrong_current_type",
+              "description": "Drive motor supplied with DC — motor requires AC supply.",
+              "defaultGracePeriod": 0,
+              "costMin": 1000,
+              "costMax": 5000
             }
           ],
           "imageStencilName": "Electric Motor",
@@ -3063,14 +3589,1943 @@
           "skins": [
             {
               "name": "default",
-              "imageStencilName": "Electric Motor",
-              "imageAspect": 1
+              "imageStencilName": "Motor 2",
+              "imageAspect": 1.6296296296296295
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_fluid_turbine_1779950000012",
+          "name": "Fluid Turbine",
+          "colour": "#f97316",
+          "ports": [
+            {
+              "id": "input",
+              "edge": "left",
+              "px": 0.5,
+              "label": "Flow In",
+              "type": "input"
+            },
+            {
+              "id": "output",
+              "edge": "right",
+              "px": 0.5,
+              "label": "Flow Out",
+              "type": "output"
+            },
+            {
+              "id": "shaft_output",
+              "edge": "bottom",
+              "px": 0.5,
+              "label": "Shaft",
+              "type": "output"
+            }
+          ],
+          "variables": [
+            {
+              "id": "var_ft_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            },
+            {
+              "id": "var_ft_shaft",
+              "name": "shaft",
+              "$ref": "shaft_composite"
+            },
+            {
+              "id": "var_ft_running",
+              "name": "running",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ft_rated_rate",
+              "name": "rated_rate",
+              "type": "number",
+              "defaultValue": 100
+            },
+            {
+              "id": "var_ft_rated_rpm",
+              "name": "rated_rpm",
+              "type": "number",
+              "defaultValue": 1500
+            },
+            {
+              "id": "var_ft_pressure_drop",
+              "name": "pressure_drop",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_ft_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ft_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_ft_flow_on",
+              "condition": "ANYSUP.flow.flowing AND self.broken == false",
+              "script": "SET self.flow.present = true\nSET self.flow.flowing = true\nSET self.flow.rate = MINSUP.flow.rate\nSET self.flow.pressure = MAX(MINSUP.flow.pressure - self.pressure_drop, 0)\nSET self.flow.temperature = MINSUP.flow.temperature\nSET self.flow.phase = SUPBYPORT(input).flow.phase\nSET self.flow.colour = SUPBYPORT(input).flow.colour\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.running = true\nSET self.shaft.driving = true\nIF SUPBYPORT(input).flow.phase == \"liquid\" THEN\n  SET self.shaft.rpm = MIN(MINSUP.flow.rate / self.rated_rate * self.rated_rpm, self.rated_rpm) / 2\nELSE\n  SET self.shaft.rpm = MIN(MINSUP.flow.rate / self.rated_rate * self.rated_rpm, self.rated_rpm)\nEND\nSET self.shaft.torque = 100"
+            },
+            {
+              "id": "listener_ft_flow_off",
+              "condition": "ANYSUP.flow.flowing == false OR self.broken",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.pressure = 0\nSET self.flow.temperature = 20\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"\nSET self.flow.composition = \"\"\nSET self.shaft.driving = false\nSET self.shaft.rpm = 0\nSET self.shaft.torque = 0\nSET self.running = false"
+            },
+            {
+              "id": "listener_ft_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-10T00:00:00.012Z",
+          "faults": [
+            {
+              "id": "fault_ft_turbine_fault",
+              "name": "turbine_fault",
+              "description": "Fluid turbine seized — shaft output lost. Close upstream valve to isolate.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 12000
+            }
+          ],
+          "imageStencilName": "Turbine",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Vacuum Pump",
+              "imageAspect": 1.927007299270073
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_advanced_drive_shaft_1779950000020",
+          "name": "Advanced Drive Shaft",
+          "colour": "#f97316",
+          "nodeDisplayMode": "circle",
+          "isDynamicPortNode": true,
+          "portTemplates": {
+            "supply": {
+              "edge": "left",
+              "role": "supply",
+              "type": "input",
+              "labelPrefix": "Supply"
+            },
+            "load": {
+              "edge": "right",
+              "role": "load",
+              "type": "output",
+              "labelPrefix": "Load"
+            }
+          },
+          "variables": [
+            {
+              "id": "var_ads_shaft",
+              "name": "shaft",
+              "$ref": "shaft_composite"
+            },
+            {
+              "id": "var_ads_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_ads_clear_shaft",
+              "name": "clear_shaft",
+              "script": "SET self.shaft.driving = false\nSET self.shaft.rpm = 0\nSET self.shaft.torque = 0\nDEFAULT_SKIN SELF"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_ads_driving_on",
+              "condition": "ANYSUP.shaft.driving AND self.broken == false",
+              "script": "SET self.shaft.driving = true\nSET self.shaft.rpm = MAXSUP.shaft.rpm\nSET self.shaft.torque = SUMSUP.shaft.torque / COUNTINF\nSET_SKIN SELF \"driving\""
+            },
+            {
+              "id": "listener_ads_driving_off",
+              "condition": "ANYSUP.shaft.driving == false OR self.broken",
+              "script": "CALL self.clear_shaft"
+            }
+          ],
+          "faults": [
+            {
+              "id": "fault_ads_break",
+              "name": "shaft_break",
+              "description": "Advanced drive shaft broken — no torque transmission.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 10000
+            }
+          ],
+          "defaultSkin": "default",
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "driving",
+              "colour": "#f97316"
+            }
+          ]
+        }
+      ],
+      "created": "2026-06-06T00:00:00.039Z"
+    },
+    {
+      "id": "componentset_process_1779980000001",
+      "name": "Advanced Process Components",
+      "description": "Cooler, Check Valve, Vaporizer, Liquid Trap, Strainer, Mixing Valve.",
+      "components": [
+        {
+          "id": "component_cooler_1779980000001",
+          "name": "Cooler",
+          "colour": "#0ea5e9",
+          "variables": [
+            {
+              "id": "var_cooler_active",
+              "name": "active",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_cooler_effectiveness",
+              "name": "effectiveness",
+              "type": "number",
+              "defaultValue": 0.7
+            },
+            {
+              "id": "var_cooler_ambient_temp",
+              "name": "ambient_temp",
+              "type": "number",
+              "defaultValue": 20
+            },
+            {
+              "id": "var_cooler_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            },
+            {
+              "id": "var_cooler_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_cooler_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_cooler_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
+            },
+            {
+              "id": "action_cooler_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.active THEN\n  SET self.active = false\nELSE\n  SET self.active = true\nEND\nCALL self.update_flow"
+            },
+            {
+              "id": "action_cooler_update_flow",
+              "name": "update_flow",
+              "script": "IF ANYSUP.flow.flowing == false THEN\n  CALL self.clear_flow\n  RETURN\nEND\nSET self.flow.present = true\nSET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.colour = SUPBYPORT(input).flow.colour\nIF self.active AND self.broken == false THEN\n  SET self.flow.temperature = self.ambient_temp + (SUMSUP.flow.temperature - self.ambient_temp) * (1 - self.effectiveness)\n  SET self.flow.phase = \"liquid\"\nELSE\n  SET self.flow.temperature = SUMSUP.flow.temperature\n  SET self.flow.phase = SUPBYPORT(input).flow.phase\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_cooler_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_cooler_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_cooler_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.001Z",
+          "faults": [],
+          "imageStencilName": "Air Cooler",
+          "imageAspect": 2,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Air Cooler",
+              "imageAspect": 3.259259259259259
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_check_valve_1779980000002",
+          "name": "Check Valve",
+          "colour": "#ef4444",
+          "variables": [
+            {
+              "id": "var_ckv_open",
+              "name": "open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ckv_stuck_open",
+              "name": "stuck_open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ckv_stuck_closed",
+              "name": "stuck_closed",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ckv_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            },
+            {
+              "id": "var_ckv_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_ckv_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
+            },
+            {
+              "id": "action_ckv_update_flow",
+              "name": "update_flow",
+              "script": "IF self.stuck_closed THEN\n  SET self.open = false\n  CALL self.clear_flow\n  RETURN\nEND\nIF ANYSUP.flow.flowing THEN\n  SET self.open = true\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.temperature = SUMSUP.flow.temperature\n  SET self.flow.composition = SUPBYPORT(input).flow.composition\n  SET self.flow.pressure = MINSUP.flow.pressure\n  SET self.flow.phase = SUPBYPORT(input).flow.phase\n  SET self.flow.colour = SUPBYPORT(input).flow.colour\nELSE\n  IF self.stuck_open THEN\n    SET self.open = true\n  ELSE\n    SET self.open = false\n  END\n  CALL self.clear_flow\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_ckv_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_ckv_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_ckv_stuck_closed",
+              "condition": "self.stuck_closed",
+              "script": "ARM check_valve_stuck_closed\nCALL self.update_flow"
+            },
+            {
+              "id": "listener_ckv_stuck_open",
+              "condition": "self.stuck_open",
+              "script": "ARM check_valve_stuck_open"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.002Z",
+          "faults": [
+            {
+              "id": "fault_ckv_stuck_closed",
+              "name": "check_valve_stuck_closed",
+              "description": "Check valve stuck closed — forward flow blocked.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 6000
+            },
+            {
+              "id": "fault_ckv_stuck_open",
+              "name": "check_valve_stuck_open",
+              "description": "Check valve stuck open — backflow protection lost.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 6000
+            }
+          ],
+          "imageStencilName": "Non-Return Valve",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Ball Valve",
+              "imageAspect": 1.6
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_vaporizer_1779980000003",
+          "name": "Vaporizer",
+          "colour": "#8b5cf6",
+          "variables": [
+            {
+              "id": "var_vap_active",
+              "name": "active",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_vap_boiling_point",
+              "name": "boiling_point",
+              "type": "number",
+              "defaultValue": 100
+            },
+            {
+              "id": "var_vap_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            },
+            {
+              "id": "var_vap_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_vap_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
+            },
+            {
+              "id": "action_vap_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.active THEN\n  SET self.active = false\nELSE\n  SET self.active = true\nEND\nCALL self.update_flow"
+            },
+            {
+              "id": "action_vap_update_flow",
+              "name": "update_flow",
+              "script": "IF ANYSUP.flow.flowing == false THEN\n  CALL self.clear_flow\n  RETURN\nEND\nSET self.flow.present = true\nSET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.colour = SUPBYPORT(input).flow.colour\nIF self.active THEN\n  SET self.flow.phase = \"gas\"\n  SET self.flow.temperature = self.boiling_point\nELSE\n  SET self.flow.phase = SUPBYPORT(input).flow.phase\n  SET self.flow.temperature = SUMSUP.flow.temperature\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_vap_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_vap_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_vap_low_liquid",
+              "condition": "self.active AND ANYSUP.flow.present == false",
+              "script": "ARM low_liquid"
+            },
+            {
+              "id": "listener_vap_steam_inlet",
+              "condition": "self.active AND SUPBYPORT(input).flow.phase == \"gas\"",
+              "script": "ARM steam_inlet"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.003Z",
+          "faults": [
+            {
+              "id": "fault_vap_low_liquid",
+              "name": "low_liquid",
+              "description": "Vaporizer energised with no liquid supply — overheating.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 10000
+            },
+            {
+              "id": "fault_vap_overpressure",
+              "name": "overpressure",
+              "description": "Downstream pressure exceeded safe limit — vent or isolate immediately.",
+              "defaultGracePeriod": 0,
+              "costMin": 5000,
+              "costMax": 20000
+            },
+            {
+              "id": "fault_vap_steam_inlet",
+              "name": "steam_inlet",
+              "description": "Steam detected at vaporizer inlet — reverse flow or incorrect isolation.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 12000
+            }
+          ],
+          "imageStencilName": "Steam Trap",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Vessel (Semi-Tube Heating-Cooling Coil)",
+              "imageAspect": 1.543859649122807
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_liquid_trap_1779980000004",
+          "name": "Liquid Trap",
+          "colour": "#6b7280",
+          "variables": [
+            {
+              "id": "var_lt_open",
+              "name": "open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_lt_functioning",
+              "name": "functioning",
+              "type": "boolean",
+              "defaultValue": true
+            },
+            {
+              "id": "var_lt_bypass_open",
+              "name": "bypass_open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_lt_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            },
+            {
+              "id": "var_lt_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_lt_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
+            },
+            {
+              "id": "action_lt_on_toggle_bypass",
+              "name": "on_toggle_bypass",
+              "script": "IF self.bypass_open THEN\n  SET self.bypass_open = false\nELSE\n  SET self.bypass_open = true\nEND\nCALL self.update_flow"
+            },
+            {
+              "id": "action_lt_update_flow",
+              "name": "update_flow",
+              "script": "IF ANYSUP.flow.flowing == false THEN\n  CALL self.clear_flow\n  RETURN\nEND\nIF self.bypass_open OR self.functioning == false THEN\n  SET self.open = true\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.temperature = SUMSUP.flow.temperature\n  SET self.flow.composition = SUPBYPORT(input).flow.composition\n  SET self.flow.pressure = MINSUP.flow.pressure\n  SET self.flow.phase = SUPBYPORT(input).flow.phase\n  SET self.flow.colour = SUPBYPORT(input).flow.colour\nELSE\n  IF SUPBYPORT(input).flow.phase == \"liquid\" THEN\n    SET self.open = true\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = MINSUP.flow.pressure\n    SET self.flow.phase = \"liquid\"\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n  ELSE\n    SET self.open = false\n    SET self.flow.present = true\n    SET self.flow.flowing = false\n    SET self.flow.rate = 0\n  END\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_lt_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_lt_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_lt_failed_open",
+              "condition": "self.functioning == false AND ANYSUP.flow.flowing",
+              "script": "ARM failed_open"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.004Z",
+          "faults": [
+            {
+              "id": "fault_lt_failed_open",
+              "name": "failed_open",
+              "description": "Liquid trap failed open — gas carry-over passing to downstream.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 10000
+            },
+            {
+              "id": "fault_lt_failed_closed",
+              "name": "failed_closed",
+              "description": "Liquid trap failed closed — flow completely blocked.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 8000
+            }
+          ],
+          "imageStencilName": "Steam Trap",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Drum or Condenser",
+              "imageAspect": 2.869565217391304
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_strainer_1779980000005",
+          "name": "Strainer",
+          "colour": "#6b7280",
+          "variables": [
+            {
+              "id": "var_str_fouled",
+              "name": "fouled",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_str_open",
+              "name": "open",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_str_resistance",
+              "name": "resistance",
+              "type": "number",
+              "defaultValue": 0.05
+            },
+            {
+              "id": "var_str_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            },
+            {
+              "id": "var_str_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_str_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"\nSET self.blocked = false"
+            },
+            {
+              "id": "action_str_update_flow",
+              "name": "update_flow",
+              "script": "IF self.fouled THEN\n  SET self.open = false\n  SET self.flow.present = true\n  SET self.flow.flowing = false\n  SET self.flow.rate = 0\n  SET self.blocked = true\nELSE\n  IF ANYSUP.flow.flowing THEN\n    SET self.open = true\n    SET self.blocked = false\n    SET self.flow.present = true\n    SET self.flow.flowing = true\n    SET self.flow.rate = SUMSUP.flow.rate\n    SET self.flow.temperature = SUMSUP.flow.temperature\n    SET self.flow.composition = SUPBYPORT(input).flow.composition\n    SET self.flow.pressure = MAX(MINSUP.flow.pressure - self.resistance * SUMSUP.flow.rate, 0)\n    SET self.flow.phase = SUPBYPORT(input).flow.phase\n    SET self.flow.colour = SUPBYPORT(input).flow.colour\n  ELSE\n    SET self.open = false\n    CALL self.clear_flow\n  END\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_str_flow_on",
+              "condition": "ANYSUP.flow.flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_str_flow_off",
+              "condition": "ANYSUP.flow.flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_str_fouled",
+              "condition": "self.fouled",
+              "script": "ARM fouled_strainer\nCALL self.update_flow\nADD_OVERLAY SELF \"broken_overlay\""
+            },
+            {
+              "id": "listener_str_clean",
+              "condition": "self.fouled == false",
+              "script": "DEFAULT_SKIN SELF\nCALL self.update_flow"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.005Z",
+          "faults": [
+            {
+              "id": "fault_str_fouled",
+              "name": "fouled_strainer",
+              "description": "Strainer fouled — switch to standby strainer and clean or replace element.",
+              "defaultGracePeriod": 0,
+              "costMin": 1000,
+              "costMax": 4000
+            }
+          ],
+          "imageStencilName": "Strainer",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Strainer (Cone)",
+              "imageAspect": 0.5151515151515151
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_mixing_valve_1779980000006",
+          "name": "Mixing Valve",
+          "colour": "#ec4899",
+          "ports": [
+            {
+              "id": "hot_in",
+              "edge": "left",
+              "px": 0.25,
+              "label": "Hot In",
+              "type": "input"
+            },
+            {
+              "id": "cold_in",
+              "edge": "left",
+              "px": 0.75,
+              "label": "Cold In",
+              "type": "input"
+            },
+            {
+              "id": "output",
+              "edge": "right",
+              "px": 0.5,
+              "label": "Out",
+              "type": "output"
+            }
+          ],
+          "variables": [
+            {
+              "id": "var_mv_mix_ratio",
+              "name": "mix_ratio",
+              "type": "number",
+              "defaultValue": 50
+            },
+            {
+              "id": "var_mv_flow",
+              "name": "flow",
+              "$ref": "flow_composite"
+            },
+            {
+              "id": "var_mv_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_mv_blocked",
+              "name": "blocked",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_mv_clear_flow",
+              "name": "clear_flow",
+              "script": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\""
+            },
+            {
+              "id": "action_mv_more_hot",
+              "name": "more_hot",
+              "script": "SET self.mix_ratio = MIN(self.mix_ratio + 10, 100)\nCALL self.update_flow"
+            },
+            {
+              "id": "action_mv_more_cold",
+              "name": "more_cold",
+              "script": "SET self.mix_ratio = MAX(self.mix_ratio - 10, 0)\nCALL self.update_flow"
+            },
+            {
+              "id": "action_mv_update_flow",
+              "name": "update_flow",
+              "script": "IF SUPBYPORT(hot_in).flow.flowing OR SUPBYPORT(cold_in).flow.flowing THEN\n  SET self.flow.present = true\n  SET self.flow.flowing = true\n  SET self.flow.rate = SUMSUP.flow.rate\n  SET self.flow.temperature = SUPBYPORT(hot_in).flow.temperature * self.mix_ratio / 100 + SUPBYPORT(cold_in).flow.temperature * (100 - self.mix_ratio) / 100\n  SET self.flow.phase = \"liquid\"\n  SET self.flow.pressure = MINSUP.flow.pressure\n  SET self.flow.composition = \"\"\n  SET self.flow.colour = \"\"\nELSE\n  CALL self.clear_flow\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_mv_hot_on",
+              "condition": "SUPBYPORT(hot_in).flow.flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_mv_hot_off",
+              "condition": "SUPBYPORT(hot_in).flow.flowing == false",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_mv_cold_on",
+              "condition": "SUPBYPORT(cold_in).flow.flowing",
+              "script": "CALL self.update_flow"
+            },
+            {
+              "id": "listener_mv_cold_off",
+              "condition": "SUPBYPORT(cold_in).flow.flowing == false",
+              "script": "CALL self.update_flow"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.006Z",
+          "faults": [
+            {
+              "id": "fault_mv_hot_inlet_fault",
+              "name": "hot_inlet_fault",
+              "description": "Hot inlet stuck closed — outlet temperature cold-biased.",
+              "defaultGracePeriod": 0,
+              "costMin": 1000,
+              "costMax": 4000
+            },
+            {
+              "id": "fault_mv_cold_inlet_fault",
+              "name": "cold_inlet_fault",
+              "description": "Cold inlet stuck closed — outlet temperature hot-biased.",
+              "defaultGracePeriod": 0,
+              "costMin": 1000,
+              "costMax": 4000
+            }
+          ],
+          "imageStencilName": "Hydraulic Valve",
+          "imageAspect": 1.1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Three-Way Valve",
+              "imageAspect": 1.233644859813084
             }
           ],
           "defaultSkin": "default"
         }
       ],
-      "created": "2026-06-06T00:00:00.039Z"
+      "created": "2026-06-08T00:00:00.001Z"
+    },
+    {
+      "id": "componentset_electrical2_1779980000002",
+      "name": "Advanced Electrical Components",
+      "description": "Generator, Transformer, VFD, VFD Motor, UPS, Power Meter, Earth Fault Relay, Wind Turbine.",
+      "components": [
+        {
+          "id": "component_generator_1779980000007",
+          "name": "Generator",
+          "colour": "#f97316",
+          "ports": [
+            {
+              "id": "shaft_input",
+              "edge": "left",
+              "px": 0.5,
+              "label": "Shaft In",
+              "type": "input"
+            },
+            {
+              "id": "output",
+              "edge": "right",
+              "px": 0.5,
+              "label": "Power Out",
+              "type": "output"
+            }
+          ],
+          "variables": [
+            {
+              "id": "var_gen_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_gen_rated_voltage",
+              "name": "rated_voltage",
+              "type": "number",
+              "defaultValue": 415
+            },
+            {
+              "id": "var_gen_rated_rpm",
+              "name": "rated_rpm",
+              "type": "number",
+              "defaultValue": 1500
+            },
+            {
+              "id": "var_gen_min_rpm",
+              "name": "min_rpm",
+              "type": "number",
+              "defaultValue": 750
+            },
+            {
+              "id": "var_gen_running",
+              "name": "running",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_gen_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_gen_clear_output",
+              "name": "clear_output",
+              "script": "SET self.electricity.energised = false\nSET self.running = false\nSET self.electricity.voltage = 0\nSET self.electricity.current_type = null\nSET self.electricity.frequency = 0"
+            },
+            {
+              "id": "action_gen_update_output",
+              "name": "update_output",
+              "script": "IF ANYSUP.shaft.driving AND SUMSUP.shaft.rpm >= self.min_rpm AND self.broken == false THEN\n  SET self.running = true\n  SET self.electricity.energised = true\n  SET self.electricity.current_type = \"ac\"\n  SET self.electricity.voltage = self.rated_voltage * SUMSUP.shaft.rpm / self.rated_rpm\n  SET self.electricity.frequency = 50 * SUMSUP.shaft.rpm / self.rated_rpm\nELSE\n  CALL self.clear_output\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_gen_shaft_on",
+              "condition": "ANYSUP.shaft.driving",
+              "script": "CALL self.update_output"
+            },
+            {
+              "id": "listener_gen_shaft_off",
+              "condition": "ANYSUP.shaft.driving == false",
+              "script": "CALL self.clear_output"
+            },
+            {
+              "id": "listener_gen_broken_running",
+              "condition": "self.broken AND self.running",
+              "script": "ARM avr_fault\nCALL self.clear_output"
+            },
+            {
+              "id": "listener_gen_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.007Z",
+          "faults": [
+            {
+              "id": "fault_gen_avr_fault",
+              "name": "avr_fault",
+              "description": "Generator AVR fault — output voltage unstable.",
+              "defaultGracePeriod": 0,
+              "costMin": 5000,
+              "costMax": 15000
+            }
+          ],
+          "imageStencilName": "Generator",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Motor 2",
+              "imageAspect": 1.6296296296296295
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_transformer_1779980000008",
+          "name": "Transformer",
+          "colour": "#facc15",
+          "variables": [
+            {
+              "id": "var_tx_turns_ratio",
+              "name": "turns_ratio",
+              "type": "number",
+              "defaultValue": 10
+            },
+            {
+              "id": "var_tx_primary_voltage",
+              "name": "primary_voltage",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_tx_secondary_voltage",
+              "name": "secondary_voltage",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_tx_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_tx_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_tx_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_tx_supply_on",
+              "condition": "ANYSUP.electricity.energised AND self.broken == false",
+              "script": "IF ANYSUP.electricity.current_type == \"dc\" THEN\n  ARM wrong_current_type\n  SET self.electricity.energised = false\n  SET self.primary_voltage = 0\n  SET self.secondary_voltage = 0\n  SET self.electricity.voltage = 0\n  SET self.electricity.frequency = 0\nELSE\n  SET self.electricity.energised = true\n  SET self.electricity.current_type = \"ac\"\n  SET self.primary_voltage = MINSUP.electricity.voltage\n  SET self.secondary_voltage = self.primary_voltage * self.turns_ratio\n  SET self.electricity.voltage = self.secondary_voltage\n  SET self.electricity.frequency = MINSUP.electricity.frequency\nEND"
+            },
+            {
+              "id": "listener_tx_supply_off",
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.primary_voltage = 0\nSET self.secondary_voltage = 0\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0"
+            },
+            {
+              "id": "listener_tx_broken",
+              "condition": "self.broken",
+              "script": "ARM winding_fault\nSET self.electricity.energised = false\nSET self.electricity.voltage = 0\nADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.008Z",
+          "faults": [
+            {
+              "id": "fault_tx_winding_fault",
+              "name": "winding_fault",
+              "description": "Transformer winding fault — no secondary voltage output.",
+              "defaultGracePeriod": 0,
+              "costMin": 8000,
+              "costMax": 25000
+            },
+            {
+              "id": "fault_tx_wrong_current_type",
+              "name": "wrong_current_type",
+              "description": "Transformer supplied with DC — transformer requires AC to induce secondary voltage.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 15000
+            }
+          ],
+          "imageStencilName": "Transformer",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Transformer",
+              "imageAspect": 1
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_vfd_1779980000009",
+          "name": "VFD",
+          "colour": "#facc15",
+          "variables": [
+            {
+              "id": "var_vfd2_speed_setpoint",
+              "name": "speed_setpoint",
+              "type": "number",
+              "defaultValue": 50
+            },
+            {
+              "id": "var_vfd2_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_vfd2_output_speed",
+              "name": "output_speed",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_vfd2_tripped",
+              "name": "tripped",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_vfd2_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_vfd2_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_vfd2_clear_output",
+              "name": "clear_output",
+              "script": "SET self.electricity.energised = false\nSET self.output_speed = 0"
+            },
+            {
+              "id": "action_vfd2_update_output",
+              "name": "update_output",
+              "script": "IF ANYSUP.electricity.energised AND self.tripped == false AND self.broken == false THEN\n  IF ANYSUP.electricity.current_type == \"dc\" THEN\n    ARM wrong_current_type\n    CALL self.clear_output\n  ELSE\n    SET self.electricity.energised = true\n    SET self.output_speed = self.speed_setpoint\n  END\nELSE\n  CALL self.clear_output\nEND"
+            },
+            {
+              "id": "action_vfd2_increase_speed",
+              "name": "increase_speed",
+              "script": "SET self.speed_setpoint = MIN(self.speed_setpoint + 10, 100)\nCALL self.update_output"
+            },
+            {
+              "id": "action_vfd2_decrease_speed",
+              "name": "decrease_speed",
+              "script": "SET self.speed_setpoint = MAX(self.speed_setpoint - 10, 0)\nCALL self.update_output"
+            },
+            {
+              "id": "action_vfd2_reset",
+              "name": "reset",
+              "script": "SET self.tripped = false\nCALL self.update_output"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_vfd2_supply_on",
+              "condition": "ANYSUP.electricity.energised",
+              "script": "CALL self.update_output"
+            },
+            {
+              "id": "listener_vfd2_supply_off",
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "CALL self.clear_output"
+            },
+            {
+              "id": "listener_vfd2_tripped",
+              "condition": "self.tripped",
+              "script": "CALL self.clear_output"
+            },
+            {
+              "id": "listener_vfd2_broken",
+              "condition": "self.broken",
+              "script": "ARM overtemperature\nADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.009Z",
+          "faults": [
+            {
+              "id": "fault_vfd2_overtemperature",
+              "name": "overtemperature",
+              "description": "VFD overtemperature trip — motor stopped.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 10000
+            },
+            {
+              "id": "fault_vfd2_wrong_current_type",
+              "name": "wrong_current_type",
+              "description": "VFD supplied with DC — VFD requires AC input.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 8000
+            }
+          ],
+          "imageStencilName": "Frequency Converter",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Frequency Converter",
+              "imageAspect": 1
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_vfd_motor_1779980000010",
+          "name": "VFD Motor",
+          "colour": "#f59e0b",
+          "ports": [
+            {
+              "id": "input",
+              "edge": "left",
+              "px": 0.5,
+              "label": "VFD In",
+              "type": "input"
+            },
+            {
+              "id": "shaft_output",
+              "edge": "bottom",
+              "px": 0.5,
+              "label": "Shaft",
+              "type": "output"
+            }
+          ],
+          "variables": [
+            {
+              "id": "var_vfdm_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_vfdm_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_vfdm_running",
+              "name": "running",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_vfdm_rated_rpm",
+              "name": "rated_rpm",
+              "type": "number",
+              "defaultValue": 1500
+            },
+            {
+              "id": "var_vfdm_shaft",
+              "name": "shaft",
+              "$ref": "shaft_composite"
+            },
+            {
+              "id": "var_vfdm_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_vfdm_clear_shaft",
+              "name": "clear_shaft",
+              "script": "SET self.shaft.driving = false\nSET self.shaft.rpm = 0\nSET self.shaft.torque = 0"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_vfdm_supply_on",
+              "condition": "ANYSUP.electricity.energised AND self.broken == false",
+              "script": "SET self.electricity.energised = true\nSET self.running = true\nSET self.shaft.driving = true\nSET self.shaft.rpm = self.rated_rpm * SUMSUP.output_speed / 100\nSET self.shaft.torque = SUMSUP.output_speed"
+            },
+            {
+              "id": "listener_vfdm_supply_off",
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "SET self.electricity.energised = false\nSET self.running = false\nCALL self.clear_shaft"
+            },
+            {
+              "id": "listener_vfdm_broken_running",
+              "condition": "self.broken AND self.running",
+              "script": "ARM motor_overload\nSET self.running = false\nSET self.overloaded = true\nCALL self.clear_shaft"
+            },
+            {
+              "id": "listener_vfdm_recovered",
+              "condition": "self.broken == false",
+              "script": "SET self.overloaded = false"
+            },
+            {
+              "id": "listener_vfdm_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.010Z",
+          "faults": [
+            {
+              "id": "fault_vfdm_motor_overload",
+              "name": "motor_overload",
+              "description": "VFD motor overloaded — isolate and investigate.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 12000
+            }
+          ],
+          "imageStencilName": "Electric Motor",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Motor 2",
+              "imageAspect": 1.6296296296296295
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_wind_turbine_1779980000014",
+          "name": "Wind Turbine",
+          "colour": "#22c55e",
+          "ports": [
+            {
+              "id": "shaft_output",
+              "edge": "right",
+              "px": 0.5,
+              "label": "Shaft",
+              "type": "output"
+            }
+          ],
+          "variables": [
+            {
+              "id": "var_wt_wind_speed",
+              "name": "wind_speed",
+              "type": "number",
+              "defaultValue": 30
+            },
+            {
+              "id": "var_wt_rated_rpm",
+              "name": "rated_rpm",
+              "type": "number",
+              "defaultValue": 1500
+            },
+            {
+              "id": "var_wt_cut_in_speed",
+              "name": "cut_in_speed",
+              "type": "number",
+              "defaultValue": 15
+            },
+            {
+              "id": "var_wt_cut_out_speed",
+              "name": "cut_out_speed",
+              "type": "number",
+              "defaultValue": 90
+            },
+            {
+              "id": "var_wt_running",
+              "name": "running",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_wt_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_wt_shaft",
+              "name": "shaft",
+              "$ref": "shaft_composite"
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_wt_tick",
+              "name": "tick",
+              "script": "IF self.broken THEN\n  SET self.running = false\n  SET self.shaft.driving = false\n  SET self.shaft.rpm = 0\n  SET self.shaft.torque = 0\n  RETURN\nEND\nSET self.wind_speed = SMOOTH_RANDOM(self.wind_speed, 0, 100, 6)\nIF self.wind_speed >= self.cut_in_speed AND self.wind_speed <= self.cut_out_speed THEN\n  SET self.running = true\n  SET self.shaft.driving = true\n  SET self.shaft.rpm = self.rated_rpm * self.wind_speed / 100\n  SET self.shaft.torque = self.wind_speed\nELSE\n  SET self.running = false\n  SET self.shaft.driving = false\n  SET self.shaft.rpm = 0\n  SET self.shaft.torque = 0\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_wt_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-08T00:00:00.014Z",
+          "faults": [
+            {
+              "id": "fault_wt_pitch_fault",
+              "name": "pitch_fault",
+              "description": "Wind turbine pitch control failed — turbine cannot cut out at high wind speed.",
+              "defaultGracePeriod": 0,
+              "costMin": 8000,
+              "costMax": 25000
+            },
+            {
+              "id": "fault_wt_yaw_fault",
+              "name": "yaw_fault",
+              "description": "Wind turbine yaw fault — turbine turned out of wind, no generation.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 10000
+            }
+          ],
+          "imageStencilName": "Wind Turbine",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "imageStencilName": "Turbine",
+              "imageAspect": 1
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_grid_export_1779980000015",
+          "name": "Grid Export",
+          "colour": "#22c55e",
+          "isSink": true,
+          "variables": [
+            {
+              "id": "var_ge_connected",
+              "name": "connected",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ge_exporting",
+              "name": "exporting",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ge_measured_voltage",
+              "name": "measured_voltage",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_ge_measured_frequency",
+              "name": "measured_frequency",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_ge_rated_voltage",
+              "name": "rated_voltage",
+              "type": "number",
+              "defaultValue": 415
+            },
+            {
+              "id": "var_ge_min_voltage",
+              "name": "min_voltage",
+              "type": "number",
+              "defaultValue": 390
+            },
+            {
+              "id": "var_ge_max_voltage",
+              "name": "max_voltage",
+              "type": "number",
+              "defaultValue": 440
+            },
+            {
+              "id": "var_ge_rated_frequency",
+              "name": "rated_frequency",
+              "type": "number",
+              "defaultValue": 50
+            },
+            {
+              "id": "var_ge_min_frequency",
+              "name": "min_frequency",
+              "type": "number",
+              "defaultValue": 49.5
+            },
+            {
+              "id": "var_ge_max_frequency",
+              "name": "max_frequency",
+              "type": "number",
+              "defaultValue": 50.5
+            },
+            {
+              "id": "var_ge_voltage_ok",
+              "name": "voltage_ok",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ge_frequency_ok",
+              "name": "frequency_ok",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ge_protection_tripped",
+              "name": "protection_tripped",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_ge_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_ge_clear_output",
+              "name": "clear_output",
+              "script": "SET self.exporting = false\nSET self.measured_voltage = 0\nSET self.measured_frequency = 0\nSET self.voltage_ok = false\nSET self.frequency_ok = false\nDEFAULT_SKIN SELF"
+            },
+            {
+              "id": "action_ge_update_output",
+              "name": "update_output",
+              "script": "IF ANYSUP.electricity.energised AND self.connected AND self.broken == false AND self.protection_tripped == false THEN\n  IF ANYSUP.electricity.current_type == \"dc\" THEN\n    ARM wrong_current_type\n    CALL self.clear_output\n  ELSE\n    SET self.measured_voltage = MINSUP.electricity.voltage\n    SET self.measured_frequency = MINSUP.electricity.frequency\n    IF self.measured_voltage >= self.min_voltage AND self.measured_voltage <= self.max_voltage THEN\n      SET self.voltage_ok = true\n    ELSE\n      SET self.voltage_ok = false\n    END\n    IF self.measured_frequency >= self.min_frequency AND self.measured_frequency <= self.max_frequency THEN\n      SET self.frequency_ok = true\n    ELSE\n      SET self.frequency_ok = false\n    END\n    IF self.voltage_ok AND self.frequency_ok THEN\n      SET self.exporting = true\n      SET_SKIN SELF \"exporting\"\n    ELSE\n      SET self.exporting = false\n      SET self.protection_tripped = true\n      DEFAULT_SKIN SELF\n      IF self.voltage_ok == false THEN\n        ARM voltage_protection_trip\n      END\n      IF self.frequency_ok == false THEN\n        ARM frequency_protection_trip\n      END\n    END\n  END\nELSE\n  CALL self.clear_output\nEND"
+            },
+            {
+              "id": "action_ge_on_toggle",
+              "name": "on_toggle",
+              "script": "IF self.broken OR self.protection_tripped THEN\n  RETURN\nEND\nIF self.connected THEN\n  SET self.connected = false\n  CALL self.clear_output\nELSE\n  SET self.connected = true\n  CALL self.update_output\nEND"
+            },
+            {
+              "id": "action_ge_reset_trip",
+              "name": "reset_trip",
+              "script": "SET self.protection_tripped = false\nSET self.voltage_ok = false\nSET self.frequency_ok = false\nIF self.connected THEN\n  CALL self.update_output\nEND"
+            },
+            {
+              "id": "action_ge_tick",
+              "name": "tick",
+              "script": "IF ANYSUP.electricity.energised AND self.connected THEN\n  CALL self.update_output\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_ge_supply_on",
+              "condition": "ANYSUP.electricity.energised",
+              "script": "CALL self.update_output"
+            },
+            {
+              "id": "listener_ge_supply_off",
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "IF self.exporting THEN\n  ARM anti_islanding_failure\nEND\nCALL self.clear_output"
+            },
+            {
+              "id": "listener_ge_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-09T00:00:00.015Z",
+          "faults": [
+            {
+              "id": "fault_ge_voltage_protection",
+              "name": "voltage_protection_trip",
+              "description": "Grid voltage outside ±6 % nominal while connected — protection tripped.",
+              "defaultGracePeriod": 0,
+              "costMin": 5000,
+              "costMax": 20000
+            },
+            {
+              "id": "fault_ge_frequency_protection",
+              "name": "frequency_protection_trip",
+              "description": "Grid frequency outside 49.5–50.5 Hz while connected — protection tripped.",
+              "defaultGracePeriod": 0,
+              "costMin": 5000,
+              "costMax": 20000
+            },
+            {
+              "id": "fault_ge_anti_islanding",
+              "name": "anti_islanding_failure",
+              "description": "Upstream supply lost while export was live — anti-islanding protection required.",
+              "defaultGracePeriod": 0,
+              "costMin": 10000,
+              "costMax": 40000
+            },
+            {
+              "id": "fault_ge_wrong_current_type",
+              "name": "wrong_current_type",
+              "description": "Grid export supplied with DC — grid connection requires AC supply.",
+              "defaultGracePeriod": 0,
+              "costMin": 5000,
+              "costMax": 20000
+            }
+          ],
+          "imageStencilName": "Transformer",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "exporting",
+              "colour": "#22c55e"
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_battery_storage_1779980000016",
+          "name": "Battery Storage",
+          "colour": "#3b82f6",
+          "variables": [
+            {
+              "id": "var_bat_state_of_charge",
+              "name": "state_of_charge",
+              "type": "number",
+              "defaultValue": 80
+            },
+            {
+              "id": "var_bat_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_bat_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            },
+            {
+              "id": "var_bat_charging",
+              "name": "charging",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_bat_discharge_mode",
+              "name": "discharge_mode",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_bat_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_bat_rated_voltage",
+              "name": "rated_voltage",
+              "type": "number",
+              "defaultValue": 415
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_bat_update_output",
+              "name": "update_output",
+              "script": "IF self.broken THEN\n  CALL self.clear_output\n  RETURN\nEND\nIF self.discharge_mode AND self.state_of_charge > 0 THEN\n  SET self.electricity.energised = true\n  SET self.electricity.current_type = \"dc\"\n  SET self.electricity.voltage = self.rated_voltage\n  SET self.electricity.frequency = 0\n  SET self.electricity.current = 0\n  SET_SKIN SELF \"discharging\"\nELSE\n  CALL self.clear_output\nEND"
+            },
+            {
+              "id": "action_bat_clear_output",
+              "name": "clear_output",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0\nSET self.electricity.current = 0\nDEFAULT_SKIN SELF"
+            },
+            {
+              "id": "action_bat_toggle_discharge_mode",
+              "name": "toggle_discharge_mode",
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.discharge_mode THEN\n  SET self.discharge_mode = false\nELSE\n  SET self.discharge_mode = true\nEND"
+            },
+            {
+              "id": "action_bat_tick",
+              "name": "tick",
+              "script": "IF self.broken THEN\n  RETURN\nEND\nIF self.charging THEN\n  SET self.state_of_charge = MIN(self.state_of_charge + 0.5, 100)\nELSE\n  IF self.electricity.energised THEN\n    SET self.state_of_charge = MAX(self.state_of_charge - 0.5, 0)\n    IF self.state_of_charge <= 0 THEN\n      ARM depletion_fault\n      SET self.broken = true\n      CALL self.clear_output\n    END\n  END\nEND"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_bat_supply_on",
+              "condition": "ANYSUP.electricity.energised",
+              "script": "CALL self.update_output"
+            },
+            {
+              "id": "listener_bat_supply_off",
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "CALL self.update_output"
+            },
+            {
+              "id": "listener_bat_charging_on",
+              "condition": "ANYSUP.electricity.energised AND self.discharge_mode == false AND self.broken == false",
+              "script": "SET self.charging = true\nSET_SKIN SELF \"charging\""
+            },
+            {
+              "id": "listener_bat_charging_off",
+              "condition": "ANYSUP.electricity.energised == false OR self.discharge_mode OR self.broken",
+              "script": "SET self.charging = false"
+            },
+            {
+              "id": "listener_bat_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\""
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-09T00:00:00.016Z",
+          "faults": [
+            {
+              "id": "fault_bat_depletion_fault",
+              "name": "depletion_fault",
+              "description": "Battery fully depleted while in discharge mode — all stored energy exhausted.",
+              "defaultGracePeriod": 0,
+              "costMin": 10000,
+              "costMax": 30000
+            },
+            {
+              "id": "fault_bat_wrong_current_type",
+              "name": "wrong_current_type",
+              "description": "Battery supplied with AC — battery charging requires DC input.",
+              "defaultGracePeriod": 0,
+              "costMin": 2000,
+              "costMax": 8000
+            }
+          ],
+          "imageStencilName": "Battery",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8",
+              "imageStencilName": "Bandpass",
+              "imageAspect": 1
+            },
+            {
+              "name": "charging",
+              "colour": "#3b82f6"
+            },
+            {
+              "name": "discharging",
+              "colour": "#f59e0b"
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_rectifier_1779980000017",
+          "name": "Rectifier",
+          "colour": "#f59e0b",
+          "variables": [
+            {
+              "id": "var_rec_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_rec_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            },
+            {
+              "id": "var_rec_efficiency",
+              "name": "efficiency",
+              "type": "number",
+              "defaultValue": 0.95
+            },
+            {
+              "id": "var_rec_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_rec_update_output",
+              "name": "update_output",
+              "script": "IF ANYSUP.electricity.energised AND self.broken == false THEN\n  IF ANYSUP.electricity.current_type == \"dc\" THEN\n    ARM wrong_current_type\n    CALL self.clear_output\n  ELSE\n    SET self.electricity.energised = true\n    SET self.electricity.current_type = \"dc\"\n    SET self.electricity.voltage = MINSUP.electricity.voltage * self.efficiency\n    SET self.electricity.frequency = 0\n    SET self.electricity.current = 0\n  END\nELSE\n  CALL self.clear_output\nEND"
+            },
+            {
+              "id": "action_rec_clear_output",
+              "name": "clear_output",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0\nSET self.electricity.current = 0"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_rec_supply_on",
+              "condition": "ANYSUP.electricity.energised AND self.broken == false",
+              "script": "CALL self.update_output"
+            },
+            {
+              "id": "listener_rec_supply_off",
+              "condition": "ANYSUP.electricity.energised == false OR self.broken",
+              "script": "CALL self.clear_output"
+            },
+            {
+              "id": "listener_rec_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\"\nCALL self.clear_output"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-10T00:00:00.017Z",
+          "faults": [
+            {
+              "id": "fault_rec_rectifier_fault",
+              "name": "rectifier_fault",
+              "description": "Rectifier internal fault — AC to DC conversion failed.",
+              "defaultGracePeriod": 0,
+              "costMin": 3000,
+              "costMax": 12000
+            },
+            {
+              "id": "fault_rec_wrong_current_type",
+              "name": "wrong_current_type",
+              "description": "Rectifier supplied with DC — rectifier requires AC input.",
+              "defaultGracePeriod": 0,
+              "costMin": 1000,
+              "costMax": 5000
+            }
+          ],
+          "imageStencilName": "Transformer",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#f59e0b"
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_inverter_1779980000018",
+          "name": "Inverter",
+          "colour": "#8b5cf6",
+          "variables": [
+            {
+              "id": "var_inv_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_inv_overloaded",
+              "name": "overloaded",
+              "type": "boolean",
+              "defaultValue": false,
+              "propagation": "from_inferiors"
+            },
+            {
+              "id": "var_inv_input_frequency",
+              "name": "input_frequency",
+              "type": "number",
+              "defaultValue": 0
+            },
+            {
+              "id": "var_inv_rated_voltage",
+              "name": "rated_voltage",
+              "type": "number",
+              "defaultValue": 415
+            },
+            {
+              "id": "var_inv_tripped",
+              "name": "tripped",
+              "type": "boolean",
+              "defaultValue": false
+            },
+            {
+              "id": "var_inv_broken",
+              "name": "broken",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [
+            {
+              "id": "action_inv_update_output",
+              "name": "update_output",
+              "script": "IF ANYSUP.electricity.energised AND self.broken == false THEN\n  SET self.input_frequency = MINSUP.electricity.frequency\n  IF self.tripped THEN\n    SET self.electricity.energised = true\n    SET self.electricity.current_type = \"ac\"\n    SET self.electricity.voltage = self.rated_voltage\n    SET self.electricity.frequency = self.input_frequency\n    SET self.electricity.current = 0\n  ELSE\n    SET self.electricity.energised = true\n    SET self.electricity.current_type = \"ac\"\n    SET self.electricity.voltage = self.rated_voltage\n    SET self.electricity.frequency = 50\n    SET self.electricity.current = 0\n  END\nELSE\n  CALL self.clear_output\nEND"
+            },
+            {
+              "id": "action_inv_clear_output",
+              "name": "clear_output",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0\nSET self.electricity.current = 0"
+            },
+            {
+              "id": "action_inv_reset_trip",
+              "name": "reset_trip",
+              "script": "IF self.broken THEN\n  RETURN\nEND\nSET self.tripped = false\nCALL self.update_output"
+            }
+          ],
+          "listeners": [
+            {
+              "id": "listener_inv_supply_on",
+              "condition": "ANYSUP.electricity.energised AND self.broken == false",
+              "script": "CALL self.update_output"
+            },
+            {
+              "id": "listener_inv_supply_off",
+              "condition": "ANYSUP.electricity.energised == false OR self.broken",
+              "script": "CALL self.clear_output"
+            },
+            {
+              "id": "listener_inv_tripped",
+              "condition": "self.tripped",
+              "script": "CALL self.update_output"
+            },
+            {
+              "id": "listener_inv_broken_visual",
+              "condition": "self.broken",
+              "script": "ADD_OVERLAY SELF \"broken_overlay\"\nCALL self.clear_output"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-10T00:00:00.018Z",
+          "faults": [
+            {
+              "id": "fault_inv_inverter_fault",
+              "name": "inverter_fault",
+              "description": "Inverter internal fault — output frequency is no longer stabilised.",
+              "defaultGracePeriod": 0,
+              "costMin": 5000,
+              "costMax": 20000
+            }
+          ],
+          "imageStencilName": "Transformer",
+          "imageAspect": 1,
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#8b5cf6"
+            }
+          ],
+          "defaultSkin": "default"
+        },
+        {
+          "id": "component_electrical_consumer_1779980000019",
+          "name": "Electrical Consumer",
+          "colour": "#6b7280",
+          "isSink": true,
+          "variables": [
+            {
+              "id": "var_ec_electricity",
+              "name": "electricity",
+              "$ref": "electricity_composite"
+            },
+            {
+              "id": "var_ec_active",
+              "name": "active",
+              "type": "boolean",
+              "defaultValue": false
+            }
+          ],
+          "actions": [],
+          "listeners": [
+            {
+              "id": "listener_ec_supply_on",
+              "condition": "ANYSUP.electricity.energised",
+              "script": "SET self.electricity.energised = true\nSET self.electricity.current_type = SUPBYPORT(input).electricity.current_type\nSET self.electricity.voltage = MINSUP.electricity.voltage\nSET self.electricity.frequency = MINSUP.electricity.frequency\nSET self.active = true"
+            },
+            {
+              "id": "listener_ec_supply_off",
+              "condition": "ANYSUP.electricity.energised == false",
+              "script": "SET self.electricity.energised = false\nSET self.electricity.current_type = null\nSET self.electricity.voltage = 0\nSET self.electricity.frequency = 0\nSET self.active = false"
+            }
+          ],
+          "superiors": [],
+          "created": "2026-06-10T00:00:00.019Z",
+          "faults": [],
+          "imageStencilName": "Motor 2",
+          "imageAspect": 1.6296296296296295,
+          "skins": [
+            {
+              "name": "default",
+              "colour": "#94a3b8"
+            },
+            {
+              "name": "active",
+              "colour": "#4ade80"
+            }
+          ],
+          "defaultSkin": "default"
+        }
+      ],
+      "created": "2026-06-08T00:00:00.002Z"
     }
   ],
   "globalSkins": [
@@ -3161,11 +5616,46 @@
           "defaultValue": 0
         }
       ]
+    },
+    "electricity_composite": {
+      "type": "composite",
+      "fields": [
+        {
+          "id": "f_elec_energised",
+          "name": "energised",
+          "type": "boolean",
+          "defaultValue": false
+        },
+        {
+          "id": "f_elec_current_type",
+          "name": "current_type",
+          "type": "string",
+          "defaultValue": null
+        },
+        {
+          "id": "f_elec_voltage",
+          "name": "voltage",
+          "type": "number",
+          "defaultValue": 0
+        },
+        {
+          "id": "f_elec_frequency",
+          "name": "frequency",
+          "type": "number",
+          "defaultValue": 0
+        },
+        {
+          "id": "f_elec_current",
+          "name": "current",
+          "type": "number",
+          "defaultValue": 0
+        }
+      ]
     }
   },
   "scriptTemplates": {
     "clear_flow": "SET self.flow.present = false\nSET self.flow.flowing = false\nSET self.flow.rate = 0\nSET self.flow.temperature = 20\nSET self.flow.composition = \"\"\nSET self.flow.pressure = 0\nSET self.flow.phase = \"liquid\"\nSET self.flow.colour = \"\"",
-    "copy_upstream": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUP(0).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUP(0).flow.phase\nSET self.flow.colour = SUP(0).flow.colour",
+    "copy_upstream": "SET self.flow.flowing = true\nSET self.flow.rate = SUMSUP.flow.rate\nSET self.flow.temperature = SUMSUP.flow.temperature\nSET self.flow.composition = SUPBYPORT(input).flow.composition\nSET self.flow.pressure = MINSUP.flow.pressure\nSET self.flow.phase = SUPBYPORT(input).flow.phase\nSET self.flow.colour = SUPBYPORT(input).flow.colour",
     "clear_shaft": "SET self.shaft.driving = false\nSET self.shaft.rpm = 0\nSET self.shaft.torque = 0",
     "copy_shaft_upstream": "SET self.shaft.driving = true\nSET self.shaft.rpm = SUMSUP.shaft.rpm\nSET self.shaft.torque = SUMSUP.shaft.torque"
   }
