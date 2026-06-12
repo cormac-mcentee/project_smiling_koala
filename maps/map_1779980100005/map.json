@@ -1,0 +1,6 @@
+{
+  "id": "map_1779980100005",
+  "name": "Parallel Strainer Selection",
+  "description": "Two parallel strainer branches share a common inlet and outlet. Commission on Strainer A, switch to Strainer B when A fouls without interrupting flow, and return A to service after maintenance. Teaches live switchover procedure and duplicate standby equipment.",
+  "config": {}
+}
