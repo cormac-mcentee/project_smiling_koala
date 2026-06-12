@@ -1,0 +1,538 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_e14_wt1",
+      "name": "WT1",
+      "componentId": "component_wind_turbine_1779980000014",
+      "superiors": [],
+      "variableOverrides": {
+        "wind_speed": 30,
+        "rated_rpm": 1500,
+        "cut_in_speed": 15,
+        "cut_out_speed": 85
+      },
+      "_canvas": {
+        "x": 0,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_e14_shaft_a",
+      "name": "Shaft_A",
+      "componentId": "component_shaft_1779950000010",
+      "superiors": [
+        "lc_e14_wt1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 156,
+        "y": -110
+      }
+    },
+    {
+      "id": "lc_e14_g1",
+      "name": "G1",
+      "componentId": "component_generator_1779980000007",
+      "superiors": [
+        {
+          "lcId": "lc_e14_shaft_a",
+          "inPort": "shaft_input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_voltage": 415,
+        "rated_rpm": 1500,
+        "min_rpm": 225
+      },
+      "_canvas": {
+        "x": 312,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_e14_tx1",
+      "name": "TX1",
+      "componentId": "component_transformer_1779980000008",
+      "superiors": [
+        {
+          "lcId": "lc_1781027376557_3tkj",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "turns_ratio": 2
+      },
+      "_canvas": {
+        "x": 576,
+        "y": -120
+      }
+    },
+    {
+      "id": "lc_e14_wt2",
+      "name": "WT2",
+      "componentId": "component_wind_turbine_1779980000014",
+      "superiors": [],
+      "variableOverrides": {
+        "wind_speed": 30,
+        "rated_rpm": 1200,
+        "cut_in_speed": 10,
+        "cut_out_speed": 80
+      },
+      "_canvas": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "lc_e14_shaft_b",
+      "name": "Shaft_B",
+      "componentId": "component_shaft_1779950000010",
+      "superiors": [
+        "lc_e14_wt2"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 156,
+        "y": 130
+      }
+    },
+    {
+      "id": "lc_e14_g2",
+      "name": "G2",
+      "componentId": "component_generator_1779980000007",
+      "superiors": [
+        {
+          "lcId": "lc_e14_shaft_b",
+          "inPort": "shaft_input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_voltage": 415,
+        "rated_rpm": 1200,
+        "min_rpm": 180
+      },
+      "_canvas": {
+        "x": 312,
+        "y": 120
+      }
+    },
+    {
+      "id": "lc_e14_tx2",
+      "name": "TX2",
+      "componentId": "component_transformer_1779980000008",
+      "superiors": [
+        {
+          "lcId": "lc_1781027343571_y9wg",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "turns_ratio": 2
+      },
+      "_canvas": {
+        "x": 576,
+        "y": 120
+      }
+    },
+    {
+      "id": "lc_e14_junction",
+      "name": "BUS_A",
+      "componentId": "component_wire_junction_1779700000006",
+      "superiors": [
+        {
+          "lcId": "lc_1781027388113_8ojp",
+          "inPort": "input_b"
+        },
+        {
+          "lcId": "lc_1781027385333_5xs0",
+          "inPort": "input_a"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 710,
+        "y": -10
+      }
+    },
+    {
+      "id": "lc_e14_battery1",
+      "name": "Battery1",
+      "componentId": "component_battery_storage_1779980000016",
+      "superiors": [
+        {
+          "lcId": "lc_1781027600528_4kpa",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 960,
+        "y": 240
+      }
+    },
+    {
+      "id": "lc_e14_ge1",
+      "name": "GE1",
+      "componentId": "component_grid_export_1779980000015",
+      "superiors": [
+        {
+          "lcId": "lc_1781027414112_zpjr",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_voltage": 3320,
+        "min_voltage": 3154,
+        "max_voltage": 3486
+      },
+      "_canvas": {
+        "x": 1608,
+        "y": 48
+      }
+    },
+    {
+      "id": "lc_1781026900897_2e64",
+      "name": "WIR1",
+      "componentId": "component_wire_junction_1779700000006",
+      "superiors": [
+        {
+          "lcId": "lc_1781027406785_p9ip",
+          "inPort": "input_b"
+        },
+        {
+          "lcId": "lc_1781027404670_k04s",
+          "inPort": "input_a"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1190,
+        "y": 38
+      }
+    },
+    {
+      "id": "lc_1781026904989_29c9",
+      "name": "WIR2",
+      "componentId": "component_wire_splitter_1779700000007",
+      "superiors": [
+        {
+          "lcId": "lc_1781027393223_roym",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 854,
+        "y": -10
+      }
+    },
+    {
+      "id": "lc_1781027075433_d6xs",
+      "name": "SWI1",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781027402517_tzlj",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 996,
+        "y": -6
+      }
+    },
+    {
+      "id": "lc_1781027343571_y9wg",
+      "name": "WIR3",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e14_g2",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 396,
+        "y": 82
+      }
+    },
+    {
+      "id": "lc_1781027376557_3tkj",
+      "name": "WIR5",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e14_g1",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 396,
+        "y": -110
+      }
+    },
+    {
+      "id": "lc_1781027385333_5xs0",
+      "name": "WIR7",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e14_tx1",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 660,
+        "y": -38
+      }
+    },
+    {
+      "id": "lc_1781027388113_8ojp",
+      "name": "WIR8",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e14_tx2",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 660,
+        "y": 82
+      }
+    },
+    {
+      "id": "lc_1781027393223_roym",
+      "name": "WIR9",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e14_junction",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 732,
+        "y": -38
+      }
+    },
+    {
+      "id": "lc_1781027399732_ggz9",
+      "name": "WIR10",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781026904989_29c9",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 732,
+        "y": 34
+      }
+    },
+    {
+      "id": "lc_1781027402517_tzlj",
+      "name": "WIR11",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781026904989_29c9",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 948,
+        "y": -38
+      }
+    },
+    {
+      "id": "lc_1781027404670_k04s",
+      "name": "WIR12",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781027075433_d6xs",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1092,
+        "y": -14
+      }
+    },
+    {
+      "id": "lc_1781027406785_p9ip",
+      "name": "WIR13",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e14_battery1",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1068,
+        "y": 130
+      }
+    },
+    {
+      "id": "lc_1781027410285_m94j",
+      "name": "WIR14",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781026900897_2e64",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1212,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_1781027414112_zpjr",
+      "name": "WIR15",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e14_tx_main",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1524,
+        "y": 58
+      }
+    },
+    {
+      "id": "lc_1781027599060_wrbw",
+      "name": "SWI2",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_e14_wir10b",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 852,
+        "y": 282
+      }
+    },
+    {
+      "id": "lc_1781027600528_4kpa",
+      "name": "WIR16",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781027599060_wrbw",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 948,
+        "y": 154
+      }
+    },
+    {
+      "id": "lc_e14_inv1",
+      "name": "INV1",
+      "componentId": "component_inverter_1779980000018",
+      "superiors": [
+        {
+          "lcId": "lc_1781027410285_m94j",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_voltage": 830
+      },
+      "_canvas": {
+        "x": 1272,
+        "y": 48
+      }
+    },
+    {
+      "id": "lc_e14_tx_main",
+      "name": "TX_MAIN",
+      "componentId": "component_transformer_1779980000008",
+      "superiors": [
+        {
+          "lcId": "lc_1781109852874_5li7",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "turns_ratio": 4
+      },
+      "_canvas": {
+        "x": 1464,
+        "y": 24
+      }
+    },
+    {
+      "id": "lc_e14_rec1",
+      "name": "REC1",
+      "componentId": "component_rectifier_1779980000017",
+      "superiors": [
+        {
+          "lcId": "lc_1781027399732_ggz9",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 768,
+        "y": 96
+      }
+    },
+    {
+      "id": "lc_e14_wir10b",
+      "name": "WIR10b",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e14_rec1",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 780,
+        "y": 370
+      }
+    },
+    {
+      "id": "lc_1781109852874_5li7",
+      "name": "WIR17",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e14_inv1",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1404,
+        "y": -14
+      }
+    }
+  ]
+}
