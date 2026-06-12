@@ -1,0 +1,258 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_e14_s1",
+      "name": "Commission the Wind Farm Export System",
+      "description": "Both turbines are generating. BUS_A feeds the battery (via REC1) for storage and drives the export chain (via INV1 and TX_MAIN) to GE1. Connect GE1 to complete the grid export and observe the battery charging simultaneously.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_e14_s1_01",
+          "literalComponentId": "lc_e14_wt1",
+          "variableId": "var_wt_wind_speed",
+          "value": 60
+        },
+        {
+          "id": "ic_e14_s1_02",
+          "literalComponentId": "lc_e14_wt2",
+          "variableId": "var_wt_wind_speed",
+          "value": 50
+        },
+        {
+          "id": "ic_e14_s1_03",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_connected",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e14_s1_03",
+          "literalComponentId": "lc_e14_battery1",
+          "variableId": "var_bat_charging",
+          "value": true
+        },
+        {
+          "id": "tc_e14_s1_04",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_exporting",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_e14_s2",
+      "name": "Turbine 2 Offline — Single-Turbine Operation",
+      "description": "Turbine 2 has cut out in high wind — its chain is no longer supplying BUS_A. Turbine 1 continues generating and the battery is charging from WT1 alone. Confirm the system can still achieve grid export on partial generation and connect GE1.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_e14_s2_01",
+          "literalComponentId": "lc_e14_wt1",
+          "variableId": "var_wt_wind_speed",
+          "value": 60
+        },
+        {
+          "id": "ic_e14_s2_02",
+          "literalComponentId": "lc_e14_wt2",
+          "variableId": "var_wt_broken",
+          "value": true
+        },
+        {
+          "id": "ic_e14_s2_04",
+          "literalComponentId": "lc_e14_battery1",
+          "variableId": "var_bat_state_of_charge",
+          "value": 65
+        },
+        {
+          "id": "ic_e14_s2_05",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_connected",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e14_s2_01",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_exporting",
+          "value": true
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_e14_s2_01",
+          "literalComponentId": "lc_e14_wt2",
+          "faultName": "pitch_fault",
+          "gracePeriod": 15
+        }
+      ]
+    },
+    {
+      "id": "scenario_e14_s3",
+      "name": "Wind Lull — Switch to Battery Discharge",
+      "description": "Both turbines have stopped in calm conditions — BUS_A is dead and the battery stopped charging. The battery has 60% charge remaining. Anti-islanding protection fired on GE1 when supply was lost. Enable battery discharge mode to restore output, then reset GE1 and resume grid export from stored energy.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_e14_s3_01",
+          "literalComponentId": "lc_e14_wt1",
+          "variableId": "var_wt_wind_speed",
+          "value": 5
+        },
+        {
+          "id": "ic_e14_s3_02",
+          "literalComponentId": "lc_e14_wt2",
+          "variableId": "var_wt_wind_speed",
+          "value": 5
+        },
+        {
+          "id": "ic_e14_s3_03",
+          "literalComponentId": "lc_e14_battery1",
+          "variableId": "var_bat_state_of_charge",
+          "value": 60
+        },
+        {
+          "id": "ic_e14_s3_04",
+          "literalComponentId": "lc_e14_battery1",
+          "variableId": "var_bat_discharge_mode",
+          "value": false
+        },
+        {
+          "id": "ic_e14_s3_05",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_connected",
+          "value": true
+        },
+        {
+          "id": "ic_e14_s3_06",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_protection_tripped",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e14_s3_01",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_exporting",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_e14_s4",
+      "name": "Near-Depletion — Isolate Before Fault",
+      "description": "Both turbines have stopped in calm conditions. Battery discharge mode was left active with only 5% SoC remaining: depletion is imminent. Disconnect GE1 immediately to stop the drain before the battery depletes completely.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_e14_s4_01",
+          "literalComponentId": "lc_e14_wt1",
+          "variableId": "var_wt_wind_speed",
+          "value": 5
+        },
+        {
+          "id": "ic_e14_s4_02",
+          "literalComponentId": "lc_e14_wt2",
+          "variableId": "var_wt_wind_speed",
+          "value": 5
+        },
+        {
+          "id": "ic_e14_s4_06",
+          "literalComponentId": "lc_e14_battery1",
+          "variableId": "var_bat_discharge_mode",
+          "value": true
+        },
+        {
+          "id": "ic_e14_s4_07",
+          "literalComponentId": "lc_e14_battery1",
+          "variableId": "var_bat_state_of_charge",
+          "value": 5
+        },
+        {
+          "id": "ic_e14_s4_08",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_connected",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e14_s4_01",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_connected",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_e14_s4_02",
+          "literalComponentId": "lc_e14_battery1",
+          "faultName": "depletion_fault",
+          "gracePeriod": 0
+        }
+      ]
+    },
+    {
+      "id": "scenario_e14_s5",
+      "name": "Inverter Fault — Frequency Instability",
+      "description": "INV1 has developed an internal fault and is no longer stabilising the output frequency. The variable-frequency AC from the turbines is passing straight through to the grid connection — GE1's frequency protection has already tripped. Reset INV1 to restore stable 50 Hz output, then reset GE1 to resume export.",
+      "difficulty": "hard",
+      "initialConditions": [
+        {
+          "id": "ic_e14_s5_01",
+          "literalComponentId": "lc_e14_wt1",
+          "variableId": "var_wt_wind_speed",
+          "value": 60
+        },
+        {
+          "id": "ic_e14_s5_02",
+          "literalComponentId": "lc_e14_wt2",
+          "variableId": "var_wt_wind_speed",
+          "value": 50
+        },
+        {
+          "id": "ic_e14_s5_03",
+          "literalComponentId": "lc_e14_inv1",
+          "variableId": "var_inv_tripped",
+          "value": true
+        },
+        {
+          "id": "ic_e14_s5_04",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_connected",
+          "value": true
+        },
+        {
+          "id": "ic_e14_s5_05",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_protection_tripped",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e14_s5_01",
+          "literalComponentId": "lc_e14_inv1",
+          "variableId": "var_inv_tripped",
+          "value": false
+        },
+        {
+          "id": "tc_e14_s5_02",
+          "literalComponentId": "lc_e14_ge1",
+          "variableId": "var_ge_exporting",
+          "value": true
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_e14_s5_01",
+          "literalComponentId": "lc_e14_inv1",
+          "faultName": "inverter_fault",
+          "gracePeriod": 0
+        }
+      ]
+    }
+  ]
+}
