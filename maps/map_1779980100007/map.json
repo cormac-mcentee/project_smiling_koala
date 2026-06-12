@@ -1,0 +1,6 @@
+{
+  "id": "map_1779980100007",
+  "name": "Pressure Regulation",
+  "description": "A pressure regulator maintains a constant downstream pressure regardless of upstream variation. Commission a tank-fed regulated supply, respond to upstream starvation as the tank drains, and diagnose a regulator that is passing full upstream pressure.",
+  "config": {}
+}
