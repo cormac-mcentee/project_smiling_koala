@@ -2,14 +2,14 @@
   "scenarios": [
     {
       "id": "scenario_2a2_s1",
-      "name": "Normal Protected Circuit",
-      "description": "SW_Main is open and all three lamps are dark. Each branch has its own fuse protecting the lamp. Close SW_Main to energise all three branches. All fuses are healthy so none blow — observe the lamp in each branch lighting up.",
-      "difficulty": "easy",
+      "name": "Commission the Protected Circuit",
+      "description": "SW_Main is open and all three lamps are dark. Each branch has its own fuse protecting the lamp. Close SW_Main to energise all three branches for the first time. All fuses are healthy â€” observe each lamp lighting up in turn.",
+      "difficulty": "tutorial",
       "initialConditions": [
         {
           "id": "ic_2a2_s1_01",
           "literalComponentId": "lc_2a2_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -61,13 +61,13 @@
     {
       "id": "scenario_2a2_s2",
       "name": "Overload Recovery",
-      "description": "F1 has tripped and Lamp1 is dark. SW_Main is open. The correct recovery sequence is: open SW_Main (already open) → reset F1 → re-close SW_Main. Do not reset a fuse while the circuit is still energised — it may trip again immediately.",
+      "description": "F1 has tripped and Lamp1 is dark. SW_Main is open. The correct recovery sequence is: open SW_Main (already open) â†’ reset F1 â†’ re-close SW_Main. Do not reset a fuse while the circuit is still energised â€” it may trip again immediately.",
       "difficulty": "easy",
       "initialConditions": [
         {
           "id": "ic_2a2_s2_01",
           "literalComponentId": "lc_2a2_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -125,7 +125,7 @@
         {
           "id": "ic_2a2_s3_01",
           "literalComponentId": "lc_2a2_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
