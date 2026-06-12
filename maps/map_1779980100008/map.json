@@ -1,0 +1,6 @@
+{
+  "id": "map_1779980100008",
+  "name": "Full Process Loop",
+  "description": "A complete process loop combining strainer, pump, heater, cooler, and PRV in sequence. Commission all equipment in the correct order, diagnose and isolate a fouling strainer, and manage a cooler fan failure before outlet temperature exceeds limits.",
+  "config": {}
+}
