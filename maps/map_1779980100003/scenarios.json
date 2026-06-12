@@ -1,0 +1,156 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_f14_s1",
+      "name": "Establish Vaporised Flow",
+      "description": "Flow is running but the vaporizer is off. Activate VAP1 to change the phase of the stream to gas. LT1 will block any un-vaporised carry-over automatically.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_f14_s1_01",
+          "literalComponentId": "lc_f14_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f14_s1_02",
+          "literalComponentId": "lc_f14_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_f14_s1_03",
+          "literalComponentId": "lc_f14_vap1",
+          "variableId": "var_vap_active",
+          "value": false
+        },
+        {
+          "id": "ic_f14_s1_04",
+          "literalComponentId": "lc_f14_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f14_s1_01",
+          "literalComponentId": "lc_f14_vap1",
+          "variableId": "var_vap_active",
+          "value": true
+        },
+        {
+          "id": "tc_f14_s1_02",
+          "literalComponentId": "lc_f14_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_f14_s2",
+      "name": "Liquid Trap Failed Open",
+      "description": "The vaporizer is running but the liquid trap has failed open — un-vaporised liquid is carrying over to the gas line. Isolate the system by closing V2 to protect downstream equipment.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_f14_s2_01",
+          "literalComponentId": "lc_f14_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f14_s2_02",
+          "literalComponentId": "lc_f14_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_f14_s2_03",
+          "literalComponentId": "lc_f14_vap1",
+          "variableId": "var_vap_active",
+          "value": true
+        },
+        {
+          "id": "ic_f14_s2_04",
+          "literalComponentId": "lc_f14_lt1",
+          "variableId": "var_lt_functioning",
+          "value": false
+        },
+        {
+          "id": "ic_f14_s2_05",
+          "literalComponentId": "lc_f14_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f14_s2_01",
+          "literalComponentId": "lc_f14_v2",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_f14_s2_01",
+          "literalComponentId": "lc_f14_lt1",
+          "faultName": "failed_open",
+          "gracePeriod": 5
+        }
+      ]
+    },
+    {
+      "id": "scenario_f14_s3",
+      "name": "Safe Vaporizer Shutdown",
+      "description": "The vaporizer is running at full output. To shut down safely, deactivate VAP1 first — stopping flow while the vaporizer is hot will damage it. Then stop P1 and close both valves.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_f14_s3_01",
+          "literalComponentId": "lc_f14_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f14_s3_02",
+          "literalComponentId": "lc_f14_p1",
+          "variableId": "var_pump_running",
+          "value": true
+        },
+        {
+          "id": "ic_f14_s3_03",
+          "literalComponentId": "lc_f14_vap1",
+          "variableId": "var_vap_active",
+          "value": true
+        },
+        {
+          "id": "ic_f14_s3_04",
+          "literalComponentId": "lc_f14_v2",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f14_s3_01",
+          "literalComponentId": "lc_f14_vap1",
+          "variableId": "var_vap_active",
+          "value": false
+        },
+        {
+          "id": "tc_f14_s3_02",
+          "literalComponentId": "lc_f14_p1",
+          "variableId": "var_pump_running",
+          "value": false
+        },
+        {
+          "id": "tc_f14_s3_03",
+          "literalComponentId": "lc_f14_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ]
+    }
+  ]
+}
