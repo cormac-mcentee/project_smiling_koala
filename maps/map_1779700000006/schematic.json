@@ -107,7 +107,7 @@
       "id": "anc_m6_ps1_light",
       "type": "light",
       "lcId": "lc_m6_ps1",
-      "bindTo": "var:energised",
+      "bindTo": "var:on",
       "label": "Live",
       "x": 576,
       "y": -72
@@ -155,7 +155,7 @@
       "type": "text",
       "x": 38,
       "y": -79,
-      "content": "ECV1 is electrically operated — it opens when PS1 is energised, closes on power loss.",
+      "content": "ECV1 is electrically operated â€” it opens when PS1 is energised, closes on power loss.",
       "fontSize": 12,
       "fontWeight": "normal",
       "colour": "#94a3b8",
