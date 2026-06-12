@@ -137,6 +137,21 @@
       "x": 1280,
       "y": 250,
       "rotation": 90
+    },
+    {
+      "lcId": "lc_pipe_tank_p1",
+      "x": 816,
+      "y": -48
+    },
+    {
+      "lcId": "lc_pipe_he_proc",
+      "x": 1332,
+      "y": -78
+    },
+    {
+      "lcId": "lc_pipe_he_serv",
+      "x": 1272,
+      "y": 16
     }
   ],
   "connections": [
@@ -169,8 +184,15 @@
       "dstPortId": "input"
     },
     {
-      "id": "conn_1779650808761",
+      "id": "conn_m674_tank_pipe",
       "srcLcId": "lc_1779500000002",
+      "srcPortId": "output",
+      "dstLcId": "lc_pipe_tank_p1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m674_pipe_p1",
+      "srcLcId": "lc_pipe_tank_p1",
       "srcPortId": "output",
       "dstLcId": "lc_1779440791231",
       "dstPortId": "input"
@@ -260,16 +282,30 @@
       "dstPortId": "input"
     },
     {
-      "id": "conn_1779655558056",
+      "id": "conn_m674_he_proc_pipe",
       "srcLcId": "lc_1779440947448",
       "srcPortId": "process_out",
+      "dstLcId": "lc_pipe_he_proc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m674_proc_pipe_v3",
+      "srcLcId": "lc_pipe_he_proc",
+      "srcPortId": "output",
       "dstLcId": "lc_1779440925795",
       "dstPortId": "input"
     },
     {
-      "id": "conn_1779655560285",
+      "id": "conn_m674_he_serv_pipe",
       "srcLcId": "lc_1779440947448",
       "srcPortId": "service_out",
+      "dstLcId": "lc_pipe_he_serv",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_m674_serv_pipe_v5",
+      "srcLcId": "lc_pipe_he_serv",
+      "srcPortId": "output",
       "dstLcId": "lc_1779440878100",
       "dstPortId": "input"
     }
