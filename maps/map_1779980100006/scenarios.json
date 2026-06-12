@@ -1,0 +1,144 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_f17_s1",
+      "name": "Blend to 50:50",
+      "description": "Both supplies are ready but all valves are closed. Open V_Hot and V_Cold, then open V_Out. The mixing valve is already set to 50% — verify that a blended stream reaches the outlet.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_f17_s1_01",
+          "literalComponentId": "lc_f17_v_hot",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f17_s1_02",
+          "literalComponentId": "lc_f17_v_cold",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f17_s1_03",
+          "literalComponentId": "lc_f17_mv1",
+          "variableId": "var_mv_mix_ratio",
+          "value": 50
+        },
+        {
+          "id": "ic_f17_s1_04",
+          "literalComponentId": "lc_f17_v_out",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f17_s1_01",
+          "literalComponentId": "lc_f17_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_f17_s2",
+      "name": "Hot Inlet Fault — Identify the Problem",
+      "description": "The blending system was operating normally. The outlet temperature has swung cold, indicating a problem. Diagnose which inlet has failed and isolate it by closing its valve.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_f17_s2_01",
+          "literalComponentId": "lc_f17_v_hot",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f17_s2_02",
+          "literalComponentId": "lc_f17_v_cold",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f17_s2_03",
+          "literalComponentId": "lc_f17_mv1",
+          "variableId": "var_mv_mix_ratio",
+          "value": 50
+        },
+        {
+          "id": "ic_f17_s2_04",
+          "literalComponentId": "lc_f17_v_out",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f17_s2_05",
+          "literalComponentId": "lc_f17_mv1",
+          "variableId": "var_mv_broken",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f17_s2_01",
+          "literalComponentId": "lc_f17_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_f17_s2_01",
+          "literalComponentId": "lc_f17_mv1",
+          "faultName": "hot_inlet_fault",
+          "gracePeriod": 0
+        }
+      ]
+    },
+    {
+      "id": "scenario_f17_s3",
+      "name": "Adjust Blend to 75% Hot",
+      "description": "The system is running at 50:50 blend. A downstream process requires a warmer supply. Use the More Hot control to increase the mix ratio to 75 and verify the outlet temperature rises accordingly.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_f17_s3_01",
+          "literalComponentId": "lc_f17_v_hot",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f17_s3_02",
+          "literalComponentId": "lc_f17_v_cold",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f17_s3_03",
+          "literalComponentId": "lc_f17_mv1",
+          "variableId": "var_mv_mix_ratio",
+          "value": 50
+        },
+        {
+          "id": "ic_f17_s3_04",
+          "literalComponentId": "lc_f17_v_out",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f17_s3_01",
+          "literalComponentId": "lc_f17_mv1",
+          "variableId": "var_mv_mix_ratio",
+          "value": 75
+        },
+        {
+          "id": "tc_f17_s3_02",
+          "literalComponentId": "lc_f17_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
