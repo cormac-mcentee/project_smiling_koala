@@ -1,0 +1,164 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_f17_inlet_hot",
+      "x": 8,
+      "y": -86
+    },
+    {
+      "lcId": "lc_f17_v_hot",
+      "x": 216,
+      "y": -78
+    },
+    {
+      "lcId": "lc_f17_inlet_cold",
+      "x": 8,
+      "y": 82
+    },
+    {
+      "lcId": "lc_f17_v_cold",
+      "x": 216,
+      "y": 90
+    },
+    {
+      "lcId": "lc_f17_mv1",
+      "x": 432,
+      "y": 4.5
+    },
+    {
+      "lcId": "lc_f17_pipe_out",
+      "x": 660,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f17_v_out",
+      "x": 768,
+      "y": -6
+    },
+    {
+      "lcId": "lc_f17_outlet",
+      "x": 872,
+      "y": 10
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_f17_01",
+      "srcLcId": "lc_f17_inlet_hot",
+      "srcPortId": "output",
+      "dstLcId": "lc_f17_v_hot",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f17_02",
+      "srcLcId": "lc_f17_v_hot",
+      "srcPortId": "output",
+      "dstLcId": "lc_f17_mv1",
+      "dstPortId": "hot_in"
+    },
+    {
+      "id": "conn_f17_03",
+      "srcLcId": "lc_f17_inlet_cold",
+      "srcPortId": "output",
+      "dstLcId": "lc_f17_v_cold",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f17_04",
+      "srcLcId": "lc_f17_v_cold",
+      "srcPortId": "output",
+      "dstLcId": "lc_f17_mv1",
+      "dstPortId": "cold_in"
+    },
+    {
+      "id": "conn_f17_05",
+      "srcLcId": "lc_f17_mv1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f17_pipe_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f17_06",
+      "srcLcId": "lc_f17_pipe_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_f17_v_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f17_07",
+      "srcLcId": "lc_f17_v_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_f17_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_f17_v_hot_btn": {
+      "id": "anc_f17_v_hot_btn",
+      "type": "button",
+      "lcId": "lc_f17_v_hot",
+      "bindTo": "act:on_toggle",
+      "label": "V_Hot Open/Close",
+      "x": 264,
+      "y": -96
+    },
+    "anc_f17_v_cold_btn": {
+      "id": "anc_f17_v_cold_btn",
+      "type": "button",
+      "lcId": "lc_f17_v_cold",
+      "bindTo": "act:on_toggle",
+      "label": "V_Cold Open/Close",
+      "x": 264,
+      "y": 72
+    },
+    "anc_f17_mv1_more_hot": {
+      "id": "anc_f17_mv1_more_hot",
+      "type": "button",
+      "lcId": "lc_f17_mv1",
+      "bindTo": "act:more_hot",
+      "label": "More Hot",
+      "x": 540,
+      "y": -60
+    },
+    "anc_f17_mv1_more_cold": {
+      "id": "anc_f17_mv1_more_cold",
+      "type": "button",
+      "lcId": "lc_f17_mv1",
+      "bindTo": "act:more_cold",
+      "label": "More Cold",
+      "x": 540,
+      "y": -24
+    },
+    "anc_f17_mv1_ratio_lgt": {
+      "id": "anc_f17_mv1_ratio_lgt",
+      "type": "counter",
+      "lcId": "lc_f17_mv1",
+      "bindTo": "var:mix_ratio",
+      "label": "Mix Ratio %",
+      "x": 468,
+      "y": -24
+    },
+    "anc_f17_v_out_btn": {
+      "id": "anc_f17_v_out_btn",
+      "type": "button",
+      "lcId": "lc_f17_v_out",
+      "bindTo": "act:on_toggle",
+      "label": "V_Out Open/Close",
+      "x": 744,
+      "y": -46
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_f17_01",
+      "type": "text",
+      "x": 432,
+      "y": -110,
+      "content": "Mixing Valve MV1 blends hot (80°C) and cold (10°C) streams. Mix Ratio 0 = 100% cold. Mix Ratio 100 = 100% hot.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
