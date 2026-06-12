@@ -1,0 +1,156 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_e09_s1",
+      "name": "Commission VFD Drive",
+      "description": "Close SW1 to power up the VFD. Open V_Suc and V_Dis to establish fluid flow. The VFD starts at 50% speed setpoint — observe the pump running at half speed with proportional flow.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_e09_s1_01",
+          "literalComponentId": "lc_e09_sw1",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e09_s1_02",
+          "literalComponentId": "lc_e09_vfd1",
+          "variableId": "var_vfd2_speed_setpoint",
+          "value": 50
+        },
+        {
+          "id": "ic_e09_s1_03",
+          "literalComponentId": "lc_e09_v_suc",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_e09_s1_04",
+          "literalComponentId": "lc_e09_v_dis",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e09_s1_01",
+          "literalComponentId": "lc_e09_vm1",
+          "variableId": "var_vfdm_running",
+          "value": true
+        },
+        {
+          "id": "tc_e09_s1_02",
+          "literalComponentId": "lc_e09_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_e09_s2",
+      "name": "Vary Speed — Observe Flow Response",
+      "description": "The drive is running at 50%. Use the Speed + control to increase the VFD setpoint to 80%. Observe that the pump speeds up and flow rate increases proportionally.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_e09_s2_01",
+          "literalComponentId": "lc_e09_sw1",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e09_s2_02",
+          "literalComponentId": "lc_e09_vfd1",
+          "variableId": "var_vfd2_speed_setpoint",
+          "value": 50
+        },
+        {
+          "id": "ic_e09_s2_03",
+          "literalComponentId": "lc_e09_v_suc",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_e09_s2_04",
+          "literalComponentId": "lc_e09_v_dis",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e09_s2_01",
+          "literalComponentId": "lc_e09_vfd1",
+          "variableId": "var_vfd2_speed_setpoint",
+          "value": 80
+        }
+      ]
+    },
+    {
+      "id": "scenario_e09_s3",
+      "name": "VFD Overtemperature Trip",
+      "description": "The VFD has tripped on overtemperature — the motor has coasted to rest and flow has stopped. Reduce the speed setpoint to 40%, then reset the VFD to restore operation.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_e09_s3_01",
+          "literalComponentId": "lc_e09_sw1",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e09_s3_02",
+          "literalComponentId": "lc_e09_vfd1",
+          "variableId": "var_vfd2_speed_setpoint",
+          "value": 100
+        },
+        {
+          "id": "ic_e09_s3_03",
+          "literalComponentId": "lc_e09_vfd1",
+          "variableId": "var_vfd2_tripped",
+          "value": true
+        },
+        {
+          "id": "ic_e09_s3_04",
+          "literalComponentId": "lc_e09_v_suc",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_e09_s3_05",
+          "literalComponentId": "lc_e09_v_dis",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e09_s3_01",
+          "literalComponentId": "lc_e09_vfd1",
+          "variableId": "var_vfd2_speed_setpoint",
+          "value": 40
+        },
+        {
+          "id": "tc_e09_s3_02",
+          "literalComponentId": "lc_e09_vfd1",
+          "variableId": "var_vfd2_tripped",
+          "value": false
+        },
+        {
+          "id": "tc_e09_s3_03",
+          "literalComponentId": "lc_e09_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_e09_s3_01",
+          "literalComponentId": "lc_e09_vfd1",
+          "faultName": "overtemperature",
+          "gracePeriod": 0
+        }
+      ]
+    }
+  ]
+}
