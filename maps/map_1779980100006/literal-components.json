@@ -1,0 +1,135 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_f17_inlet_hot",
+      "name": "Hot Supply",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "flow.colour": "#bf2a2a",
+        "flow.temperature": 80,
+        "flow.composition": [
+          {
+            "name": "hot_water",
+            "colour": "#bf2a2a",
+            "mole_fraction": 1
+          }
+        ]
+      },
+      "_canvas": {
+        "x": 8,
+        "y": -86
+      }
+    },
+    {
+      "id": "lc_f17_v_hot",
+      "name": "V_Hot",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f17_inlet_hot"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 216,
+        "y": -78
+      }
+    },
+    {
+      "id": "lc_f17_inlet_cold",
+      "name": "Cold Supply",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "flow.colour": "#2a5abf",
+        "flow.temperature": 10,
+        "flow.composition": [
+          {
+            "name": "cold_water",
+            "colour": "#2a5abf",
+            "mole_fraction": 1
+          }
+        ]
+      },
+      "_canvas": {
+        "x": 8,
+        "y": 82
+      }
+    },
+    {
+      "id": "lc_f17_v_cold",
+      "name": "V_Cold",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f17_inlet_cold"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 216,
+        "y": 90
+      }
+    },
+    {
+      "id": "lc_f17_mv1",
+      "name": "MV1",
+      "componentId": "component_mixing_valve_1779980000006",
+      "superiors": [
+        {
+          "lcId": "lc_f17_v_hot",
+          "inPort": "hot_in"
+        },
+        {
+          "lcId": "lc_f17_v_cold",
+          "inPort": "cold_in"
+        }
+      ],
+      "variableOverrides": {
+        "mix_ratio": 50
+      },
+      "_canvas": {
+        "x": 432,
+        "y": 4.5
+      }
+    },
+    {
+      "id": "lc_f17_pipe_out",
+      "name": "Pipe_Out",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f17_mv1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 660,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_f17_v_out",
+      "name": "V_Out",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f17_pipe_out"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 768,
+        "y": -6
+      }
+    },
+    {
+      "id": "lc_f17_outlet",
+      "name": "Process Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_f17_v_out"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 872,
+        "y": 10
+      }
+    }
+  ]
+}
