@@ -3,13 +3,13 @@
     {
       "id": "scenario_2a3_s1",
       "name": "Start the Motor-Pump",
-      "description": "The motor isolator SW_Iso is open. The suction and discharge valves are already open. Close SW_Iso to energise M1 — the motor drives the shaft, which automatically starts pump P1. The pump has no separate start button; the motor IS the control.",
+      "description": "The motor isolator SW_Iso is open. The suction and discharge valves are already open. Close SW_Iso to energise M1 â€” the motor drives the shaft, which automatically starts pump P1. The pump has no separate start button; the motor IS the control.",
       "difficulty": "easy",
       "initialConditions": [
         {
           "id": "ic_2a3_s1_01",
           "literalComponentId": "lc_2a3_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -55,13 +55,13 @@
     {
       "id": "scenario_2a3_s2",
       "name": "Motor Overload Trip",
-      "description": "The motor fuse F_Motor has tripped. M1 is not running; the shaft is stationary so P1 has stopped automatically. Reset the sequence: reset F_Motor, then close SW_Iso — the motor auto-starts, the shaft turns, and P1 auto-runs.",
+      "description": "The motor fuse F_Motor has tripped. M1 is not running; the shaft is stationary so P1 has stopped automatically. Reset the sequence: reset F_Motor, then close SW_Iso â€” the motor auto-starts, the shaft turns, and P1 auto-runs.",
       "difficulty": "easy",
       "initialConditions": [
         {
           "id": "ic_2a3_s2_01",
           "literalComponentId": "lc_2a3_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -107,13 +107,13 @@
     {
       "id": "scenario_2a3_s3",
       "name": "Controlled Electrical Shutdown",
-      "description": "The motor-pump is running with flow to the outlet. Shut it down in the correct order: open SW_Iso first — this stops the motor, which stops the shaft, which stops the pump. Only then close V_Discharge. Finally de-energise PS1. Closing the discharge valve while the shaft is still turning will dead-head the pump.",
+      "description": "The motor-pump is running with flow to the outlet. Shut it down in the correct order: open SW_Iso first â€” this stops the motor, which stops the shaft, which stops the pump. Only then close V_Discharge. Finally de-energise PS1. Closing the discharge valve while the shaft is still turning will dead-head the pump.",
       "difficulty": "medium",
       "initialConditions": [
         {
           "id": "ic_2a3_s3_01",
           "literalComponentId": "lc_2a3_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -151,7 +151,7 @@
         {
           "id": "tc_2a3_s3_02",
           "literalComponentId": "lc_2a3_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": false
         },
         {
