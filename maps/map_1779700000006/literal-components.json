@@ -85,9 +85,7 @@
         "lc_m6_ps1"
       ],
       "variableOverrides": {
-        "signal": 100,
-        "fail_open": false,
-        "auto": false
+        "fail_open": false
       },
       "_canvas": {
         "x": 480,
