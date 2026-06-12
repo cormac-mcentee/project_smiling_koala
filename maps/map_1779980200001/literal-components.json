@@ -1,0 +1,156 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_e1_i1",
+      "name": "I1",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 8,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_e1_pipe_a",
+      "name": "Pipe_A",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_e1_i1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 84,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_e1_v1",
+      "name": "V1",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_e1_pipe_a"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 168,
+        "y": -6
+      }
+    },
+    {
+      "id": "lc_e1_pipe_b",
+      "name": "Pipe_B",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_e1_v1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 252,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_e1_t1",
+      "name": "T1",
+      "componentId": "component_fluid_turbine_1779950000012",
+      "superiors": [
+        "lc_e1_pipe_b"
+      ],
+      "variableOverrides": {
+        "rated_rate": 100,
+        "rated_rpm": 1500,
+        "pressure_drop": 20
+      },
+      "_canvas": {
+        "x": 360,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_e1_pipe_c",
+      "name": "Pipe_C",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_e1_t1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 492,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_e1_o1",
+      "name": "O1",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_e1_pipe_c"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 584,
+        "y": -14
+      }
+    },
+    {
+      "id": "lc_e1_shaft_a",
+      "name": "Shaft_A",
+      "componentId": "component_shaft_1779950000010",
+      "superiors": [
+        "lc_e1_t1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 372,
+        "y": 106
+      }
+    },
+    {
+      "id": "lc_e1_g1",
+      "name": "G1",
+      "componentId": "component_generator_1779980000007",
+      "superiors": [
+        {
+          "lcId": "lc_e1_shaft_a",
+          "inPort": "shaft_input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_voltage": 415,
+        "rated_rpm": 1500,
+        "min_rpm": 750
+      },
+      "_canvas": {
+        "x": 360,
+        "y": 192
+      }
+    },
+    {
+      "id": "lc_e1_wire_a",
+      "name": "Wire_A",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e1_g1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 468,
+        "y": 202
+      }
+    },
+    {
+      "id": "lc_e1_ge1",
+      "name": "GE1",
+      "componentId": "component_grid_export_1779980000015",
+      "superiors": [
+        "lc_e1_wire_a"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 552,
+        "y": 192
+      }
+    }
+  ]
+}
