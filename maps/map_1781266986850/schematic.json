@@ -1,0 +1,1118 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_1781269492485_vw9p",
+      "x": -232,
+      "y": 226
+    },
+    {
+      "lcId": "lc_1781269502088_pq8t",
+      "x": -72,
+      "y": 196.5,
+      "rotation": 180,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781269518687_stxg",
+      "x": 134,
+      "y": 278,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781269533828_08ce",
+      "x": 264,
+      "y": 552
+    },
+    {
+      "lcId": "lc_1781269542887_15sn",
+      "x": 408,
+      "y": 455,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781269551138_r6jw",
+      "x": 552,
+      "y": 455,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781269557290_swi2",
+      "x": 672,
+      "y": 455,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781269579921_aycc",
+      "x": -156,
+      "y": 226
+    },
+    {
+      "lcId": "lc_1781269581302_kcll",
+      "x": 36,
+      "y": 226
+    },
+    {
+      "lcId": "lc_1781269582632_o8lp",
+      "x": 156,
+      "y": 562
+    },
+    {
+      "lcId": "lc_1781269584792_lkmi",
+      "x": 372,
+      "y": 562
+    },
+    {
+      "lcId": "lc_1781269587420_dlob",
+      "x": 444,
+      "y": 370
+    },
+    {
+      "lcId": "lc_1781269590209_xgwj",
+      "x": 540,
+      "y": 370
+    },
+    {
+      "lcId": "lc_1781269594682_8k2r",
+      "x": 588,
+      "y": 562
+    },
+    {
+      "lcId": "lc_1781269596477_9dae",
+      "x": 660,
+      "y": 562
+    },
+    {
+      "lcId": "lc_1781269634347_1zjk",
+      "x": 518,
+      "y": 374
+    },
+    {
+      "lcId": "lc_1781269661841_tf5o",
+      "x": 638,
+      "y": 566
+    },
+    {
+      "lcId": "lc_1781269710493_aviq",
+      "x": 710,
+      "y": 254,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781269741315_a7f1",
+      "x": 816,
+      "y": 162
+    },
+    {
+      "lcId": "lc_1781269769479_oawa",
+      "x": 968,
+      "y": 178
+    },
+    {
+      "lcId": "lc_1781269777429_y3qa",
+      "x": 360,
+      "y": 90,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781269797236_7ezt",
+      "x": 96,
+      "y": 455,
+      "rotation": 270,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781269818484_8t2h",
+      "x": 0,
+      "y": 456,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781269856288_z2jb",
+      "x": -132,
+      "y": 474,
+      "rotation": 0
+    },
+    {
+      "lcId": "lc_1781269861016_9vi8",
+      "x": -132,
+      "y": 546
+    },
+    {
+      "lcId": "lc_1781269888684_dujr",
+      "x": 108,
+      "y": 394,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781269908937_7ewo",
+      "x": 684,
+      "y": 370,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781269919987_u1df",
+      "x": 732,
+      "y": 178
+    },
+    {
+      "lcId": "lc_1781269927431_piml",
+      "x": 492,
+      "y": 106,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781269937337_ho3w",
+      "x": 252,
+      "y": 106,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781269988506_g1q6",
+      "x": 60,
+      "y": 466
+    },
+    {
+      "lcId": "lc_1781270001666_ngs2",
+      "x": -36,
+      "y": 538
+    },
+    {
+      "lcId": "lc_1781270010183_i66n",
+      "x": -60,
+      "y": 394,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781270030596_1aem",
+      "x": -178,
+      "y": 590,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781270085906_upev",
+      "x": 840,
+      "y": 450.5,
+      "portOverrides": {
+        "output": {
+          "edge": "bottom",
+          "px": 0.4948546319695855
+        }
+      }
+    },
+    {
+      "lcId": "lc_1781270096282_u3tw",
+      "x": 662,
+      "y": 470
+    },
+    {
+      "lcId": "lc_1781270161985_o08t",
+      "x": -208,
+      "y": 970,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781270186771_qbbj",
+      "x": -178,
+      "y": 710,
+      "rotation": 180
+    },
+    {
+      "lcId": "lc_1781270215129_v89f",
+      "x": 878,
+      "y": 710,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781270222648_hyoz",
+      "x": 168,
+      "y": 672,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781270306527_fx9h",
+      "x": 1128,
+      "y": 672
+    },
+    {
+      "lcId": "lc_1781270314854_nzyx",
+      "x": 1320,
+      "y": 690
+    },
+    {
+      "lcId": "lc_1781270319995_q9uk",
+      "x": 1236,
+      "y": 682
+    },
+    {
+      "lcId": "lc_1781270321483_ac8e",
+      "x": 996,
+      "y": 682
+    },
+    {
+      "lcId": "lc_1781270322989_6yvh",
+      "x": 852,
+      "y": 562
+    },
+    {
+      "lcId": "lc_1781270333347_30ky",
+      "x": 756,
+      "y": 682,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781270339031_bhh2",
+      "x": 60,
+      "y": 682,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781270342807_l22o",
+      "x": -252,
+      "y": 634,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781270347419_6j11",
+      "x": -204,
+      "y": 490
+    },
+    {
+      "lcId": "lc_1781270350531_feuj",
+      "x": -228,
+      "y": 538
+    },
+    {
+      "lcId": "lc_1781270380723_xqhb",
+      "x": -204,
+      "y": 754,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781270448423_iqwg",
+      "x": -204,
+      "y": 898
+    },
+    {
+      "lcId": "lc_1781270458104_hecu",
+      "x": 924,
+      "y": 130
+    },
+    {
+      "lcId": "lc_1781270489912_6jmy",
+      "x": 324,
+      "y": 466,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781270492933_9s0f",
+      "x": 492,
+      "y": 466,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781270494305_2lu8",
+      "x": 612,
+      "y": 466,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781270495965_ghvp",
+      "x": 732,
+      "y": 466,
+      "flipX": false
+    },
+    {
+      "lcId": "lc_1781282409143_j613",
+      "x": 576,
+      "y": 96,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781282413384_ercc",
+      "x": 660,
+      "y": 106,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781285865446_oy0e",
+      "x": -216,
+      "y": 834,
+      "rotation": 270
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_1781269604242",
+      "srcLcId": "lc_1781269582632_o8lp",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269533828_08ce",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269605837",
+      "srcLcId": "lc_1781269533828_08ce",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269584792_lkmi",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269607169",
+      "srcLcId": "lc_1781269584792_lkmi",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269542887_15sn",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269616721",
+      "srcLcId": "lc_1781269492485_vw9p",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269579921_aycc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269619551",
+      "srcLcId": "lc_1781269579921_aycc",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269502088_pq8t",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269620873",
+      "srcLcId": "lc_1781269502088_pq8t",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269581302_kcll",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269622303",
+      "srcLcId": "lc_1781269581302_kcll",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269518687_stxg",
+      "dstPortId": "input_b"
+    },
+    {
+      "id": "conn_1781269628148",
+      "srcLcId": "lc_1781269542887_15sn",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269587420_dlob",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269635844",
+      "srcLcId": "lc_1781269587420_dlob",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269634347_1zjk",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269639273",
+      "srcLcId": "lc_1781269634347_1zjk",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269590209_xgwj",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269642291",
+      "srcLcId": "lc_1781269590209_xgwj",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269551138_r6jw",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269654415",
+      "srcLcId": "lc_1781269551138_r6jw",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269594682_8k2r",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269658263",
+      "srcLcId": "lc_1781269596477_9dae",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269557290_swi2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269663221",
+      "srcLcId": "lc_1781269594682_8k2r",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269661841_tf5o",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269664573",
+      "srcLcId": "lc_1781269661841_tf5o",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269596477_9dae",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269813419",
+      "srcLcId": "lc_1781269797236_7ezt",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269582632_o8lp",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269891043",
+      "srcLcId": "lc_1781269518687_stxg",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269888684_dujr",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269892202",
+      "srcLcId": "lc_1781269888684_dujr",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269797236_7ezt",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269914487",
+      "srcLcId": "lc_1781269908937_7ewo",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269710493_aviq",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269916347",
+      "srcLcId": "lc_1781269557290_swi2",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269908937_7ewo",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269923001",
+      "srcLcId": "lc_1781269710493_aviq",
+      "srcPortId": "output_b",
+      "dstLcId": "lc_1781269919987_u1df",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269924685",
+      "srcLcId": "lc_1781269919987_u1df",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269741315_a7f1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269933643",
+      "srcLcId": "lc_1781269927431_piml",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269777429_y3qa",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269944990",
+      "srcLcId": "lc_1781269777429_y3qa",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269937337_ho3w",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269946757",
+      "srcLcId": "lc_1781269937337_ho3w",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269518687_stxg",
+      "dstPortId": "input_a"
+    },
+    {
+      "id": "conn_1781269989857",
+      "srcLcId": "lc_1781269818484_8t2h",
+      "srcPortId": "shaft_output",
+      "dstLcId": "lc_1781269988506_g1q6",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781269991123",
+      "srcLcId": "lc_1781269988506_g1q6",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269797236_7ezt",
+      "dstPortId": "shaft_input"
+    },
+    {
+      "id": "conn_1781270003550",
+      "srcLcId": "lc_1781269861016_9vi8",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270001666_ngs2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270004691",
+      "srcLcId": "lc_1781270001666_ngs2",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269818484_8t2h",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270013345",
+      "srcLcId": "lc_1781269856288_z2jb",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270010183_i66n",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270014819",
+      "srcLcId": "lc_1781270010183_i66n",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269502088_pq8t",
+      "dstPortId": "control"
+    },
+    {
+      "id": "conn_1781270354801",
+      "srcLcId": "lc_1781270030596_1aem",
+      "srcPortId": "output_a",
+      "dstLcId": "lc_1781270350531_feuj",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270357035",
+      "srcLcId": "lc_1781270030596_1aem",
+      "srcPortId": "output_b",
+      "dstLcId": "lc_1781270347419_6j11",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270358145",
+      "srcLcId": "lc_1781270347419_6j11",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269856288_z2jb",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270359848",
+      "srcLcId": "lc_1781270350531_feuj",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269861016_9vi8",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270368439",
+      "srcLcId": "lc_1781270186771_qbbj",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270342807_l22o",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270370748",
+      "srcLcId": "lc_1781270342807_l22o",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270030596_1aem",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270375222",
+      "srcLcId": "lc_1781270222648_hyoz",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270339031_bhh2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270376605",
+      "srcLcId": "lc_1781270339031_bhh2",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270186771_qbbj",
+      "dstPortId": "input_b"
+    },
+    {
+      "id": "conn_1781270385891",
+      "srcLcId": "lc_1781270380723_xqhb",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270186771_qbbj",
+      "dstPortId": "input_a"
+    },
+    {
+      "id": "conn_1781270403034",
+      "srcLcId": "lc_1781270333347_30ky",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270222648_hyoz",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270416984",
+      "srcLcId": "lc_1781270215129_v89f",
+      "srcPortId": "output_b",
+      "dstLcId": "lc_1781270333347_30ky",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270418882",
+      "srcLcId": "lc_1781270215129_v89f",
+      "srcPortId": "output_a",
+      "dstLcId": "lc_1781270321483_ac8e",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270421086",
+      "srcLcId": "lc_1781270321483_ac8e",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270306527_fx9h",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270423901",
+      "srcLcId": "lc_1781270306527_fx9h",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270319995_q9uk",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270426638",
+      "srcLcId": "lc_1781270319995_q9uk",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270314854_nzyx",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270431722",
+      "srcLcId": "lc_1781270085906_upev",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270322989_6yvh",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270433388",
+      "srcLcId": "lc_1781270322989_6yvh",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270215129_v89f",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270450764",
+      "srcLcId": "lc_1781270161985_o08t",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270448423_iqwg",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270459040",
+      "srcLcId": "lc_1781269741315_a7f1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270458104_hecu",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270460165",
+      "srcLcId": "lc_1781270458104_hecu",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269769479_oawa",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270535179",
+      "srcLcId": "lc_1781269557290_swi2",
+      "srcPortId": "shaft_output",
+      "dstLcId": "lc_1781270494305_2lu8",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270544050",
+      "srcLcId": "lc_1781269551138_r6jw",
+      "srcPortId": "shaft_output",
+      "dstLcId": "lc_1781270492933_9s0f",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270548655",
+      "srcLcId": "lc_1781269542887_15sn",
+      "srcPortId": "shaft_output",
+      "dstLcId": "lc_1781270489912_6jmy",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270551836",
+      "srcLcId": "lc_1781270492933_9s0f",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270096282_u3tw",
+      "dstPortId": "supply_1"
+    },
+    {
+      "id": "conn_1781270555485",
+      "srcLcId": "lc_1781270489912_6jmy",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270096282_u3tw",
+      "dstPortId": "supply_2"
+    },
+    {
+      "id": "conn_1781270558752",
+      "srcLcId": "lc_1781270494305_2lu8",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270096282_u3tw",
+      "dstPortId": "supply_3"
+    },
+    {
+      "id": "conn_1781270589444",
+      "srcLcId": "lc_1781270096282_u3tw",
+      "srcPortId": "load_1",
+      "dstLcId": "lc_1781270495965_ghvp",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781270590986",
+      "srcLcId": "lc_1781270495965_ghvp",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270085906_upev",
+      "dstPortId": "shaft_input"
+    },
+    {
+      "id": "conn_1781282425336",
+      "srcLcId": "lc_1781282413384_ercc",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781282409143_j613",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781282427182",
+      "srcLcId": "lc_1781282409143_j613",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781269927431_piml",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781282429074",
+      "srcLcId": "lc_1781269710493_aviq",
+      "srcPortId": "output_a",
+      "dstLcId": "lc_1781282413384_ercc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781285869981",
+      "srcLcId": "lc_1781270448423_iqwg",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781285865446_oy0e",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781285872236",
+      "srcLcId": "lc_1781285865446_oy0e",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781270380723_xqhb",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_coal_swi1_toggle": {
+      "id": "anc_coal_swi1_toggle",
+      "type": "button",
+      "lcId": "lc_1781269856288_z2jb",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle SWI1",
+      "x": -108,
+      "y": 444
+    },
+    "anc_coal_swi1_status": {
+      "id": "anc_coal_swi1_status",
+      "type": "light",
+      "lcId": "lc_1781269856288_z2jb",
+      "bindTo": "var:closed",
+      "label": "SWI1 Closed",
+      "x": -120,
+      "y": 408
+    },
+    "anc_coal_swi2_toggle": {
+      "id": "anc_coal_swi2_toggle",
+      "type": "button",
+      "lcId": "lc_1781269861016_9vi8",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle SWI2",
+      "x": -96,
+      "y": 600
+    },
+    "anc_coal_swi2_status": {
+      "id": "anc_coal_swi2_status",
+      "type": "light",
+      "lcId": "lc_1781269861016_9vi8",
+      "bindTo": "var:closed",
+      "label": "SWI2 Closed",
+      "x": -36,
+      "y": 600
+    },
+    "anc_coal_ecv1_powered": {
+      "id": "anc_coal_ecv1_powered",
+      "type": "light",
+      "lcId": "lc_1781269502088_pq8t",
+      "bindTo": "var:powered",
+      "label": "ECV1 Powered",
+      "x": -60,
+      "y": 96
+    },
+    "anc_coal_ecv1_flowing": {
+      "id": "anc_coal_ecv1_flowing",
+      "type": "light",
+      "lcId": "lc_1781269502088_pq8t",
+      "bindTo": "var:open",
+      "label": "ECV1 Open",
+      "x": -60,
+      "y": 132
+    },
+    "anc_coal_v1_toggle": {
+      "id": "anc_coal_v1_toggle",
+      "type": "button",
+      "lcId": "lc_1781269741315_a7f1",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle V1",
+      "x": 816,
+      "y": 126
+    },
+    "anc_coal_v1_open": {
+      "id": "anc_coal_v1_open",
+      "type": "light",
+      "lcId": "lc_1781269741315_a7f1",
+      "bindTo": "var:open",
+      "label": "V1 Open",
+      "x": 876,
+      "y": 126
+    },
+    "anc_coal_v2_toggle": {
+      "id": "anc_coal_v2_toggle",
+      "type": "button",
+      "lcId": "lc_1781269777429_y3qa",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle V2",
+      "x": 360,
+      "y": 72
+    },
+    "anc_coal_v2_open": {
+      "id": "anc_coal_v2_open",
+      "type": "light",
+      "lcId": "lc_1781269777429_y3qa",
+      "bindTo": "var:open",
+      "label": "V2 Open",
+      "x": 420,
+      "y": 72
+    },
+    "anc_coal_vap1_toggle": {
+      "id": "anc_coal_vap1_toggle",
+      "type": "button",
+      "lcId": "lc_1781269533828_08ce",
+      "bindTo": "act:on_toggle",
+      "label": "Toggle VAP1",
+      "x": 300,
+      "y": 528
+    },
+    "anc_coal_vap1_active": {
+      "id": "anc_coal_vap1_active",
+      "type": "light",
+      "lcId": "lc_1781269533828_08ce",
+      "bindTo": "var:active",
+      "label": "Boiler Active",
+      "x": 276,
+      "y": 492
+    },
+    "anc_coal_dri1_running": {
+      "id": "anc_coal_dri1_running",
+      "type": "light",
+      "lcId": "lc_1781269818484_8t2h",
+      "bindTo": "var:running",
+      "label": "DRI1 Running",
+      "x": 24,
+      "y": 384
+    },
+    "anc_coal_dri1_overload": {
+      "id": "anc_coal_dri1_overload",
+      "type": "light",
+      "lcId": "lc_1781269818484_8t2h",
+      "bindTo": "var:overloaded",
+      "label": "DRI1 Overload",
+      "x": 24,
+      "y": 420
+    },
+    "anc_coal_tor1_running": {
+      "id": "anc_coal_tor1_running",
+      "type": "light",
+      "lcId": "lc_1781269797236_7ezt",
+      "bindTo": "var:running",
+      "label": "Pump Running",
+      "x": 192,
+      "y": 432
+    },
+    "anc_coal_flu1_running": {
+      "id": "anc_coal_flu1_running",
+      "type": "light",
+      "lcId": "lc_1781269542887_15sn",
+      "bindTo": "var:running",
+      "label": "FLU1 Running",
+      "x": 492,
+      "y": 552
+    },
+    "anc_coal_flu2_running": {
+      "id": "anc_coal_flu2_running",
+      "type": "light",
+      "lcId": "lc_1781269551138_r6jw",
+      "bindTo": "var:running",
+      "label": "FLU2 Running",
+      "x": 624,
+      "y": 552
+    },
+    "anc_coal_flu3_running": {
+      "id": "anc_coal_flu3_running",
+      "type": "light",
+      "lcId": "lc_1781269557290_swi2",
+      "bindTo": "var:running",
+      "label": "FLU3 Running",
+      "x": 756,
+      "y": 552
+    },
+    "anc_coal_gen1_online": {
+      "id": "anc_coal_gen1_online",
+      "type": "light",
+      "lcId": "lc_1781270085906_upev",
+      "bindTo": "var:running",
+      "label": "GEN1 Online",
+      "x": 852,
+      "y": 360
+    },
+    "anc_coal_gen1_voltage": {
+      "id": "anc_coal_gen1_voltage",
+      "type": "counter",
+      "lcId": "lc_1781270085906_upev",
+      "bindTo": "var:electricity.voltage",
+      "label": "GEN1 Voltage (V)",
+      "x": 864,
+      "y": 396
+    },
+    "anc_coal_gen1_freq": {
+      "id": "anc_coal_gen1_freq",
+      "type": "counter",
+      "lcId": "lc_1781270085906_upev",
+      "bindTo": "var:electricity.frequency",
+      "label": "GEN1 Freq (Hz)",
+      "x": 864,
+      "y": 432
+    },
+    "anc_coal_gri1_connect": {
+      "id": "anc_coal_gri1_connect",
+      "type": "button",
+      "lcId": "lc_1781270314854_nzyx",
+      "bindTo": "act:on_toggle",
+      "label": "Connect GRI1",
+      "x": 1356,
+      "y": 636
+    },
+    "anc_coal_gri1_reset": {
+      "id": "anc_coal_gri1_reset",
+      "type": "button",
+      "lcId": "lc_1781270314854_nzyx",
+      "bindTo": "act:reset_trip",
+      "label": "GRI1 Reset Trip",
+      "x": 1356,
+      "y": 672
+    },
+    "anc_coal_gri1_connected": {
+      "id": "anc_coal_gri1_connected",
+      "type": "light",
+      "lcId": "lc_1781270314854_nzyx",
+      "bindTo": "var:connected",
+      "label": "GRI1 Connected",
+      "x": 1416,
+      "y": 600
+    },
+    "anc_coal_gri1_exporting": {
+      "id": "anc_coal_gri1_exporting",
+      "type": "light",
+      "lcId": "lc_1781270314854_nzyx",
+      "bindTo": "var:exporting",
+      "label": "GRI1 Exporting",
+      "x": 1416,
+      "y": 636
+    },
+    "anc_coal_gri1_trip": {
+      "id": "anc_coal_gri1_trip",
+      "type": "light",
+      "lcId": "lc_1781270314854_nzyx",
+      "bindTo": "var:protection_tripped",
+      "label": "Protection Tripped",
+      "x": 1416,
+      "y": 672
+    },
+    "anc_coal_gri1_voltage": {
+      "id": "anc_coal_gri1_voltage",
+      "type": "counter",
+      "lcId": "lc_1781270314854_nzyx",
+      "bindTo": "var:measured_voltage",
+      "label": "Grid Voltage (V)",
+      "x": 1356,
+      "y": 564
+    },
+    "anc_coal_gri1_freq": {
+      "id": "anc_coal_gri1_freq",
+      "type": "counter",
+      "lcId": "lc_1781270314854_nzyx",
+      "bindTo": "var:measured_frequency",
+      "label": "Grid Freq (Hz)",
+      "x": 1356,
+      "y": 600
+    },
+    "anc_1781283621892": {
+      "id": "anc_1781283621892",
+      "type": "button",
+      "lcId": "lc_1781282409143_j613",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 588,
+      "y": 72
+    },
+    "anc_1781283630743": {
+      "id": "anc_1781283630743",
+      "type": "light",
+      "lcId": "lc_1781282409143_j613",
+      "bindTo": "var:active",
+      "label": "Status",
+      "x": 648,
+      "y": 72
+    },
+    "anc_1781286083752": {
+      "id": "anc_1781286083752",
+      "type": "button",
+      "lcId": "lc_1781285865446_oy0e",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": -108,
+      "y": 816
+    },
+    "anc_1781286091849": {
+      "id": "anc_1781286091849",
+      "type": "light",
+      "lcId": "lc_1781285865446_oy0e",
+      "bindTo": "var:closed",
+      "label": "Status",
+      "x": -120,
+      "y": 852
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_coal_01",
+      "type": "text",
+      "x": 107,
+      "y": 47,
+      "content": "Steam circuit (Rankine cycle): ECV1 admits feedwater → JUN1 collects return flow → TOR1 pumps to VAP1 (boiler) → FLU1–FLU3 turbines extract work as steam expands → SPL1 splits condensate to V1 (OUT1 return) and V2 (JUN1 recirculation).",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_coal_02",
+      "type": "text",
+      "x": 63,
+      "y": 635,
+      "content": "Mechanical drive: DRI1 motor → SHA1 → TOR1 shaft input. FLU1/FLU2/FLU3 shaft outputs → SHA2/SHA3/SHA4 → ADS1 hub (sums turbine torques) → SHA5 → GEN1.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_coal_03",
+      "type": "text",
+      "x": 166,
+      "y": 812,
+      "content": "Electrical loop: PS1 provides startup power via FUS1 → WIR4 junction. WIR3 splitter feeds SWI1 (ECV1 control) and SWI2 (DRI1 motor). Once GEN1 is online it feeds back through TRA1 → WIR4 (self-sustaining loop) and exports via TRA2 → GRI1.",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
