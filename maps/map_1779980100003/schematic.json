@@ -1,0 +1,242 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_f14_inlet",
+      "x": 8,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f14_pipe_a1",
+      "x": 108,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f14_v1",
+      "x": 216,
+      "y": -16
+    },
+    {
+      "lcId": "lc_f14_pipe_a2",
+      "x": 324,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f14_p1",
+      "x": 432,
+      "y": -11
+    },
+    {
+      "lcId": "lc_f14_pipe_a3",
+      "x": 540,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f14_vap1",
+      "x": 648,
+      "y": -10
+    },
+    {
+      "lcId": "lc_f14_pipe_a4",
+      "x": 756,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f14_lt1",
+      "x": 864,
+      "y": -10
+    },
+    {
+      "lcId": "lc_f14_pipe_a5",
+      "x": 972,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f14_v2",
+      "x": 1080,
+      "y": -16
+    },
+    {
+      "lcId": "lc_f14_pipe_a6",
+      "x": 1188,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f14_outlet",
+      "x": 1296,
+      "y": 0
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_f14_01",
+      "srcLcId": "lc_f14_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_pipe_a1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_02",
+      "srcLcId": "lc_f14_pipe_a1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_03",
+      "srcLcId": "lc_f14_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_pipe_a2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_04",
+      "srcLcId": "lc_f14_pipe_a2",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_p1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_05",
+      "srcLcId": "lc_f14_p1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_pipe_a3",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_06",
+      "srcLcId": "lc_f14_pipe_a3",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_vap1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_07",
+      "srcLcId": "lc_f14_vap1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_pipe_a4",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_08",
+      "srcLcId": "lc_f14_pipe_a4",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_lt1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_09",
+      "srcLcId": "lc_f14_lt1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_pipe_a5",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_10",
+      "srcLcId": "lc_f14_pipe_a5",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_v2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_11",
+      "srcLcId": "lc_f14_v2",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_pipe_a6",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f14_12",
+      "srcLcId": "lc_f14_pipe_a6",
+      "srcPortId": "output",
+      "dstLcId": "lc_f14_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_f14_v1_btn": {
+      "id": "anc_f14_v1_btn",
+      "type": "button",
+      "lcId": "lc_f14_v1",
+      "bindTo": "act:on_toggle",
+      "label": "V1 Open/Close",
+      "x": 204,
+      "y": -46
+    },
+    "anc_f14_p1_btn": {
+      "id": "anc_f14_p1_btn",
+      "type": "button",
+      "lcId": "lc_f14_p1",
+      "bindTo": "act:on_toggle",
+      "label": "P1 Start/Stop",
+      "x": 420,
+      "y": -46
+    },
+    "anc_f14_p1_lgt": {
+      "id": "anc_f14_p1_lgt",
+      "type": "light",
+      "lcId": "lc_f14_p1",
+      "bindTo": "var:running",
+      "label": "P1",
+      "x": 480,
+      "y": -46
+    },
+    "anc_f14_vap1_btn": {
+      "id": "anc_f14_vap1_btn",
+      "type": "button",
+      "lcId": "lc_f14_vap1",
+      "bindTo": "act:on_toggle",
+      "label": "VAP1 On/Off",
+      "x": 636,
+      "y": -46
+    },
+    "anc_f14_vap1_lgt": {
+      "id": "anc_f14_vap1_lgt",
+      "type": "light",
+      "lcId": "lc_f14_vap1",
+      "bindTo": "var:active",
+      "label": "VAP1",
+      "x": 696,
+      "y": -46
+    },
+    "anc_f14_lt1_bypass": {
+      "id": "anc_f14_lt1_bypass",
+      "type": "button",
+      "lcId": "lc_f14_lt1",
+      "bindTo": "act:toggle_bypass",
+      "label": "LT1 Bypass",
+      "x": 852,
+      "y": -46
+    },
+    "anc_f14_lt1_lgt": {
+      "id": "anc_f14_lt1_lgt",
+      "type": "light",
+      "lcId": "lc_f14_lt1",
+      "bindTo": "var:open",
+      "label": "LT1",
+      "x": 912,
+      "y": -46
+    },
+    "anc_f14_v2_btn": {
+      "id": "anc_f14_v2_btn",
+      "type": "button",
+      "lcId": "lc_f14_v2",
+      "bindTo": "act:on_toggle",
+      "label": "V2 Open/Close",
+      "x": 1068,
+      "y": -46
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_f14_01",
+      "type": "text",
+      "x": 652,
+      "y": -80,
+      "content": "VAP1 changes liquid to gas. LT1 blocks gas and passes only liquid carry-over. Always deactivate VAP1 before stopping flow.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
