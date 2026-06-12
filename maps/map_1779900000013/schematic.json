@@ -477,7 +477,7 @@
       "id": "anc_2b3_pss_light",
       "type": "light",
       "lcId": "lc_2b3_ps_s",
-      "bindTo": "var:energised",
+      "bindTo": "var:on",
       "label": "On",
       "x": 370,
       "y": -230
@@ -657,7 +657,7 @@
       "id": "anc_2b3_psp_light",
       "type": "light",
       "lcId": "lc_2b3_ps_p",
-      "bindTo": "var:energised",
+      "bindTo": "var:on",
       "label": "On",
       "x": 396,
       "y": 444
