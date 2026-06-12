@@ -182,9 +182,7 @@
         "lc_2b2_wire_b"
       ],
       "variableOverrides": {
-        "signal": 100,
-        "fail_open": false,
-        "auto": false
+        "fail_open": false
       },
       "_canvas": {
         "x": 792,
