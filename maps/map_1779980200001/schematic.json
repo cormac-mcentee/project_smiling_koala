@@ -1,0 +1,255 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_e1_i1",
+      "x": 8,
+      "y": 10
+    },
+    {
+      "lcId": "lc_e1_pipe_a",
+      "x": 84,
+      "y": 10
+    },
+    {
+      "lcId": "lc_e1_v1",
+      "x": 168,
+      "y": -6
+    },
+    {
+      "lcId": "lc_e1_pipe_b",
+      "x": 252,
+      "y": 10
+    },
+    {
+      "lcId": "lc_e1_t1",
+      "x": 360,
+      "y": 0
+    },
+    {
+      "lcId": "lc_e1_pipe_c",
+      "x": 492,
+      "y": 10
+    },
+    {
+      "lcId": "lc_e1_o1",
+      "x": 584,
+      "y": -14
+    },
+    {
+      "lcId": "lc_e1_shaft_a",
+      "x": 372,
+      "y": 106
+    },
+    {
+      "lcId": "lc_e1_g1",
+      "x": 360,
+      "y": 192,
+      "portOverrides": {
+        "shaft_input": {
+          "edge": "top",
+          "px": 0.5
+        }
+      }
+    },
+    {
+      "lcId": "lc_e1_wire_a",
+      "x": 468,
+      "y": 202
+    },
+    {
+      "lcId": "lc_e1_ge1",
+      "x": 552,
+      "y": 192
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_e1_01",
+      "srcLcId": "lc_e1_i1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e1_pipe_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e1_02",
+      "srcLcId": "lc_e1_pipe_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e1_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e1_03",
+      "srcLcId": "lc_e1_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e1_pipe_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e1_04",
+      "srcLcId": "lc_e1_pipe_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_e1_t1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e1_05",
+      "srcLcId": "lc_e1_t1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e1_pipe_c",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e1_06",
+      "srcLcId": "lc_e1_pipe_c",
+      "srcPortId": "output",
+      "dstLcId": "lc_e1_o1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e1_07",
+      "srcLcId": "lc_e1_t1",
+      "srcPortId": "shaft_output",
+      "dstLcId": "lc_e1_shaft_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e1_08",
+      "srcLcId": "lc_e1_shaft_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e1_g1",
+      "dstPortId": "shaft_input"
+    },
+    {
+      "id": "conn_e1_09",
+      "srcLcId": "lc_e1_g1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e1_wire_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e1_10",
+      "srcLcId": "lc_e1_wire_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e1_ge1",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_e1_v1_btn": {
+      "id": "anc_e1_v1_btn",
+      "type": "button",
+      "lcId": "lc_e1_v1",
+      "bindTo": "act:on_toggle",
+      "label": "V1 Valve",
+      "x": 140,
+      "y": -84
+    },
+    "anc_e1_v1_lgt": {
+      "id": "anc_e1_v1_lgt",
+      "type": "light",
+      "lcId": "lc_e1_v1",
+      "bindTo": "var:open",
+      "label": "V1 Open",
+      "x": 200,
+      "y": -84
+    },
+    "anc_e1_t1_lgt": {
+      "id": "anc_e1_t1_lgt",
+      "type": "light",
+      "lcId": "lc_e1_t1",
+      "bindTo": "var:running",
+      "label": "T1 Running",
+      "x": 360,
+      "y": -84
+    },
+    "anc_e1_g1_volt": {
+      "id": "anc_e1_g1_volt",
+      "type": "counter",
+      "lcId": "lc_e1_g1",
+      "bindTo": "var:electricity.voltage",
+      "label": "G1 Voltage (V)",
+      "x": 360,
+      "y": 310
+    },
+    "anc_e1_g1_lgt": {
+      "id": "anc_e1_g1_lgt",
+      "type": "light",
+      "lcId": "lc_e1_g1",
+      "bindTo": "var:running",
+      "label": "G1 Online",
+      "x": 444,
+      "y": 310
+    },
+    "anc_e1_ge1_connect": {
+      "id": "anc_e1_ge1_connect",
+      "type": "button",
+      "lcId": "lc_e1_ge1",
+      "bindTo": "act:on_toggle",
+      "label": "GE1 Connect",
+      "x": 564,
+      "y": 276
+    },
+    "anc_e1_ge1_reset": {
+      "id": "anc_e1_ge1_reset",
+      "type": "button",
+      "lcId": "lc_e1_ge1",
+      "bindTo": "act:reset_trip",
+      "label": "GE1 Reset",
+      "x": 636,
+      "y": 276
+    },
+    "anc_e1_ge1_exp": {
+      "id": "anc_e1_ge1_exp",
+      "type": "light",
+      "lcId": "lc_e1_ge1",
+      "bindTo": "var:exporting",
+      "label": "Exporting",
+      "x": 540,
+      "y": 312
+    },
+    "anc_e1_ge1_trip": {
+      "id": "anc_e1_ge1_trip",
+      "type": "light",
+      "lcId": "lc_e1_ge1",
+      "bindTo": "var:protection_tripped",
+      "label": "Protection Tripped",
+      "x": 624,
+      "y": 312
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_e1_fluid",
+      "type": "text",
+      "x": 0,
+      "y": -160,
+      "content": "Fluid path: open V1 to start flow. The turbine (T1) extracts energy from the flow — fluid exits to drain via O1.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e1_shaft",
+      "type": "text",
+      "x": 400,
+      "y": 100,
+      "content": "Shaft",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e1_gen",
+      "type": "text",
+      "x": 232,
+      "y": 353,
+      "content": "Generator chain: turbine shaft spins G1. Once at rated voltage, connect GE1 to export.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
