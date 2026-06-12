@@ -1,0 +1,74 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_e1_s1",
+      "name": "Start the Turbine-Generator Set",
+      "description": "Open V1 to let fluid flow through the turbine. The turbine drives the shaft, spinning the generator up to rated voltage (415 V). Once the generator is online, connect GE1 to begin exporting to the grid.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_e1_s1_01",
+          "literalComponentId": "lc_e1_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_e1_s1_02",
+          "literalComponentId": "lc_e1_ge1",
+          "variableId": "var_ge_connected",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e1_s1_01",
+          "literalComponentId": "lc_e1_ge1",
+          "variableId": "var_ge_exporting",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_e1_s3",
+      "name": "AVR Fault — Isolate the Generator",
+      "description": "The generator is online but the AVR (automatic voltage regulator) has developed a fault. Output voltage is unstable — GE1 protection has fired. Close V1 to shut down the turbine-generator set and isolate the system.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_e1_s3_01",
+          "literalComponentId": "lc_e1_v1",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_e1_s3_02",
+          "literalComponentId": "lc_e1_g1",
+          "variableId": "var_gen_broken",
+          "value": true
+        },
+        {
+          "id": "ic_e1_s3_03",
+          "literalComponentId": "lc_e1_ge1",
+          "variableId": "var_ge_connected",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e1_s3_01",
+          "literalComponentId": "lc_e1_v1",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_e1_s3_01",
+          "literalComponentId": "lc_e1_g1",
+          "faultName": "avr_fault",
+          "gracePeriod": 0
+        }
+      ]
+    }
+  ]
+}
