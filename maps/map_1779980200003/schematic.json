@@ -1,0 +1,281 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_e09_ps1",
+      "x": 8,
+      "y": -62
+    },
+    {
+      "lcId": "lc_e09_wire_a",
+      "x": 108,
+      "y": -62
+    },
+    {
+      "lcId": "lc_e09_sw1",
+      "x": 228,
+      "y": -78
+    },
+    {
+      "lcId": "lc_e09_wire_b",
+      "x": 324,
+      "y": -62
+    },
+    {
+      "lcId": "lc_e09_vfd1",
+      "x": 432,
+      "y": -72
+    },
+    {
+      "lcId": "lc_e09_vm1",
+      "x": 552,
+      "y": -72,
+      "portOverrides": {
+        "shaft_output": {
+          "edge": "right",
+          "px": 0.2565113949411561
+        }
+      }
+    },
+    {
+      "lcId": "lc_e09_shaft_a",
+      "x": 660,
+      "y": -62
+    },
+    {
+      "lcId": "lc_e09_p1",
+      "x": 768,
+      "y": -73,
+      "portOverrides": {
+        "shaft_input": {
+          "edge": "left",
+          "px": 0.5037433703499997
+        },
+        "input": {
+          "edge": "bottom",
+          "px": 0.5191504149218744
+        }
+      }
+    },
+    {
+      "lcId": "lc_e09_inlet",
+      "x": 776,
+      "y": 226,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_e09_pipe_suc",
+      "x": 756,
+      "y": 154
+    },
+    {
+      "lcId": "lc_e09_v_suc",
+      "x": 768,
+      "y": 66,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_e09_pipe_dis",
+      "x": 876,
+      "y": -62
+    },
+    {
+      "lcId": "lc_e09_v_dis",
+      "x": 960,
+      "y": -78
+    },
+    {
+      "lcId": "lc_e09_outlet",
+      "x": 1136,
+      "y": -62
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_e09_01",
+      "srcLcId": "lc_e09_ps1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_wire_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_02",
+      "srcLcId": "lc_e09_wire_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_sw1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_03",
+      "srcLcId": "lc_e09_sw1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_wire_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_04",
+      "srcLcId": "lc_e09_wire_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_vfd1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_05",
+      "srcLcId": "lc_e09_vfd1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_vm1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_06",
+      "srcLcId": "lc_e09_vm1",
+      "srcPortId": "shaft_output",
+      "dstLcId": "lc_e09_shaft_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_07",
+      "srcLcId": "lc_e09_shaft_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_p1",
+      "dstPortId": "shaft_input"
+    },
+    {
+      "id": "conn_e09_08",
+      "srcLcId": "lc_e09_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_pipe_suc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_09",
+      "srcLcId": "lc_e09_pipe_suc",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_v_suc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_10",
+      "srcLcId": "lc_e09_p1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_pipe_dis",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_11",
+      "srcLcId": "lc_e09_v_suc",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_p1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_12",
+      "srcLcId": "lc_e09_pipe_dis",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_v_dis",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e09_13",
+      "srcLcId": "lc_e09_v_dis",
+      "srcPortId": "output",
+      "dstLcId": "lc_e09_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_e09_sw1_btn": {
+      "id": "anc_e09_sw1_btn",
+      "type": "button",
+      "lcId": "lc_e09_sw1",
+      "bindTo": "act:on_toggle",
+      "label": "SW1",
+      "x": 276,
+      "y": -108
+    },
+    "anc_e09_vfd1_up": {
+      "id": "anc_e09_vfd1_up",
+      "type": "button",
+      "lcId": "lc_e09_vfd1",
+      "bindTo": "act:increase_speed",
+      "label": "Speed +",
+      "x": 408,
+      "y": -108
+    },
+    "anc_e09_vfd1_dn": {
+      "id": "anc_e09_vfd1_dn",
+      "type": "button",
+      "lcId": "lc_e09_vfd1",
+      "bindTo": "act:decrease_speed",
+      "label": "Speed −",
+      "x": 480,
+      "y": -108
+    },
+    "anc_e09_vfd1_spd": {
+      "id": "anc_e09_vfd1_spd",
+      "type": "gauge",
+      "lcId": "lc_e09_vfd1",
+      "bindTo": "var:speed_setpoint",
+      "label": "VFD1 Speed %",
+      "x": 456,
+      "y": -156
+    },
+    "anc_e09_vfd1_trip": {
+      "id": "anc_e09_vfd1_trip",
+      "type": "light",
+      "lcId": "lc_e09_vfd1",
+      "bindTo": "var:tripped",
+      "label": "VFD1 Tripped",
+      "x": 480,
+      "y": 60
+    },
+    "anc_e09_vfd1_rst": {
+      "id": "anc_e09_vfd1_rst",
+      "type": "button",
+      "lcId": "lc_e09_vfd1",
+      "bindTo": "act:reset",
+      "label": "VFD1 Reset",
+      "x": 432,
+      "y": 60
+    },
+    "anc_e09_vm1_lgt": {
+      "id": "anc_e09_vm1_lgt",
+      "type": "light",
+      "lcId": "lc_e09_vm1",
+      "bindTo": "var:running",
+      "label": "VM1 Running",
+      "x": 600,
+      "y": -96
+    },
+    "anc_e09_v_suc_btn": {
+      "id": "anc_e09_v_suc_btn",
+      "type": "button",
+      "lcId": "lc_e09_v_suc",
+      "bindTo": "act:on_toggle",
+      "label": "V_Suc Open/Close",
+      "x": 888,
+      "y": 120
+    },
+    "anc_e09_v_dis_btn": {
+      "id": "anc_e09_v_dis_btn",
+      "type": "button",
+      "lcId": "lc_e09_v_dis",
+      "bindTo": "act:on_toggle",
+      "label": "V_Dis Open/Close",
+      "x": 1092,
+      "y": -96
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_e09_01",
+      "type": "text",
+      "x": 537,
+      "y": -147,
+      "content": "VFD1 controls motor speed. Speed setpoint 0–100% = 0–1500 RPM. Shaft drives torque pump P1. Fluid flow is proportional to pump speed.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
