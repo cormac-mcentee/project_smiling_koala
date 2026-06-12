@@ -1,0 +1,6 @@
+{
+  "id": "map_1779980200002",
+  "name": "Electrical Substation — Double-Ended Distribution",
+  "description": "Operate a double-ended 11 kV/415 V primary distribution substation. Energise two independent bus sections from separate HV incomers, commission the station battery facility via an auxiliary transformer, and practise bus-coupler transfer and battery emergency operation.",
+  "config": {}
+}
