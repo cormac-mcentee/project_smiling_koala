@@ -1,0 +1,277 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_f16_inlet",
+      "name": "Process Inlet",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "flow.colour": "#2a7abf",
+        "flow.composition": [
+          {
+            "name": "process_water",
+            "colour": "#2a7abf",
+            "mole_fraction": 1
+          }
+        ]
+      },
+      "_canvas": {
+        "x": -64,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_f16_pipe_in",
+      "name": "Pipe_In",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f16_inlet"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 12,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_f16_v_in",
+      "name": "V_In",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f16_pipe_in"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 72,
+        "y": -6
+      }
+    },
+    {
+      "id": "lc_f16_splitter",
+      "name": "Splitter",
+      "componentId": "component_splitter_1779600000005",
+      "superiors": [
+        "lc_f16_v_in"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 192,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_f16_v_a_in",
+      "name": "V_A_In",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f16_splitter"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 336,
+        "y": -54
+      }
+    },
+    {
+      "id": "lc_f16_pipe_a1",
+      "name": "Pipe_A1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f16_v_a_in"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 444,
+        "y": -62
+      }
+    },
+    {
+      "id": "lc_f16_str_a",
+      "name": "STR_A",
+      "componentId": "component_strainer_1779980000005",
+      "superiors": [
+        "lc_f16_pipe_a1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05
+      },
+      "_canvas": {
+        "x": 552,
+        "y": -48
+      }
+    },
+    {
+      "id": "lc_f16_pipe_a2",
+      "name": "Pipe_A2",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f16_str_a"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 660,
+        "y": -62
+      }
+    },
+    {
+      "id": "lc_f16_v_a_out",
+      "name": "V_A_Out",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f16_pipe_a2"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 768,
+        "y": -54
+      }
+    },
+    {
+      "id": "lc_f16_v_b_in",
+      "name": "V_B_In",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f16_splitter"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 336,
+        "y": 66
+      }
+    },
+    {
+      "id": "lc_f16_pipe_b1",
+      "name": "Pipe_B1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f16_v_b_in"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 444,
+        "y": 58
+      }
+    },
+    {
+      "id": "lc_f16_str_b",
+      "name": "STR_B",
+      "componentId": "component_strainer_1779980000005",
+      "superiors": [
+        "lc_f16_pipe_b1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05
+      },
+      "_canvas": {
+        "x": 552,
+        "y": 72
+      }
+    },
+    {
+      "id": "lc_f16_pipe_b2",
+      "name": "Pipe_B2",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f16_str_b"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 660,
+        "y": 58
+      }
+    },
+    {
+      "id": "lc_f16_v_b_out",
+      "name": "V_B_Out",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f16_pipe_b2"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 768,
+        "y": 66
+      }
+    },
+    {
+      "id": "lc_f16_junction",
+      "name": "Junction",
+      "componentId": "component_junction_1779600000004",
+      "superiors": [
+        "lc_f16_v_a_out",
+        "lc_f16_v_b_out"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 888,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_f16_pipe_join",
+      "name": "Pipe_Join",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f16_junction"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 996,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_f16_v_out",
+      "name": "V_Out",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f16_pipe_join"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1056,
+        "y": -6
+      }
+    },
+    {
+      "id": "lc_f16_pipe_out",
+      "name": "Pipe_Out",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f16_v_out"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 1164,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_f16_outlet",
+      "name": "Process Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_f16_pipe_out"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1232,
+        "y": 10
+      }
+    }
+  ]
+}
