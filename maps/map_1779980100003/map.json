@@ -1,0 +1,6 @@
+{
+  "id": "map_1779980100003",
+  "name": "Phase Change: Vaporisation",
+  "description": "Liquid feed enters an electric vaporizer that changes phase to gas. A liquid trap downstream catches un-vaporised carry-over. Teaches phase change, vaporizer startup and shutdown sequence, and liquid trap protection.",
+  "config": {}
+}
