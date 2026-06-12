@@ -16,6 +16,21 @@
       "y": 42
     },
     {
+      "lcId": "lc_2a2_spl_main",
+      "x": 422,
+      "y": 62,
+      "portOverrides": {
+        "output_a": {
+          "edge": "top",
+          "px": 0.5125
+        },
+        "output_b": {
+          "edge": "bottom",
+          "px": 0.5125
+        }
+      }
+    },
+    {
       "lcId": "lc_2a2_wire_b1",
       "x": 444,
       "y": -62
@@ -23,7 +38,7 @@
     {
       "lcId": "lc_2a2_f1",
       "x": 564,
-      "y": -54
+      "y": -78
     },
     {
       "lcId": "lc_2a2_wire_d1",
@@ -92,9 +107,16 @@
       "dstPortId": "input"
     },
     {
-      "id": "conn_2a2_sw_wb1",
+      "id": "conn_2a2_sw_spl",
       "srcLcId": "lc_2a2_sw_main",
       "srcPortId": "output",
+      "dstLcId": "lc_2a2_spl_main",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_2a2_spl_wb1",
+      "srcLcId": "lc_2a2_spl_main",
+      "srcPortId": "output_a",
       "dstLcId": "lc_2a2_wire_b1",
       "dstPortId": "input"
     },
@@ -120,9 +142,9 @@
       "dstPortId": "input"
     },
     {
-      "id": "conn_2a2_sw_wb2",
-      "srcLcId": "lc_2a2_sw_main",
-      "srcPortId": "output",
+      "id": "conn_2a2_spl_wb2",
+      "srcLcId": "lc_2a2_spl_main",
+      "srcPortId": "output_c",
       "dstLcId": "lc_2a2_wire_b2",
       "dstPortId": "input"
     },
@@ -148,9 +170,9 @@
       "dstPortId": "input"
     },
     {
-      "id": "conn_2a2_sw_wb3",
-      "srcLcId": "lc_2a2_sw_main",
-      "srcPortId": "output",
+      "id": "conn_2a2_spl_wb3",
+      "srcLcId": "lc_2a2_spl_main",
+      "srcPortId": "output_b",
       "dstLcId": "lc_2a2_wire_b3",
       "dstPortId": "input"
     },
@@ -190,7 +212,7 @@
       "id": "anc_2a2_ps1_light",
       "type": "light",
       "lcId": "lc_2a2_ps1",
-      "bindTo": "var:energised",
+      "bindTo": "var:on",
       "label": "On",
       "x": 90,
       "y": 20
@@ -220,7 +242,7 @@
       "bindTo": "var:tripped",
       "label": "Tripped",
       "x": 612,
-      "y": -84
+      "y": -96
     },
     "anc_2a2_f1_reset": {
       "id": "anc_2a2_f1_reset",
@@ -229,7 +251,7 @@
       "bindTo": "act:reset",
       "label": "Reset",
       "x": 564,
-      "y": -84
+      "y": -96
     },
     "anc_2a2_lamp1_lit": {
       "id": "anc_2a2_lamp1_lit",
@@ -274,7 +296,7 @@
       "bindTo": "var:tripped",
       "label": "Tripped",
       "x": 648,
-      "y": 288
+      "y": 204
     },
     "anc_2a2_f3_reset": {
       "id": "anc_2a2_f3_reset",
@@ -283,7 +305,7 @@
       "bindTo": "act:reset",
       "label": "Reset",
       "x": 588,
-      "y": 288
+      "y": 204
     },
     "anc_2a2_lamp3_lit": {
       "id": "anc_2a2_lamp3_lit",
@@ -301,7 +323,7 @@
       "type": "text",
       "x": -281,
       "y": -43,
-      "content": "Three parallel lamp branches share a main switch. Each branch has its own fuse — a blown fuse disconnects only that branch.",
+      "content": "Three parallel lamp branches share a main switch. Each branch has its own fuse â€” a blown fuse disconnects only that branch.",
       "fontSize": 12,
       "fontWeight": "normal",
       "colour": "#94a3b8",
