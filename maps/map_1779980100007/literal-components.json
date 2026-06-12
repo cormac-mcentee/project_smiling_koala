@@ -1,0 +1,131 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_f18_t1",
+      "name": "T1",
+      "componentId": "component_1779500000004",
+      "superiors": [],
+      "variableOverrides": {
+        "level": 80
+      },
+      "_canvas": {
+        "x": 3,
+        "y": 0
+      }
+    },
+    {
+      "id": "lc_f18_pipe_a1",
+      "name": "Pipe_A1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f18_t1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 108,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_f18_v1",
+      "name": "V1",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f18_pipe_a1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 216,
+        "y": -6
+      }
+    },
+    {
+      "id": "lc_f18_pipe_a2",
+      "name": "Pipe_A2",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f18_v1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 324,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_f18_pr1",
+      "name": "PR1",
+      "componentId": "component_pressure_regulator_1779700000022",
+      "superiors": [
+        "lc_f18_pipe_a2"
+      ],
+      "variableOverrides": {
+        "set_pressure": 50
+      },
+      "_canvas": {
+        "x": 432,
+        "y": -16
+      }
+    },
+    {
+      "id": "lc_f18_pipe_a3",
+      "name": "Pipe_A3",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f18_pr1"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 540,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_f18_v2",
+      "name": "V2",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_f18_pipe_a3"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 648,
+        "y": -6
+      }
+    },
+    {
+      "id": "lc_f18_pipe_a4",
+      "name": "Pipe_A4",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_f18_v2"
+      ],
+      "variableOverrides": {
+        "resistance": 0.02
+      },
+      "_canvas": {
+        "x": 756,
+        "y": 10
+      }
+    },
+    {
+      "id": "lc_f18_outlet",
+      "name": "Process Outlet",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        "lc_f18_pipe_a4"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 872,
+        "y": 10
+      }
+    }
+  ]
+}
