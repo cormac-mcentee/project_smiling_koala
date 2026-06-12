@@ -214,7 +214,7 @@
       "id": "anc_2a3_ps1_light",
       "type": "light",
       "lcId": "lc_2a3_ps1",
-      "bindTo": "var:energised",
+      "bindTo": "var:on",
       "label": "On",
       "x": 90,
       "y": -130
@@ -336,7 +336,7 @@
       "type": "text",
       "x": 73,
       "y": 39,
-      "content": "Open the motor isolator before resetting a tripped fuse — resetting under load blows it again.",
+      "content": "Open the motor isolator before resetting a tripped fuse â€” resetting under load blows it again.",
       "fontSize": 11,
       "fontWeight": "normal",
       "colour": "#64748b",
