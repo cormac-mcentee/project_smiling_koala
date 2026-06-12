@@ -1,0 +1,84 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_e11_s1",
+      "name": "Commission the UPS Loop",
+      "description": "Close SW_Mains to energise the circuit. PS1 will power LOAD1 directly through the splitter (SPL1) and Junction JNC1. At the same time, the splitter feeds the lower path: AC passes through Rectifier REC1, converting it to DC (red wires), which charges Battery1. Win when LOAD1 is active and the battery is charging.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_e11_s1_01",
+          "literalComponentId": "lc_e11_sw_mains",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e11_s1_02",
+          "literalComponentId": "lc_e11_bat1",
+          "variableId": "var_bat_discharge_mode",
+          "value": false
+        },
+        {
+          "id": "ic_e11_s1_03",
+          "literalComponentId": "lc_e11_bat1",
+          "variableId": "var_bat_state_of_charge",
+          "value": 60
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e11_s1_01",
+          "literalComponentId": "lc_e11_load1",
+          "variableId": "var_ec_active",
+          "value": true
+        },
+        {
+          "id": "tc_e11_s1_02",
+          "literalComponentId": "lc_e11_bat1",
+          "variableId": "var_bat_charging",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_e11_s2",
+      "name": "Mains Failure — Enable Battery Backup",
+      "description": "PS1 has failed — the mains supply is gone and cannot be restored. LOAD1 has dropped. Battery1 has 60% charge. Enable battery discharge mode so Battery1 supplies DC to Inverter INV1. INV1 converts it back to stable 50 Hz AC, which feeds through JNC1 to restore LOAD1.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_e11_s2_01",
+          "literalComponentId": "lc_e11_ps1",
+          "variableId": "var_ps_broken",
+          "value": true
+        },
+        {
+          "id": "ic_e11_s2_02",
+          "literalComponentId": "lc_e11_sw_mains",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e11_s2_03",
+          "literalComponentId": "lc_e11_bat1",
+          "variableId": "var_bat_state_of_charge",
+          "value": 60
+        },
+        {
+          "id": "ic_e11_s2_04",
+          "literalComponentId": "lc_e11_bat1",
+          "variableId": "var_bat_discharge_mode",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e11_s2_01",
+          "literalComponentId": "lc_e11_load1",
+          "variableId": "var_ec_active",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
