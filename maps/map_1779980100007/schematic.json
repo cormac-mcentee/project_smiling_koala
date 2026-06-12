@@ -1,0 +1,167 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_f18_t1",
+      "x": 3,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f18_pipe_a1",
+      "x": 108,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f18_v1",
+      "x": 216,
+      "y": -6
+    },
+    {
+      "lcId": "lc_f18_pipe_a2",
+      "x": 324,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f18_pr1",
+      "x": 432,
+      "y": -16
+    },
+    {
+      "lcId": "lc_f18_pipe_a3",
+      "x": 540,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f18_v2",
+      "x": 648,
+      "y": -6
+    },
+    {
+      "lcId": "lc_f18_pipe_a4",
+      "x": 756,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f18_outlet",
+      "x": 872,
+      "y": 10
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_f18_01",
+      "srcLcId": "lc_f18_t1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f18_pipe_a1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f18_02",
+      "srcLcId": "lc_f18_pipe_a1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f18_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f18_03",
+      "srcLcId": "lc_f18_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f18_pipe_a2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f18_04",
+      "srcLcId": "lc_f18_pipe_a2",
+      "srcPortId": "output",
+      "dstLcId": "lc_f18_pr1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f18_05",
+      "srcLcId": "lc_f18_pr1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f18_pipe_a3",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f18_06",
+      "srcLcId": "lc_f18_pipe_a3",
+      "srcPortId": "output",
+      "dstLcId": "lc_f18_v2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f18_07",
+      "srcLcId": "lc_f18_v2",
+      "srcPortId": "output",
+      "dstLcId": "lc_f18_pipe_a4",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f18_08",
+      "srcLcId": "lc_f18_pipe_a4",
+      "srcPortId": "output",
+      "dstLcId": "lc_f18_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_f18_v1_btn": {
+      "id": "anc_f18_v1_btn",
+      "type": "button",
+      "lcId": "lc_f18_v1",
+      "bindTo": "act:on_toggle",
+      "label": "V1 Open/Close",
+      "x": 264,
+      "y": -24
+    },
+    "anc_f18_pr1_lgt": {
+      "id": "anc_f18_pr1_lgt",
+      "type": "light",
+      "lcId": "lc_f18_pr1",
+      "bindTo": "var:regulating",
+      "label": "PR1 Regulating",
+      "x": 456,
+      "y": -36
+    },
+    "anc_f18_pr1_setpoint": {
+      "id": "anc_f18_pr1_setpoint",
+      "type": "counter",
+      "lcId": "lc_f18_pr1",
+      "bindTo": "var:set_pressure",
+      "label": "PR1 Setpoint (bar)",
+      "x": 480,
+      "y": 84
+    },
+    "anc_f18_v2_btn": {
+      "id": "anc_f18_v2_btn",
+      "type": "button",
+      "lcId": "lc_f18_v2",
+      "bindTo": "act:on_toggle",
+      "label": "V2 Open/Close",
+      "x": 696,
+      "y": -24
+    },
+    "anc_f18_t1_lgt": {
+      "id": "anc_f18_t1_lgt",
+      "type": "light",
+      "lcId": "lc_f18_t1",
+      "bindTo": "var:level",
+      "label": "Tank Level %",
+      "x": 24,
+      "y": 120
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_f18_01",
+      "type": "text",
+      "x": 432,
+      "y": -80,
+      "content": "PR1 maintains downstream pressure at 50 bar. As the tank drains, upstream head falls — PR1 opens wider. When head drops below setpoint, downstream pressure falls too.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
