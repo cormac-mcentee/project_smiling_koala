@@ -1,0 +1,332 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_f16_inlet",
+      "x": -64,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f16_pipe_in",
+      "x": 12,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f16_v_in",
+      "x": 72,
+      "y": -6
+    },
+    {
+      "lcId": "lc_f16_splitter",
+      "x": 192,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f16_v_a_in",
+      "x": 336,
+      "y": -54
+    },
+    {
+      "lcId": "lc_f16_pipe_a1",
+      "x": 444,
+      "y": -62
+    },
+    {
+      "lcId": "lc_f16_str_a",
+      "x": 552,
+      "y": -48
+    },
+    {
+      "lcId": "lc_f16_pipe_a2",
+      "x": 660,
+      "y": -62
+    },
+    {
+      "lcId": "lc_f16_v_a_out",
+      "x": 768,
+      "y": -54
+    },
+    {
+      "lcId": "lc_f16_v_b_in",
+      "x": 336,
+      "y": 66
+    },
+    {
+      "lcId": "lc_f16_pipe_b1",
+      "x": 444,
+      "y": 58
+    },
+    {
+      "lcId": "lc_f16_str_b",
+      "x": 552,
+      "y": 72
+    },
+    {
+      "lcId": "lc_f16_pipe_b2",
+      "x": 660,
+      "y": 58
+    },
+    {
+      "lcId": "lc_f16_v_b_out",
+      "x": 768,
+      "y": 66
+    },
+    {
+      "lcId": "lc_f16_junction",
+      "x": 888,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f16_pipe_join",
+      "x": 996,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f16_v_out",
+      "x": 1056,
+      "y": -6
+    },
+    {
+      "lcId": "lc_f16_pipe_out",
+      "x": 1164,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f16_outlet",
+      "x": 1232,
+      "y": 10
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_f16_01",
+      "srcLcId": "lc_f16_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_pipe_in",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_02",
+      "srcLcId": "lc_f16_pipe_in",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_v_in",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_03",
+      "srcLcId": "lc_f16_v_in",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_splitter",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_03a",
+      "srcLcId": "lc_f16_splitter",
+      "srcPortId": "output_a",
+      "dstLcId": "lc_f16_v_a_in",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_04",
+      "srcLcId": "lc_f16_splitter",
+      "srcPortId": "output_b",
+      "dstLcId": "lc_f16_v_b_in",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_05",
+      "srcLcId": "lc_f16_v_a_in",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_pipe_a1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_06",
+      "srcLcId": "lc_f16_pipe_a1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_str_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_07",
+      "srcLcId": "lc_f16_str_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_pipe_a2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_08",
+      "srcLcId": "lc_f16_pipe_a2",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_v_a_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_09",
+      "srcLcId": "lc_f16_v_b_in",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_pipe_b1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_10",
+      "srcLcId": "lc_f16_pipe_b1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_str_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_11",
+      "srcLcId": "lc_f16_str_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_pipe_b2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_12",
+      "srcLcId": "lc_f16_pipe_b2",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_v_b_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_13",
+      "srcLcId": "lc_f16_v_a_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_junction",
+      "dstPortId": "input_a"
+    },
+    {
+      "id": "conn_f16_14",
+      "srcLcId": "lc_f16_v_b_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_junction",
+      "dstPortId": "input_b"
+    },
+    {
+      "id": "conn_f16_14a",
+      "srcLcId": "lc_f16_junction",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_pipe_join",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_15",
+      "srcLcId": "lc_f16_pipe_join",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_v_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_16",
+      "srcLcId": "lc_f16_v_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_pipe_out",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f16_17",
+      "srcLcId": "lc_f16_pipe_out",
+      "srcPortId": "output",
+      "dstLcId": "lc_f16_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_f16_v_in_btn": {
+      "id": "anc_f16_v_in_btn",
+      "type": "button",
+      "lcId": "lc_f16_v_in",
+      "bindTo": "act:on_toggle",
+      "label": "V_In Open/Close",
+      "x": 108,
+      "y": -36
+    },
+    "anc_f16_v_a_in_btn": {
+      "id": "anc_f16_v_a_in_btn",
+      "type": "button",
+      "lcId": "lc_f16_v_a_in",
+      "bindTo": "act:on_toggle",
+      "label": "V_A_In",
+      "x": 384,
+      "y": -84
+    },
+    "anc_f16_v_a_out_btn": {
+      "id": "anc_f16_v_a_out_btn",
+      "type": "button",
+      "lcId": "lc_f16_v_a_out",
+      "bindTo": "act:on_toggle",
+      "label": "V_A_Out",
+      "x": 804,
+      "y": -72
+    },
+    "anc_f16_str_a_lgt": {
+      "id": "anc_f16_str_a_lgt",
+      "type": "light",
+      "lcId": "lc_f16_str_a",
+      "bindTo": "var:fouled",
+      "label": "STR_A Fouled",
+      "x": 564,
+      "y": -72
+    },
+    "anc_f16_v_b_in_btn": {
+      "id": "anc_f16_v_b_in_btn",
+      "type": "button",
+      "lcId": "lc_f16_v_b_in",
+      "bindTo": "act:on_toggle",
+      "label": "V_B_In",
+      "x": 384,
+      "y": 156
+    },
+    "anc_f16_v_b_out_btn": {
+      "id": "anc_f16_v_b_out_btn",
+      "type": "button",
+      "lcId": "lc_f16_v_b_out",
+      "bindTo": "act:on_toggle",
+      "label": "V_B_Out",
+      "x": 804,
+      "y": 144
+    },
+    "anc_f16_str_b_lgt": {
+      "id": "anc_f16_str_b_lgt",
+      "type": "light",
+      "lcId": "lc_f16_str_b",
+      "bindTo": "var:fouled",
+      "label": "STR_B Fouled",
+      "x": 564,
+      "y": 192
+    },
+    "anc_f16_v_out_btn": {
+      "id": "anc_f16_v_out_btn",
+      "type": "button",
+      "lcId": "lc_f16_v_out",
+      "bindTo": "act:on_toggle",
+      "label": "V_Out Open/Close",
+      "x": 1104,
+      "y": -36
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_f16_01",
+      "type": "text",
+      "x": 458,
+      "y": -107,
+      "content": "STRAINER A — Branch A in service",
+      "fontSize": 12,
+      "fontWeight": "bold",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_f16_02",
+      "type": "text",
+      "x": 672,
+      "y": 186,
+      "content": "STRAINER B — Standby branch",
+      "fontSize": 12,
+      "fontWeight": "bold",
+      "colour": "#64748b",
+      "layer": "above_schematic"
+    }
+  ]
+}
