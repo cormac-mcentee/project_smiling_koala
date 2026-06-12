@@ -1,0 +1,382 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_coal_s1",
+      "name": "Cold Start — Bring the Plant Online",
+      "description": "The coal plant has been shut down for scheduled maintenance and is ready to restart. Both control switches are open, the boiler is off, and the plant is disconnected from the grid. Close the drive motor switch to start the feedwater pump shaft train, then open the ECV control switch to admit feedwater. Close the drain valve V1 to seal the fluid circuit, activate the boiler, and wait for the steam turbines to reach operating speed. Before connecting to the grid, close the emergency bypass switch SWI3 to establish the backup power path. Grid export must be stable with V1 closed and SWI3 engaged to complete startup.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_coal_s1_01",
+          "literalComponentId": "lc_1781269856288_z2jb",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_coal_s1_02",
+          "literalComponentId": "lc_1781269861016_9vi8",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_coal_s1_03",
+          "literalComponentId": "lc_1781269533828_08ce",
+          "variableId": "var_vap_active",
+          "value": false
+        },
+        {
+          "id": "ic_coal_s1_04",
+          "literalComponentId": "lc_1781270314854_nzyx",
+          "variableId": "var_ge_connected",
+          "value": false
+        },
+        {
+          "id": "ic_coal_s1_05",
+          "literalComponentId": "lc_1781269741315_a7f1",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_coal_s1_01",
+          "literalComponentId": "lc_1781270314854_nzyx",
+          "variableId": "var_ge_exporting",
+          "value": true
+        },
+        {
+          "id": "tc_coal_s1_02",
+          "literalComponentId": "lc_1781269741315_a7f1",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_coal_s1_03",
+          "literalComponentId": "lc_1781285865446_oy0e",
+          "variableId": "var_switch_closed",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_coal_s2",
+      "name": "Normal Shutdown — Planned Outage Procedure",
+      "description": "The plant is running normally and a planned maintenance outage has been scheduled. Execute the correct shutdown sequence to bring the plant safely offline. Disconnect the generator from the grid first to prevent a hard trip, then deactivate the boiler and allow steam flow to collapse. Isolate the feedwater circuit by opening SWI1 to close ECV1, then stop the drive motor via SWI2. Finally, open the emergency bypass switch SWI3 to return the plant to its fully isolated pre-maintenance state.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_coal_s2_01",
+          "literalComponentId": "lc_1781269856288_z2jb",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_coal_s2_02",
+          "literalComponentId": null,
+          "variableId": "var_switch_closed",
+          "value": true,
+          "literalComponentIds": [
+            "lc_1781269861016_9vi8"
+          ]
+        },
+        {
+          "id": "ic_coal_s2_03",
+          "literalComponentId": "lc_1781285865446_oy0e",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s2_04",
+          "literalComponentId": "lc_1781269533828_08ce",
+          "variableId": "var_vap_active",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s2_05",
+          "literalComponentId": "lc_1781270314854_nzyx",
+          "variableId": "var_ge_connected",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s2_06",
+          "literalComponentId": "lc_1781282409143_j613",
+          "variableId": "var_cooler_active",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s2_07",
+          "literalComponentId": "lc_1781269542887_15sn",
+          "variableId": "f_shaft_driving",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s2_08",
+          "literalComponentId": "lc_1781269542887_15sn",
+          "variableId": "f_shaft_rpm",
+          "value": 3000
+        },
+        {
+          "id": "ic_coal_s2_09",
+          "literalComponentId": "lc_1781269551138_r6jw",
+          "variableId": "f_shaft_driving",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s2_10",
+          "literalComponentId": "lc_1781269551138_r6jw",
+          "variableId": "f_shaft_rpm",
+          "value": 3000
+        },
+        {
+          "id": "ic_coal_s2_11",
+          "literalComponentId": "lc_1781269557290_swi2",
+          "variableId": "f_shaft_driving",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s2_12",
+          "literalComponentId": "lc_1781269557290_swi2",
+          "variableId": "f_shaft_rpm",
+          "value": 3000
+        },
+        {
+          "id": "ic_coal_s2_13",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_present",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s2_14",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_flowing",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s2_15",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_phase",
+          "value": "liquid"
+        },
+        {
+          "id": "ic_coal_s2_16",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_colour",
+          "value": "#60a5fa"
+        },
+        {
+          "id": "ic_coal_s2_17",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_temperature",
+          "value": 20
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_coal_s2_01",
+          "literalComponentId": "lc_1781270314854_nzyx",
+          "variableId": "var_ge_connected",
+          "value": false
+        },
+        {
+          "id": "tc_coal_s2_02",
+          "literalComponentId": "lc_1781269533828_08ce",
+          "variableId": "var_vap_active",
+          "value": false
+        },
+        {
+          "id": "tc_coal_s2_03",
+          "literalComponentId": "lc_1781269502088_pq8t",
+          "variableId": "var_ecv_open",
+          "value": false
+        },
+        {
+          "id": "tc_coal_s2_04",
+          "literalComponentId": "lc_1781269861016_9vi8",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "tc_coal_s2_05",
+          "literalComponentId": "lc_1781285865446_oy0e",
+          "variableId": "var_switch_closed",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "scenario_coal_s3",
+      "name": "Cooler Failure — Emergency Isolation",
+      "description": "The cooling fan on COO1 has seized, causing the recirculating loop to carry uncondensed steam back to VAP1's inlet. VAP1 has auto-tripped on a steam_inlet fault, collapsing generation and disconnecting the generator from the grid. SWI1, SWI2, and SWI3 remain closed — the drive motor is still running and admitting feedwater into a dead circuit. Secure the plant before TOR1 sustains dry-run damage: open SWI1 to close ECV1 and isolate the feedwater inlet, stop the drive motor by opening SWI2, then open the emergency bypass SWI3 to fully de-energise the control bus.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_coal_s3_01",
+          "literalComponentId": "lc_1781269856288_z2jb",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_coal_s3_02",
+          "literalComponentId": "lc_1781269861016_9vi8",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s3_03",
+          "literalComponentId": "lc_1781285865446_oy0e",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s3_04",
+          "literalComponentId": "lc_1781269533828_08ce",
+          "variableId": "var_vap_active",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s3_05",
+          "literalComponentId": "lc_1781270314854_nzyx",
+          "variableId": "var_ge_connected",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s3_06",
+          "literalComponentId": "lc_1781282409143_j613",
+          "variableId": "var_cooler_broken",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s3_07",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_present",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s3_08",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_flowing",
+          "value": true
+        },
+        {
+          "id": "ic_coal_s3_09",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_phase",
+          "value": "liquid"
+        },
+        {
+          "id": "ic_coal_s3_10",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_colour",
+          "value": "#60a5fa"
+        },
+        {
+          "id": "ic_coal_s3_11",
+          "literalComponentIds": [
+            "lc_1781269579921_aycc",
+            "lc_1781269502088_pq8t",
+            "lc_1781269581302_kcll",
+            "lc_1781269518687_stxg",
+            "lc_1781269888684_dujr",
+            "lc_1781269797236_7ezt",
+            "lc_1781269582632_o8lp"
+          ],
+          "variableId": "f_flow_temperature",
+          "value": 20
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_coal_s3_01",
+          "literalComponentId": "lc_1781269502088_pq8t",
+          "variableId": "var_ecv_open",
+          "value": false
+        },
+        {
+          "id": "tc_coal_s3_02",
+          "literalComponentId": "lc_1781269861016_9vi8",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "tc_coal_s3_03",
+          "literalComponentId": "lc_1781285865446_oy0e",
+          "variableId": "var_switch_closed",
+          "value": false
+        }
+      ],
+      "faultOverrides": []
+    }
+  ]
+}
