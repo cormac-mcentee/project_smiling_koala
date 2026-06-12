@@ -9,7 +9,7 @@
         {
           "id": "ic_m6_s1_01",
           "literalComponentId": "lc_m6_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": false
         },
         {
@@ -23,7 +23,7 @@
         {
           "id": "tc_m6_s1_01",
           "literalComponentId": "lc_m6_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -49,7 +49,7 @@
         {
           "id": "ic_m6_s2_01",
           "literalComponentId": "lc_m6_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": false
         },
         {
@@ -69,7 +69,7 @@
         {
           "id": "tc_m6_s2_01",
           "literalComponentId": "lc_m6_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -89,7 +89,7 @@
         {
           "id": "ic_m6_s3_01",
           "literalComponentId": "lc_m6_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -115,7 +115,7 @@
         {
           "id": "tc_m6_s3_02",
           "literalComponentId": "lc_m6_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": false
         },
         {
