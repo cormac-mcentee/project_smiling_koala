@@ -1,0 +1,991 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_e08_ps1",
+      "x": -40,
+      "y": -182
+    },
+    {
+      "lcId": "lc_e08_sw_a",
+      "x": 84,
+      "y": -174
+    },
+    {
+      "lcId": "lc_e08_cb_a",
+      "x": 204,
+      "y": -174
+    },
+    {
+      "lcId": "lc_e08_wire_a",
+      "x": 324,
+      "y": -182
+    },
+    {
+      "lcId": "lc_e08_tx_a",
+      "x": 432,
+      "y": -216
+    },
+    {
+      "lcId": "lc_e08_wire_lva",
+      "x": 540,
+      "y": -206
+    },
+    {
+      "lcId": "lc_e08_bus_a",
+      "x": 662,
+      "y": -130,
+      "portOverrides": {
+        "output_b": {
+          "edge": "right",
+          "px": 0.5311250000000001
+        },
+        "output_a": {
+          "edge": "top",
+          "px": 0.5311249999999973
+        },
+        "output_c": {
+          "edge": "bottom",
+          "px": 0.46887499999999704
+        }
+      }
+    },
+    {
+      "lcId": "lc_e08_bc_wire",
+      "x": 684,
+      "y": -206
+    },
+    {
+      "lcId": "lc_e08_bc_sw",
+      "x": 780,
+      "y": -198
+    },
+    {
+      "lcId": "lc_e08_bc_wire2",
+      "x": 900,
+      "y": -206
+    },
+    {
+      "lcId": "lc_e08_jnc_b",
+      "x": 998,
+      "y": -202,
+      "portOverrides": {
+        "input_b": {
+          "edge": "left",
+          "px": 0.55
+        },
+        "input_a": {
+          "edge": "right",
+          "px": 0.425
+        },
+        "input_c": {
+          "edge": "top",
+          "px": 0.5
+        },
+        "output": {
+          "edge": "bottom",
+          "px": 0.5875
+        }
+      }
+    },
+    {
+      "lcId": "lc_e08_spl_b",
+      "x": 1070,
+      "y": -10
+    },
+    {
+      "lcId": "lc_e08_sw_f1",
+      "x": 732,
+      "y": 130
+    },
+    {
+      "lcId": "lc_e08_wire_f1",
+      "x": 804,
+      "y": 130
+    },
+    {
+      "lcId": "lc_e08_ess_jnc",
+      "x": 878,
+      "y": 134,
+      "portOverrides": {
+        "input_b": {
+          "edge": "bottom",
+          "px": 0.42092874999999597
+        },
+        "input_a": {
+          "edge": "left",
+          "px": 0.5375
+        },
+        "input_c": {
+          "edge": "top",
+          "px": 0.45
+        }
+      }
+    },
+    {
+      "lcId": "lc_e08_load1",
+      "x": 960,
+      "y": 114
+    },
+    {
+      "lcId": "lc_e08_sw_f2",
+      "x": 1164,
+      "y": -38
+    },
+    {
+      "lcId": "lc_e08_wire_f2",
+      "x": 1284,
+      "y": -38
+    },
+    {
+      "lcId": "lc_e08_load2",
+      "x": 1380,
+      "y": -53.5
+    },
+    {
+      "lcId": "lc_e08_sw_f3",
+      "x": 1164,
+      "y": 58
+    },
+    {
+      "lcId": "lc_e08_wire_f3",
+      "x": 1284,
+      "y": 58
+    },
+    {
+      "lcId": "lc_e08_load3",
+      "x": 1368,
+      "y": 42
+    },
+    {
+      "lcId": "lc_e08_sw_aux",
+      "x": 684,
+      "y": 306
+    },
+    {
+      "lcId": "lc_e08_wire_aux_a",
+      "x": 780,
+      "y": 394
+    },
+    {
+      "lcId": "lc_e08_tx_aux",
+      "x": 864,
+      "y": 576
+    },
+    {
+      "lcId": "lc_e08_wire_aux_b",
+      "x": 972,
+      "y": 610
+    },
+    {
+      "lcId": "lc_e08_rec1",
+      "x": 1080,
+      "y": 594
+    },
+    {
+      "lcId": "lc_e08_wire_dc",
+      "x": 1188,
+      "y": 610
+    },
+    {
+      "lcId": "lc_e08_bat1",
+      "x": 1272,
+      "y": 576
+    },
+    {
+      "lcId": "lc_e08_wire_inv",
+      "x": 1428,
+      "y": 634
+    },
+    {
+      "lcId": "lc_e08_inv1",
+      "x": 1344,
+      "y": 480,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_e08_wire_inv2",
+      "x": 900,
+      "y": 394
+    },
+    {
+      "lcId": "lc_e08_ps2",
+      "x": 1952,
+      "y": -326,
+      "rotation": 0,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_e08_sw_b",
+      "x": 1764,
+      "y": -326,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_e08_cb_b",
+      "x": 1620,
+      "y": -322.5,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_e08_wire_b",
+      "x": 1476,
+      "y": -326,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_e08_tx_b",
+      "x": 1344,
+      "y": -360,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_e08_wire_lvb",
+      "x": 1092,
+      "y": -206
+    },
+    {
+      "lcId": "lc_1781126131367_lfbm",
+      "x": 1716,
+      "y": -326,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781126136685_ysps",
+      "x": 1860,
+      "y": -326,
+      "flipX": true
+    },
+    {
+      "lcId": "lc_1781126144370_03kf",
+      "x": 996,
+      "y": -110,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781126147426_aady",
+      "x": 1068,
+      "y": -38
+    },
+    {
+      "lcId": "lc_1781126150071_ry7n",
+      "x": 1092,
+      "y": 58
+    },
+    {
+      "lcId": "lc_1781126156743_6esl",
+      "x": 612,
+      "y": 82,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781126159199_7z14",
+      "x": 684,
+      "y": -14,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781130391859_lhbq",
+      "x": 156,
+      "y": -206
+    },
+    {
+      "lcId": "lc_1781130394157_kdn9",
+      "x": 36,
+      "y": -230
+    },
+    {
+      "lcId": "lc_1781130399149_1qfv",
+      "x": 900,
+      "y": 130
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_e08_03",
+      "srcLcId": "lc_e08_cb_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_04",
+      "srcLcId": "lc_e08_wire_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_tx_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_05",
+      "srcLcId": "lc_e08_tx_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_lva",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_06",
+      "srcLcId": "lc_e08_wire_lva",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_bus_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_07",
+      "srcLcId": "lc_e08_bus_a",
+      "srcPortId": "output_a",
+      "dstLcId": "lc_e08_bc_wire",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_08",
+      "srcLcId": "lc_e08_bc_wire",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_bc_sw",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_09",
+      "srcLcId": "lc_e08_bc_sw",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_bc_wire2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_10",
+      "srcLcId": "lc_e08_bc_wire2",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_jnc_b",
+      "dstPortId": "input_b"
+    },
+    {
+      "id": "conn_e08_12",
+      "srcLcId": "lc_e08_sw_f1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_f1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_13",
+      "srcLcId": "lc_e08_wire_f1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_ess_jnc",
+      "dstPortId": "input_a"
+    },
+    {
+      "id": "conn_e08_16",
+      "srcLcId": "lc_e08_sw_aux",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_aux_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_17",
+      "srcLcId": "lc_e08_wire_aux_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_tx_aux",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_18",
+      "srcLcId": "lc_e08_tx_aux",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_aux_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_19",
+      "srcLcId": "lc_e08_wire_aux_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_rec1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_20",
+      "srcLcId": "lc_e08_rec1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_dc",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_21",
+      "srcLcId": "lc_e08_wire_dc",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_bat1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_22",
+      "srcLcId": "lc_e08_bat1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_inv",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_23",
+      "srcLcId": "lc_e08_wire_inv",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_inv1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_24",
+      "srcLcId": "lc_e08_inv1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_inv2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_25",
+      "srcLcId": "lc_e08_wire_inv2",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_ess_jnc",
+      "dstPortId": "input_b"
+    },
+    {
+      "id": "conn_e08_28",
+      "srcLcId": "lc_e08_sw_f2",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_f2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_29",
+      "srcLcId": "lc_e08_wire_f2",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_load2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_31",
+      "srcLcId": "lc_e08_sw_f3",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_f3",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_32",
+      "srcLcId": "lc_e08_wire_f3",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_load3",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_36",
+      "srcLcId": "lc_e08_wire_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_tx_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_37",
+      "srcLcId": "lc_e08_tx_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_lvb",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e08_38",
+      "srcLcId": "lc_e08_wire_lvb",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_jnc_b",
+      "dstPortId": "input_a"
+    },
+    {
+      "id": "conn_1781126207577",
+      "srcLcId": "lc_e08_bus_a",
+      "srcPortId": "output_c",
+      "dstLcId": "lc_1781126156743_6esl",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781126210857",
+      "srcLcId": "lc_1781126156743_6esl",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_sw_aux",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781126214566",
+      "srcLcId": "lc_e08_bus_a",
+      "srcPortId": "output_b",
+      "dstLcId": "lc_1781126159199_7z14",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781126216000",
+      "srcLcId": "lc_1781126159199_7z14",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_sw_f1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781126268729",
+      "srcLcId": "lc_e08_jnc_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781126144370_03kf",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781126273047",
+      "srcLcId": "lc_1781126144370_03kf",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_spl_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781126507759",
+      "srcLcId": "lc_e08_spl_b",
+      "srcPortId": "output_a",
+      "dstLcId": "lc_1781126147426_aady",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781126509554",
+      "srcLcId": "lc_1781126147426_aady",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_sw_f2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781126513518",
+      "srcLcId": "lc_e08_spl_b",
+      "srcPortId": "output_b",
+      "dstLcId": "lc_1781126150071_ry7n",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781126515480",
+      "srcLcId": "lc_1781126150071_ry7n",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_sw_f3",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130257607",
+      "srcLcId": "lc_e08_ps2",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781126136685_ysps",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130258852",
+      "srcLcId": "lc_1781126136685_ysps",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_sw_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130260390",
+      "srcLcId": "lc_e08_sw_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781126131367_lfbm",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130261746",
+      "srcLcId": "lc_1781126131367_lfbm",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_cb_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130274181",
+      "srcLcId": "lc_e08_cb_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_wire_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130401302",
+      "srcLcId": "lc_e08_ess_jnc",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781130399149_1qfv",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130403018",
+      "srcLcId": "lc_1781130399149_1qfv",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_load1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130406524",
+      "srcLcId": "lc_e08_ps1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781130394157_kdn9",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130408330",
+      "srcLcId": "lc_1781130394157_kdn9",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_sw_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130409934",
+      "srcLcId": "lc_e08_sw_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781130391859_lhbq",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781130412041",
+      "srcLcId": "lc_1781130391859_lhbq",
+      "srcPortId": "output",
+      "dstLcId": "lc_e08_cb_a",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_e08_swa_btn": {
+      "id": "anc_e08_swa_btn",
+      "type": "button",
+      "lcId": "lc_e08_sw_a",
+      "bindTo": "act:on_toggle",
+      "label": "SW_A",
+      "x": 120,
+      "y": -132
+    },
+    "anc_e08_swa_lgt": {
+      "id": "anc_e08_swa_lgt",
+      "type": "light",
+      "lcId": "lc_e08_sw_a",
+      "bindTo": "var:closed",
+      "label": "SW_A Closed",
+      "x": 108,
+      "y": -96
+    },
+    "anc_e08_cba_lgt": {
+      "id": "anc_e08_cba_lgt",
+      "type": "light",
+      "lcId": "lc_e08_cb_a",
+      "bindTo": "var:closed",
+      "label": "CB_A",
+      "x": 228,
+      "y": -132
+    },
+    "anc_e08_cba_trip": {
+      "id": "anc_e08_cba_trip",
+      "type": "light",
+      "lcId": "lc_e08_cb_a",
+      "bindTo": "var:tripped",
+      "label": "CB_A Trip",
+      "x": 228,
+      "y": -96
+    },
+    "anc_e08_hva_volt": {
+      "id": "anc_e08_hva_volt",
+      "type": "counter",
+      "lcId": "lc_e08_wire_a",
+      "bindTo": "var:electricity.voltage",
+      "label": "HV_A (V)",
+      "x": 360,
+      "y": -204
+    },
+    "anc_e08_lva_volt": {
+      "id": "anc_e08_lva_volt",
+      "type": "counter",
+      "lcId": "lc_e08_wire_lva",
+      "bindTo": "var:electricity.voltage",
+      "label": "LV_A (V)",
+      "x": 576,
+      "y": -228
+    },
+    "anc_e08_bc_btn": {
+      "id": "anc_e08_bc_btn",
+      "type": "button",
+      "lcId": "lc_e08_bc_sw",
+      "bindTo": "act:on_toggle",
+      "label": "BC",
+      "x": 816,
+      "y": -252
+    },
+    "anc_e08_bc_lgt": {
+      "id": "anc_e08_bc_lgt",
+      "type": "light",
+      "lcId": "lc_e08_bc_sw",
+      "bindTo": "var:closed",
+      "label": "BC Closed",
+      "x": 804,
+      "y": -216
+    },
+    "anc_e08_lvb_volt": {
+      "id": "anc_e08_lvb_volt",
+      "type": "counter",
+      "lcId": "lc_e08_wire_lvb",
+      "bindTo": "var:electricity.voltage",
+      "label": "LV_B (V)",
+      "x": 1128,
+      "y": -228
+    },
+    "anc_e08_swf1_btn": {
+      "id": "anc_e08_swf1_btn",
+      "type": "button",
+      "lcId": "lc_e08_sw_f1",
+      "bindTo": "act:on_toggle",
+      "label": "SW_F1",
+      "x": 756,
+      "y": 228
+    },
+    "anc_e08_swf1_lgt": {
+      "id": "anc_e08_swf1_lgt",
+      "type": "light",
+      "lcId": "lc_e08_sw_f1",
+      "bindTo": "var:closed",
+      "label": "SW_F1",
+      "x": 744,
+      "y": 192
+    },
+    "anc_e08_load1_lgt": {
+      "id": "anc_e08_load1_lgt",
+      "type": "light",
+      "lcId": "lc_e08_load1",
+      "bindTo": "var:active",
+      "label": "ESS Active",
+      "x": 984,
+      "y": 192
+    },
+    "anc_e08_swf2_btn": {
+      "id": "anc_e08_swf2_btn",
+      "type": "button",
+      "lcId": "lc_e08_sw_f2",
+      "bindTo": "act:on_toggle",
+      "label": "SW_F2",
+      "x": 1176,
+      "y": -60
+    },
+    "anc_e08_swf2_lgt": {
+      "id": "anc_e08_swf2_lgt",
+      "type": "light",
+      "lcId": "lc_e08_sw_f2",
+      "bindTo": "var:closed",
+      "label": "SW_F2",
+      "x": 1224,
+      "y": -60
+    },
+    "anc_e08_load2_lgt": {
+      "id": "anc_e08_load2_lgt",
+      "type": "light",
+      "lcId": "lc_e08_load2",
+      "bindTo": "var:running",
+      "label": "Motor Running",
+      "x": 1392,
+      "y": -72
+    },
+    "anc_e08_swf3_btn": {
+      "id": "anc_e08_swf3_btn",
+      "type": "button",
+      "lcId": "lc_e08_sw_f3",
+      "bindTo": "act:on_toggle",
+      "label": "SW_F3",
+      "x": 1212,
+      "y": 108
+    },
+    "anc_e08_swf3_lgt": {
+      "id": "anc_e08_swf3_lgt",
+      "type": "light",
+      "lcId": "lc_e08_sw_f3",
+      "bindTo": "var:closed",
+      "label": "SW_F3",
+      "x": 1200,
+      "y": 144
+    },
+    "anc_e08_load3_lgt": {
+      "id": "anc_e08_load3_lgt",
+      "type": "light",
+      "lcId": "lc_e08_load3",
+      "bindTo": "var:active",
+      "label": "LOAD3 Active",
+      "x": 1392,
+      "y": 120
+    },
+    "anc_e08_swaux_btn": {
+      "id": "anc_e08_swaux_btn",
+      "type": "button",
+      "lcId": "lc_e08_sw_aux",
+      "bindTo": "act:on_toggle",
+      "label": "SW_AUX",
+      "x": 732,
+      "y": 384
+    },
+    "anc_e08_swaux_lgt": {
+      "id": "anc_e08_swaux_lgt",
+      "type": "light",
+      "lcId": "lc_e08_sw_aux",
+      "bindTo": "var:closed",
+      "label": "SW_AUX",
+      "x": 720,
+      "y": 420
+    },
+    "anc_e08_bat1_soc": {
+      "id": "anc_e08_bat1_soc",
+      "type": "counter",
+      "lcId": "lc_e08_bat1",
+      "bindTo": "var:state_of_charge",
+      "label": "BAT1 SoC (%)",
+      "x": 1308,
+      "y": 720
+    },
+    "anc_e08_bat1_chg": {
+      "id": "anc_e08_bat1_chg",
+      "type": "light",
+      "lcId": "lc_e08_bat1",
+      "bindTo": "var:charging",
+      "label": "Charging",
+      "x": 1368,
+      "y": 720
+    },
+    "anc_e08_bat1_dis": {
+      "id": "anc_e08_bat1_dis",
+      "type": "light",
+      "lcId": "lc_e08_bat1",
+      "bindTo": "var:discharge_mode",
+      "label": "Discharge",
+      "x": 1368,
+      "y": 756
+    },
+    "anc_e08_bat1_btn": {
+      "id": "anc_e08_bat1_btn",
+      "type": "button",
+      "lcId": "lc_e08_bat1",
+      "bindTo": "act:toggle_discharge_mode",
+      "label": "BAT1 Discharge",
+      "x": 1308,
+      "y": 756
+    },
+    "anc_e08_swb_btn": {
+      "id": "anc_e08_swb_btn",
+      "type": "button",
+      "lcId": "lc_e08_sw_b",
+      "bindTo": "act:on_toggle",
+      "label": "SW_B",
+      "x": 1800,
+      "y": -276
+    },
+    "anc_e08_swb_lgt": {
+      "id": "anc_e08_swb_lgt",
+      "type": "light",
+      "lcId": "lc_e08_sw_b",
+      "bindTo": "var:closed",
+      "label": "SW_B Closed",
+      "x": 1788,
+      "y": -240
+    },
+    "anc_e08_cbb_lgt": {
+      "id": "anc_e08_cbb_lgt",
+      "type": "light",
+      "lcId": "lc_e08_cb_b",
+      "bindTo": "var:closed",
+      "label": "CB_B",
+      "x": 1632,
+      "y": -276
+    },
+    "anc_e08_cbb_trip": {
+      "id": "anc_e08_cbb_trip",
+      "type": "light",
+      "lcId": "lc_e08_cb_b",
+      "bindTo": "var:tripped",
+      "label": "CB_B Trip",
+      "x": 1632,
+      "y": -240
+    },
+    "anc_e08_hvb_volt": {
+      "id": "anc_e08_hvb_volt",
+      "type": "counter",
+      "lcId": "lc_e08_wire_b",
+      "bindTo": "var:electricity.voltage",
+      "label": "HV_B (V)",
+      "x": 1512,
+      "y": -276
+    },
+    "anc_1781125554975": {
+      "id": "anc_1781125554975",
+      "type": "button",
+      "lcId": "lc_e08_cb_a",
+      "bindTo": "act:reset",
+      "label": "Reset",
+      "x": 252,
+      "y": -60
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_e08_hv_a",
+      "type": "text",
+      "x": 0,
+      "y": -320,
+      "content": "Incomer A: 11 kV",
+      "fontSize": 12,
+      "fontWeight": "bold",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e08_hv_b",
+      "type": "text",
+      "x": 1760,
+      "y": -343,
+      "content": "Incomer B: 11 kV",
+      "fontSize": 12,
+      "fontWeight": "bold",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e08_bus_a_label",
+      "type": "text",
+      "x": 615,
+      "y": -89,
+      "content": "Bus A",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e08_bus_b_label",
+      "type": "text",
+      "x": 1060,
+      "y": -37,
+      "content": "Bus B",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e08_bc_label",
+      "type": "text",
+      "x": 765,
+      "y": -141,
+      "content": "Bus Coupler (N/O)",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e08_ess_label",
+      "type": "text",
+      "x": 805,
+      "y": 40,
+      "content": "Essential Services — backed up by battery",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e08_bat_label",
+      "type": "text",
+      "x": 945,
+      "y": 525,
+      "content": "Station Battery Facility: TX_AUX → REC1 → BAT1 → INV1",
+      "fontSize": 11,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
