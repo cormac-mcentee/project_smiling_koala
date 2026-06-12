@@ -1,0 +1,1032 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_1781269492485_vw9p",
+      "name": "IN1",
+      "componentId": "component_1779500000005",
+      "superiors": [],
+      "variableOverrides": {
+        "flow.colour": "#60a5fa",
+        "flow.composition": [
+          {
+            "name": "water",
+            "colour": "#60a5fa",
+            "mole_fraction": 1
+          }
+        ],
+        "flow.temperature": 20,
+        "flow.phase": "liquid"
+      },
+      "_canvas": {
+        "x": -232,
+        "y": 226
+      }
+    },
+    {
+      "id": "lc_1781269502088_pq8t",
+      "name": "ECV1",
+      "componentId": "component_ecv_1779600000003",
+      "superiors": [
+        {
+          "lcId": "lc_1781269579921_aycc",
+          "inPort": "input"
+        },
+        {
+          "lcId": "lc_1781270010183_i66n",
+          "inPort": "control"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -72,
+        "y": 196.5
+      }
+    },
+    {
+      "id": "lc_1781269518687_stxg",
+      "name": "JUN1",
+      "componentId": "component_junction_1779600000004",
+      "superiors": [
+        {
+          "lcId": "lc_1781269581302_kcll",
+          "inPort": "input_b"
+        },
+        {
+          "lcId": "lc_1781269937337_ho3w",
+          "inPort": "input_a"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 134,
+        "y": 278
+      }
+    },
+    {
+      "id": "lc_1781269533828_08ce",
+      "name": "VAP1",
+      "componentId": "component_vaporizer_1779980000003",
+      "superiors": [
+        {
+          "lcId": "lc_1781269582632_o8lp",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 264,
+        "y": 552
+      }
+    },
+    {
+      "id": "lc_1781269542887_15sn",
+      "name": "FLU1",
+      "componentId": "component_fluid_turbine_1779950000012",
+      "superiors": [
+        {
+          "lcId": "lc_1781269584792_lkmi",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_rpm": 3000
+      },
+      "_canvas": {
+        "x": 408,
+        "y": 455
+      }
+    },
+    {
+      "id": "lc_1781269551138_r6jw",
+      "name": "FLU2",
+      "componentId": "component_fluid_turbine_1779950000012",
+      "superiors": [
+        {
+          "lcId": "lc_1781269590209_xgwj",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_rpm": 3000
+      },
+      "_canvas": {
+        "x": 552,
+        "y": 455
+      }
+    },
+    {
+      "id": "lc_1781269557290_swi2",
+      "name": "FLU3",
+      "componentId": "component_fluid_turbine_1779950000012",
+      "superiors": [
+        {
+          "lcId": "lc_1781269596477_9dae",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_rpm": 3000
+      },
+      "_canvas": {
+        "x": 672,
+        "y": 455
+      }
+    },
+    {
+      "id": "lc_1781269579921_aycc",
+      "name": "PIP1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269492485_vw9p",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -156,
+        "y": 226
+      }
+    },
+    {
+      "id": "lc_1781269581302_kcll",
+      "name": "PIP2",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269502088_pq8t",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 36,
+        "y": 226
+      }
+    },
+    {
+      "id": "lc_1781269582632_o8lp",
+      "name": "PIP3",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269797236_7ezt",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 156,
+        "y": 562
+      }
+    },
+    {
+      "id": "lc_1781269584792_lkmi",
+      "name": "PIP4",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269533828_08ce",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 372,
+        "y": 562
+      }
+    },
+    {
+      "id": "lc_1781269587420_dlob",
+      "name": "PIP5",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269542887_15sn",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 444,
+        "y": 370
+      }
+    },
+    {
+      "id": "lc_1781269590209_xgwj",
+      "name": "PIP6",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269634347_1zjk",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 540,
+        "y": 370
+      }
+    },
+    {
+      "id": "lc_1781269594682_8k2r",
+      "name": "PIP7",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269551138_r6jw",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 588,
+        "y": 562
+      }
+    },
+    {
+      "id": "lc_1781269596477_9dae",
+      "name": "PIP8",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269661841_tf5o",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 660,
+        "y": 562
+      }
+    },
+    {
+      "id": "lc_1781269634347_1zjk",
+      "name": "FCN1",
+      "componentId": "component_fluid_connector_1779600000006",
+      "superiors": [
+        {
+          "lcId": "lc_1781269587420_dlob",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 518,
+        "y": 374
+      }
+    },
+    {
+      "id": "lc_1781269661841_tf5o",
+      "name": "FCN2",
+      "componentId": "component_fluid_connector_1779600000006",
+      "superiors": [
+        {
+          "lcId": "lc_1781269594682_8k2r",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 638,
+        "y": 566
+      }
+    },
+    {
+      "id": "lc_1781269710493_aviq",
+      "name": "SPL1",
+      "componentId": "component_splitter_1779600000005",
+      "superiors": [
+        {
+          "lcId": "lc_1781269908937_7ewo",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 710,
+        "y": 254
+      }
+    },
+    {
+      "id": "lc_1781269741315_a7f1",
+      "name": "V1",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        {
+          "lcId": "lc_1781269919987_u1df",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "open": false
+      },
+      "_canvas": {
+        "x": 816,
+        "y": 162
+      }
+    },
+    {
+      "id": "lc_1781269769479_oawa",
+      "name": "OUT1",
+      "componentId": "component_1779500000006",
+      "superiors": [
+        {
+          "lcId": "lc_1781270458104_hecu",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 968,
+        "y": 178
+      }
+    },
+    {
+      "id": "lc_1781269777429_y3qa",
+      "name": "V2",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        {
+          "lcId": "lc_1781269927431_piml",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "open": true
+      },
+      "_canvas": {
+        "x": 360,
+        "y": 90
+      }
+    },
+    {
+      "id": "lc_1781269797236_7ezt",
+      "name": "TOR1",
+      "componentId": "component_torque_pump_1779950000004",
+      "superiors": [
+        {
+          "lcId": "lc_1781269888684_dujr",
+          "inPort": "input"
+        },
+        {
+          "lcId": "lc_1781269988506_g1q6",
+          "inPort": "shaft_input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 96,
+        "y": 455
+      }
+    },
+    {
+      "id": "lc_1781269818484_8t2h",
+      "name": "DRI1",
+      "componentId": "component_drive_motor_1779950000011",
+      "superiors": [
+        {
+          "lcId": "lc_1781270001666_ngs2",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 0,
+        "y": 456
+      }
+    },
+    {
+      "id": "lc_1781269856288_z2jb",
+      "name": "SWI1",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781270347419_6j11",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -132,
+        "y": 474
+      }
+    },
+    {
+      "id": "lc_1781269861016_9vi8",
+      "name": "SWI2",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781270350531_feuj",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -132,
+        "y": 546
+      }
+    },
+    {
+      "id": "lc_1781269888684_dujr",
+      "name": "PIP9",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269518687_stxg",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 108,
+        "y": 394
+      }
+    },
+    {
+      "id": "lc_1781269908937_7ewo",
+      "name": "PIP10",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269557290_swi2",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 684,
+        "y": 370
+      }
+    },
+    {
+      "id": "lc_1781269919987_u1df",
+      "name": "PIP11",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269710493_aviq",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 732,
+        "y": 178
+      }
+    },
+    {
+      "id": "lc_1781269927431_piml",
+      "name": "PIP12",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781282409143_j613",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 492,
+        "y": 106
+      }
+    },
+    {
+      "id": "lc_1781269937337_ho3w",
+      "name": "PIP13",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269777429_y3qa",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 252,
+        "y": 106
+      }
+    },
+    {
+      "id": "lc_1781269988506_g1q6",
+      "name": "SHA1",
+      "componentId": "component_shaft_1779950000010",
+      "superiors": [
+        {
+          "lcId": "lc_1781269818484_8t2h",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 60,
+        "y": 466
+      }
+    },
+    {
+      "id": "lc_1781270001666_ngs2",
+      "name": "WIR1",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269861016_9vi8",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -36,
+        "y": 538
+      }
+    },
+    {
+      "id": "lc_1781270010183_i66n",
+      "name": "WIR2",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269856288_z2jb",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -60,
+        "y": 394
+      }
+    },
+    {
+      "id": "lc_1781270030596_1aem",
+      "name": "WIR3",
+      "componentId": "component_wire_splitter_1779700000007",
+      "superiors": [
+        {
+          "lcId": "lc_1781270342807_l22o",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -178,
+        "y": 590
+      }
+    },
+    {
+      "id": "lc_1781270085906_upev",
+      "name": "GEN1",
+      "componentId": "component_generator_1779980000007",
+      "superiors": [
+        {
+          "lcId": "lc_1781270495965_ghvp",
+          "inPort": "shaft_input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_rpm": 3000,
+        "min_rpm": 1500
+      },
+      "_canvas": {
+        "x": 840,
+        "y": 450.5
+      }
+    },
+    {
+      "id": "lc_1781270096282_u3tw",
+      "name": "ADS1",
+      "componentId": "component_advanced_drive_shaft_1779950000020",
+      "superiors": [
+        {
+          "lcId": "lc_1781270492933_9s0f",
+          "inPort": "supply_1"
+        },
+        {
+          "lcId": "lc_1781270489912_6jmy",
+          "inPort": "supply_2"
+        },
+        {
+          "lcId": "lc_1781270494305_2lu8",
+          "inPort": "supply_3"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 662,
+        "y": 470
+      },
+      "instancePorts": [
+        {
+          "id": "supply_1",
+          "template": "supply",
+          "label": "Supply 1"
+        },
+        {
+          "id": "supply_2",
+          "template": "supply",
+          "label": "Supply 2"
+        },
+        {
+          "id": "supply_3",
+          "template": "supply",
+          "label": "Supply 3"
+        },
+        {
+          "id": "load_1",
+          "template": "load",
+          "label": "Load 1"
+        }
+      ]
+    },
+    {
+      "id": "lc_1781270161985_o08t",
+      "name": "PS1",
+      "componentId": "component_power_supply_1779600000005",
+      "superiors": [],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -208,
+        "y": 970
+      }
+    },
+    {
+      "id": "lc_1781270186771_qbbj",
+      "name": "WIR4",
+      "componentId": "component_wire_junction_1779700000006",
+      "superiors": [
+        {
+          "lcId": "lc_1781270339031_bhh2",
+          "inPort": "input_b"
+        },
+        {
+          "lcId": "lc_1781270380723_xqhb",
+          "inPort": "input_a"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -178,
+        "y": 710
+      }
+    },
+    {
+      "id": "lc_1781270215129_v89f",
+      "name": "WIR5",
+      "componentId": "component_wire_splitter_1779700000007",
+      "superiors": [
+        {
+          "lcId": "lc_1781270322989_6yvh",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 878,
+        "y": 710
+      }
+    },
+    {
+      "id": "lc_1781270222648_hyoz",
+      "name": "TRA1",
+      "componentId": "component_transformer_1779980000008",
+      "superiors": [
+        {
+          "lcId": "lc_1781270333347_30ky",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "turns_ratio": 1
+      },
+      "_canvas": {
+        "x": 168,
+        "y": 672
+      }
+    },
+    {
+      "id": "lc_1781270306527_fx9h",
+      "name": "TRA2",
+      "componentId": "component_transformer_1779980000008",
+      "superiors": [
+        {
+          "lcId": "lc_1781270321483_ac8e",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "turns_ratio": 26
+      },
+      "_canvas": {
+        "x": 1128,
+        "y": 672
+      }
+    },
+    {
+      "id": "lc_1781270314854_nzyx",
+      "name": "GRI1",
+      "componentId": "component_grid_export_1779980000015",
+      "superiors": [
+        {
+          "lcId": "lc_1781270319995_q9uk",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {
+        "rated_voltage": 10790,
+        "min_voltage": 10250,
+        "max_voltage": 11330
+      },
+      "_canvas": {
+        "x": 1320,
+        "y": 690
+      }
+    },
+    {
+      "id": "lc_1781270319995_q9uk",
+      "name": "WIR6",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781270306527_fx9h",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1236,
+        "y": 682
+      }
+    },
+    {
+      "id": "lc_1781270321483_ac8e",
+      "name": "WIR7",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781270215129_v89f",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 996,
+        "y": 682
+      }
+    },
+    {
+      "id": "lc_1781270322989_6yvh",
+      "name": "WIR8",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781270085906_upev",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 852,
+        "y": 562
+      }
+    },
+    {
+      "id": "lc_1781270333347_30ky",
+      "name": "WIR9",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781270215129_v89f",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 756,
+        "y": 682
+      }
+    },
+    {
+      "id": "lc_1781270339031_bhh2",
+      "name": "WIR10",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781270222648_hyoz",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 60,
+        "y": 682
+      }
+    },
+    {
+      "id": "lc_1781270342807_l22o",
+      "name": "WIR11",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781270186771_qbbj",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -252,
+        "y": 634
+      }
+    },
+    {
+      "id": "lc_1781270347419_6j11",
+      "name": "WIR12",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781270030596_1aem",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -204,
+        "y": 490
+      }
+    },
+    {
+      "id": "lc_1781270350531_feuj",
+      "name": "WIR13",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781270030596_1aem",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -228,
+        "y": 538
+      }
+    },
+    {
+      "id": "lc_1781270380723_xqhb",
+      "name": "WIR14",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781285865446_oy0e",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -204,
+        "y": 754
+      }
+    },
+    {
+      "id": "lc_1781270448423_iqwg",
+      "name": "WIR15",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781270161985_o08t",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -204,
+        "y": 898
+      }
+    },
+    {
+      "id": "lc_1781270458104_hecu",
+      "name": "PIP14",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269741315_a7f1",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 924,
+        "y": 130
+      }
+    },
+    {
+      "id": "lc_1781270489912_6jmy",
+      "name": "SHA2",
+      "componentId": "component_shaft_1779950000010",
+      "superiors": [
+        {
+          "lcId": "lc_1781269542887_15sn",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 324,
+        "y": 466
+      }
+    },
+    {
+      "id": "lc_1781270492933_9s0f",
+      "name": "SHA3",
+      "componentId": "component_shaft_1779950000010",
+      "superiors": [
+        {
+          "lcId": "lc_1781269551138_r6jw",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 492,
+        "y": 466
+      }
+    },
+    {
+      "id": "lc_1781270494305_2lu8",
+      "name": "SHA4",
+      "componentId": "component_shaft_1779950000010",
+      "superiors": [
+        {
+          "lcId": "lc_1781269557290_swi2",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 612,
+        "y": 466
+      }
+    },
+    {
+      "id": "lc_1781270495965_ghvp",
+      "name": "SHA5",
+      "componentId": "component_shaft_1779950000010",
+      "superiors": [
+        {
+          "lcId": "lc_1781270096282_u3tw",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 732,
+        "y": 466
+      }
+    },
+    {
+      "id": "lc_1781282409143_j613",
+      "name": "COO1",
+      "componentId": "component_cooler_1779980000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781282413384_ercc",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 576,
+        "y": 96
+      }
+    },
+    {
+      "id": "lc_1781282413384_ercc",
+      "name": "PIP15",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        {
+          "lcId": "lc_1781269710493_aviq",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 660,
+        "y": 106
+      }
+    },
+    {
+      "id": "lc_1781285865446_oy0e",
+      "name": "SWI3",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781270448423_iqwg",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": -216,
+        "y": 834
+      }
+    }
+  ]
+}
