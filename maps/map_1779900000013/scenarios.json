@@ -3,13 +3,13 @@
     {
       "id": "scenario_2b3_s1",
       "name": "Commission Both Circuits",
-      "description": "Both MCCs are de-energised and all valves are closed. Commission the service circuit first (cooling side must flow before the process side enters the heat exchanger): open V_S1 → close SW_S_Iso — the shaft turns and P_Service auto-starts → open V_S2. Then commission the process circuit: open V_P1 → close SW_P_Iso — the shaft turns and P_Process auto-starts → open V_P2. Heat transfer becomes active when both sides flow.",
+      "description": "Both MCCs are de-energised and all valves are closed. Commission the service circuit first (cooling side must flow before the process side enters the heat exchanger): open V_S1 â†’ close SW_S_Iso â€” the shaft turns and P_Service auto-starts â†’ open V_S2. Then commission the process circuit: open V_P1 â†’ close SW_P_Iso â€” the shaft turns and P_Process auto-starts â†’ open V_P2. Heat transfer becomes active when both sides flow.",
       "difficulty": "medium",
       "initialConditions": [
         {
           "id": "ic_2b3_s1_01",
           "literalComponentId": "lc_2b3_ps_s",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -39,7 +39,7 @@
         {
           "id": "ic_2b3_s1_07",
           "literalComponentId": "lc_2b3_ps_p",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -79,13 +79,13 @@
     {
       "id": "scenario_2b3_s2",
       "name": "Service Side Electrical Fault",
-      "description": "Both circuits are running with heat transfer active, but the service motor fuse F_Service has just tripped. M_Service is de-energised; the shaft is stationary so P_Service has stopped automatically. Respond: open SW_P_Iso to stop M_Process — P_Process auto-stops when the shaft stops — then close V_P1 to isolate the process side. Open SW_S_Iso, reset F_Service, close SW_S_Iso — M_Service auto-restarts and P_Service auto-restarts. Open V_P1, then close SW_P_Iso — M_Process auto-restarts and P_Process auto-restarts.",
+      "description": "Both circuits are running with heat transfer active, but the service motor fuse F_Service has just tripped. M_Service is de-energised; the shaft is stationary so P_Service has stopped automatically. Respond: open SW_P_Iso to stop M_Process â€” P_Process auto-stops when the shaft stops â€” then close V_P1 to isolate the process side. Open SW_S_Iso, reset F_Service, close SW_S_Iso â€” M_Service auto-restarts and P_Service auto-restarts. Open V_P1, then close SW_P_Iso â€” M_Process auto-restarts and P_Process auto-restarts.",
       "difficulty": "hard",
       "initialConditions": [
         {
           "id": "ic_2b3_s2_01",
           "literalComponentId": "lc_2b3_ps_s",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -115,7 +115,7 @@
         {
           "id": "ic_2b3_s2_07",
           "literalComponentId": "lc_2b3_ps_p",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -155,13 +155,13 @@
     {
       "id": "scenario_2b3_s3",
       "name": "Controlled Dual Shutdown",
-      "description": "Both circuits are running with full heat transfer. Shut down safely in the correct order — process first, then service (the cooling side stays running until the process side is isolated): open SW_P_Iso to stop M_Process — P_Process auto-stops when the shaft stops — then close V_P2 → de-energise PS_Process. Then open SW_S_Iso to stop M_Service — P_Service auto-stops — then close V_S2 → de-energise PS_Service. Closing a discharge valve while the pump shaft is still turning will dead-head the pump.",
+      "description": "Both circuits are running with full heat transfer. Shut down safely in the correct order â€” process first, then service (the cooling side stays running until the process side is isolated): open SW_P_Iso to stop M_Process â€” P_Process auto-stops when the shaft stops â€” then close V_P2 â†’ de-energise PS_Process. Then open SW_S_Iso to stop M_Service â€” P_Service auto-stops â€” then close V_S2 â†’ de-energise PS_Service. Closing a discharge valve while the pump shaft is still turning will dead-head the pump.",
       "difficulty": "hard",
       "initialConditions": [
         {
           "id": "ic_2b3_s3_01",
           "literalComponentId": "lc_2b3_ps_s",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -191,7 +191,7 @@
         {
           "id": "ic_2b3_s3_07",
           "literalComponentId": "lc_2b3_ps_p",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -235,13 +235,13 @@
         {
           "id": "tc_2b3_s3_03",
           "literalComponentId": "lc_2b3_ps_s",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": false
         },
         {
           "id": "tc_2b3_s3_04",
           "literalComponentId": "lc_2b3_ps_p",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": false
         }
       ]
