@@ -82,11 +82,27 @@
       "size": 2.1
     },
     {
+      "id": "lc_pipe_tank_p1",
+      "name": "Pipe_tank_p1",
+      "componentId": "component_pipe_1779600000001",
+      "superiors": [
+        "lc_1779500000002"
+      ],
+      "variableOverrides": {
+        "resistance": 0.05,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 816,
+        "y": -48
+      }
+    },
+    {
       "id": "lc_1779440791231",
       "name": "P1",
       "componentId": "component_1779500000001",
       "superiors": [
-        "lc_1779500000002"
+        "lc_pipe_tank_p1"
       ],
       "variableOverrides": {},
       "_canvas": {
@@ -102,7 +118,7 @@
         "lc_1779440847031"
       ],
       "variableOverrides": {
-        "resistance": 7,
+        "resistance": 0.07,
         "elevation_change": 3
       },
       "_canvas": {
@@ -210,8 +226,14 @@
       "name": "HE1",
       "componentId": "component_1779500000007",
       "superiors": [
-        "lc_pipe_v2_he",
-        "lc_pipe_process_001"
+        {
+          "lcId": "lc_pipe_v2_he",
+          "inPort": "process_in"
+        },
+        {
+          "lcId": "lc_pipe_process_001",
+          "inPort": "service_in"
+        }
       ],
       "variableOverrides": {},
       "_canvas": {
@@ -221,15 +243,31 @@
       "size": 1.3
     },
     {
-      "id": "lc_1779440925795",
-      "name": "V3",
-      "componentId": "component_1779399245576",
+      "id": "lc_pipe_he_proc",
+      "name": "Pipe_he_proc",
+      "componentId": "component_pipe_1779600000001",
       "superiors": [
         {
           "lcId": "lc_1779440947448",
           "outlet": "cold_outlet",
           "portId": "process_out"
         }
+      ],
+      "variableOverrides": {
+        "resistance": 0.2,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 1332,
+        "y": -78
+      }
+    },
+    {
+      "id": "lc_1779440925795",
+      "name": "V3",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_pipe_he_proc"
       ],
       "variableOverrides": {},
       "_canvas": {
@@ -238,15 +276,31 @@
       }
     },
     {
-      "id": "lc_1779440878100",
-      "name": "V5",
-      "componentId": "component_1779399245576",
+      "id": "lc_pipe_he_serv",
+      "name": "Pipe_he_serv",
+      "componentId": "component_pipe_1779600000001",
       "superiors": [
         {
           "lcId": "lc_1779440947448",
           "outlet": "hot_outlet",
           "portId": "service_out"
         }
+      ],
+      "variableOverrides": {
+        "resistance": 0.1,
+        "elevation_change": 0
+      },
+      "_canvas": {
+        "x": 1272,
+        "y": 16
+      }
+    },
+    {
+      "id": "lc_1779440878100",
+      "name": "V5",
+      "componentId": "component_1779399245576",
+      "superiors": [
+        "lc_pipe_he_serv"
       ],
       "variableOverrides": {},
       "_canvas": {
