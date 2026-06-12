@@ -1,0 +1,6 @@
+{
+  "id": "map_1779980200005",
+  "name": "Battery Backup — UPS Loop",
+  "description": "Learn how a UPS works by seeing its internal components: a Rectifier charges Battery1 from the AC mains, and an Inverter converts the battery's DC back to stable 50 Hz AC for the load. When mains fails, you must manually enable battery discharge to keep the load running — and restore mains before the battery depletes.",
+  "config": {}
+}
