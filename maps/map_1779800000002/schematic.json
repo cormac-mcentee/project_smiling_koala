@@ -52,8 +52,8 @@
     },
     {
       "lcId": "lc_1b2_j1",
-      "x": 576,
-      "y": 0,
+      "x": 566,
+      "y": 14,
       "portOverrides": {
         "input_b": {
           "edge": "bottom",
