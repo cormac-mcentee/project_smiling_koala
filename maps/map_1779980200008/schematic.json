@@ -1,0 +1,680 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_e14_wt1",
+      "x": 0,
+      "y": -120
+    },
+    {
+      "lcId": "lc_e14_shaft_a",
+      "x": 156,
+      "y": -110
+    },
+    {
+      "lcId": "lc_e14_g1",
+      "x": 312,
+      "y": -120
+    },
+    {
+      "lcId": "lc_e14_tx1",
+      "x": 576,
+      "y": -120
+    },
+    {
+      "lcId": "lc_e14_wt2",
+      "x": 0,
+      "y": 120
+    },
+    {
+      "lcId": "lc_e14_shaft_b",
+      "x": 156,
+      "y": 130
+    },
+    {
+      "lcId": "lc_e14_g2",
+      "x": 312,
+      "y": 120
+    },
+    {
+      "lcId": "lc_e14_tx2",
+      "x": 576,
+      "y": 120
+    },
+    {
+      "lcId": "lc_e14_junction",
+      "x": 710,
+      "y": -10
+    },
+    {
+      "lcId": "lc_e14_battery1",
+      "x": 960,
+      "y": 240
+    },
+    {
+      "lcId": "lc_e14_ge1",
+      "x": 1608,
+      "y": 48
+    },
+    {
+      "lcId": "lc_1781026900897_2e64",
+      "x": 1190,
+      "y": 38
+    },
+    {
+      "lcId": "lc_1781026904989_29c9",
+      "x": 854,
+      "y": -10,
+      "portOverrides": {
+        "output_b": {
+          "edge": "bottom",
+          "px": 0.2630853994490432
+        }
+      }
+    },
+    {
+      "lcId": "lc_1781027075433_d6xs",
+      "x": 996,
+      "y": -6
+    },
+    {
+      "lcId": "lc_1781027343571_y9wg",
+      "x": 396,
+      "y": 82
+    },
+    {
+      "lcId": "lc_1781027376557_3tkj",
+      "x": 396,
+      "y": -110
+    },
+    {
+      "lcId": "lc_1781027385333_5xs0",
+      "x": 660,
+      "y": -38,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781027388113_8ojp",
+      "x": 660,
+      "y": 82,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781027393223_roym",
+      "x": 732,
+      "y": -38
+    },
+    {
+      "lcId": "lc_1781027399732_ggz9",
+      "x": 732,
+      "y": 34,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781027402517_tzlj",
+      "x": 948,
+      "y": -38
+    },
+    {
+      "lcId": "lc_1781027404670_k04s",
+      "x": 1092,
+      "y": -14
+    },
+    {
+      "lcId": "lc_1781027406785_p9ip",
+      "x": 1068,
+      "y": 130,
+      "rotation": 270
+    },
+    {
+      "lcId": "lc_1781027410285_m94j",
+      "x": 1212,
+      "y": 10
+    },
+    {
+      "lcId": "lc_1781027414112_zpjr",
+      "x": 1524,
+      "y": 58
+    },
+    {
+      "lcId": "lc_1781027599060_wrbw",
+      "x": 852,
+      "y": 282
+    },
+    {
+      "lcId": "lc_1781027600528_4kpa",
+      "x": 948,
+      "y": 154
+    },
+    {
+      "lcId": "lc_e14_inv1",
+      "x": 1272,
+      "y": 48
+    },
+    {
+      "lcId": "lc_e14_tx_main",
+      "x": 1464,
+      "y": 24
+    },
+    {
+      "lcId": "lc_e14_rec1",
+      "x": 768,
+      "y": 96,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_e14_wir10b",
+      "x": 780,
+      "y": 370,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_1781109852874_5li7",
+      "x": 1404,
+      "y": -14
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_e14_01",
+      "srcLcId": "lc_e14_wt1",
+      "srcPortId": "shaft_output",
+      "dstLcId": "lc_e14_shaft_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e14_02",
+      "srcLcId": "lc_e14_shaft_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_g1",
+      "dstPortId": "shaft_input"
+    },
+    {
+      "id": "conn_e14_06",
+      "srcLcId": "lc_e14_wt2",
+      "srcPortId": "shaft_output",
+      "dstLcId": "lc_e14_shaft_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e14_07",
+      "srcLcId": "lc_e14_shaft_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_g2",
+      "dstPortId": "shaft_input"
+    },
+    {
+      "id": "conn_1781027350758",
+      "srcLcId": "lc_e14_g2",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027343571_y9wg",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_g2_chain_bridge",
+      "srcLcId": "lc_1781027343571_y9wg",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_tx2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027422954",
+      "srcLcId": "lc_e14_g1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027376557_3tkj",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_g1_chain_bridge",
+      "srcLcId": "lc_1781027376557_3tkj",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_tx1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027471172",
+      "srcLcId": "lc_e14_tx2",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027388113_8ojp",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027472298",
+      "srcLcId": "lc_1781027388113_8ojp",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_junction",
+      "dstPortId": "input_b"
+    },
+    {
+      "id": "conn_1781027475990",
+      "srcLcId": "lc_e14_tx1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027385333_5xs0",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027477382",
+      "srcLcId": "lc_1781027385333_5xs0",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_junction",
+      "dstPortId": "input_a"
+    },
+    {
+      "id": "conn_1781027489876",
+      "srcLcId": "lc_e14_junction",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027393223_roym",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027491388",
+      "srcLcId": "lc_1781027393223_roym",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781026904989_29c9",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027497814",
+      "srcLcId": "lc_1781026904989_29c9",
+      "srcPortId": "output_b",
+      "dstLcId": "lc_1781027399732_ggz9",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027522947",
+      "srcLcId": "lc_e14_battery1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027406785_p9ip",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027524279",
+      "srcLcId": "lc_1781027406785_p9ip",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781026900897_2e64",
+      "dstPortId": "input_b"
+    },
+    {
+      "id": "conn_1781027528037",
+      "srcLcId": "lc_1781027075433_d6xs",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027404670_k04s",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027529243",
+      "srcLcId": "lc_1781027404670_k04s",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781026900897_2e64",
+      "dstPortId": "input_a"
+    },
+    {
+      "id": "conn_1781027535209",
+      "srcLcId": "lc_1781026900897_2e64",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027410285_m94j",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027536541",
+      "srcLcId": "lc_1781027410285_m94j",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_inv1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e14_txmain_wir15",
+      "srcLcId": "lc_e14_tx_main",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027414112_zpjr",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027542447",
+      "srcLcId": "lc_1781027414112_zpjr",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_ge1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027559373",
+      "srcLcId": "lc_1781026904989_29c9",
+      "srcPortId": "output_a",
+      "dstLcId": "lc_1781027402517_tzlj",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027560755",
+      "srcLcId": "lc_1781027402517_tzlj",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027075433_d6xs",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027609631",
+      "srcLcId": "lc_1781027399732_ggz9",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_rec1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e14_rec1_wir10b",
+      "srcLcId": "lc_e14_rec1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_wir10b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e14_wir10b_swi2",
+      "srcLcId": "lc_e14_wir10b",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027599060_wrbw",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027611720",
+      "srcLcId": "lc_1781027599060_wrbw",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781027600528_4kpa",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781027613599",
+      "srcLcId": "lc_1781027600528_4kpa",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_battery1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781109854543",
+      "srcLcId": "lc_e14_inv1",
+      "srcPortId": "output",
+      "dstLcId": "lc_1781109852874_5li7",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_1781109856153",
+      "srcLcId": "lc_1781109852874_5li7",
+      "srcPortId": "output",
+      "dstLcId": "lc_e14_tx_main",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_e14_wt1_wind": {
+      "id": "anc_e14_wt1_wind",
+      "type": "counter",
+      "lcId": "lc_e14_wt1",
+      "bindTo": "var:wind_speed",
+      "label": "WT1 Wind (%)",
+      "x": -48,
+      "y": -94
+    },
+    "anc_e14_wt1_run": {
+      "id": "anc_e14_wt1_run",
+      "type": "light",
+      "lcId": "lc_e14_wt1",
+      "bindTo": "var:running",
+      "label": "WT1 Running",
+      "x": 24,
+      "y": -144
+    },
+    "anc_e14_wt1_rpm": {
+      "id": "anc_e14_wt1_rpm",
+      "type": "counter",
+      "lcId": "lc_e14_wt1",
+      "bindTo": "var:shaft_rpm",
+      "label": "WT1 RPM",
+      "x": -48,
+      "y": -60
+    },
+    "anc_e14_g1_volt": {
+      "id": "anc_e14_g1_volt",
+      "type": "counter",
+      "lcId": "lc_e14_g1",
+      "bindTo": "var:electricity.voltage",
+      "label": "G1 Output (V)",
+      "x": 348,
+      "y": 0
+    },
+    "anc_e14_g1_run": {
+      "id": "anc_e14_g1_run",
+      "type": "light",
+      "lcId": "lc_e14_g1",
+      "bindTo": "var:running",
+      "label": "G1 Online",
+      "x": 324,
+      "y": 36
+    },
+    "anc_e14_tx1_volt": {
+      "id": "anc_e14_tx1_volt",
+      "type": "counter",
+      "lcId": "lc_e14_tx1",
+      "bindTo": "var:secondary_voltage",
+      "label": "TX1 HV (V)",
+      "x": 612,
+      "y": -144
+    },
+    "anc_e14_wt2_wind": {
+      "id": "anc_e14_wt2_wind",
+      "type": "counter",
+      "lcId": "lc_e14_wt2",
+      "bindTo": "var:wind_speed",
+      "label": "WT2 Wind (%)",
+      "x": -48,
+      "y": 166
+    },
+    "anc_e14_wt2_run": {
+      "id": "anc_e14_wt2_run",
+      "type": "light",
+      "lcId": "lc_e14_wt2",
+      "bindTo": "var:running",
+      "label": "WT2 Running",
+      "x": 24,
+      "y": 96
+    },
+    "anc_e14_wt2_rpm": {
+      "id": "anc_e14_wt2_rpm",
+      "type": "counter",
+      "lcId": "lc_e14_wt2",
+      "bindTo": "var:shaft_rpm",
+      "label": "WT2 RPM",
+      "x": -48,
+      "y": 200
+    },
+    "anc_e14_g2_volt": {
+      "id": "anc_e14_g2_volt",
+      "type": "counter",
+      "lcId": "lc_e14_g2",
+      "bindTo": "var:electricity.voltage",
+      "label": "G2 Output (V)",
+      "x": 348,
+      "y": 240
+    },
+    "anc_e14_g2_run": {
+      "id": "anc_e14_g2_run",
+      "type": "light",
+      "lcId": "lc_e14_g2",
+      "bindTo": "var:running",
+      "label": "G2 Online",
+      "x": 324,
+      "y": 276
+    },
+    "anc_e14_tx2_volt": {
+      "id": "anc_e14_tx2_volt",
+      "type": "counter",
+      "lcId": "lc_e14_tx2",
+      "bindTo": "var:secondary_voltage",
+      "label": "TX2 HV (V)",
+      "x": 612,
+      "y": 96
+    },
+    "anc_e14_bat1_soc": {
+      "id": "anc_e14_bat1_soc",
+      "type": "counter",
+      "lcId": "lc_e14_battery1",
+      "bindTo": "var:state_of_charge",
+      "label": "Battery SoC (%)",
+      "x": 1008,
+      "y": 468
+    },
+    "anc_e14_bat1_charging": {
+      "id": "anc_e14_bat1_charging",
+      "type": "light",
+      "lcId": "lc_e14_battery1",
+      "bindTo": "var:charging",
+      "label": "Charging",
+      "x": 996,
+      "y": 396
+    },
+    "anc_e14_bat1_discharge_mode": {
+      "id": "anc_e14_bat1_discharge_mode",
+      "type": "light",
+      "lcId": "lc_e14_battery1",
+      "bindTo": "var:discharge_mode",
+      "label": "Discharge Mode",
+      "x": 996,
+      "y": 432
+    },
+    "anc_e14_bat1_toggle": {
+      "id": "anc_e14_bat1_toggle",
+      "type": "button",
+      "lcId": "lc_e14_battery1",
+      "bindTo": "act:toggle_discharge_mode",
+      "label": "Toggle Discharge",
+      "x": 1008,
+      "y": 360
+    },
+    "anc_e14_ge1_connect": {
+      "id": "anc_e14_ge1_connect",
+      "type": "button",
+      "lcId": "lc_e14_ge1",
+      "bindTo": "act:on_toggle",
+      "label": "GE1 Connect",
+      "x": 1656,
+      "y": 168
+    },
+    "anc_e14_ge1_reset": {
+      "id": "anc_e14_ge1_reset",
+      "type": "button",
+      "lcId": "lc_e14_ge1",
+      "bindTo": "act:reset_trip",
+      "label": "GE1 Reset",
+      "x": 1644,
+      "y": -12
+    },
+    "anc_e14_ge1_exp": {
+      "id": "anc_e14_ge1_exp",
+      "type": "light",
+      "lcId": "lc_e14_ge1",
+      "bindTo": "var:exporting",
+      "label": "Exporting",
+      "x": 1644,
+      "y": 204
+    },
+    "anc_e14_ge1_trip": {
+      "id": "anc_e14_ge1_trip",
+      "type": "light",
+      "lcId": "lc_e14_ge1",
+      "bindTo": "var:protection_tripped",
+      "label": "Protection Tripped",
+      "x": 1632,
+      "y": 24
+    },
+    "anc_e14_ge1_volt": {
+      "id": "anc_e14_ge1_volt",
+      "type": "counter",
+      "lcId": "lc_e14_ge1",
+      "bindTo": "var:measured_voltage",
+      "label": "GE1 Voltage (V)",
+      "x": 1656,
+      "y": 132
+    },
+    "anc_e14_inv1_reset": {
+      "id": "anc_e14_inv1_reset",
+      "type": "button",
+      "lcId": "lc_e14_inv1",
+      "bindTo": "act:reset_trip",
+      "label": "INV1 Reset",
+      "x": 1320,
+      "y": 132
+    },
+    "anc_e14_inv1_tripped": {
+      "id": "anc_e14_inv1_tripped",
+      "type": "light",
+      "lcId": "lc_e14_inv1",
+      "bindTo": "var:tripped",
+      "label": "INV1 Tripped",
+      "x": 1308,
+      "y": 204
+    },
+    "anc_e14_inv1_freq": {
+      "id": "anc_e14_inv1_freq",
+      "type": "counter",
+      "lcId": "lc_e14_inv1",
+      "bindTo": "var:electricity.frequency",
+      "label": "INV1 Out Hz",
+      "x": 1320,
+      "y": 168
+    },
+    "anc_1781027290216": {
+      "id": "anc_1781027290216",
+      "type": "button",
+      "lcId": "lc_1781027075433_d6xs",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 1032,
+      "y": -36
+    },
+    "anc_1781027299942": {
+      "id": "anc_1781027299942",
+      "type": "light",
+      "lcId": "lc_1781027075433_d6xs",
+      "bindTo": "var:closed",
+      "label": "Status",
+      "x": 1092,
+      "y": -36
+    },
+    "anc_1781028107417": {
+      "id": "anc_1781028107417",
+      "type": "button",
+      "lcId": "lc_1781027599060_wrbw",
+      "bindTo": "act:on_toggle",
+      "label": "Press",
+      "x": 900,
+      "y": 336
+    },
+    "anc_1781028119047": {
+      "id": "anc_1781028119047",
+      "type": "light",
+      "lcId": "lc_1781027599060_wrbw",
+      "bindTo": "var:closed",
+      "label": "Status",
+      "x": 888,
+      "y": 372
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_e14_01",
+      "type": "text",
+      "x": 0,
+      "y": -240,
+      "content": "WT1: rated 1500 rpm, cut-in 15%, cut-out 85%. WT2: rated 1200 rpm, cut-in 10%, cut-out 80%. Each turbine has a step-up transformer (TX×2). Both chains combine at BUS_A.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e14_02",
+      "type": "text",
+      "x": 700,
+      "y": -100,
+      "content": "Battery charges automatically when BUS_A is live. To export during a wind lull, press Toggle Discharge — battery outputs stable 415 V from stored charge. Battery depletes at 0.5%/tick in discharge mode.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
