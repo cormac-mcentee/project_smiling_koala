@@ -1,0 +1,6 @@
+{
+  "id": "map_1779980200003",
+  "name": "Variable Frequency Drive",
+  "description": "Control motor speed using a Variable Frequency Drive (VFD). Adjust the speed setpoint and observe how pump flow responds proportionally. Learn VFD protection features and trip conditions.",
+  "config": {}
+}
