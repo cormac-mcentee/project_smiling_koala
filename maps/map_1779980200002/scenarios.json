@@ -1,0 +1,244 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_e08_s1",
+      "name": "Commission the Double-Ended Substation",
+      "description": "Both 11 kV incomers are healthy but all isolators are open. Energise Bus A via SW_A, then energise Bus B via SW_B. Close the feeder switches (SW_F1, SW_F2, SW_F3) to supply all loads. Close SW_AUX to start charging the station battery through the auxiliary transformer.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_e08_s1_01",
+          "literalComponentId": "lc_e08_sw_a",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s1_02",
+          "literalComponentId": "lc_e08_sw_b",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s1_03",
+          "literalComponentId": "lc_e08_bc_sw",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s1_04",
+          "literalComponentId": "lc_e08_sw_f1",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s1_05",
+          "literalComponentId": "lc_e08_sw_f2",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s1_06",
+          "literalComponentId": "lc_e08_sw_f3",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s1_07",
+          "literalComponentId": "lc_e08_sw_aux",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s1_08",
+          "literalComponentId": "lc_e08_bat1",
+          "variableId": "var_bat_discharge_mode",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s1_09",
+          "literalComponentId": "lc_e08_bat1",
+          "variableId": "var_bat_state_of_charge",
+          "value": 20
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e08_s1_01",
+          "literalComponentId": "lc_e08_load1",
+          "variableId": "var_ec_active",
+          "value": true
+        },
+        {
+          "id": "tc_e08_s1_02",
+          "literalComponentId": "lc_e08_load2",
+          "variableId": "var_motor_running",
+          "value": true
+        },
+        {
+          "id": "tc_e08_s1_03",
+          "literalComponentId": "lc_e08_load3",
+          "variableId": "var_ec_active",
+          "value": true
+        },
+        {
+          "id": "tc_e08_s1_04",
+          "literalComponentId": "lc_e08_bat1",
+          "variableId": "var_bat_charging",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_e08_s2",
+      "name": "Supply B Failure — Transfer via Bus Coupler",
+      "description": "The substation is fully commissioned and both buses are live. Incomer B has just failed — PS2 is out of service and Bus B loads (motor and general load) have dropped off. Use the bus coupler (BC) to transfer Bus B onto the Bus A supply. Bus A has sufficient capacity to carry both sections.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_e08_s2_01",
+          "literalComponentId": "lc_e08_sw_a",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s2_02",
+          "literalComponentId": "lc_e08_sw_b",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s2_03",
+          "literalComponentId": "lc_e08_bc_sw",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s2_04",
+          "literalComponentId": "lc_e08_sw_f1",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s2_05",
+          "literalComponentId": "lc_e08_sw_f2",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s2_06",
+          "literalComponentId": "lc_e08_sw_f3",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s2_07",
+          "literalComponentId": "lc_e08_sw_aux",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s2_08",
+          "literalComponentId": "lc_e08_bat1",
+          "variableId": "var_bat_state_of_charge",
+          "value": 80
+        },
+        {
+          "id": "ic_e08_s2_09",
+          "literalComponentId": "lc_e08_bat1",
+          "variableId": "var_bat_discharge_mode",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s2_10",
+          "literalComponentId": "lc_e08_ps2",
+          "variableId": "var_ps_broken",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e08_s2_01",
+          "literalComponentId": "lc_e08_load2",
+          "variableId": "var_motor_running",
+          "value": true
+        },
+        {
+          "id": "tc_e08_s2_02",
+          "literalComponentId": "lc_e08_load3",
+          "variableId": "var_ec_active",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "scenario_e08_s3",
+      "name": "Total AC Blackout — Battery Emergency",
+      "description": "Both HV incomers have been lost simultaneously — the entire substation is blacked out. The station battery (BAT1) is at 80% charge. Enable battery discharge to bring the inverter (INV1) online and restore power to the essential services bus.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_e08_s3_01",
+          "literalComponentId": "lc_e08_sw_a",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s3_02",
+          "literalComponentId": "lc_e08_sw_b",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s3_03",
+          "literalComponentId": "lc_e08_sw_f1",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s3_04",
+          "literalComponentId": "lc_e08_sw_aux",
+          "variableId": "var_switch_closed",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s3_05",
+          "literalComponentId": "lc_e08_bc_sw",
+          "variableId": "var_switch_closed",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s3_06",
+          "literalComponentId": "lc_e08_bat1",
+          "variableId": "var_bat_state_of_charge",
+          "value": 80
+        },
+        {
+          "id": "ic_e08_s3_07",
+          "literalComponentId": "lc_e08_bat1",
+          "variableId": "var_bat_discharge_mode",
+          "value": false
+        },
+        {
+          "id": "ic_e08_s3_08",
+          "literalComponentId": "lc_e08_ps1",
+          "variableId": "var_ps_broken",
+          "value": true
+        },
+        {
+          "id": "ic_e08_s3_09",
+          "literalComponentId": "lc_e08_ps2",
+          "variableId": "var_ps_broken",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_e08_s3_01",
+          "literalComponentId": "lc_e08_load1",
+          "variableId": "var_ec_active",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
