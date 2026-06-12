@@ -206,8 +206,14 @@
       "name": "HE1",
       "componentId": "component_1779500000007",
       "superiors": [
-        "lc_2b3_pipe_s3",
-        "lc_2b3_pipe_p3"
+        {
+          "lcId": "lc_2b3_pipe_p3",
+          "inPort": "process_in"
+        },
+        {
+          "lcId": "lc_2b3_pipe_s3",
+          "inPort": "service_in"
+        }
       ],
       "variableOverrides": {},
       "_canvas": {
