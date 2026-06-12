@@ -1,0 +1,713 @@
+{
+  "literalComponents": [
+    {
+      "id": "lc_e08_ps1",
+      "name": "PS1",
+      "componentId": "component_power_supply_1779600000005",
+      "superiors": [],
+      "variableOverrides": {
+        "rated_voltage": 11000
+      },
+      "_canvas": {
+        "x": -40,
+        "y": -182
+      }
+    },
+    {
+      "id": "lc_e08_sw_a",
+      "name": "SW_A",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781130394157_kdn9",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 84,
+        "y": -174
+      }
+    },
+    {
+      "id": "lc_e08_cb_a",
+      "name": "CB_A",
+      "componentId": "component_fuse_1779700000003",
+      "superiors": [
+        {
+          "lcId": "lc_1781130391859_lhbq",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 204,
+        "y": -174
+      }
+    },
+    {
+      "id": "lc_e08_wire_a",
+      "name": "Wire_A",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_cb_a"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 324,
+        "y": -182
+      }
+    },
+    {
+      "id": "lc_e08_tx_a",
+      "name": "TX_A",
+      "componentId": "component_transformer_1779980000008",
+      "superiors": [
+        "lc_e08_wire_a"
+      ],
+      "variableOverrides": {
+        "turns_ratio": 0.0377
+      },
+      "_canvas": {
+        "x": 432,
+        "y": -216
+      }
+    },
+    {
+      "id": "lc_e08_wire_lva",
+      "name": "Wire_LVA",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_tx_a"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 540,
+        "y": -206
+      }
+    },
+    {
+      "id": "lc_e08_bus_a",
+      "name": "BUS_A",
+      "componentId": "component_wire_splitter_1779700000007",
+      "superiors": [
+        "lc_e08_wire_lva"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 662,
+        "y": -130
+      }
+    },
+    {
+      "id": "lc_e08_bc_wire",
+      "name": "BC_Wire",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_bus_a"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 684,
+        "y": -206
+      }
+    },
+    {
+      "id": "lc_e08_bc_sw",
+      "name": "BC_SW",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        "lc_e08_bc_wire"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 780,
+        "y": -198
+      }
+    },
+    {
+      "id": "lc_e08_bc_wire2",
+      "name": "BC_Wire2",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_bc_sw"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 900,
+        "y": -206
+      }
+    },
+    {
+      "id": "lc_e08_jnc_b",
+      "name": "JNC_B",
+      "componentId": "component_wire_junction_1779700000006",
+      "superiors": [
+        {
+          "lcId": "lc_e08_wire_lvb",
+          "inPort": "input_a"
+        },
+        {
+          "lcId": "lc_e08_bc_wire2",
+          "inPort": "input_b"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 998,
+        "y": -202
+      }
+    },
+    {
+      "id": "lc_e08_spl_b",
+      "name": "SPL_B",
+      "componentId": "component_wire_splitter_1779700000007",
+      "superiors": [
+        {
+          "lcId": "lc_1781126144370_03kf",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1070,
+        "y": -10
+      }
+    },
+    {
+      "id": "lc_e08_sw_f1",
+      "name": "SW_F1",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781126159199_7z14",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 732,
+        "y": 130
+      }
+    },
+    {
+      "id": "lc_e08_wire_f1",
+      "name": "Wire_F1",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_sw_f1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 804,
+        "y": 130
+      }
+    },
+    {
+      "id": "lc_e08_ess_jnc",
+      "name": "ESS_JNC",
+      "componentId": "component_wire_junction_1779700000006",
+      "superiors": [
+        {
+          "lcId": "lc_e08_wire_f1",
+          "inPort": "input_a"
+        },
+        {
+          "lcId": "lc_e08_wire_inv2",
+          "inPort": "input_b"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 878,
+        "y": 134
+      }
+    },
+    {
+      "id": "lc_e08_load1",
+      "name": "LOAD1",
+      "componentId": "component_electrical_consumer_1779980000019",
+      "superiors": [
+        {
+          "lcId": "lc_1781130399149_1qfv",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 960,
+        "y": 114
+      }
+    },
+    {
+      "id": "lc_e08_sw_f2",
+      "name": "SW_F2",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781126147426_aady",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1164,
+        "y": -38
+      }
+    },
+    {
+      "id": "lc_e08_wire_f2",
+      "name": "Wire_F2",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_sw_f2"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1284,
+        "y": -38
+      }
+    },
+    {
+      "id": "lc_e08_load2",
+      "name": "LOAD2",
+      "componentId": "component_motor_load_1779700000004",
+      "superiors": [
+        "lc_e08_wire_f2"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1380,
+        "y": -53.5
+      }
+    },
+    {
+      "id": "lc_e08_sw_f3",
+      "name": "SW_F3",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781126150071_ry7n",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1164,
+        "y": 58
+      }
+    },
+    {
+      "id": "lc_e08_wire_f3",
+      "name": "Wire_F3",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_sw_f3"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1284,
+        "y": 58
+      }
+    },
+    {
+      "id": "lc_e08_load3",
+      "name": "LOAD3",
+      "componentId": "component_electrical_consumer_1779980000019",
+      "superiors": [
+        "lc_e08_wire_f3"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1368,
+        "y": 42
+      }
+    },
+    {
+      "id": "lc_e08_sw_aux",
+      "name": "SW_AUX",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781126156743_6esl",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 684,
+        "y": 306
+      }
+    },
+    {
+      "id": "lc_e08_wire_aux_a",
+      "name": "Wire_AuxA",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_sw_aux"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 780,
+        "y": 394
+      }
+    },
+    {
+      "id": "lc_e08_tx_aux",
+      "name": "TX_AUX",
+      "componentId": "component_transformer_1779980000008",
+      "superiors": [
+        "lc_e08_wire_aux_a"
+      ],
+      "variableOverrides": {
+        "turns_ratio": 1
+      },
+      "_canvas": {
+        "x": 864,
+        "y": 576
+      }
+    },
+    {
+      "id": "lc_e08_wire_aux_b",
+      "name": "Wire_AuxB",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_tx_aux"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 972,
+        "y": 610
+      }
+    },
+    {
+      "id": "lc_e08_rec1",
+      "name": "REC1",
+      "componentId": "component_rectifier_1779980000017",
+      "superiors": [
+        "lc_e08_wire_aux_b"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1080,
+        "y": 594
+      }
+    },
+    {
+      "id": "lc_e08_wire_dc",
+      "name": "Wire_DC",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_rec1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1188,
+        "y": 610
+      }
+    },
+    {
+      "id": "lc_e08_bat1",
+      "name": "BAT1",
+      "componentId": "component_battery_storage_1779980000016",
+      "superiors": [
+        "lc_e08_wire_dc"
+      ],
+      "variableOverrides": {
+        "state_of_charge": 80
+      },
+      "_canvas": {
+        "x": 1272,
+        "y": 576
+      }
+    },
+    {
+      "id": "lc_e08_wire_inv",
+      "name": "Wire_Inv",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_bat1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1428,
+        "y": 634
+      }
+    },
+    {
+      "id": "lc_e08_inv1",
+      "name": "INV1",
+      "componentId": "component_inverter_1779980000018",
+      "superiors": [
+        "lc_e08_wire_inv"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1344,
+        "y": 480
+      }
+    },
+    {
+      "id": "lc_e08_wire_inv2",
+      "name": "Wire_Inv2",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_inv1"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 900,
+        "y": 394
+      }
+    },
+    {
+      "id": "lc_e08_ps2",
+      "name": "PS2",
+      "componentId": "component_power_supply_1779600000005",
+      "superiors": [],
+      "variableOverrides": {
+        "rated_voltage": 11000
+      },
+      "_canvas": {
+        "x": 1952,
+        "y": -326
+      }
+    },
+    {
+      "id": "lc_e08_sw_b",
+      "name": "SW_B",
+      "componentId": "component_switch_1779700000002",
+      "superiors": [
+        {
+          "lcId": "lc_1781126136685_ysps",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1764,
+        "y": -326
+      }
+    },
+    {
+      "id": "lc_e08_cb_b",
+      "name": "CB_B",
+      "componentId": "component_fuse_1779700000003",
+      "superiors": [
+        {
+          "lcId": "lc_1781126131367_lfbm",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1620,
+        "y": -322.5
+      }
+    },
+    {
+      "id": "lc_e08_wire_b",
+      "name": "Wire_B",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_cb_b",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1476,
+        "y": -326
+      }
+    },
+    {
+      "id": "lc_e08_tx_b",
+      "name": "TX_B",
+      "componentId": "component_transformer_1779980000008",
+      "superiors": [
+        "lc_e08_wire_b"
+      ],
+      "variableOverrides": {
+        "turns_ratio": 0.0377
+      },
+      "_canvas": {
+        "x": 1344,
+        "y": -360
+      }
+    },
+    {
+      "id": "lc_e08_wire_lvb",
+      "name": "Wire_LVB",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        "lc_e08_tx_b"
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1092,
+        "y": -206
+      }
+    },
+    {
+      "id": "lc_1781126131367_lfbm",
+      "name": "WIR1",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_sw_b",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1716,
+        "y": -326
+      }
+    },
+    {
+      "id": "lc_1781126136685_ysps",
+      "name": "WIR2",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_ps2",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1860,
+        "y": -326
+      }
+    },
+    {
+      "id": "lc_1781126144370_03kf",
+      "name": "WIR3",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_jnc_b",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 996,
+        "y": -110
+      }
+    },
+    {
+      "id": "lc_1781126147426_aady",
+      "name": "WIR4",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_spl_b",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1068,
+        "y": -38
+      }
+    },
+    {
+      "id": "lc_1781126150071_ry7n",
+      "name": "WIR5",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_spl_b",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 1092,
+        "y": 58
+      }
+    },
+    {
+      "id": "lc_1781126156743_6esl",
+      "name": "WIR6",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_bus_a",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 612,
+        "y": 82
+      }
+    },
+    {
+      "id": "lc_1781126159199_7z14",
+      "name": "WIR7",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_bus_a",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 684,
+        "y": -14
+      }
+    },
+    {
+      "id": "lc_1781130391859_lhbq",
+      "name": "WIR8",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_sw_a",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 156,
+        "y": -206
+      }
+    },
+    {
+      "id": "lc_1781130394157_kdn9",
+      "name": "WIR9",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_ps1",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 36,
+        "y": -230
+      }
+    },
+    {
+      "id": "lc_1781130399149_1qfv",
+      "name": "WIR10",
+      "componentId": "component_wire_1779700000001",
+      "superiors": [
+        {
+          "lcId": "lc_e08_ess_jnc",
+          "inPort": "input"
+        }
+      ],
+      "variableOverrides": {},
+      "_canvas": {
+        "x": 900,
+        "y": 130
+      }
+    }
+  ]
+}
