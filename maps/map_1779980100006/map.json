@@ -1,0 +1,6 @@
+{
+  "id": "map_1779980100006",
+  "name": "Temperature Blending",
+  "description": "A mixing valve blends a hot supply and a cold supply to a target outlet temperature. Adjust the blend ratio, diagnose a supply fault that swings the outlet temperature, and practise trimming the setpoint to meet a new process requirement.",
+  "config": {}
+}
