@@ -1,0 +1,303 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_e11_ps1",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "lcId": "lc_e11_wire_a",
+      "x": 80,
+      "y": 0
+    },
+    {
+      "lcId": "lc_e11_sw_mains",
+      "x": 160,
+      "y": -12
+    },
+    {
+      "lcId": "lc_e11_wire_b",
+      "x": 256,
+      "y": 0
+    },
+    {
+      "lcId": "lc_e11_spl1",
+      "x": 336,
+      "y": 0,
+      "portOverrides": {
+        "output_b": {
+          "edge": "bottom",
+          "px": 0.5
+        }
+      }
+    },
+    {
+      "lcId": "lc_e11_wire_c",
+      "x": 420,
+      "y": 0
+    },
+    {
+      "lcId": "lc_e11_wire_d",
+      "x": 336,
+      "y": 60,
+      "rotation": 90
+    },
+    {
+      "lcId": "lc_e11_rec1",
+      "x": 420,
+      "y": 100
+    },
+    {
+      "lcId": "lc_e11_wire_e",
+      "x": 504,
+      "y": 100
+    },
+    {
+      "lcId": "lc_e11_bat1",
+      "x": 576,
+      "y": 100
+    },
+    {
+      "lcId": "lc_e11_wire_f",
+      "x": 668,
+      "y": 100
+    },
+    {
+      "lcId": "lc_e11_inv1",
+      "x": 740,
+      "y": 88
+    },
+    {
+      "lcId": "lc_e11_wire_f2",
+      "x": 824,
+      "y": 100
+    },
+    {
+      "lcId": "lc_e11_jnc1",
+      "x": 912,
+      "y": 0
+    },
+    {
+      "lcId": "lc_e11_wire_g",
+      "x": 1000,
+      "y": 0
+    },
+    {
+      "lcId": "lc_e11_load1",
+      "x": 1080,
+      "y": -12
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_e11_01",
+      "srcLcId": "lc_e11_ps1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_wire_a",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_02",
+      "srcLcId": "lc_e11_wire_a",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_sw_mains",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_03",
+      "srcLcId": "lc_e11_sw_mains",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_wire_b",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_04",
+      "srcLcId": "lc_e11_wire_b",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_spl1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_05",
+      "srcLcId": "lc_e11_spl1",
+      "srcPortId": "output_a",
+      "dstLcId": "lc_e11_wire_c",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_06",
+      "srcLcId": "lc_e11_spl1",
+      "srcPortId": "output_b",
+      "dstLcId": "lc_e11_wire_d",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_07",
+      "srcLcId": "lc_e11_wire_c",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_jnc1",
+      "dstPortId": "input_a"
+    },
+    {
+      "id": "conn_e11_08",
+      "srcLcId": "lc_e11_wire_d",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_rec1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_09",
+      "srcLcId": "lc_e11_rec1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_wire_e",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_10",
+      "srcLcId": "lc_e11_wire_e",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_bat1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_11",
+      "srcLcId": "lc_e11_bat1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_wire_f",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_12",
+      "srcLcId": "lc_e11_wire_f",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_inv1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_13",
+      "srcLcId": "lc_e11_inv1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_wire_f2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_14",
+      "srcLcId": "lc_e11_wire_f2",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_jnc1",
+      "dstPortId": "input_b"
+    },
+    {
+      "id": "conn_e11_15",
+      "srcLcId": "lc_e11_jnc1",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_wire_g",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_e11_16",
+      "srcLcId": "lc_e11_wire_g",
+      "srcPortId": "output",
+      "dstLcId": "lc_e11_load1",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_e11_sw_btn": {
+      "id": "anc_e11_sw_btn",
+      "type": "button",
+      "lcId": "lc_e11_sw_mains",
+      "bindTo": "act:on_toggle",
+      "label": "SW_Mains",
+      "x": 160,
+      "y": -84
+    },
+    "anc_e11_sw_lgt": {
+      "id": "anc_e11_sw_lgt",
+      "type": "light",
+      "lcId": "lc_e11_sw_mains",
+      "bindTo": "var:closed",
+      "label": "Mains Closed",
+      "x": 220,
+      "y": -84
+    },
+    "anc_e11_bat_toggle": {
+      "id": "anc_e11_bat_toggle",
+      "type": "button",
+      "lcId": "lc_e11_bat1",
+      "bindTo": "act:toggle_discharge_mode",
+      "label": "Toggle Discharge",
+      "x": 576,
+      "y": 216
+    },
+    "anc_e11_bat_soc": {
+      "id": "anc_e11_bat_soc",
+      "type": "counter",
+      "lcId": "lc_e11_bat1",
+      "bindTo": "var:state_of_charge",
+      "label": "Battery SoC (%)",
+      "x": 576,
+      "y": 252
+    },
+    "anc_e11_bat_charging": {
+      "id": "anc_e11_bat_charging",
+      "type": "light",
+      "lcId": "lc_e11_bat1",
+      "bindTo": "var:charging",
+      "label": "Charging",
+      "x": 648,
+      "y": 216
+    },
+    "anc_e11_bat_discharge_lgt": {
+      "id": "anc_e11_bat_discharge_lgt",
+      "type": "light",
+      "lcId": "lc_e11_bat1",
+      "bindTo": "var:discharge_mode",
+      "label": "Discharge Mode",
+      "x": 648,
+      "y": 252
+    },
+    "anc_e11_inv_freq": {
+      "id": "anc_e11_inv_freq",
+      "type": "counter",
+      "lcId": "lc_e11_inv1",
+      "bindTo": "var:electricity.frequency",
+      "label": "INV1 Out Hz",
+      "x": 740,
+      "y": 216
+    },
+    "anc_e11_load1_lgt": {
+      "id": "anc_e11_load1_lgt",
+      "type": "light",
+      "lcId": "lc_e11_load1",
+      "bindTo": "var:active",
+      "label": "LOAD1 Active",
+      "x": 1080,
+      "y": -84
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_e11_01",
+      "type": "text",
+      "x": 0,
+      "y": -160,
+      "content": "Mains path (top): PS1 supplies 415 V AC. SW_Mains closes the circuit. The splitter (SPL1) feeds AC directly to Junction JNC1, which powers ML1.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    },
+    {
+      "id": "lm_e11_02",
+      "type": "text",
+      "x": 420,
+      "y": -160,
+      "content": "Battery loop (bottom): SPL1 also feeds REC1 (Rectifier), which converts AC to DC to charge Battery1. When mains fails, enable discharge mode — Battery1 feeds INV1 (Inverter), which converts DC back to stable 50 Hz AC entering JNC1 from below.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
