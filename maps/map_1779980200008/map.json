@@ -1,0 +1,6 @@
+{
+  "id": "map_1779980200008",
+  "name": "Wind Farm: Grid Integration",
+  "description": "Manage a two-turbine wind farm from generation to grid export. Two turbines with different rated speeds feed separate step-up transformers and earth fault relays into a combined busbar. A battery storage system charges during generation and can be switched to discharge mode to sustain export during wind lulls. Covers redundancy, earth fault protection, and battery management.",
+  "config": {}
+}
