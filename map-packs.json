@@ -2,10 +2,12 @@
   "mapPacks": [
     {
       "id": "mappack_1779398997874",
-      "name": "Basic Componets",
-      "description": "Introductory scenarios covering the fundamental components and procedures.",
+      "name": "Process & Piping",
+      "description": "17 levels covering every process component from basic valves and pumps through coolers, heat exchangers, phase change, strainers, mixing valves, and compound multi-fault loops.",
       "tags": [
-        "tutorial"
+        "tutorial",
+        "content",
+        "cycle1"
       ],
       "mapIds": [
         "map_1779700000001",
@@ -14,39 +16,34 @@
         "map_1779700000004",
         "map_1779700000005",
         "map_1779700000006",
-        "map_1779399000674"
-      ]
-    },
-    {
-      "id": "mappack_1779800000001",
-      "name": "Basic Components part 2",
-      "description": "Multi-component production scenarios combining all Cycle 1 components in real-process contexts.",
-      "tags": [
-        "content",
-        "cycle1"
-      ],
-      "mapIds": [
-        "map_1779800000001",
+        "map_1779399000674",
         "map_1779800000002",
-        "map_1779800000003",
-        "map_1779800000004"
+        "map_1779980100003",
+        "map_1779980100005",
+        "map_1779980100006",
+        "map_1779980100007",
+        "map_1779980100008"
       ]
     },
     {
       "id": "mappack_1779900000001",
       "name": "Electricity",
-      "description": "Electrical circuits, motor protection, and electrical-fluid integration spanning Package 2A (component introductions) and Package 2B (real-world integration).",
+      "description": "12 levels from circuit fundamentals through generation, power quality, and cross-domain capstone applications.",
       "tags": [
         "content",
         "cycle2"
       ],
       "mapIds": [
-        "map_1779900000001",
         "map_1779900000002",
         "map_1779900000003",
-        "map_1779900000011",
+        "map_1779980200001",
+        "map_1779980200002",
+        "map_1779980200003",
+        "map_1779980200005",
+        "map_1779980200008",
         "map_1779900000012",
-        "map_1779900000013"
+        "map_1779900000013",
+        "map_1781266986850"
       ]
     }
   ]
