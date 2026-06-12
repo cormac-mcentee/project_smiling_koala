@@ -1,0 +1,234 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_f16_s1",
+      "name": "Commission on Strainer A",
+      "description": "Both strainer branches are isolated. Commission the system on Strainer A: open V_In, open V_A_In and V_A_Out to bring Branch A into service, then open V_Out. Keep Branch B isolated on standby.",
+      "difficulty": "tutorial",
+      "initialConditions": [
+        {
+          "id": "ic_f16_s1_01",
+          "literalComponentId": "lc_f16_v_in",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f16_s1_02",
+          "literalComponentId": "lc_f16_v_a_in",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f16_s1_03",
+          "literalComponentId": "lc_f16_v_a_out",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f16_s1_04",
+          "literalComponentId": "lc_f16_v_b_in",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f16_s1_05",
+          "literalComponentId": "lc_f16_v_b_out",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f16_s1_06",
+          "literalComponentId": "lc_f16_v_out",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f16_s1_01",
+          "literalComponentId": "lc_f16_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        },
+        {
+          "id": "tc_f16_s1_02",
+          "literalComponentId": "lc_f16_v_b_in",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_f16_s1_03",
+          "literalComponentId": "lc_f16_v_b_out",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "scenario_f16_s2",
+      "name": "Strainer A Fouled — Switch to B",
+      "description": "Strainer A has become fouled during operation and is blocking flow. Switch over to Strainer B without interrupting flow. Open B branch valves first, then close A branch valves.",
+      "difficulty": "easy",
+      "initialConditions": [
+        {
+          "id": "ic_f16_s2_01",
+          "literalComponentId": "lc_f16_v_in",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f16_s2_02",
+          "literalComponentId": "lc_f16_v_a_in",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f16_s2_03",
+          "literalComponentId": "lc_f16_v_a_out",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f16_s2_04",
+          "literalComponentId": "lc_f16_str_a",
+          "variableId": "var_str_fouled",
+          "value": true
+        },
+        {
+          "id": "ic_f16_s2_05",
+          "literalComponentId": "lc_f16_v_b_in",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f16_s2_06",
+          "literalComponentId": "lc_f16_v_b_out",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f16_s2_07",
+          "literalComponentId": "lc_f16_v_out",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f16_s2_01",
+          "literalComponentId": "lc_f16_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        },
+        {
+          "id": "tc_f16_s2_02",
+          "literalComponentId": "lc_f16_v_b_in",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "tc_f16_s2_03",
+          "literalComponentId": "lc_f16_v_b_out",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "tc_f16_s2_04",
+          "literalComponentId": "lc_f16_v_a_in",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_f16_s2_05",
+          "literalComponentId": "lc_f16_v_a_out",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ],
+      "faultOverrides": [
+        {
+          "id": "fo_f16_s2_01",
+          "literalComponentId": "lc_f16_str_a",
+          "faultName": "fouled_strainer",
+          "gracePeriod": 0
+        }
+      ]
+    },
+    {
+      "id": "scenario_f16_s3",
+      "name": "Return A to Service After Maintenance",
+      "description": "System is running on Strainer B. Strainer A has been cleaned and is ready to return to service. Switch back to A without interrupting flow, then isolate B for the next maintenance window.",
+      "difficulty": "medium",
+      "initialConditions": [
+        {
+          "id": "ic_f16_s3_01",
+          "literalComponentId": "lc_f16_v_in",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f16_s3_02",
+          "literalComponentId": "lc_f16_v_a_in",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f16_s3_03",
+          "literalComponentId": "lc_f16_v_a_out",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "ic_f16_s3_04",
+          "literalComponentId": "lc_f16_v_b_in",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f16_s3_05",
+          "literalComponentId": "lc_f16_v_b_out",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "ic_f16_s3_06",
+          "literalComponentId": "lc_f16_v_out",
+          "variableId": "var_valve_open",
+          "value": true
+        }
+      ],
+      "targetConditions": [
+        {
+          "id": "tc_f16_s3_01",
+          "literalComponentId": "lc_f16_outlet",
+          "variableId": "var_outlet_receiving",
+          "value": true
+        },
+        {
+          "id": "tc_f16_s3_02",
+          "literalComponentId": "lc_f16_v_a_in",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "tc_f16_s3_03",
+          "literalComponentId": "lc_f16_v_a_out",
+          "variableId": "var_valve_open",
+          "value": true
+        },
+        {
+          "id": "tc_f16_s3_04",
+          "literalComponentId": "lc_f16_v_b_in",
+          "variableId": "var_valve_open",
+          "value": false
+        },
+        {
+          "id": "tc_f16_s3_05",
+          "literalComponentId": "lc_f16_v_b_out",
+          "variableId": "var_valve_open",
+          "value": false
+        }
+      ]
+    }
+  ]
+}
