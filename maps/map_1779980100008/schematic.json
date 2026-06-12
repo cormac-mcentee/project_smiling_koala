@@ -1,0 +1,317 @@
+{
+  "nodes": [
+    {
+      "lcId": "lc_f19_inlet",
+      "x": 8,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f19_pipe_a1",
+      "x": 108,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f19_v1",
+      "x": 216,
+      "y": -6
+    },
+    {
+      "lcId": "lc_f19_pipe_a2",
+      "x": 324,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f19_str1",
+      "x": 432,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f19_pipe_a3",
+      "x": 540,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f19_p1",
+      "x": 648,
+      "y": -1
+    },
+    {
+      "lcId": "lc_f19_pipe_a4",
+      "x": 756,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f19_h1",
+      "x": 864,
+      "y": -10.5
+    },
+    {
+      "lcId": "lc_f19_pipe_a5",
+      "x": 972,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f19_c1",
+      "x": 1056,
+      "y": 0
+    },
+    {
+      "lcId": "lc_f19_pipe_press",
+      "x": 1164,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f19_splitter",
+      "x": 1238,
+      "y": -10
+    },
+    {
+      "lcId": "lc_f19_prv1",
+      "x": 1401.5,
+      "y": -48
+    },
+    {
+      "lcId": "lc_f19_v2",
+      "x": 1392,
+      "y": 66
+    },
+    {
+      "lcId": "lc_f19_pipe_a6",
+      "x": 1500,
+      "y": 10
+    },
+    {
+      "lcId": "lc_f19_outlet",
+      "x": 1592,
+      "y": 10
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_f19_01",
+      "srcLcId": "lc_f19_inlet",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_pipe_a1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_02",
+      "srcLcId": "lc_f19_pipe_a1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_v1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_03",
+      "srcLcId": "lc_f19_v1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_pipe_a2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_04",
+      "srcLcId": "lc_f19_pipe_a2",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_str1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_05",
+      "srcLcId": "lc_f19_str1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_pipe_a3",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_06",
+      "srcLcId": "lc_f19_pipe_a3",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_p1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_07",
+      "srcLcId": "lc_f19_p1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_pipe_a4",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_08",
+      "srcLcId": "lc_f19_pipe_a4",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_h1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_09",
+      "srcLcId": "lc_f19_h1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_pipe_a5",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_10",
+      "srcLcId": "lc_f19_pipe_a5",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_c1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_11",
+      "srcLcId": "lc_f19_c1",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_pipe_press",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_12",
+      "srcLcId": "lc_f19_pipe_press",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_splitter",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_12a",
+      "srcLcId": "lc_f19_splitter",
+      "srcPortId": "output_a",
+      "dstLcId": "lc_f19_prv1",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_13",
+      "srcLcId": "lc_f19_splitter",
+      "srcPortId": "output_b",
+      "dstLcId": "lc_f19_v2",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_14",
+      "srcLcId": "lc_f19_v2",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_pipe_a6",
+      "dstPortId": "input"
+    },
+    {
+      "id": "conn_f19_15",
+      "srcLcId": "lc_f19_pipe_a6",
+      "srcPortId": "output",
+      "dstLcId": "lc_f19_outlet",
+      "dstPortId": "input"
+    }
+  ],
+  "anchorMap": {
+    "anc_f19_v1_btn": {
+      "id": "anc_f19_v1_btn",
+      "type": "button",
+      "lcId": "lc_f19_v1",
+      "bindTo": "act:on_toggle",
+      "label": "V1 Open/Close",
+      "x": 204,
+      "y": -46
+    },
+    "anc_f19_str1_lgt": {
+      "id": "anc_f19_str1_lgt",
+      "type": "light",
+      "lcId": "lc_f19_str1",
+      "bindTo": "var:fouled",
+      "label": "STR1 Fouled",
+      "x": 456,
+      "y": -24
+    },
+    "anc_f19_p1_btn": {
+      "id": "anc_f19_p1_btn",
+      "type": "button",
+      "lcId": "lc_f19_p1",
+      "bindTo": "act:on_toggle",
+      "label": "P1 Start/Stop",
+      "x": 672,
+      "y": -24
+    },
+    "anc_f19_p1_lgt": {
+      "id": "anc_f19_p1_lgt",
+      "type": "light",
+      "lcId": "lc_f19_p1",
+      "bindTo": "var:running",
+      "label": "P1",
+      "x": 732,
+      "y": -24
+    },
+    "anc_f19_h1_btn": {
+      "id": "anc_f19_h1_btn",
+      "type": "button",
+      "lcId": "lc_f19_h1",
+      "bindTo": "act:on_toggle",
+      "label": "H1 On/Off",
+      "x": 876,
+      "y": -36
+    },
+    "anc_f19_h1_lgt": {
+      "id": "anc_f19_h1_lgt",
+      "type": "light",
+      "lcId": "lc_f19_h1",
+      "bindTo": "var:active",
+      "label": "H1",
+      "x": 936,
+      "y": -36
+    },
+    "anc_f19_c1_btn": {
+      "id": "anc_f19_c1_btn",
+      "type": "button",
+      "lcId": "lc_f19_c1",
+      "bindTo": "act:on_toggle",
+      "label": "C1 Fan On/Off",
+      "x": 1068,
+      "y": -24
+    },
+    "anc_f19_c1_lgt": {
+      "id": "anc_f19_c1_lgt",
+      "type": "light",
+      "lcId": "lc_f19_c1",
+      "bindTo": "var:active",
+      "label": "C1",
+      "x": 1128,
+      "y": -24
+    },
+    "anc_f19_prv1_lgt": {
+      "id": "anc_f19_prv1_lgt",
+      "type": "light",
+      "lcId": "lc_f19_prv1",
+      "bindTo": "var:open",
+      "label": "PRV1 Open",
+      "x": 1500,
+      "y": -36
+    },
+    "anc_f19_v2_btn": {
+      "id": "anc_f19_v2_btn",
+      "type": "button",
+      "lcId": "lc_f19_v2",
+      "bindTo": "act:on_toggle",
+      "label": "V2 Open/Close",
+      "x": 1464,
+      "y": 144
+    },
+    "anc_f19_v2_lgt": {
+      "id": "anc_f19_v2_lgt",
+      "type": "light",
+      "lcId": "lc_f19_v2",
+      "bindTo": "var:open",
+      "label": "V2",
+      "x": 1392,
+      "y": 144
+    }
+  },
+  "landmarks": [
+    {
+      "id": "lm_f19_01",
+      "type": "text",
+      "x": 756,
+      "y": -80,
+      "content": "Full process loop: STR1 → P1 → H1 → C1 → PRV1 safety branch. Commission in sequence. PRV1 at 100 bar protects against dead-head or strainer blockage under full pump pressure.",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "colour": "#94a3b8",
+      "layer": "above_schematic"
+    }
+  ]
+}
