@@ -3,13 +3,13 @@
     {
       "id": "scenario_2b2_s1",
       "name": "Energise and Heat",
-      "description": "All valves are closed, the pump is off, and the heater enable switch SW_Enable is open so ECV1 is closed. Correct startup sequence: open V1 → start P1 → open V2 → open V3 → close SW_Enable (ECV1 opens, flow reaches H1) → activate H1. Do not activate the heater before flow is established — it will dry-run fault immediately.",
+      "description": "All valves are closed, the pump is off, and the heater enable switch SW_Enable is open so ECV1 is closed. Correct startup sequence: open V1 â†’ start P1 â†’ open V2 â†’ open V3 â†’ close SW_Enable (ECV1 opens, flow reaches H1) â†’ activate H1. Do not activate the heater before flow is established â€” it will dry-run fault immediately.",
       "difficulty": "medium",
       "initialConditions": [
         {
           "id": "ic_2b2_s1_01",
           "literalComponentId": "lc_2b2_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -61,13 +61,13 @@
     {
       "id": "scenario_2b2_s2",
       "name": "Heater Interlock Test",
-      "description": "The system is running with H1 active and ECV1 powered. Open SW_Enable to test the interlock — ECV1 closes, flow to H1 stops, and heating ceases while the process loop (pump and valves) continues. Confirm H1 is no longer heating. Then restore the enable.",
+      "description": "The system is running with H1 active and ECV1 powered. Open SW_Enable to test the interlock â€” ECV1 closes, flow to H1 stops, and heating ceases while the process loop (pump and valves) continues. Confirm H1 is no longer heating. Then restore the enable.",
       "difficulty": "medium",
       "initialConditions": [
         {
           "id": "ic_2b2_s2_01",
           "literalComponentId": "lc_2b2_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         },
         {
@@ -133,7 +133,7 @@
         {
           "id": "ic_2b2_s3_01",
           "literalComponentId": "lc_2b2_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": false
         },
         {
@@ -195,7 +195,7 @@
         {
           "id": "tc_2b2_s3_04",
           "literalComponentId": "lc_2b2_ps1",
-          "variableId": "var_ps_energised",
+          "variableId": "var_ps_on",
           "value": true
         }
       ],
