@@ -1,16 +1,16 @@
 {
   "schemaVersion": 2,
-  "version": "1.1.1.",
-  "publishedAt": "2026-06-14T17:01:23.861Z",
+  "version": "1.1.2.",
+  "publishedAt": "2026-06-16T18:24:02.284Z",
   "projectId": "project_1779398994828",
   "files": [
     {
       "path": "map-packs.json",
-      "sha256": "3c56193e3bc0fa738cec92b1b30208fa246250b52c01e932e825fda99c14d895"
+      "sha256": "50fd0a0d272e413b8680186bf6af54726229cdf132ef02d518d8463e3cc74a8d"
     },
     {
       "path": "component-sets.json",
-      "sha256": "77ef9b6d0892ad47cfe325ffbbc662d15c8f2d8588db4ad1c77b5aa7c80a664b"
+      "sha256": "b55a938ac32e6a4a081876a50b9883654fa134365e97c4f322039f124f24c310"
     },
     {
       "path": "component-images/component_1779500000004.default.svg",
@@ -127,6 +127,30 @@
     {
       "path": "component-images/component_battery_storage_1779980000016.default.svg",
       "sha256": "d31b915d0785d8caf3a46a7eea8e6abeb443bee439c8d05fb5b2efa30cedc234"
+    },
+    {
+      "path": "component-images/component_1781448232193.default.svg",
+      "sha256": "2504532c4147624111119dc79f037f5cf7f8f44ac975203521cdfcc33c85b897"
+    },
+    {
+      "path": "component-images/component_1781448273637.default.svg",
+      "sha256": "a51e551c42cb9bfd7798f103bb7e60075d9af405c3795f0b3275977d3ae33bbb"
+    },
+    {
+      "path": "component-images/component_1781448273637.crusher_running.svg",
+      "sha256": "255e26514c46c8c9da88dbaa076def9fec966abed170d3af64c2d3cdad994113"
+    },
+    {
+      "path": "component-images/component_1781448273637.grinder_running.svg",
+      "sha256": "39c58f7dbdf2929204d2c7b2d95bc7530d3b4f6b55d467bb9b0ec7c899250706"
+    },
+    {
+      "path": "component-images/component_1781448600001.default.svg",
+      "sha256": "13d59146bb5a05c2cdaeda0289dde85696d1e38f9ede71717fcdfc8cbb101449"
+    },
+    {
+      "path": "component-images/component_1781448600001.running.svg",
+      "sha256": "a4f40b427b8d1f74cd96bed83aa5397ab020628e78e6fc6057658615b24112cf"
     },
     {
       "path": "component-images/_global.barrier_overlay.svg",
@@ -459,11 +483,27 @@
     {
       "path": "maps/map_1781266986850/schematic.json",
       "sha256": "235efd9903236df6e0fb710ebc99dda9bad5ee8f3925b47bae8da29db60ada9b"
+    },
+    {
+      "path": "maps/map_1781468118396/map.json",
+      "sha256": "ae43ec4e48ae80db882842ff5676ff4e678223ed66d98be42349a59abd212b6e"
+    },
+    {
+      "path": "maps/map_1781468118396/literal-components.json",
+      "sha256": "a5911bd4c08874f26e2ee0732f04ec0c5dca106c6d37b44d4e4c50257095ce1c"
+    },
+    {
+      "path": "maps/map_1781468118396/scenarios.json",
+      "sha256": "673497177242cbe61d7d1d8132d0c132bde33dc737c0ac810efbd1ed97aa257d"
+    },
+    {
+      "path": "maps/map_1781468118396/schematic.json",
+      "sha256": "52e6e53c0335d1f354248de4ae6a14a91111faccf0d2cef5f19651cffa1940fa"
     }
   ],
   "bundle": {
     "path": "content.json.gz",
-    "sha256": "fd9f3dd2e7c4178ab9154b68640afc71ca7ec92ad64b8f21790af0d54c1a85fc"
+    "sha256": "79b5258f877a9a913308014b3d4bd0ec05a0582b135f39d33529bbe29dc9c8ae"
   },
   "packs": [
     {
@@ -477,7 +517,13 @@
       "isPaid": false,
       "price": null,
       "productId": null
+    },
+    {
+      "packId": "mappack_1781439201783",
+      "isPaid": false,
+      "price": null,
+      "productId": null
     }
   ],
-  "signature": "PWQGeHOG/+/BluJj+TPM0V3MX4PpdRECc1zVt2pXkvPSqfcqqqQ4UmLfOqhXqSjEfs5R5MI4HVRsvxf0ZUiXcg=="
+  "signature": "CjGawepUBfmlA/rRfst0LaAGiO8Ygg3DbcTlmjfzIQgvrVe2mAI7j2rfsft3/7ozlP223EIS7D3laq2izwvwiA=="
 }
