@@ -1,16 +1,40 @@
 {
   "schemaVersion": 2,
-  "version": "1.1.2.",
-  "publishedAt": "2026-06-16T18:24:02.284Z",
+  "version": "1.2.",
+  "publishedAt": "2026-06-23T17:25:24.505Z",
   "projectId": "project_1779398994828",
   "files": [
     {
       "path": "map-packs.json",
-      "sha256": "50fd0a0d272e413b8680186bf6af54726229cdf132ef02d518d8463e3cc74a8d"
+      "sha256": "ff59ff5ed6ee80e774045e0b84d3922616db514aab8237406cb6666d7c73a0de"
     },
     {
       "path": "component-sets.json",
-      "sha256": "b55a938ac32e6a4a081876a50b9883654fa134365e97c4f322039f124f24c310"
+      "sha256": "3da3afeb23bae79bd53527985b7c348166201c998ca2cdc5d6b3984f45966195"
+    },
+    {
+      "path": "component-images/component_1779399245576.default.svg",
+      "sha256": "369a85006d0648df3d32fc887ae4a5290da5b5131ea21a55bd872a2e0182baa7"
+    },
+    {
+      "path": "component-images/component_control_valve_1779600000002.default.svg",
+      "sha256": "8cbbf923471b69ed004dab3aaff914d9302f5a7731c937c5d485d746cf788ac2"
+    },
+    {
+      "path": "component-images/component_ecv_1779600000003.default.svg",
+      "sha256": "d2ef6b47c6c4c6829c2261e30f4610c08dc5797f617ed8cf5e7a96e66b9baeed"
+    },
+    {
+      "path": "component-images/component_check_valve_1779980000002.default.svg",
+      "sha256": "8cbbf923471b69ed004dab3aaff914d9302f5a7731c937c5d485d746cf788ac2"
+    },
+    {
+      "path": "component-images/component_mixing_valve_1779980000006.default.svg",
+      "sha256": "d51d56e16334e34dcadd3b97042116fb3a28159488010faf466e363f2d376448"
+    },
+    {
+      "path": "component-images/component_strainer_1779980000005.default.svg",
+      "sha256": "65dc02eff52dcdf93492bd2460c4a3e8efcb31455392301e84b94b712f56b27d"
     },
     {
       "path": "component-images/component_1779500000004.default.svg",
@@ -37,24 +61,24 @@
       "sha256": "bb5024bb4116d96e18862c57f26685790678b0cca135ce2d514dd9108886dcaf"
     },
     {
-      "path": "component-images/component_1779399245576.default.svg",
-      "sha256": "369a85006d0648df3d32fc887ae4a5290da5b5131ea21a55bd872a2e0182baa7"
-    },
-    {
-      "path": "component-images/component_control_valve_1779600000002.default.svg",
-      "sha256": "8cbbf923471b69ed004dab3aaff914d9302f5a7731c937c5d485d746cf788ac2"
-    },
-    {
-      "path": "component-images/component_ecv_1779600000003.default.svg",
-      "sha256": "d2ef6b47c6c4c6829c2261e30f4610c08dc5797f617ed8cf5e7a96e66b9baeed"
-    },
-    {
       "path": "component-images/component_1779500000003.default.svg",
       "sha256": "6a6a5cad19b2b9952e64508a0221ca36cd3a1e7fb3ab8a530913b422c9d56954"
     },
     {
+      "path": "component-images/component_cooler_1779980000001.default.svg",
+      "sha256": "3a896e9908f81bad71211756eedbb15250766859b6a269026e1ca77c89056b72"
+    },
+    {
       "path": "component-images/component_1779500000007.default.svg",
       "sha256": "ba79ed1e6af73df0575c410325a4f8f1b8563e2651101803977b9dbcbd987fee"
+    },
+    {
+      "path": "component-images/component_vaporizer_1779980000003.default.svg",
+      "sha256": "8c66e922c609595ece06734931d01488969c557d5517871df943e1f4a857db56"
+    },
+    {
+      "path": "component-images/component_liquid_trap_1779980000004.default.svg",
+      "sha256": "2285d6437f4d6ef7e30e38e0ff105d4d3f0497f2039896abd7e2aa0d2693d271"
     },
     {
       "path": "component-images/component_switch_1779700000002.default.svg",
@@ -63,6 +87,38 @@
     {
       "path": "component-images/component_fuse_1779700000003.default.svg",
       "sha256": "e86c55ca44140ef9ae1fc0db42524dd278c36fb80c02d24232bc09bfa1f854a6"
+    },
+    {
+      "path": "component-images/component_generator_1779980000007.default.svg",
+      "sha256": "c4f684d2d3b45db6d16acb2d6253a2838219ec81d3247378cfd70a591eebd64d"
+    },
+    {
+      "path": "component-images/component_transformer_1779980000008.default.svg",
+      "sha256": "caa98184e3031ff442a7aeca115000710eefcd444808cb45603762dc401dc4bd"
+    },
+    {
+      "path": "component-images/component_battery_storage_1779980000016.default.svg",
+      "sha256": "d31b915d0785d8caf3a46a7eea8e6abeb443bee439c8d05fb5b2efa30cedc234"
+    },
+    {
+      "path": "component-images/component_drive_motor_1779950000011.default.svg",
+      "sha256": "c4f684d2d3b45db6d16acb2d6253a2838219ec81d3247378cfd70a591eebd64d"
+    },
+    {
+      "path": "component-images/component_vfd_motor_1779980000010.default.svg",
+      "sha256": "c4f684d2d3b45db6d16acb2d6253a2838219ec81d3247378cfd70a591eebd64d"
+    },
+    {
+      "path": "component-images/component_wind_turbine_1779980000014.default.svg",
+      "sha256": "986364b86ff753372883547a18005ec362816b45fe04d47dfa868068402ad374"
+    },
+    {
+      "path": "component-images/component_fluid_turbine_1779950000012.default.svg",
+      "sha256": "bb5024bb4116d96e18862c57f26685790678b0cca135ce2d514dd9108886dcaf"
+    },
+    {
+      "path": "component-images/component_1781448232193.default.svg",
+      "sha256": "2504532c4147624111119dc79f037f5cf7f8f44ac975203521cdfcc33c85b897"
     },
     {
       "path": "component-images/component_motor_load_1779700000004.default.svg",
@@ -75,62 +131,6 @@
     {
       "path": "component-images/component_lamp_1779700000005.lit.svg",
       "sha256": "5b2b7538670a870f027dd63ab5ef67fa283869c5f771de2a658e06df5ccedfe2"
-    },
-    {
-      "path": "component-images/component_drive_motor_1779950000011.default.svg",
-      "sha256": "c4f684d2d3b45db6d16acb2d6253a2838219ec81d3247378cfd70a591eebd64d"
-    },
-    {
-      "path": "component-images/component_fluid_turbine_1779950000012.default.svg",
-      "sha256": "bb5024bb4116d96e18862c57f26685790678b0cca135ce2d514dd9108886dcaf"
-    },
-    {
-      "path": "component-images/component_cooler_1779980000001.default.svg",
-      "sha256": "3a896e9908f81bad71211756eedbb15250766859b6a269026e1ca77c89056b72"
-    },
-    {
-      "path": "component-images/component_check_valve_1779980000002.default.svg",
-      "sha256": "8cbbf923471b69ed004dab3aaff914d9302f5a7731c937c5d485d746cf788ac2"
-    },
-    {
-      "path": "component-images/component_vaporizer_1779980000003.default.svg",
-      "sha256": "8c66e922c609595ece06734931d01488969c557d5517871df943e1f4a857db56"
-    },
-    {
-      "path": "component-images/component_liquid_trap_1779980000004.default.svg",
-      "sha256": "2285d6437f4d6ef7e30e38e0ff105d4d3f0497f2039896abd7e2aa0d2693d271"
-    },
-    {
-      "path": "component-images/component_strainer_1779980000005.default.svg",
-      "sha256": "65dc02eff52dcdf93492bd2460c4a3e8efcb31455392301e84b94b712f56b27d"
-    },
-    {
-      "path": "component-images/component_mixing_valve_1779980000006.default.svg",
-      "sha256": "d51d56e16334e34dcadd3b97042116fb3a28159488010faf466e363f2d376448"
-    },
-    {
-      "path": "component-images/component_generator_1779980000007.default.svg",
-      "sha256": "c4f684d2d3b45db6d16acb2d6253a2838219ec81d3247378cfd70a591eebd64d"
-    },
-    {
-      "path": "component-images/component_transformer_1779980000008.default.svg",
-      "sha256": "caa98184e3031ff442a7aeca115000710eefcd444808cb45603762dc401dc4bd"
-    },
-    {
-      "path": "component-images/component_vfd_motor_1779980000010.default.svg",
-      "sha256": "c4f684d2d3b45db6d16acb2d6253a2838219ec81d3247378cfd70a591eebd64d"
-    },
-    {
-      "path": "component-images/component_wind_turbine_1779980000014.default.svg",
-      "sha256": "986364b86ff753372883547a18005ec362816b45fe04d47dfa868068402ad374"
-    },
-    {
-      "path": "component-images/component_battery_storage_1779980000016.default.svg",
-      "sha256": "d31b915d0785d8caf3a46a7eea8e6abeb443bee439c8d05fb5b2efa30cedc234"
-    },
-    {
-      "path": "component-images/component_1781448232193.default.svg",
-      "sha256": "2504532c4147624111119dc79f037f5cf7f8f44ac975203521cdfcc33c85b897"
     },
     {
       "path": "component-images/component_1781448273637.default.svg",
@@ -151,6 +151,78 @@
     {
       "path": "component-images/component_1781448600001.running.svg",
       "sha256": "a4f40b427b8d1f74cd96bed83aa5397ab020628e78e6fc6057658615b24112cf"
+    },
+    {
+      "path": "component-images/component_ball_mill_1781470000001.default.svg",
+      "sha256": "3613167ec80713e3275d1df138395c69553747e7ee346467186750cc9d030d00"
+    },
+    {
+      "path": "component-images/component_ball_mill_1781470000001.ball_mill_running.svg",
+      "sha256": "44c95e5314377cdbcce97f7f6f41821b2fa072f6c5b866a7f938cca4fd37cc2f"
+    },
+    {
+      "path": "component-images/component_ball_mill_1781470000001.sag_running.svg",
+      "sha256": "071b652bd20636f3fe85e714647d2d8596f0e21fe75aacc0ab4a4fddd0b3badf"
+    },
+    {
+      "path": "component-images/component_cyclone_1781490000001.default.svg",
+      "sha256": "d588a7085215052f7011187265d969cf2af72df492a7e7184f34509096586ec5"
+    },
+    {
+      "path": "component-images/component_cyclone_1781490000001.running.svg",
+      "sha256": "cd5f2f75283144580802f62c7e0444d4ea26110ce76bcf14ca5ae49567d0ba8b"
+    },
+    {
+      "path": "component-images/component_magnetic_separator_1781500000001.default.svg",
+      "sha256": "e56050600c5a9f2de891952d48fa6854050950ee1e2e8dc6b097fd33d37a7e11"
+    },
+    {
+      "path": "component-images/component_magnetic_separator_1781500000001.running.svg",
+      "sha256": "446409540645a24074d10637e5928ef65f3f5b58cdb7a572684fde892d6b6744"
+    },
+    {
+      "path": "component-images/component_banana_screen_1781540000001.default.svg",
+      "sha256": "c5907157feefea0c891664f34d949e31813f0affbb760c1bdb20b3b8c3568036"
+    },
+    {
+      "path": "component-images/component_banana_screen_1781540000001.running.svg",
+      "sha256": "f6498c4f29bcacee7a9da473ea476fd9f0942e31512f05d46c1b06921acfd8cc"
+    },
+    {
+      "path": "component-images/component_shaking_table_1781550000001.default.svg",
+      "sha256": "b0c55063ebee9ba0a253b72070801733f40a8e2eda19617dec704edbfd356515"
+    },
+    {
+      "path": "component-images/component_shaking_table_1781550000001.running.svg",
+      "sha256": "67f20d9b97059d31123428d8103a7518d33c9c9195c79eb128c3805eddef044b"
+    },
+    {
+      "path": "component-images/component_thickener_1781510000001.default.svg",
+      "sha256": "c8d4086b79738ff7b5ec6e004d1f17aa79ba161bb46f2dd1eef3e5a52a0624cc"
+    },
+    {
+      "path": "component-images/component_thickener_1781510000001.running.svg",
+      "sha256": "7b3b22893e657d646cd1371599c770570fc350f2ec8dc3235cfceecd88848434"
+    },
+    {
+      "path": "component-images/component_vacuum_filter_1781520000001.default.svg",
+      "sha256": "0e72b3f6dd6f283a63f970ad4da3b4319d8f690d0cbbbf165109d2f6e5c152d8"
+    },
+    {
+      "path": "component-images/component_vacuum_filter_1781520000001.running.svg",
+      "sha256": "7e2654e8ac2b74fe380e2c7a0e3895cc52fd00a5354d477d06c6352beff39324"
+    },
+    {
+      "path": "component-images/component_dryer_1781560000001.default.svg",
+      "sha256": "b4525f38816ac29b1ec8f34f63a85b16ddc80c5c9b068c062dcaf8c02ec6af84"
+    },
+    {
+      "path": "component-images/component_dryer_1781560000001.running.svg",
+      "sha256": "2a874de96a5ef27efc2b6779b467dd8ad146ba822545f7a1b987c54aa6888de1"
+    },
+    {
+      "path": "component-images/component_blast_furnace_1781590000003.default.svg",
+      "sha256": "503c9a44caa82ed9ce7f822289a22f1b527d6cb952cb34a539f6960fb945d25b"
     },
     {
       "path": "component-images/_global.barrier_overlay.svg",
@@ -262,7 +334,7 @@
     },
     {
       "path": "maps/map_1779399000674/map.json",
-      "sha256": "9a7f626e9a38cbbe0dc4dc8d2af29919f1c84c452ab568af7b65f180eed8ff91"
+      "sha256": "6b96004a3c9bb779c9d7f3375dad306df23ad0dff9a6057dfbc704439d3943cb"
     },
     {
       "path": "maps/map_1779399000674/literal-components.json",
@@ -278,7 +350,7 @@
     },
     {
       "path": "maps/map_1779800000002/map.json",
-      "sha256": "c4b57e683ffbe6ee9078d0b2d306d5280c53ab584379ea333f3b114a2a9e5333"
+      "sha256": "60b9dc6908b57375686f06bc65dae44fba97d73c957b957eaacf4432a58abb9d"
     },
     {
       "path": "maps/map_1779800000002/literal-components.json",
@@ -454,7 +526,7 @@
     },
     {
       "path": "maps/map_1779900000013/map.json",
-      "sha256": "00b5dd27aca1f19bd5d3b39e76897dd2b13bf1ca3c8a7340b34e0bef31f9e77e"
+      "sha256": "efc6b7f552cfe11391e0853b8ab4ad4f9f4ed4444cdc909da3ae50751494323f"
     },
     {
       "path": "maps/map_1779900000013/literal-components.json",
@@ -470,7 +542,7 @@
     },
     {
       "path": "maps/map_1781266986850/map.json",
-      "sha256": "89001aee479d162fa5ac610a7d0c59748f43476ddfe426a724757406e1323deb"
+      "sha256": "c3b8f7a67fb4fa0e3d535f5359c0d6b6e2c0b287c55e2dbe221f712df1020890"
     },
     {
       "path": "maps/map_1781266986850/literal-components.json",
@@ -486,24 +558,136 @@
     },
     {
       "path": "maps/map_1781468118396/map.json",
-      "sha256": "ae43ec4e48ae80db882842ff5676ff4e678223ed66d98be42349a59abd212b6e"
+      "sha256": "ba2a2b7f49aab873464a1c559038a0ec59e550e7f8ac0b149afaeac2afd4741a"
     },
     {
       "path": "maps/map_1781468118396/literal-components.json",
-      "sha256": "a5911bd4c08874f26e2ee0732f04ec0c5dca106c6d37b44d4e4c50257095ce1c"
+      "sha256": "bcd14aea873929c9d499c8a92a26dbd226d5e17b5166805cc968d749bdcd2ded"
     },
     {
       "path": "maps/map_1781468118396/scenarios.json",
-      "sha256": "673497177242cbe61d7d1d8132d0c132bde33dc737c0ac810efbd1ed97aa257d"
+      "sha256": "8119105af45cc50ee27f252a504c5b16b2e131f4668f53fbfc2c8728b5849da7"
     },
     {
       "path": "maps/map_1781468118396/schematic.json",
-      "sha256": "52e6e53c0335d1f354248de4ae6a14a91111faccf0d2cef5f19651cffa1940fa"
+      "sha256": "b4ce1c092c1d9c106d923526cb5ddf72acd97c3d51e1d954b7934e13163612a8"
+    },
+    {
+      "path": "maps/map_1781864347657/map.json",
+      "sha256": "31ea2af417d8ccd9689ad25205264794f7688a6cca41b707c3ceff7fb6b970cb"
+    },
+    {
+      "path": "maps/map_1781864347657/literal-components.json",
+      "sha256": "64525e0432de482897b0092feaf95e1e622c2a5fb2d4af81d87d72272415f89c"
+    },
+    {
+      "path": "maps/map_1781864347657/scenarios.json",
+      "sha256": "6f222eaebf2f24cca34c97bbc8c36dfb21e2c1bdaebd8840f0868371ff0f960c"
+    },
+    {
+      "path": "maps/map_1781864347657/schematic.json",
+      "sha256": "253b93ef5d77e937513e168652acf5abfa30560e52bc784428e90412ce4df2cf"
+    },
+    {
+      "path": "maps/map_1781886884901/map.json",
+      "sha256": "5288ef11056743bd33ea9b0526ca4aad009229752d5ba777cdd9d561663de3d6"
+    },
+    {
+      "path": "maps/map_1781886884901/literal-components.json",
+      "sha256": "e893a10e05b517bea009a87a4a0ae180726e3b72ecb7952ea2178725f5b33ce2"
+    },
+    {
+      "path": "maps/map_1781886884901/scenarios.json",
+      "sha256": "adf8e8888ef8727b62bcb7a237843c5a26d5d7eab3c383d2163d5baf299d4c08"
+    },
+    {
+      "path": "maps/map_1781886884901/schematic.json",
+      "sha256": "65b9495da1b0c6ce879cd47b7c7bd043862fa1491ec6cc0947dfa96ec72e972e"
+    },
+    {
+      "path": "maps/map_1781947290793/map.json",
+      "sha256": "bf7d6573042669fcac07f5c3e017dc6113776bf10bb62a2e25de4b127511c7cc"
+    },
+    {
+      "path": "maps/map_1781947290793/literal-components.json",
+      "sha256": "a7088c23b81d27f526aa355a61ebefac109c3a7c412fa0357140c02944156f4d"
+    },
+    {
+      "path": "maps/map_1781947290793/scenarios.json",
+      "sha256": "5219b1496bade73ac14203acd5bf8d6ef0393ba75bf3575dc24fe8c8d1ae4756"
+    },
+    {
+      "path": "maps/map_1781947290793/schematic.json",
+      "sha256": "0a5825b2323aecea373c9cf3b02852d5d8e12f0eefbc06204fdc0d6771391fd0"
+    },
+    {
+      "path": "maps/map_1782053926366/map.json",
+      "sha256": "9c04f97ed8959b809eb520f144f11c5762e2452f0969fab64a4ba8e6f2b085ed"
+    },
+    {
+      "path": "maps/map_1782053926366/literal-components.json",
+      "sha256": "3bd5e73697fb49c523365c761115dd50effbc07103ab51cba9cabe4442a33b76"
+    },
+    {
+      "path": "maps/map_1782053926366/scenarios.json",
+      "sha256": "23e893ef81ae23d2f1401ede5c84e6d2de7a895b81abee2fd6fc4678d3df2843"
+    },
+    {
+      "path": "maps/map_1782053926366/schematic.json",
+      "sha256": "ec897b2832bdec2632598f6d8efe9f514901cafd28baff3342b1ea4d86e69992"
+    },
+    {
+      "path": "maps/map_1779980100003/map.json",
+      "sha256": "38b46b5e976b6893d950a8ec6c4420e3f12116a528fa61263b0a8f318d3d2a67"
+    },
+    {
+      "path": "maps/map_1779980100003/literal-components.json",
+      "sha256": "be34942184b94ba82a1ceb20a11db1479af7ac7a329e85a65f9ee93d17a5b9cd"
+    },
+    {
+      "path": "maps/map_1779980100003/scenarios.json",
+      "sha256": "efd70f6a6c5483e4b4e395c8ead62035b9cec6ee92e71b484111ca3313b312d7"
+    },
+    {
+      "path": "maps/map_1779980100003/schematic.json",
+      "sha256": "f78b09ed7b42fb42291a855529ceff69edaa95683a17d104bccc90fce64f2a5a"
+    },
+    {
+      "path": "maps/map_1779980100007/map.json",
+      "sha256": "072749cca6edfb519309ec406057998548ff25d835444a9f19952761f1fcf666"
+    },
+    {
+      "path": "maps/map_1779980100007/literal-components.json",
+      "sha256": "10853b2cd095d8ba085c748d7e12c49338b945795a807e9c49b9de97ba201663"
+    },
+    {
+      "path": "maps/map_1779980100007/scenarios.json",
+      "sha256": "c87766fdf6b04cd6aee93a1f79639e7c1841760a7ba0aa3b2b60a8ec0255f1d2"
+    },
+    {
+      "path": "maps/map_1779980100007/schematic.json",
+      "sha256": "e8e6085ec78d63f130fc560ed111e5d612f282bb401a118432bca3e1f0af324a"
+    },
+    {
+      "path": "maps/map_1779980100008/map.json",
+      "sha256": "0899dff6d4bb0dcf437905d229c2d13d92b83a24dff70d71bfc53857352e75e3"
+    },
+    {
+      "path": "maps/map_1779980100008/literal-components.json",
+      "sha256": "f5b2de9040eaebbc1d358ce00805e6be26bc8a5edad42696634855e6a02e46a0"
+    },
+    {
+      "path": "maps/map_1779980100008/scenarios.json",
+      "sha256": "51a50a24e0ffb3a3bf8910378ae6b7c125dd403bfff4c758a51ee08ad1c6e4ed"
+    },
+    {
+      "path": "maps/map_1779980100008/schematic.json",
+      "sha256": "76238c63c3b7e9c1c81f3e5bc9bbc1c565cc5898947ff45d6d665a03845b7bf1"
     }
   ],
   "bundle": {
     "path": "content.json.gz",
-    "sha256": "79b5258f877a9a913308014b3d4bd0ec05a0582b135f39d33529bbe29dc9c8ae"
+    "sha256": "dfad37bae09388610f461e8ff46732c3e3e93ffe93b6147ff202cbb2a3994205"
   },
   "packs": [
     {
@@ -523,7 +707,13 @@
       "isPaid": false,
       "price": null,
       "productId": null
+    },
+    {
+      "packId": "mappack_orphans",
+      "isPaid": false,
+      "price": null,
+      "productId": null
     }
   ],
-  "signature": "CjGawepUBfmlA/rRfst0LaAGiO8Ygg3DbcTlmjfzIQgvrVe2mAI7j2rfsft3/7ozlP223EIS7D3laq2izwvwiA=="
+  "signature": "NdWsCaYV04lip0ozrDl9P36W/fzFf28DHw9T1mIl9Sj0JC6hF9YbZ+uwKLbe5IJmp9sF7TTb4E/Lqc60V9Rl4g=="
 }
